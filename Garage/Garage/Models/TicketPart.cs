@@ -13,5 +13,7 @@ namespace Garage.Models
         public decimal price { get; set; }
         public decimal quantity { get; set; }
         public decimal discount { get; set; }
+        public decimal unitPrice { get; set; }
+
     }
 }

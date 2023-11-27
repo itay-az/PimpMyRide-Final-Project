@@ -35,7 +35,7 @@ namespace PimpMyRideServer.Handlers
             Ticket newTicket = new Ticket(request.carId,request.clientId,request.causeOfArrival);
             var client = Server.Server.context.Clients.SingleOrDefault(client => client.clientId == request.clientId);
             var car = Server.Server.context.Car.SingleOrDefault(car => car.carId == request.carId);
-            var tickets = Server.Server.context.Ticket.Where(t => t.carId == request.carId);
+            var tickets = Server.Server.context.Ticket.SingleOrDefault(t => t.carId == request.carId);
             if (client == null )
             {
                 FailureResponse failureResponse = new FailureResponse { status = false, message = "Client doesnt exist" };
@@ -195,7 +195,8 @@ namespace PimpMyRideServer.Handlers
                     partId = partFromBody.partId,
                     quantity = partFromBody.quantity,
                     partName = partFromBody.partName,
-                    price = partFromBody.price
+                    price = partFromBody.price,
+                    unitPrice = partFromBody.unitPrice,
                 };
 
                 var ticket = Server.Server.context.Ticket.Include("parts").SingleOrDefault(t => t.ticketId == ticketId);
@@ -286,7 +287,7 @@ namespace PimpMyRideServer.Handlers
                     decimal tmp = ticket.parts[i].quantity - partFromBody[i].quantity;
 
                     partFromStorage.quantity += tmp;
-
+                    Server.Server.context.Part.Update(partFromStorage);
                 }
                 ticket.parts[i] = partFromBody[i];
             }
@@ -294,6 +295,8 @@ namespace PimpMyRideServer.Handlers
             ticket.parts = partFromBody;
 
             Server.Server.context.Ticket.Update(ticket);
+
+            Server.Server.context.SaveChanges();
 
             return new StatusCodeResult(StatusCodes.Status200OK);
         }

@@ -115,6 +115,7 @@ namespace Garage.Screens.TicketsScreens
             if(isValid(partAmountTxt.Text))
             {
                 part.quantity = decimal.Parse(partAmountTxt.Text);
+                part.unitPrice = part.price;
                 part.price *= part.quantity;
                 AddPartToTicketAsync(part);
             }

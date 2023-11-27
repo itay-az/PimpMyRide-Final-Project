@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "36qjVzQhOIWdxKGJrl18hZEXwIXAAYWHkYLPw5kZncunpOXSoCxKVqoAsl87ekONNjq2jyjOwPah0ULD74oU1Q==",
+  "dgSpecHash": "vj75bOIiWwre+K7DFeIX0dp1E+x2EGDK4n0Pvv9qfvQW99u6JTJE0ry5rk1Aj5eoX5TaSAgnhh6+S/58023bKw==",
   "success": true,
-  "projectFilePath": "D:\\college\\הצעת פרויקט\\BackEnd\\PimpMyRideServer\\PimpMyRideServer\\PimpMyRideServer.csproj",
+  "projectFilePath": "D:\\college\\פרויקט גמר\\PimpMyRide-Final-Project\\BackEnd\\PimpMyRideServer\\PimpMyRideServer\\PimpMyRideServer.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\alona\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\alona\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

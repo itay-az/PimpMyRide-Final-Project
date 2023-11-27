@@ -5250,6 +5250,9 @@ namespace PimpMyRideServer.Migrations
                     b.Property<int?>("ticketId")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("unitPrice")
+                        .HasColumnType("decimal(18,2)");
+
                     b.HasKey("Id");
 
                     b.HasIndex("ticketId");
