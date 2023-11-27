@@ -1,0 +1,454 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4CF9B66B-8CEC-4F59-83D3-9ADF58978361}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Garage</RootNamespace>
+    <AssemblyName>Garage</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>preview</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.7.0.0\lib\net462\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Json, Version=7.0.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Net.Http.Json.7.0.1\lib\net462\System.Net.Http.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Text.Encodings.Web, Version=7.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Encodings.Web.7.0.0\lib\net462\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json, Version=7.0.0.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Text.Json.7.0.2\lib\net462\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.9.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AdminTable.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dashboard.Designer.cs">
+      <DependentUpon>Dashboard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GarageDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GarageDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GarageDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GarageDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AllOrder.cs" />
+    <Compile Include="Models\Car.cs" />
+    <Compile Include="Models\CauseOfArrival.cs" />
+    <Compile Include="Models\Client.cs" />
+    <Compile Include="Models\Labor.cs" />
+    <Compile Include="Models\Order.cs" />
+    <Compile Include="Models\Parts.cs" />
+    <Compile Include="Models\Supplier.cs" />
+    <Compile Include="Models\Ticket.cs" />
+    <Compile Include="Models\TicketPart.cs" />
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Requests\AddPartToTicketRequest.cs" />
+    <Compile Include="Requests\CreateClientRequest.cs" />
+    <Compile Include="Requests\CreateManufactureWithModelRequest.cs" />
+    <Compile Include="Requests\CreateNewOrderRequese.cs" />
+    <Compile Include="Requests\CreateNewPartRequest.cs" />
+    <Compile Include="Requests\CreateSupplierRequest.cs" />
+    <Compile Include="Requests\CreateNewTicketRequest.cs" />
+    <Compile Include="Requests\CreateNewTicketSearchRequest.cs" />
+    <Compile Include="Requests\CreateUserRequest.cs" />
+    <Compile Include="Models\JobTitle.cs" />
+    <Compile Include="Requests\GetAllClientRequest.cs" />
+    <Compile Include="Requests\GetAllOffersRequest.cs" />
+    <Compile Include="Requests\GetAllPartsRequest.cs" />
+    <Compile Include="Requests\GetAllSuppliersRequest.cs" />
+    <Compile Include="Requests\GetAllUsersRequest.cs" />
+    <Compile Include="Requests\GetManufacturesRequest.cs" />
+    <Compile Include="Requests\GetModelsByManufactureRequest.cs" />
+    <Compile Include="Requests\LoginRequest.cs" />
+    <Compile Include="LoginForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginForm.Designer.cs">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Responses\GetAllOrdersResponse.cs" />
+    <Compile Include="Responses\GetAllTicketsResponse.cs" />
+    <Compile Include="Responses\GetCarByCarIdResponse.cs" />
+    <Compile Include="Responses\GetOrderDetailsResponse.cs" />
+    <Compile Include="Responses\GetTicketByIdResponse.cs" />
+    <Compile Include="Screens\AdminScreens\AddNewManufactureForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\AdminScreens\AddNewManufactureForm.Designer.cs">
+      <DependentUpon>AddNewManufactureForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\AdminScreens\AllUsersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\AdminScreens\AllUsersForm.Designer.cs">
+      <DependentUpon>AllUsersForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Screens\ClientsScreens\AllClientsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\ClientsScreens\AllClientsForm.Designer.cs">
+      <DependentUpon>AllClientsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\ClientsScreens\CreateNewClient.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\ClientsScreens\CreateNewClient.Designer.cs">
+      <DependentUpon>CreateNewClient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\ClientsScreens\SearchClientForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\ClientsScreens\SearchClientForm.Designer.cs">
+      <DependentUpon>SearchClientForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\ServiceAdvisor\AllClientsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\ServiceAdvisor\AllClientsForm.Designer.cs">
+      <DependentUpon>AllClientsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\ServiceAdvisor\AllOffersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\ServiceAdvisor\AllOffersForm.Designer.cs">
+      <DependentUpon>AllOffersForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\ServiceAdvisor\CreateOfferForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\ServiceAdvisor\CreateOfferForm.Designer.cs">
+      <DependentUpon>CreateOfferForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\ServiceAdvisor\ServiceAdvisorMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\ServiceAdvisor\ServiceAdvisorMenu.Designer.cs">
+      <DependentUpon>ServiceAdvisorMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\ServiceAdvisor\SearchClientForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\ServiceAdvisor\SearchClientForm.Designer.cs">
+      <DependentUpon>SearchClientForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\StorageScreens\AllPartsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\StorageScreens\AllPartsForm.Designer.cs">
+      <DependentUpon>AllPartsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\StorageScreens\AllSuppliersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\StorageScreens\AllSuppliersForm.Designer.cs">
+      <DependentUpon>AllSuppliersForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\StorageScreens\CreateNewSupplierForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\StorageScreens\CreateNewSupplierForm.Designer.cs">
+      <DependentUpon>CreateNewSupplierForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\StorageScreens\NewOrderForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\StorageScreens\NewOrderForm.Designer.cs">
+      <DependentUpon>NewOrderForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\StorageScreens\OrderFromSupplierForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\StorageScreens\OrderFromSupplierForm.Designer.cs">
+      <DependentUpon>OrderFromSupplierForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\TicketsScreens\AddPartToTicketForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\TicketsScreens\AddPartToTicketForm.Designer.cs">
+      <DependentUpon>AddPartToTicketForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\TicketsScreens\CreateNewTicketForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\TicketsScreens\CreateNewTicketForm.Designer.cs">
+      <DependentUpon>CreateNewTicketForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\TicketsScreens\OpenTicketsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\TicketsScreens\OpenTicketsForm.Designer.cs">
+      <DependentUpon>OpenTicketsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\TicketsScreens\Ticket.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\TicketsScreens\Ticket.Designer.cs">
+      <DependentUpon>Ticket.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SearchCar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchCar.Designer.cs">
+      <DependentUpon>SearchCar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\InputValidationUtils.cs" />
+    <Compile Include="Warehouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Warehouse.Designer.cs">
+      <DependentUpon>Warehouse.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Dashboard.resx">
+      <DependentUpon>Dashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LoginForm.resx">
+      <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\AdminScreens\AddNewManufactureForm.resx">
+      <DependentUpon>AddNewManufactureForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\AdminScreens\AllUsersForm.resx">
+      <DependentUpon>AllUsersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Screens\ClientsScreens\AllClientsForm.resx">
+      <DependentUpon>AllClientsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\ClientsScreens\CreateNewClient.resx">
+      <DependentUpon>CreateNewClient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\ClientsScreens\SearchClientForm.resx">
+      <DependentUpon>SearchClientForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\ServiceAdvisor\AllClientsForm.resx">
+      <DependentUpon>AllClientsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\ServiceAdvisor\AllOffersForm.resx">
+      <DependentUpon>AllOffersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\ServiceAdvisor\ServiceAdvisorMenu.resx">
+      <DependentUpon>ServiceAdvisorMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\ServiceAdvisor\SearchClientForm.resx">
+      <DependentUpon>SearchClientForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\StorageScreens\AllPartsForm.resx">
+      <DependentUpon>AllPartsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\StorageScreens\AllSuppliersForm.resx">
+      <DependentUpon>AllSuppliersForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\StorageScreens\CreateNewSupplierForm.resx">
+      <DependentUpon>CreateNewSupplierForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\StorageScreens\NewOrderForm.resx">
+      <DependentUpon>NewOrderForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\StorageScreens\OrderFromSupplierForm.resx">
+      <DependentUpon>OrderFromSupplierForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\TicketsScreens\AddPartToTicketForm.resx">
+      <DependentUpon>AddPartToTicketForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\TicketsScreens\CreateNewTicketForm.resx">
+      <DependentUpon>CreateNewTicketForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\TicketsScreens\OpenTicketsForm.resx">
+      <DependentUpon>OpenTicketsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\TicketsScreens\Ticket.resx">
+      <DependentUpon>Ticket.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchCar.resx">
+      <DependentUpon>SearchCar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EntityDeploy Include="Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="GarageDataSet.xsc">
+      <DependentUpon>GarageDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="GarageDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GarageDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GarageDataSet.xss">
+      <DependentUpon>GarageDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="GarageDataSet1.xsc">
+      <DependentUpon>GarageDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="GarageDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GarageDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GarageDataSet1.xss">
+      <DependentUpon>GarageDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <None Include="Resources\PimpMyRide 2.jpeg" />
+    <None Include="Resources\WhatsApp Image 2023-09-22 at 15.26.23.jpeg" />
+    <None Include="Resources\pimpMyRideLogo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
