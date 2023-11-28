@@ -60,6 +60,7 @@ namespace PimpMyRideServer.Controllers
         {
             return ((TicketsHandler)handler).HandleCreateLabor(labor);
         }
+
         [HttpGet("getLabors")]
         public ActionResult GetLabors()
         {
@@ -84,6 +85,20 @@ namespace PimpMyRideServer.Controllers
             return ((TicketsHandler)handler).HandleDeleteLaborById(id);
         }
 
+        [HttpPut("addLaborToTicket/{ticketId}")]
+        public ActionResult AddLaborToTicket(int ticketId,[FromBody] Labor labor)
+        {
+            return ((TicketsHandler)handler).HandleAddLaborToTicket(ticketId, labor);
+        }
+
+        [HttpDelete("removeLaborFromTicket/{ticketId}/{laborId}")]
+        public ActionResult RemoveLaborFromTicket(int ticketId, int laborId)
+        {
+            return ((TicketsHandler)handler).HandleRemoveLaborFromTicket(ticketId, laborId);
+        }
 
     }
+
+
+   
 }

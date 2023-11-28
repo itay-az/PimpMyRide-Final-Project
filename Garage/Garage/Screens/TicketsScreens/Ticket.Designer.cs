@@ -318,6 +318,8 @@
             // 
             // laborDataGridView
             // 
+            this.laborDataGridView.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.laborDataGridView.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.laborDataGridView.BackgroundColor = System.Drawing.Color.White;
             this.laborDataGridView.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.laborDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -580,6 +582,7 @@
             this.Controls.Add(this.clientFullNameTxt);
             this.Name = "Ticket";
             this.Text = "Ticket";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

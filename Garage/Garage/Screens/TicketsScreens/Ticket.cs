@@ -23,8 +23,10 @@ namespace Garage.Screens.TicketsScreens
             InitializeComponent();
         }
         private static List<TicketPart> parts;
+        private static List<Labor> labors;
         private string ticketId;
         private string partId;
+
         public Ticket(string ticketId)
         {
             InitializeComponent();
@@ -36,6 +38,11 @@ namespace Garage.Screens.TicketsScreens
         {
             partsDataGridView.DataSource = parts;
 
+        }
+
+        private void refreshLaborsDataGridView()
+        {
+            laborDataGridView.DataSource = labors;
         }
 
         private void partsDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -63,7 +70,14 @@ namespace Garage.Screens.TicketsScreens
                 clientKmTxt.Text = jsonResult.carKilometer.ToString();
                 cuaseOfArrivalTxt.Text = jsonResult.causeOfArrival;
                 parts = jsonResult.parts;
+                labors = jsonResult.labors;
+                totalPartPriceTxt.Text = jsonResult.totalPartsPrice.ToString();
+                totalPartDiscountTxt.Text = jsonResult.totalPartsDiscount.ToString();
+                totalLaborPriceTxt.Text = jsonResult.totalLaborPrice.ToString();
+                totalLaborDiscountTxt.Text = jsonResult.totalLaborDiscount.ToString();
+
                 refreshPartsDataGridView();
+                refreshLaborsDataGridView();
             }
             else
             {

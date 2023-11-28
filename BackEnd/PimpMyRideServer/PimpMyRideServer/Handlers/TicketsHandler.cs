@@ -69,7 +69,7 @@ namespace PimpMyRideServer.Handlers
         {
 
 
-            var ticket = Server.Server.context.Ticket.Include("parts");
+            var ticket = Server.Server.context.Ticket.Include("parts").Include("labors");
             if (ticket == null)
             {
                 return new StatusCodeResult(StatusCodes.Status404NotFound);
@@ -127,7 +127,7 @@ namespace PimpMyRideServer.Handlers
 
         public ActionResult HandlGetById(int ticketId)
         {
-            var ticket = Server.Server.context.Ticket.Include("parts").SingleOrDefault(ticket => ticket.ticketId == ticketId);
+            var ticket = Server.Server.context.Ticket.Include("parts").Include("labors").SingleOrDefault(ticket => ticket.ticketId == ticketId);
             var car = Server.Server.context.Car.SingleOrDefault(car => car.carId == ticket.carId);
             var client = Server.Server.context.Clients.SingleOrDefault(client => client.clientId == ticket.clientId);
 
@@ -264,7 +264,6 @@ namespace PimpMyRideServer.Handlers
             jsonResults.StatusCode = StatusCodes.Status200OK;
             return jsonResults;
 
-
         }
 
         public ActionResult HandleUpdatePartsOnTicket(int ticketId, List<TicketPart> partFromBody) 
@@ -376,6 +375,73 @@ namespace PimpMyRideServer.Handlers
 
             return new StatusCodeResult(StatusCodes.Status200OK);
 
+        }
+
+        public ActionResult HandleAddLaborToTicket(int ticketId, Labor LaborFromBody)
+        {
+            var existingLabor = Server.Server.context.Labor.SingleOrDefault(l => l.Id == LaborFromBody.Id);
+
+            if (existingLabor == null)
+            {
+                return onFailure("Labor doesnt exist");
+            }
+
+
+            var ticket = Server.Server.context.Ticket.Include("parts").Include("labors").SingleOrDefault(t => t.ticketId == ticketId);
+
+            if (ticket == null)
+            {
+                return onFailure("Ticket doesnt exist");
+            }
+
+            if (ticket.labors.Where(e => e.Id.Equals(LaborFromBody.Id)).ToList().Count() > 0)
+            {
+                return onFailure("Labor already exist in the ticket");
+            }
+            ticket.labors.Add(existingLabor);
+
+            ticket.totalLaborPrice += Decimal.ToDouble(existingLabor.price);
+            ticket.calculate();
+
+
+            Server.Server.context.Ticket.Update(ticket);
+
+            Server.Server.context.SaveChanges();
+
+            JsonResult jsonResults = new JsonResult(ticket);
+            jsonResults.StatusCode = StatusCodes.Status200OK;
+            return jsonResults;
+        }
+
+        public ActionResult HandleRemoveLaborFromTicket(int ticketId, int laborId)
+        {
+            var ticket = Server.Server.context.Ticket
+                .Include("parts")
+                .Include("labors")
+                .SingleOrDefault(t => t.ticketId == ticketId);
+
+            if (ticket == null)
+            {
+                return onFailure("Ticket not found");
+            }
+
+            var labor = ticket.labors.SingleOrDefault(labor => labor.Id == laborId);
+
+            ticket.price -= Decimal.ToDouble(labor.price);
+            ticket.totalLaborPrice -= Decimal.ToDouble(labor.price);
+
+
+            ticket.labors.Remove(labor);
+
+
+
+            Server.Server.context.Ticket.Update(ticket);
+
+            Server.Server.context.SaveChanges();
+
+            JsonResult jsonResults = new JsonResult(ticket);
+            jsonResults.StatusCode = StatusCodes.Status200OK;
+            return jsonResults;
         }
     }
 }

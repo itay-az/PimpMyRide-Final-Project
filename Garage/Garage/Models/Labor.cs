@@ -11,6 +11,9 @@ namespace Garage.Models
     {
         public int Id { get; set; }
         public string description { get; set; }
-        public float price { get; set; }
+        public decimal price { get; set; }
+        public decimal time { get; set; }
+        public decimal discount { get; set; }
+
     }
 }
