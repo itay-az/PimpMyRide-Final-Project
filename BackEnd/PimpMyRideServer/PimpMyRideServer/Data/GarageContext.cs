@@ -24,7 +24,7 @@ namespace PimpMyRideServer.Data
         public DbSet<Order> Order { get; set; }
         public DbSet<OrderPart> OrderPart { get; set; }
         public DbSet<TicketPart> TicketPart { get; set; }
-        public DbSet<ManualLabor> ManualLabor { get; set; }
+        public DbSet<TicketLabor> TicketLabor { get; set; }
 
 
 
@@ -44,6 +44,7 @@ namespace PimpMyRideServer.Data
             modelBuilder.Entity<Part>();
 
             modelBuilder.Entity<Ticket>();
+
             modelBuilder.Entity<ManualLabor>();
 
 

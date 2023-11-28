@@ -1,0 +1,11 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\BackEnd",
+    "\\BackEnd\\PimpMyRideServer",
+    "\\BackEnd\\PimpMyRideServer\\PimpMyRideServer",
+    "\\BackEnd\\PimpMyRideServer\\PimpMyRideServer\\Handlers"
+  ],
+  "SelectedNode": "\\BackEnd\\PimpMyRideServer\\PimpMyRideServer\\Handlers\\TicketsHandler.cs",
+  "PreviewInSolutionExplorer": false
+}

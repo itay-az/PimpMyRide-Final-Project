@@ -278,6 +278,12 @@
     <Compile Include="Screens\StorageScreens\OrderFromSupplierForm.Designer.cs">
       <DependentUpon>OrderFromSupplierForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\TicketsScreens\AddLaborToTicketForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\TicketsScreens\AddLaborToTicketForm.Designer.cs">
+      <DependentUpon>AddLaborToTicketForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\TicketsScreens\AddPartToTicketForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -372,6 +378,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\StorageScreens\OrderFromSupplierForm.resx">
       <DependentUpon>OrderFromSupplierForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\TicketsScreens\AddLaborToTicketForm.resx">
+      <DependentUpon>AddLaborToTicketForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\TicketsScreens\AddPartToTicketForm.resx">
       <DependentUpon>AddPartToTicketForm.cs</DependentUpon>

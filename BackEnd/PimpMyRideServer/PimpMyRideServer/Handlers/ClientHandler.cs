@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 using PimpMyRideServer.Handlers.Interfaces;
 using PimpMyRideServer.Models;
@@ -50,7 +51,9 @@ namespace PimpMyRideServer.Handlers
         public ActionResult HandleGet()
         {
 
-            var clients = Server.Server.context.Clients;
+            var clients = Server.Server.context.Clients
+                .Include("cars")
+                .ToList();
 
 
             if (clients == null)

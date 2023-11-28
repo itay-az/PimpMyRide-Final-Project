@@ -138,3 +138,4 @@ D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\obj\Debug\
 D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\obj\Debug\Garage.csproj.CopyComplete
 D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\obj\Debug\Garage.exe
 D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\obj\Debug\Garage.pdb
+D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\obj\Debug\Garage.Screens.TicketsScreens.AddLaborToTicketForm.resources

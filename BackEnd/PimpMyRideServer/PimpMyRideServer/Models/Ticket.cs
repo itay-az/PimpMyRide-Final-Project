@@ -10,7 +10,7 @@ namespace PimpMyRideServer.Models
         [Required] public string clientId { get; set; }
         [Required] public string problems { get; set; }
         [Required] public List<TicketPart> parts { get; set; } = new();
-        [Required] public List<Labor> labors { get; set; } = new();
+        [Required] public List<TicketLabor> labors { get; set; } = new();
         public DateTime dateTime { get; set; }
         public double totalPartsPrice { get; set; }
         public double totalPartsDiscount { get; set; }
@@ -25,7 +25,7 @@ namespace PimpMyRideServer.Models
 
         public Ticket() { }
 
-        public Ticket(string carId, string clientId, string problems, List<TicketPart> parts, List<Labor> labors)
+        public Ticket(string carId, string clientId, string problems, List<TicketPart> parts, List<TicketLabor> labors)
         {
             this.carId = carId;
             this.clientId = clientId;
@@ -42,7 +42,7 @@ namespace PimpMyRideServer.Models
             this.clientId = clientId;
             this.problems = problems;
             this.parts = new List<TicketPart>();
-            this.labors = new List<Labor>();
+            this.labors = new List<TicketLabor>();
             this.dateTime = DateTime.Now;
             this.price = 0;
         }

@@ -377,7 +377,7 @@ namespace PimpMyRideServer.Handlers
 
         }
 
-        public ActionResult HandleAddLaborToTicket(int ticketId, Labor LaborFromBody)
+        public ActionResult HandleAddLaborToTicket(int ticketId, TicketLabor LaborFromBody)
         {
             var existingLabor = Server.Server.context.Labor.SingleOrDefault(l => l.Id == LaborFromBody.Id);
 
@@ -398,7 +398,8 @@ namespace PimpMyRideServer.Handlers
             {
                 return onFailure("Labor already exist in the ticket");
             }
-            ticket.labors.Add(existingLabor);
+
+            ticket.labors.Add(LaborFromBody);
 
             ticket.totalLaborPrice += Decimal.ToDouble(existingLabor.price);
             ticket.calculate();
@@ -427,13 +428,15 @@ namespace PimpMyRideServer.Handlers
 
             var labor = ticket.labors.SingleOrDefault(labor => labor.Id == laborId);
 
+            if(labor == null)
+            {
+                return onFailure("Labor not found");
+            }
             ticket.price -= Decimal.ToDouble(labor.price);
             ticket.totalLaborPrice -= Decimal.ToDouble(labor.price);
 
 
             ticket.labors.Remove(labor);
-
-
 
             Server.Server.context.Ticket.Update(ticket);
 
@@ -442,6 +445,46 @@ namespace PimpMyRideServer.Handlers
             JsonResult jsonResults = new JsonResult(ticket);
             jsonResults.StatusCode = StatusCodes.Status200OK;
             return jsonResults;
+        }
+        
+        public ActionResult HandleUpdateLaborOnTicket(int ticketId, List<TicketLabor> laborsFromBody)
+        {
+            var ticket = Server.Server.context.Ticket.SingleOrDefault(t => t.ticketId == ticketId);
+
+            if (ticket == null)
+            {
+                return onFailure("Ticket not found");
+            }
+
+
+            ticket.labors = laborsFromBody;
+
+            Server.Server.context.Ticket.Update(ticket);
+
+            Server.Server.context.SaveChanges();
+
+            return new StatusCodeResult(StatusCodes.Status200OK);
+        } 
+
+        public ActionResult HandleSearchByParameter(string searchParameter)
+        {
+            if (searchParameter == String.Empty)
+            {
+                return HandleGetLabors();
+            }
+
+            var labors = Server.Server.context.Labor
+                .Where(l => l.description.Contains(searchParameter))
+                .ToList();
+
+            if (labors == null)
+            {
+                return onFailure("No parts found");
+            }
+
+            JsonResult jsonResult = new JsonResult(labors);
+            jsonResult.StatusCode = StatusCodes.Status200OK;
+            return jsonResult;
         }
     }
 }

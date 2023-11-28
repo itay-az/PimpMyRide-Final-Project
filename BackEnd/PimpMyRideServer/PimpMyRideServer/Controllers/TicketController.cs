@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using PimpMyRideServer.Handlers;
 using PimpMyRideServer.Models;
 using PimpMyRideServer.Server.Requests;
+using System.Collections.Generic;
 using System.IO;
 
 namespace PimpMyRideServer.Controllers
@@ -86,7 +87,7 @@ namespace PimpMyRideServer.Controllers
         }
 
         [HttpPut("addLaborToTicket/{ticketId}")]
-        public ActionResult AddLaborToTicket(int ticketId,[FromBody] Labor labor)
+        public ActionResult AddLaborToTicket(int ticketId,[FromBody] TicketLabor labor)
         {
             return ((TicketsHandler)handler).HandleAddLaborToTicket(ticketId, labor);
         }
@@ -97,6 +98,17 @@ namespace PimpMyRideServer.Controllers
             return ((TicketsHandler)handler).HandleRemoveLaborFromTicket(ticketId, laborId);
         }
 
+        [HttpPut("updateLaborsOnTicket/{ticketId}")]
+        public ActionResult UpdateLaborsOnTicket(int ticketId, [FromBody]List<TicketLabor> laborsFromBody)
+        {
+            return ((TicketsHandler)handler).HandleUpdateLaborOnTicket(ticketId, laborsFromBody);
+        }
+
+        [HttpGet("searchLabor/{searchParameter}")]
+        public ActionResult SearchLaborByParameter(string searchParameter)
+        {
+            return ((TicketsHandler)handler).HandleSearchByParameter(searchParameter);
+        }
     }
 
 

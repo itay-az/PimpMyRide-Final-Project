@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 namespace PimpMyRideServer.Models
 {
@@ -22,6 +23,8 @@ namespace PimpMyRideServer.Models
         [Key] public string carId { get; set; } = null!;
         [Required]  public string clientId { get; set; }
         [ForeignKey("clientId")]
+
+        [JsonIgnore]
         [Required] public Client Client { get; set; } = null!;
         [Required] public string carManufacture { get; set; } = null!;
         [Required] public string carModel { get;set; } = null!;

@@ -21,7 +21,7 @@ namespace PimpMyRideServer.Server.Responses
         public string clientPhoneNumber { get; set; }
         public string clientEmail { get; set; }
         public List<TicketPart> parts { get; set; }
-        public List<Labor> labors { get; set; }
+        public List<TicketLabor> labors { get; set; }
         public string causeOfArrival { get; set; }
 
         public double totalPartsPrice { get; set; }

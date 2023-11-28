@@ -412,6 +412,7 @@
             this.addLaborBtn.TabIndex = 116;
             this.addLaborBtn.Text = "Add Labor";
             this.addLaborBtn.UseVisualStyleBackColor = true;
+            this.addLaborBtn.Click += new System.EventHandler(this.addLaborBtn_Click);
             // 
             // label4
             // 

@@ -175,5 +175,12 @@ namespace Garage.Screens.TicketsScreens
             else { MessageBox.Show("Error"); }
 
         }
+
+        private void addLaborBtn_Click(object sender, EventArgs e)
+        {
+            AddLaborToTicketForm addLaborToTicketForm = new AddLaborToTicketForm(int.Parse(ticketId));
+            this.Close();
+            addLaborToTicketForm.ShowDialog();
+        }
     }
 }
