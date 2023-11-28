@@ -300,5 +300,82 @@ namespace PimpMyRideServer.Handlers
 
             return new StatusCodeResult(StatusCodes.Status200OK);
         }
+
+        public ActionResult HandleCreateLabor(Labor labor)
+        {
+            var labors = Server.Server.context.Labor;
+            if(labors.SingleOrDefault(l => l.Id == labor.Id) != null)
+            {
+                return onFailure("Labor already exist");
+            }
+
+            labors.Add(labor);
+
+            Server.Server.context.SaveChanges();
+
+            return new StatusCodeResult(StatusCodes.Status200OK);
+        }
+
+        public ActionResult HandleGetLabors()
+        {
+            var labors = Server.Server.context.Labor.ToList();
+            if(labors == null)
+            {
+                return onFailure("No labors found");
+            }
+            JsonResult jsonResult = new JsonResult(labors);
+            jsonResult.StatusCode = StatusCodes.Status200OK;
+            return jsonResult;
+        }
+
+        public ActionResult HandleGetLaborById(int id)
+        {
+            var labor = Server.Server.context.Labor.SingleOrDefault(l => l.Id == id);
+            if(labor == null)
+            {
+                return onFailure("Labor doesnt exist");
+            }
+            JsonResult jsonResult = new JsonResult(labor);
+            jsonResult.StatusCode = StatusCodes.Status200OK;
+            return jsonResult;
+
+        }
+
+        public ActionResult HandleUpdateLaborById(int id, Labor laborFromBody)
+        {
+            var existingLabor = Server.Server.context.Labor.SingleOrDefault(l => l.Id == id);
+            if (existingLabor == null)
+            {
+                return onFailure("Labor doesnt exist");
+            }
+
+            existingLabor.time = laborFromBody.time;
+            existingLabor.price = laborFromBody.price;
+            existingLabor.description = laborFromBody.description;
+            existingLabor.discount = laborFromBody.discount;
+
+            Server.Server.context.Labor.Update(existingLabor);
+            Server.Server.context.SaveChanges();
+
+            JsonResult jsonResult = new JsonResult(existingLabor);
+            jsonResult.StatusCode = StatusCodes.Status200OK;
+            return jsonResult;
+        }
+
+        public ActionResult HandleDeleteLaborById(int id)
+        {
+            var existingLabor = Server.Server.context.Labor.SingleOrDefault(l => l.Id == id);
+
+            if (existingLabor == null)
+            {
+                return onFailure("Labor doesnt exist");
+            }
+
+            Server.Server.context.Labor.Remove(existingLabor);
+            Server.Server.context.SaveChanges();
+
+            return new StatusCodeResult(StatusCodes.Status200OK);
+
+        }
     }
 }

@@ -60,6 +60,18 @@
             this.deleteLaborBtn = new System.Windows.Forms.Button();
             this.updateLaborBtn = new System.Windows.Forms.Button();
             this.addLaborBtn = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.totalPartPriceTxt = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.totalPartPriceAfterDiscountTxt = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.totalPartDiscountTxt = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.totalLaborDiscountTxt = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.totalLaborPriceAfterDiscountTxt = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.totalLaborPriceTxt = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.partsDataGridView)).BeginInit();
@@ -275,7 +287,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.groupBox2.Location = new System.Drawing.Point(668, 17);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(509, 503);
+            this.groupBox2.Size = new System.Drawing.Size(642, 503);
             this.groupBox2.TabIndex = 108;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Parts ";
@@ -288,7 +300,7 @@
             this.partsDataGridView.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnKeystroke;
             this.partsDataGridView.Location = new System.Drawing.Point(6, 22);
             this.partsDataGridView.Name = "partsDataGridView";
-            this.partsDataGridView.Size = new System.Drawing.Size(497, 471);
+            this.partsDataGridView.Size = new System.Drawing.Size(630, 471);
             this.partsDataGridView.TabIndex = 0;
             this.partsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.partsDataGridView_CellContentClick);
             // 
@@ -297,9 +309,9 @@
             this.groupBox3.BackColor = System.Drawing.Color.White;
             this.groupBox3.Controls.Add(this.laborDataGridView);
             this.groupBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.groupBox3.Location = new System.Drawing.Point(1215, 17);
+            this.groupBox3.Location = new System.Drawing.Point(1316, 17);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(509, 503);
+            this.groupBox3.Size = new System.Drawing.Size(587, 503);
             this.groupBox3.TabIndex = 109;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Labor ";
@@ -312,15 +324,15 @@
             this.laborDataGridView.Location = new System.Drawing.Point(4, 22);
             this.laborDataGridView.Name = "laborDataGridView";
             this.laborDataGridView.ReadOnly = true;
-            this.laborDataGridView.Size = new System.Drawing.Size(497, 471);
+            this.laborDataGridView.Size = new System.Drawing.Size(577, 471);
             this.laborDataGridView.TabIndex = 0;
             // 
             // addPartToTicketBtn
             // 
             this.addPartToTicketBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.addPartToTicketBtn.Location = new System.Drawing.Point(668, 529);
+            this.addPartToTicketBtn.Location = new System.Drawing.Point(668, 700);
             this.addPartToTicketBtn.Name = "addPartToTicketBtn";
-            this.addPartToTicketBtn.Size = new System.Drawing.Size(160, 45);
+            this.addPartToTicketBtn.Size = new System.Drawing.Size(204, 45);
             this.addPartToTicketBtn.TabIndex = 110;
             this.addPartToTicketBtn.Text = "Add Part";
             this.addPartToTicketBtn.UseVisualStyleBackColor = true;
@@ -329,9 +341,9 @@
             // closeTicketBtn
             // 
             this.closeTicketBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.closeTicketBtn.Location = new System.Drawing.Point(1463, 663);
+            this.closeTicketBtn.Location = new System.Drawing.Point(1475, 922);
             this.closeTicketBtn.Name = "closeTicketBtn";
-            this.closeTicketBtn.Size = new System.Drawing.Size(214, 45);
+            this.closeTicketBtn.Size = new System.Drawing.Size(249, 45);
             this.closeTicketBtn.TabIndex = 112;
             this.closeTicketBtn.Text = "Close Ticket";
             this.closeTicketBtn.UseVisualStyleBackColor = true;
@@ -339,9 +351,9 @@
             // deleteTicketBtn
             // 
             this.deleteTicketBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.deleteTicketBtn.Location = new System.Drawing.Point(963, 663);
+            this.deleteTicketBtn.Location = new System.Drawing.Point(1215, 922);
             this.deleteTicketBtn.Name = "deleteTicketBtn";
-            this.deleteTicketBtn.Size = new System.Drawing.Size(214, 45);
+            this.deleteTicketBtn.Size = new System.Drawing.Size(242, 45);
             this.deleteTicketBtn.TabIndex = 113;
             this.deleteTicketBtn.Text = "Delete Ticket";
             this.deleteTicketBtn.UseVisualStyleBackColor = true;
@@ -350,9 +362,9 @@
             // updatePartBtn
             // 
             this.updatePartBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.updatePartBtn.Location = new System.Drawing.Point(843, 529);
+            this.updatePartBtn.Location = new System.Drawing.Point(887, 700);
             this.updatePartBtn.Name = "updatePartBtn";
-            this.updatePartBtn.Size = new System.Drawing.Size(160, 45);
+            this.updatePartBtn.Size = new System.Drawing.Size(204, 45);
             this.updatePartBtn.TabIndex = 114;
             this.updatePartBtn.Text = "Update Part";
             this.updatePartBtn.UseVisualStyleBackColor = true;
@@ -361,9 +373,9 @@
             // deletePartBtn
             // 
             this.deletePartBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.deletePartBtn.Location = new System.Drawing.Point(1017, 529);
+            this.deletePartBtn.Location = new System.Drawing.Point(1106, 700);
             this.deletePartBtn.Name = "deletePartBtn";
-            this.deletePartBtn.Size = new System.Drawing.Size(160, 45);
+            this.deletePartBtn.Size = new System.Drawing.Size(204, 45);
             this.deletePartBtn.TabIndex = 115;
             this.deletePartBtn.Text = "Delete Part";
             this.deletePartBtn.UseVisualStyleBackColor = true;
@@ -372,9 +384,9 @@
             // deleteLaborBtn
             // 
             this.deleteLaborBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.deleteLaborBtn.Location = new System.Drawing.Point(1564, 529);
+            this.deleteLaborBtn.Location = new System.Drawing.Point(1718, 700);
             this.deleteLaborBtn.Name = "deleteLaborBtn";
-            this.deleteLaborBtn.Size = new System.Drawing.Size(160, 45);
+            this.deleteLaborBtn.Size = new System.Drawing.Size(185, 45);
             this.deleteLaborBtn.TabIndex = 118;
             this.deleteLaborBtn.Text = "Delete Labor";
             this.deleteLaborBtn.UseVisualStyleBackColor = true;
@@ -382,9 +394,9 @@
             // updateLaborBtn
             // 
             this.updateLaborBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.updateLaborBtn.Location = new System.Drawing.Point(1390, 529);
+            this.updateLaborBtn.Location = new System.Drawing.Point(1518, 700);
             this.updateLaborBtn.Name = "updateLaborBtn";
-            this.updateLaborBtn.Size = new System.Drawing.Size(160, 45);
+            this.updateLaborBtn.Size = new System.Drawing.Size(185, 45);
             this.updateLaborBtn.TabIndex = 117;
             this.updateLaborBtn.Text = "Update Labor";
             this.updateLaborBtn.UseVisualStyleBackColor = true;
@@ -392,19 +404,151 @@
             // addLaborBtn
             // 
             this.addLaborBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.addLaborBtn.Location = new System.Drawing.Point(1215, 529);
+            this.addLaborBtn.Location = new System.Drawing.Point(1316, 700);
             this.addLaborBtn.Name = "addLaborBtn";
-            this.addLaborBtn.Size = new System.Drawing.Size(160, 45);
+            this.addLaborBtn.Size = new System.Drawing.Size(185, 45);
             this.addLaborBtn.TabIndex = 116;
             this.addLaborBtn.Text = "Add Labor";
             this.addLaborBtn.UseVisualStyleBackColor = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(665, 539);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(162, 24);
+            this.label4.TabIndex = 120;
+            this.label4.Text = "Total part price :";
+            // 
+            // totalPartPriceTxt
+            // 
+            this.totalPartPriceTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.totalPartPriceTxt.Location = new System.Drawing.Point(877, 539);
+            this.totalPartPriceTxt.Name = "totalPartPriceTxt";
+            this.totalPartPriceTxt.ReadOnly = true;
+            this.totalPartPriceTxt.Size = new System.Drawing.Size(188, 29);
+            this.totalPartPriceTxt.TabIndex = 119;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label9.ForeColor = System.Drawing.Color.White;
+            this.label9.Location = new System.Drawing.Point(665, 616);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(121, 24);
+            this.label9.TabIndex = 122;
+            this.label9.Text = "Total price :";
+            // 
+            // totalPartPriceAfterDiscountTxt
+            // 
+            this.totalPartPriceAfterDiscountTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.totalPartPriceAfterDiscountTxt.Location = new System.Drawing.Point(877, 616);
+            this.totalPartPriceAfterDiscountTxt.Name = "totalPartPriceAfterDiscountTxt";
+            this.totalPartPriceAfterDiscountTxt.ReadOnly = true;
+            this.totalPartPriceAfterDiscountTxt.Size = new System.Drawing.Size(188, 29);
+            this.totalPartPriceAfterDiscountTxt.TabIndex = 121;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(665, 577);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(103, 24);
+            this.label11.TabIndex = 124;
+            this.label11.Text = "Discount :";
+            // 
+            // totalPartDiscountTxt
+            // 
+            this.totalPartDiscountTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.totalPartDiscountTxt.Location = new System.Drawing.Point(877, 577);
+            this.totalPartDiscountTxt.Name = "totalPartDiscountTxt";
+            this.totalPartDiscountTxt.ReadOnly = true;
+            this.totalPartDiscountTxt.Size = new System.Drawing.Size(188, 29);
+            this.totalPartDiscountTxt.TabIndex = 123;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label13.ForeColor = System.Drawing.Color.White;
+            this.label13.Location = new System.Drawing.Point(1313, 583);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(103, 24);
+            this.label13.TabIndex = 130;
+            this.label13.Text = "Discount :";
+            // 
+            // totalLaborDiscountTxt
+            // 
+            this.totalLaborDiscountTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.totalLaborDiscountTxt.Location = new System.Drawing.Point(1550, 583);
+            this.totalLaborDiscountTxt.Name = "totalLaborDiscountTxt";
+            this.totalLaborDiscountTxt.ReadOnly = true;
+            this.totalLaborDiscountTxt.Size = new System.Drawing.Size(188, 29);
+            this.totalLaborDiscountTxt.TabIndex = 129;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label14.ForeColor = System.Drawing.Color.White;
+            this.label14.Location = new System.Drawing.Point(1313, 622);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(121, 24);
+            this.label14.TabIndex = 128;
+            this.label14.Text = "Total price :";
+            // 
+            // totalLaborPriceAfterDiscountTxt
+            // 
+            this.totalLaborPriceAfterDiscountTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.totalLaborPriceAfterDiscountTxt.Location = new System.Drawing.Point(1550, 622);
+            this.totalLaborPriceAfterDiscountTxt.Name = "totalLaborPriceAfterDiscountTxt";
+            this.totalLaborPriceAfterDiscountTxt.ReadOnly = true;
+            this.totalLaborPriceAfterDiscountTxt.Size = new System.Drawing.Size(188, 29);
+            this.totalLaborPriceAfterDiscountTxt.TabIndex = 127;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label15.ForeColor = System.Drawing.Color.White;
+            this.label15.Location = new System.Drawing.Point(1313, 545);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(174, 24);
+            this.label15.TabIndex = 126;
+            this.label15.Text = "Total labor price :";
+            // 
+            // totalLaborPriceTxt
+            // 
+            this.totalLaborPriceTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.totalLaborPriceTxt.Location = new System.Drawing.Point(1550, 545);
+            this.totalLaborPriceTxt.Name = "totalLaborPriceTxt";
+            this.totalLaborPriceTxt.ReadOnly = true;
+            this.totalLaborPriceTxt.Size = new System.Drawing.Size(188, 29);
+            this.totalLaborPriceTxt.TabIndex = 125;
             // 
             // Ticket
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-            this.ClientSize = new System.Drawing.Size(1740, 720);
+            this.ClientSize = new System.Drawing.Size(1910, 982);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.totalLaborDiscountTxt);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.totalLaborPriceAfterDiscountTxt);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.totalLaborPriceTxt);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.totalPartDiscountTxt);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.totalPartPriceAfterDiscountTxt);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.totalPartPriceTxt);
             this.Controls.Add(this.deleteLaborBtn);
             this.Controls.Add(this.updateLaborBtn);
             this.Controls.Add(this.addLaborBtn);
@@ -481,5 +625,17 @@
         private System.Windows.Forms.Button deleteLaborBtn;
         private System.Windows.Forms.Button updateLaborBtn;
         private System.Windows.Forms.Button addLaborBtn;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox totalPartPriceTxt;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox totalPartPriceAfterDiscountTxt;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox totalPartDiscountTxt;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox totalLaborDiscountTxt;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox totalLaborPriceAfterDiscountTxt;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.TextBox totalLaborPriceTxt;
     }
 }

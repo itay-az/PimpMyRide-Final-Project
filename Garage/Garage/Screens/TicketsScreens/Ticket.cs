@@ -49,7 +49,6 @@ namespace Garage.Screens.TicketsScreens
 
             if (response.IsSuccessStatusCode)
             {
-
                 var responseResult = await response.Content.ReadAsStringAsync();
                 var jsonResult = JsonConvert.DeserializeObject<GetTicketByIdResponse>(responseResult);
 
