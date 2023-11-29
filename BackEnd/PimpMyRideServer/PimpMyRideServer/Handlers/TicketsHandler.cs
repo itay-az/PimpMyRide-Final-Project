@@ -59,7 +59,7 @@ namespace PimpMyRideServer.Handlers
             car.carKilometer = request.carKilometer;
             Server.Server.context.SaveChanges();
 
-
+            car.ticketIds.Add(newTicket.ticketId);
             Server.Server.context.Ticket.Add(newTicket);
             Server.Server.context.SaveChanges();
             return new StatusCodeResult(StatusCodes.Status200OK);
@@ -69,7 +69,8 @@ namespace PimpMyRideServer.Handlers
         {
 
 
-            var ticket = Server.Server.context.Ticket.Include("parts").Include("labors");
+            var ticket = Server.Server.context.Ticket.Include("parts").Include("labors").Where(t => t.isOpen == true);
+
             if (ticket == null)
             {
                 return new StatusCodeResult(StatusCodes.Status404NotFound);
@@ -81,38 +82,25 @@ namespace PimpMyRideServer.Handlers
 
 
         }
-        /*
-        public TicketWithPartResponse GetTicketWithPartResponse(Ticket t)
-        {
-            List<PartResponse> partResponse = new List<PartResponse>();
-            foreach (Part part in t.parts)
-            {
-                partResponse.Add(new PartResponse
-                {
-                    partId = part.partId,
-                    partName = part.partName,
-                    price = part.price,
-                    quantity = part.quantity
-                });
-            }
-            TicketWithPartResponse response = new TicketWithPartResponse
-            {
-
-                ticketId = t.ticketId,
-                carId = t.carId,
-                clientId = t.clientId,
-                problems = t.problems,
-                parts = partResponse,
-                labors = t.labors,
-                dateTime = t.dateTime,
-                price = t.price
-            };
-            return response;
-        }
-        */
+   
         public ActionResult HandleDelete(int ticketId)
         {
             var ticket = Server.Server.context.Ticket.SingleOrDefault(ticket => ticket.ticketId == ticketId);
+
+            if (ticket == null)
+            {
+                return new StatusCodeResult(StatusCodes.Status404NotFound);
+            }
+
+            Server.Server.context.Ticket.Remove(ticket);
+            Server.Server.context.SaveChanges();
+            return new StatusCodeResult(StatusCodes.Status200OK);
+        }
+
+        public ActionResult HandleCloseTicketById(int ticketId)
+        {
+            var ticket = Server.Server.context.Ticket.SingleOrDefault(ticket => ticket.ticketId == ticketId);
+
             if (ticket == null)
             {
                 return new StatusCodeResult(StatusCodes.Status404NotFound);
@@ -120,9 +108,9 @@ namespace PimpMyRideServer.Handlers
 
             ticket.isOpen = false;
 
-            Server.Server.context.Ticket.Remove(ticket);
             Server.Server.context.SaveChanges();
             return new StatusCodeResult(StatusCodes.Status200OK);
+
         }
 
         public ActionResult HandlGetById(int ticketId)
@@ -458,6 +446,8 @@ namespace PimpMyRideServer.Handlers
 
 
             ticket.labors = laborsFromBody;
+
+            ticket.calculateLaborPrice();
 
             Server.Server.context.Ticket.Update(ticket);
 

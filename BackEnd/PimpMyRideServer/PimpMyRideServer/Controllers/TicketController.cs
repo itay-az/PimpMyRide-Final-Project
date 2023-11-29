@@ -109,6 +109,13 @@ namespace PimpMyRideServer.Controllers
         {
             return ((TicketsHandler)handler).HandleSearchByParameter(searchParameter);
         }
+
+        [HttpDelete("closeTicket/{ticketId}")]
+        public ActionResult CloseTicketById(int ticketId)
+        {
+            return ((TicketsHandler)handler).HandleCloseTicketById(ticketId);
+
+        }
     }
 
 

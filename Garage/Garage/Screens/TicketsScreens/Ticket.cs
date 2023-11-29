@@ -182,5 +182,59 @@ namespace Garage.Screens.TicketsScreens
             this.Close();
             addLaborToTicketForm.ShowDialog();
         }
+
+        private void updateLaborBtn_Click(object sender, EventArgs e)
+        {
+            List<Labor> labors = new List<Labor>();
+
+            foreach (DataGridViewRow row in laborDataGridView.Rows)
+            {
+                if (!row.IsNewRow)
+                {
+                    Labor labor = new Labor
+                    {
+                        Id = int.Parse(row.Cells["Id"].Value.ToString()),
+                        description = row.Cells["description"].Value.ToString(),
+                        price = decimal.Parse(row.Cells["price"].Value.ToString()),
+                        time = decimal.Parse(row.Cells["time"].Value.ToString()),
+                        discount = decimal.Parse(row.Cells["discount"].Value.ToString())
+                    };
+
+                    labors.Add(labor);
+                }
+            }
+
+            updateLaborsOnTicket(labors);
+        }
+
+        private async void updateLaborsOnTicket(List<Labor> labors)
+        {
+            HttpResponseMessage response = await Program.client.PutAsJsonAsync("Tickets/updateLaborsOnTicket/" + ticketId, labors);
+
+            if (response.IsSuccessStatusCode)
+            {
+                MessageBox.Show("Labors Updated");
+            }
+
+            else { MessageBox.Show("Error"); }
+        }
+
+        private void closeTicketBtn_Click(object sender, EventArgs e)
+        {
+            CloseTicketById(ticketId);
+        }
+
+        private async void CloseTicketById(string ticketId)
+        {
+            HttpResponseMessage response = await Program.client.DeleteAsync("Tickets/closeTicket/" + ticketId);
+
+            if (response.IsSuccessStatusCode)
+            {
+                MessageBox.Show("Ticket closed!");
+                this.Close();
+            }
+
+            else { MessageBox.Show("Error"); }
+        }
     }
 }

@@ -81,7 +81,7 @@ namespace PimpMyRideServer.Models
                     discountTmp += Decimal.ToDouble(labor.discount);
                 }
                 this.totalLaborDiscount = priceTmp * (discountTmp * 0.01);
-                this.totalLaborPrice = priceTmp - totalPartsDiscount;
+                this.totalLaborPrice = priceTmp - totalLaborDiscount;
             }
             else
                 this.totalLaborPrice = 0;

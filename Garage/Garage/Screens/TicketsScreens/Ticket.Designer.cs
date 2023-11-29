@@ -325,7 +325,6 @@
             this.laborDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.laborDataGridView.Location = new System.Drawing.Point(4, 22);
             this.laborDataGridView.Name = "laborDataGridView";
-            this.laborDataGridView.ReadOnly = true;
             this.laborDataGridView.Size = new System.Drawing.Size(577, 471);
             this.laborDataGridView.TabIndex = 0;
             // 
@@ -349,6 +348,7 @@
             this.closeTicketBtn.TabIndex = 112;
             this.closeTicketBtn.Text = "Close Ticket";
             this.closeTicketBtn.UseVisualStyleBackColor = true;
+            this.closeTicketBtn.Click += new System.EventHandler(this.closeTicketBtn_Click);
             // 
             // deleteTicketBtn
             // 
@@ -402,6 +402,7 @@
             this.updateLaborBtn.TabIndex = 117;
             this.updateLaborBtn.Text = "Update Labor";
             this.updateLaborBtn.UseVisualStyleBackColor = true;
+            this.updateLaborBtn.Click += new System.EventHandler(this.updateLaborBtn_Click);
             // 
             // addLaborBtn
             // 

@@ -25,7 +25,14 @@ namespace Garage.Screens.TicketsScreens
 
         private void AllTicketsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            ticketId = AllTicketsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+            if (AllTicketsDataGridView.Rows.Count == 0)
+            {
+                MessageBox.Show("No open tickets");
+            }
+            else 
+            {
+                ticketId = AllTicketsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+            }
         }
 
         public async void GetAllTickets()
@@ -46,7 +53,7 @@ namespace Garage.Screens.TicketsScreens
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show(e.Message);
+                    MessageBox.Show("No open tickets");
                 }
             }
             else

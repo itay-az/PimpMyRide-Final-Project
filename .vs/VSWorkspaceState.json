@@ -4,8 +4,9 @@
     "\\BackEnd",
     "\\BackEnd\\PimpMyRideServer",
     "\\BackEnd\\PimpMyRideServer\\PimpMyRideServer",
+    "\\BackEnd\\PimpMyRideServer\\PimpMyRideServer\\Controllers",
     "\\BackEnd\\PimpMyRideServer\\PimpMyRideServer\\Handlers"
   ],
-  "SelectedNode": "\\BackEnd\\PimpMyRideServer\\PimpMyRideServer\\Handlers\\TicketsHandler.cs",
+  "SelectedNode": "\\BackEnd\\PimpMyRideServer\\PimpMyRideServer\\Controllers\\TicketController.cs",
   "PreviewInSolutionExplorer": false
 }
