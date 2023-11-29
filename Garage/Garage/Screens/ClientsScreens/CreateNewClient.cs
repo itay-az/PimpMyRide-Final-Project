@@ -163,7 +163,7 @@ namespace Garage.Screens.ClientsScreens
             }
             else
             {
-                car = new Car(carNumberTxt.Text, clientIdTxt.Text, manufactureComboBox.Text, modelsComboBox.Text,carEngineTxt.Text, int.Parse(carYearTxt.Text), vinNumberTxt.Text, int.Parse(carKMTxt.Text));
+                car = new Car(carNumberTxt.Text, clientIdTxt.Text, manufactureComboBox.Text, modelsComboBox.Text,carEngineTxt.Text, int.Parse(carYearTxt.Text), vinNumberTxt.Text);
                 client = new Client(clientIdTxt.Text, clientFullNameTxt.Text, clientPhoneTxt.Text,clientEmailTxt.Text, clientAddressTxt.Text,car);
 
                 CreateClientRequest(client, car);
@@ -176,7 +176,7 @@ namespace Garage.Screens.ClientsScreens
 
             CreateClientRequest createClientRequest = new CreateClientRequest
             {
-                id = client.id,
+                id = client.clientId,
                 name = client.name,
                 phone = client.phone,
                 email = client.email,

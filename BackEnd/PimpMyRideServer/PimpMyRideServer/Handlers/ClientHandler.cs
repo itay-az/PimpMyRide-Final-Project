@@ -1,16 +1,15 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json.Linq;
+using Microsoft.IdentityModel.Tokens;
 using PimpMyRideServer.Handlers.Interfaces;
 using PimpMyRideServer.Models;
 using PimpMyRideServer.Server.NewFolder;
 using PimpMyRideServer.Server.Requests;
 using PimpMyRideServer.Server.Responses;
-using System.Linq;
 
 namespace PimpMyRideServer.Handlers
 {
-    public class ClientHandler : CreateHandler, GetByIdHandler, GetHandler, DeleteHandler, PutHandler
+    public class ClientHandler : CreateHandler, GetByIdHandler, GetHandler
     {
         public ActionResult HandleCreate(Request request)
         {
@@ -34,40 +33,7 @@ namespace PimpMyRideServer.Handlers
 
         }
 
-        public ActionResult HandleDelete(int id)
-        {
-            var user = Server.Server.context.User.SingleOrDefault(u => u.Id == id);
-
-            if (user == null)
-            {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
-            }
-
-            Server.Server.context.User.Remove(user);
-            Server.Server.context.SaveChanges();
-            return new StatusCodeResult(StatusCodes.Status200OK);
-        }
-
-        public ActionResult HandleGet()
-        {
-
-            var clients = Server.Server.context.Clients
-                .Include("cars")
-                .ToList();
-
-
-            if (clients == null)
-            {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
-            }
-            JsonResult jsonResult = new JsonResult(clients);
-            jsonResult.StatusCode = StatusCodes.Status200OK;
-
-
-            return jsonResult;
-        }
-
-        public ActionResult HandlGetById(string id)
+        public ActionResult HandleDelete(string id)
         {
             var client = Server.Server.context.Clients.SingleOrDefault(c => c.clientId == id);
 
@@ -76,7 +42,38 @@ namespace PimpMyRideServer.Handlers
                 return new StatusCodeResult(StatusCodes.Status404NotFound);
             }
 
-            JsonResult jsonResult = new JsonResult(buildClientResponse(client));
+            Server.Server.context.Clients.Remove(client);
+            Server.Server.context.SaveChanges();
+            return new StatusCodeResult(StatusCodes.Status200OK);
+        }
+
+        public ActionResult HandleGet()
+        {
+
+            var clients = Server.Server.context.Clients
+                .ToList();
+
+            if (clients.IsNullOrEmpty())
+            {
+                return new StatusCodeResult(StatusCodes.Status404NotFound);
+            }
+
+            JsonResult jsonResult = new JsonResult(clients);
+            jsonResult.StatusCode = StatusCodes.Status200OK;
+
+            return jsonResult;
+        }
+
+        public ActionResult HandlGetById(string id)
+        {
+            var client = Server.Server.context.Clients.Include("cars").SingleOrDefault(c => c.clientId == id);
+
+            if (client == null)
+            {
+                return new StatusCodeResult(StatusCodes.Status404NotFound);
+            }
+
+            JsonResult jsonResult = new JsonResult(client);
             jsonResult.StatusCode = StatusCodes.Status200OK;
 
             return jsonResult;
@@ -85,12 +82,16 @@ namespace PimpMyRideServer.Handlers
         public ActionResult GetCarByCarId(string id)
         {
             var car = Server.Server.context.Car.SingleOrDefault(c => c.carId == id);
+
             if (car == null)
             {
                 return new StatusCodeResult(StatusCodes.Status404NotFound);
             }
+
             var client = Server.Server.context.Clients.SingleOrDefault(c => c.clientId == car.clientId);
+
             ExtendedCarResponse extendedCarResponse = new ExtendedCarResponse(car.carId, car.carManufacture, car.carModel, car.carEngine, car.carYear, car.carKilometer, car.vinNumber, client.clientId, client.name, client.phone, client.email);
+            
             JsonResult jsonResult = new JsonResult(extendedCarResponse);
             jsonResult.StatusCode = StatusCodes.Status200OK;
 
@@ -115,41 +116,71 @@ namespace PimpMyRideServer.Handlers
 
         public ActionResult HandleUpdate(CreateClientRequest request)
         {
-            CreateClientRequest createClientRequest = request;
 
-            var c = Server.Server.context.Clients.SingleOrDefault(u => u.clientId == createClientRequest.id);
+            var client = Server.Server.context.Clients.Include("cars").SingleOrDefault(c => c.clientId == request.id);
 
-            if (c == null)
+            if (client == null)
             {
                 return new StatusCodeResult(StatusCodes.Status404NotFound);
             }
-            Client client = (Client)c;
-            Car car = new Car(createClientRequest.carId, client.clientId, createClientRequest.carManufacture, createClientRequest.carModel,
-                createClientRequest.carEngine, createClientRequest.carYear, createClientRequest.carKilometer, createClientRequest.vinNumber);
-            client.cars.Add(car);
-            Server.Server.context.Car.Add(car);
-            Server.Server.context.Clients.Update(client);
-            Server.Server.context.SaveChanges();
-            return new StatusCodeResult(StatusCodes.Status200OK);
+
+            var car = client.cars.SingleOrDefault(c => c.carId == request.carId);
+
+            if (car == null)
+            {
+                client.name = request.name;
+
+                client.email = request.email;
+                client.phone = request.phone;
+                client.address = request.address;
+
+                Car newCar = new Car(request.carId, client.clientId, request.carManufacture, request.carModel,
+                    request.carEngine, request.carYear, request.carKilometer, request.vinNumber);
+
+                client.cars.Add(newCar);
+                Server.Server.context.Clients.Update(client);
+                Server.Server.context.SaveChanges();
+                return new StatusCodeResult(StatusCodes.Status200OK);
+            }
+            else
+            {
+                client.name = request.name;
+                client.email = request.email;
+                client.phone = request.phone;
+                client.address = request.address;
+
+                Server.Server.context.Clients.Update(client);
+                Server.Server.context.SaveChanges();
+                return new StatusCodeResult(StatusCodes.Status200OK);
+            }
+            
 
         }
 
-        public ActionResult AddCarToClient(CreateClientRequest request)
+        public ActionResult HandleAddCarToClient(string clientId, AddCarToClientRequest request)
         {
-            CreateClientRequest createClientRequest = (CreateClientRequest)request;
+            var client = Server.Server.context.Clients.Include("cars").SingleOrDefault(c => c.clientId == clientId);
 
-            var c = Server.Server.context.Clients.SingleOrDefault(u => u.clientId == createClientRequest.id);
-
-            if (c == null)
+            if (client == null)
             {
                 return new StatusCodeResult(StatusCodes.Status404NotFound);
             }
 
-            Client client = (Client)c;
-            Car car = new Car(createClientRequest.carId, client.clientId, createClientRequest.carManufacture, createClientRequest.carModel,
-                createClientRequest.carEngine, createClientRequest.carYear, createClientRequest.carKilometer, createClientRequest.vinNumber);
+            var existingCar = Server.Server.context.Car.SingleOrDefault(c => c.carId == request.carId);
+
+            if(existingCar != null)
+            {
+                existingCar.Client = client;
+
+                Server.Server.context.Car.Update(existingCar);
+                Server.Server.context.SaveChanges();
+
+                return new StatusCodeResult(StatusCodes.Status200OK);
+            }
+
+            Car car = new Car(request.carId, request.clientId, request.carManufacture, request.carModel, request.carEngine, request.carYear, request.carKilometer, request.vinNumber);
+
             client.cars.Add(car);
-            Server.Server.context.Car.Add(car);
             Server.Server.context.Clients.Update(client);
             Server.Server.context.SaveChanges();
             return new StatusCodeResult(StatusCodes.Status200OK);
@@ -169,9 +200,5 @@ namespace PimpMyRideServer.Handlers
 
         }
 
-        public ActionResult HandleUpdate(Request request)
-        {
-            throw new NotImplementedException();
-        }
     }
 }

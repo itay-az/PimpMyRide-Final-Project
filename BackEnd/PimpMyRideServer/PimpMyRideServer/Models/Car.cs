@@ -18,6 +18,7 @@ namespace PimpMyRideServer.Models
             this.carKilometer = carKilometer;
             this.vinNumber = vinNumber;
             this.dateTime = DateTime.Now;
+            this.ticketIds = new List<int>();
         }
 
         [Key] public string carId { get; set; } = null!;
@@ -36,8 +37,7 @@ namespace PimpMyRideServer.Models
 
         [Required] public string vinNumber { get; set; } = null!;
         public DateTime dateTime { get; set; }
-
-
+        public List<int> ticketIds { get; set; } = new List<int>();
          
 
     }

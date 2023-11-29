@@ -8,7 +8,7 @@ namespace Garage.Models
 {
     public class Client
     {
-        public string id { get; set; }
+        public string clientId { get; set; }
         public string name { get; set; }
         public string phone { get; set; }
         public string email { get; set; }
@@ -16,9 +16,11 @@ namespace Garage.Models
         public DateTime dateTime { get; set; }
         public List<Car> cars { get; set; }
 
-        public Client(string id, string name, string phone, string email,string address,Car car)
+        public Client() { }
+
+        public Client(string clientId, string name, string phone, string email,string address,Car car)
         {
-            this.id = id;
+            this.clientId = clientId;
             this.name = name;
             this.phone = phone;
             this.email = email;
@@ -26,6 +28,16 @@ namespace Garage.Models
             this.dateTime = DateTime.Now;
             this.cars = new List<Car>();
             cars.Add(car);
+        }
+        public Client(string clientId, string name, string phone, string email, string address, List<Car> cars)
+        {
+            this.clientId = clientId;
+            this.name = name;
+            this.phone = phone;
+            this.email = email;
+            this.address = address;
+            this.dateTime = DateTime.Now;
+            this.cars = cars;
         }
     }
 }

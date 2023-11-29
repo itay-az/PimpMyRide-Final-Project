@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
@@ -14,11 +15,13 @@ using System.Threading.Tasks;
 using System.Web.Helpers;
 using System.Web.Mvc;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace Garage.Screens.ClientsScreens
 {
     public partial class SearchClientForm : Form
     {
+
         Client jsonResult;
         public SearchClientForm()
         {
@@ -100,7 +103,7 @@ namespace Garage.Screens.ClientsScreens
                 var jsonResult = JsonConvert.DeserializeObject<Client>(responseResult);
                 changeVisibilityToTrue();
 
-                searchClientIdTxt.Text = jsonResult.id;
+                searchClientIdTxt.Text = jsonResult.clientId;
                 searchClientFullNameTxt.Text = jsonResult.name;
                 searchClientEmailTxt.Text = jsonResult.email;
                 searchClientAddressTxt.Text = jsonResult.address;
@@ -129,6 +132,7 @@ namespace Garage.Screens.ClientsScreens
             carYearLbl.Visible = true;
             carEngineLbl.Visible = true;
             vinNumberLbl.Visible = true;
+            carKilometerLbl.Visible = true;
 
             searchClientFullNameTxt.Visible = true;
             searchClientEmailTxt.Visible = true;
@@ -139,6 +143,7 @@ namespace Garage.Screens.ClientsScreens
             searchCarYearTxt.Visible = true;
             searchCarEngineTxt.Visible = true;
             searchVinNumberTxt.Visible = true;
+            carKilometerTxt.Visible = true;
 
             clientHistoryBtn.Visible = true;
 
@@ -155,6 +160,7 @@ namespace Garage.Screens.ClientsScreens
             carYearLbl.Visible = false;
             carEngineLbl.Visible = false;
             vinNumberLbl.Visible = false;
+            carKilometerLbl.Visible = false;
 
             searchClientFullNameTxt.Visible = false;
             searchClientEmailTxt.Visible = false;
@@ -165,6 +171,7 @@ namespace Garage.Screens.ClientsScreens
             searchCarYearTxt.Visible = false;
             searchCarEngineTxt.Visible = false;
             searchVinNumberTxt.Visible = false;
+            carKilometerTxt.Visible = false;
 
             clientHistoryBtn.Visible = false;
 
@@ -177,7 +184,88 @@ namespace Garage.Screens.ClientsScreens
 
         private void updateClientBtn_Click(object sender, EventArgs e)
         {
+            Client client = new Client(searchClientIdTxt.Text, searchClientFullNameTxt.Text, searchClientPhoneTxt.Text, searchClientEmailTxt.Text, searchClientAddressTxt.Text, jsonResult.cars);
+            Car car = new Car(carNumberComboBox.Text, searchClientIdTxt.Text, searchCarManuTxt.Text, searchCarModelTxt.Text, searchCarEngineTxt.Text, int.Parse(searchCarYearTxt.Text), searchVinNumberTxt.Text);
+            UpdateClient(client, car);
+        }
 
+
+        private async void UpdateClient(Client client, Car car)
+        {
+
+            CreateClientRequest createClientRequest = new CreateClientRequest
+            {
+                id = client.clientId,
+                name = client.name,
+                phone = client.phone,
+                email = client.email,
+                address = client.address,
+                carId = car.carId,
+                carManufacture = car.carManufacture,
+                carModel = car.carModel,
+                carEngine = car.carEngine,
+                carYear = car.carYear,
+                carKilometer = car.carKilometer,
+                vinNumber = car.vinNumber
+            };
+
+            HttpResponseMessage response = await Program.client.PutAsJsonAsync(
+               "client/" + client.clientId, createClientRequest);
+
+            if (response.IsSuccessStatusCode)
+            {
+                MessageBox.Show("Client " + client.name + " Updated successfully", "success");
+
+                this.Close();
+            }
+            else if (response.StatusCode.Equals(HttpStatusCode.Conflict))
+            {
+                MessageBox.Show($"Client {client.name} or car {car.carManufacture} {car.carModel} already exist");
+
+            }
+            else
+            {
+                MessageBox.Show(" Failed ", "Error");
+            }
+        }
+
+        private void addCarToClientBtn_Click(object sender, EventArgs e)
+        {
+            addCarToClient();
+        }
+
+        private async void addCarToClient()
+        {
+            AddCarToClientRequest addCarToClientRequest = new AddCarToClientRequest
+            {
+                carId = carNumberComboBox.Text,
+                clientId = searchClientIdTxt.Text,
+                carManufacture = searchCarManuTxt.Text,
+                carModel = searchCarModelTxt.Text,
+                carEngine = searchCarEngineTxt.Text,
+                carYear = int.Parse(searchCarYearTxt.Text),
+                vinNumber = searchVinNumberTxt.Text,
+                dateTime =DateTime.Now,
+
+            };
+
+            HttpResponseMessage response = await Program.client.PutAsJsonAsync("client/client/addCar/" + addCarToClientRequest.clientId, addCarToClientRequest);
+
+            if (response.IsSuccessStatusCode)
+            {
+                MessageBox.Show($"Car {addCarToClientRequest.carManufacture} {addCarToClientRequest.carModel} has been added successfully to client {searchClientFullNameTxt.Text}", "success");
+
+                this.Close();
+            }
+            else if (response.StatusCode.Equals(HttpStatusCode.Conflict))
+            {
+                MessageBox.Show($"Client {searchClientFullNameTxt.Text} or car {addCarToClientRequest.carManufacture} {addCarToClientRequest.carModel} already exist");
+
+            }
+            else
+            {
+                MessageBox.Show(" Failed ", "Error");
+            }
         }
     }
 }

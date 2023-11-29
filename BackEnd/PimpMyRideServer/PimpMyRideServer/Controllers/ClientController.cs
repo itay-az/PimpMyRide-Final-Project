@@ -47,25 +47,22 @@ namespace PimpMyRideServer.Controllers
         }
 
         [HttpDelete("{clientId}")]
-        public ActionResult DeleteUser(string clientId)
+        public ActionResult DeleteClient(string clientId)
         {
-            int parsedId = int.Parse(clientId);
-            return ((ClientHandler)handler).HandleDelete(parsedId);
+            return ((ClientHandler)handler).HandleDelete(clientId);
         }
 
 
         [HttpPut("{clientId}")]
-        public ActionResult PutUser(string clientId, [FromBody] CreateClientRequest request)
+        public ActionResult UpdateClient(string clientId, [FromBody] CreateClientRequest request)
         {
-            int parsedId = int.Parse(clientId);
             return ((ClientHandler)handler).HandleUpdate(request);
         }
 
         [HttpPut("client/addCar/{clientId}")]
-        public ActionResult AddCarToClient(string clientId, [FromBody] CreateClientRequest request)
+        public ActionResult AddCarToClient(string clientId, [FromBody] AddCarToClientRequest car)
         {
-            int parsedId = int.Parse(clientId);
-            return ((ClientHandler)handler).HandleUpdate(request);
+            return ((ClientHandler)handler).HandleAddCarToClient(clientId,car);
         }
     }
 }

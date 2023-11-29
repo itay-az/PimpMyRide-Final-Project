@@ -142,6 +142,7 @@
     <Compile Include="Models\Ticket.cs" />
     <Compile Include="Models\TicketPart.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Requests\AddCarToClientRequest.cs" />
     <Compile Include="Requests\AddPartToTicketRequest.cs" />
     <Compile Include="Requests\CreateClientRequest.cs" />
     <Compile Include="Requests\CreateManufactureWithModelRequest.cs" />
