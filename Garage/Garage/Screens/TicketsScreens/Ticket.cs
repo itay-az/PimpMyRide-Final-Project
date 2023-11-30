@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Net.Http;
@@ -37,12 +39,19 @@ namespace Garage.Screens.TicketsScreens
         private void refreshPartsDataGridView()
         {
             partsDataGridView.DataSource = parts;
+            partsDataGridView.Columns[0].ReadOnly = true;
+            partsDataGridView.Columns[1].ReadOnly = true;
+            partsDataGridView.Columns[5].ReadOnly = true;
 
         }
 
         private void refreshLaborsDataGridView()
         {
             laborDataGridView.DataSource = labors;
+            laborDataGridView.Columns[0].ReadOnly = true;
+            laborDataGridView.Columns[1].ReadOnly = true;
+            laborDataGridView.Columns[2].ReadOnly = true;
+            laborDataGridView.Columns[3].ReadOnly = true;
         }
 
         private void partsDataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
@@ -141,7 +150,8 @@ namespace Garage.Screens.TicketsScreens
 
         private void updatePartBtn_Click(object sender, EventArgs e)
         {
-            List<TicketPart> parts = new List<TicketPart>();
+            bool IsOkToUpdate = true;
+            List<TicketPart> newPartsList = new List<TicketPart>();
 
             foreach (DataGridViewRow row in partsDataGridView.Rows)
             {
@@ -156,11 +166,32 @@ namespace Garage.Screens.TicketsScreens
                         discount = decimal.Parse(row.Cells["discount"].Value.ToString())
                     };
 
-                    parts.Add(part);
+                    if(part.quantity <=0)
+                    {
+                        MessageBox.Show("Quantity value cannot be equal or less than 0");
+                        IsOkToUpdate = false;
+                        break;
+                    }
+                    if (part.discount < 0)
+                    {
+                        MessageBox.Show("Discount value cannot be less than 0");
+                        IsOkToUpdate = false;
+                        break;
+                    }
+                    if (part.price <= 0)
+                    {
+                        MessageBox.Show("Price value cannot be equal or less than 0");
+                        IsOkToUpdate = false;
+                        break;
+                    }
+                    newPartsList.Add(part);
                 }
             }
 
-            updatePartsOnTicket(parts);
+            if(IsOkToUpdate)
+            {
+                updatePartsOnTicket(newPartsList);
+            }
         }
 
         private async void updatePartsOnTicket(List<TicketPart> parts)
@@ -172,7 +203,13 @@ namespace Garage.Screens.TicketsScreens
                 MessageBox.Show("Parts Updated");
             }
 
-            else { MessageBox.Show("Error"); }
+            else 
+            {
+                var responseResult = await response.Content.ReadAsStringAsync();
+                var jsonResult = JsonConvert.DeserializeObject<OnFailure>(responseResult);
+
+                MessageBox.Show(jsonResult.message); 
+            }
 
         }
 
@@ -236,5 +273,59 @@ namespace Garage.Screens.TicketsScreens
 
             else { MessageBox.Show("Error"); }
         }
+
+        private void partsDataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if ((e.ColumnIndex == 2 || e.ColumnIndex == 3 ) && e.RowIndex >= 0) // e.RowIndex >= 0 ensures it's not a header cell
+            {
+                string newValue = e.FormattedValue.ToString();
+
+                string oldValue = partsDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+
+                if (!decimal.TryParse(newValue, out decimal parsedValue) || parsedValue <= 0)
+                {
+                    MessageBox.Show("Value must be a valid positive decimal.", "Invalid Value", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    partsDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = oldValue;
+
+                    e.Cancel = true;
+                }
+            }
+            if(e.ColumnIndex == 4 && e.RowIndex >= 0 )
+            {
+                string newValue = e.FormattedValue.ToString();
+
+                string oldValue = partsDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+
+                if (!decimal.TryParse(newValue, out decimal parsedValue) || parsedValue < 0)
+                {
+                    MessageBox.Show("Value must be a valid positive decimal.", "Invalid Value", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    partsDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = oldValue;
+
+                    e.Cancel = true;
+                }
+            }
+        }
+
+        private void laborDataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if ( e.ColumnIndex == 4 && e.RowIndex >= 0) // e.RowIndex >= 0 ensures it's not a header cell
+            {
+                string newValue = e.FormattedValue.ToString();
+
+                string oldValue = laborDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value.ToString();
+
+                if (!decimal.TryParse(newValue, out decimal parsedValue) || parsedValue <= 0)
+                {
+                    MessageBox.Show("Value must be a valid positive decimal.", "Invalid Value", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                    laborDataGridView.Rows[e.RowIndex].Cells[e.ColumnIndex].Value = oldValue;
+
+                    e.Cancel = true;
+                }
+            }
+        }
     }
-}
+    }
+

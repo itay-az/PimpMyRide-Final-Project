@@ -12,5 +12,10 @@ namespace PimpMyRideServer.Models
         public decimal discount { get; set; }
         public decimal unitPrice { get; set; }
 
+        public decimal GetTotalPrice()
+        {
+            return price - (price * (discount * (decimal)0.01));
+        }
+
     }
 }

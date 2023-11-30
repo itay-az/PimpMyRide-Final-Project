@@ -27,28 +27,19 @@ namespace PimpMyRideServer.Handlers
 
             JsonResult jsonResult = new JsonResult(failureResponse);
             jsonResult.StatusCode = StatusCodes.Status404NotFound;
+            jsonResult.Value = message;
             return jsonResult;
         }
         
         public ActionResult HandleCreate(CreateNewTicketRequest request)
         {
-            Ticket newTicket = new Ticket(request.carId,request.clientId,request.causeOfArrival);
-            var client = Server.Server.context.Clients.SingleOrDefault(client => client.clientId == request.clientId);
+            Ticket newTicket = new Ticket(request.carId,request.clientFullName,request.clientId,request.clientPhoneNumber,request.clientEmail,request.causeOfArrival);
             var car = Server.Server.context.Car.SingleOrDefault(car => car.carId == request.carId);
-            var tickets = Server.Server.context.Ticket.SingleOrDefault(t => t.carId == request.carId);
-            if (client == null )
-            {
-                FailureResponse failureResponse = new FailureResponse { status = false, message = "Client doesnt exist" };
-                JsonResult jsonResults = new JsonResult(failureResponse);
-                jsonResults.StatusCode = StatusCodes.Status404NotFound;
-                return jsonResults;
-            }
+            var tickets = Server.Server.context.Ticket.SingleOrDefault(t => t.carId == request.carId && t.state == TicketType.IS_OPEN);
+
             if (car == null)
             {
-                FailureResponse failureResponse = new FailureResponse { status = false, message = "Car doesnt exist" };
-                JsonResult jsonResults = new JsonResult(failureResponse);
-                jsonResults.StatusCode = StatusCodes.Status404NotFound;
-                return jsonResults;
+                return onFailure("Car doesnt exist");
             }
             if (tickets != null)
             {
@@ -65,11 +56,38 @@ namespace PimpMyRideServer.Handlers
             return new StatusCodeResult(StatusCodes.Status200OK);
         }
 
+        public ActionResult HandleCreateOffer(CreateNewTicketRequest request)
+        {
+            Ticket newTicket = new Ticket(request.carId, request.clientId, request.causeOfArrival,TicketType.IS_OFFER);
+            var client = Server.Server.context.Clients.SingleOrDefault(client => client.clientId == request.clientId);
+            var car = Server.Server.context.Car.SingleOrDefault(car => car.carId == request.carId);
+            var tickets = Server.Server.context.Ticket.SingleOrDefault(t => t.carId == request.carId);
+            if (client == null)
+            {
+                return onFailure("Client doesnt exist");
+            }
+            if (car == null)
+            {
+                return onFailure("Car doesnt exist");
+            }
+            if (tickets != null)
+            {
+                return new StatusCodeResult(StatusCodes.Status409Conflict);
+            }
+
+
+            Server.Server.context.SaveChanges();
+
+            Server.Server.context.Ticket.Add(newTicket);
+            Server.Server.context.SaveChanges();
+            return new StatusCodeResult(StatusCodes.Status200OK);
+        }
+
         public ActionResult HandleGet()
         {
 
 
-            var ticket = Server.Server.context.Ticket.Include("parts").Include("labors").Where(t => t.isOpen == true);
+            var ticket = Server.Server.context.Ticket.Include("parts").Include("labors").Where(t => t.state == TicketType.IS_OPEN);
 
             if (ticket == null)
             {
@@ -106,8 +124,9 @@ namespace PimpMyRideServer.Handlers
                 return new StatusCodeResult(StatusCodes.Status404NotFound);
             }
 
-            ticket.isOpen = false;
+            ticket.state = TicketType.IS_CLOSED;
 
+            
             Server.Server.context.SaveChanges();
             return new StatusCodeResult(StatusCodes.Status200OK);
 
@@ -125,21 +144,22 @@ namespace PimpMyRideServer.Handlers
             {
                 carId = ticket.carId,
                 clientId = ticket.clientId,
-                clientFullName = client.name,
+                clientFullName = ticket.clientFullName,
                 carManufacture = car.carManufacture,
                 carModel = car.carModel,
                 carEngine = car.carEngine,
                 carYear = car.carYear,
                 carKilometer = car.carKilometer,
                 vinNumber = car.vinNumber,
-                clientPhoneNumber = client.phone,
-                clientEmail = client.email,
+                clientPhoneNumber = ticket.clientPhone,
+                clientEmail = ticket.clientEmail,
                 causeOfArrival = ticket.problems,
                 parts = ticket.parts,
                 labors = ticket.labors,
                 totalPartsPrice = ticket.totalPartsPrice,
                 totalPartsDiscount = ticket.totalPartsDiscount,
                 totalLaborPrice = ticket.totalLaborPrice,
+                totalLaborDiscount = ticket.totalLaborDiscount,
                 price = ticket.price,
             };  
 
@@ -197,9 +217,11 @@ namespace PimpMyRideServer.Handlers
                 {
                     return onFailure("Part already exist in the ticket");
                 }
+
                 ticket.parts.Add(ticketPart);
 
-                ticket.totalPartsPrice += Decimal.ToDouble(ticketPart.price);
+                ticket.calculatePartPrice();
+
                 ticket.calculate();
 
 
@@ -229,18 +251,14 @@ namespace PimpMyRideServer.Handlers
             }
 
             var ticketPart = ticket.parts.SingleOrDefault(p => p.partId == partId);
-
             var storagePart = Server.Server.context.Part.SingleOrDefault(p => p.partId == partId);
-
-            ticket.price -= Decimal.ToDouble(ticketPart.price);
-            ticket.totalPartsPrice -= Decimal.ToDouble(ticketPart.price);
-
-            
 
             storagePart.quantity += ticketPart.quantity;
 
             ticket.parts.Remove(ticketPart);
 
+            ticket.calculatePartPrice();
+            ticket.calculate();
             
 
             Server.Server.context.Part.Update(storagePart);
@@ -258,8 +276,6 @@ namespace PimpMyRideServer.Handlers
         {
             var ticket = Server.Server.context.Ticket.SingleOrDefault(t => t.ticketId == ticketId);
 
-
-
             if (ticket == null)
             {
                 return onFailure("Ticket not found");
@@ -270,6 +286,10 @@ namespace PimpMyRideServer.Handlers
                 if (ticket.parts[i].quantity != partFromBody[i].quantity)
                 {
                     var partFromStorage = Server.Server.context.Part.SingleOrDefault(p => p.partId == partFromBody[i].partId);
+                    if (partFromStorage.quantity < partFromBody[i].quantity || (partFromStorage.quantity - partFromBody[i].quantity) < 0)
+                    {
+                        return onFailure("Not enough parts in storage");
+                    }
 
                     decimal tmp = ticket.parts[i].quantity - partFromBody[i].quantity;
 
@@ -280,6 +300,9 @@ namespace PimpMyRideServer.Handlers
             }
 
             ticket.parts = partFromBody;
+
+            ticket.calculatePartPrice();
+            ticket.calculate();
 
             Server.Server.context.Ticket.Update(ticket);
 
@@ -389,7 +412,7 @@ namespace PimpMyRideServer.Handlers
 
             ticket.labors.Add(LaborFromBody);
 
-            ticket.totalLaborPrice += Decimal.ToDouble(existingLabor.price);
+            ticket.calculateLaborPrice();
             ticket.calculate();
 
 
@@ -426,6 +449,9 @@ namespace PimpMyRideServer.Handlers
 
             ticket.labors.Remove(labor);
 
+            ticket.calculateLaborPrice();
+            ticket.calculate();
+
             Server.Server.context.Ticket.Update(ticket);
 
             Server.Server.context.SaveChanges();
@@ -448,6 +474,7 @@ namespace PimpMyRideServer.Handlers
             ticket.labors = laborsFromBody;
 
             ticket.calculateLaborPrice();
+            ticket.calculate();
 
             Server.Server.context.Ticket.Update(ticket);
 

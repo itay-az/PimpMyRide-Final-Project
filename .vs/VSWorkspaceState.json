@@ -4,9 +4,12 @@
     "\\BackEnd",
     "\\BackEnd\\PimpMyRideServer",
     "\\BackEnd\\PimpMyRideServer\\PimpMyRideServer",
-    "\\BackEnd\\PimpMyRideServer\\PimpMyRideServer\\Controllers",
-    "\\BackEnd\\PimpMyRideServer\\PimpMyRideServer\\Handlers"
+    "\\BackEnd\\PimpMyRideServer\\PimpMyRideServer\\Handlers",
+    "\\Garage",
+    "\\Garage\\Garage",
+    "\\Garage\\Garage\\Screens",
+    "\\Garage\\Garage\\Screens\\TicketsScreens"
   ],
-  "SelectedNode": "\\BackEnd\\PimpMyRideServer\\PimpMyRideServer\\Controllers\\TicketController.cs",
+  "SelectedNode": "\\BackEnd\\PimpMyRideServer\\PimpMyRideServer\\Handlers\\TicketsHandler.cs",
   "PreviewInSolutionExplorer": false
 }

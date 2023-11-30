@@ -104,6 +104,7 @@
             this.clientKmTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.clientKmTxt.Location = new System.Drawing.Point(490, 224);
             this.clientKmTxt.Name = "clientKmTxt";
+            this.clientKmTxt.ReadOnly = true;
             this.clientKmTxt.Size = new System.Drawing.Size(153, 22);
             this.clientKmTxt.TabIndex = 104;
             // 
@@ -303,6 +304,7 @@
             this.partsDataGridView.Size = new System.Drawing.Size(630, 471);
             this.partsDataGridView.TabIndex = 0;
             this.partsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.partsDataGridView_CellContentClick);
+            this.partsDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.partsDataGridView_CellValidating);
             // 
             // groupBox3
             // 
@@ -327,6 +329,7 @@
             this.laborDataGridView.Name = "laborDataGridView";
             this.laborDataGridView.Size = new System.Drawing.Size(577, 471);
             this.laborDataGridView.TabIndex = 0;
+            this.laborDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.laborDataGridView_CellValidating);
             // 
             // addPartToTicketBtn
             // 

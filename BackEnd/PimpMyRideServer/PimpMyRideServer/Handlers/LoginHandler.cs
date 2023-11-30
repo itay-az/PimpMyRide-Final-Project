@@ -15,17 +15,16 @@ namespace PimpMyRideServer.Handlers
 
         public ActionResult HandleCreate(Request request)
         {
-
             LoginRequest loginRequest = (LoginRequest)request;
 
-            var you = Server.Server.context.User.SingleOrDefault(u => u.UserName == loginRequest.UserName && u.Password == loginRequest.Password);
+            var user = Server.Server.context.User.SingleOrDefault(u => u.UserName == loginRequest.UserName && u.Password == loginRequest.Password);
 
-
-            if (you == null)
+            if (user == null)
             {
                 return new StatusCodeResult(StatusCodes.Status404NotFound);
             }
-            return new OkObjectResult(you.JobTitle);
+
+            return new OkObjectResult(user.JobTitle);
 
 
         }

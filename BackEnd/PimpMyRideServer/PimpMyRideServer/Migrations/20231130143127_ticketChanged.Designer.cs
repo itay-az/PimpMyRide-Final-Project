@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PimpMyRideServer.Data;
 
@@ -11,9 +12,11 @@ using PimpMyRideServer.Data;
 namespace PimpMyRideServer.Migrations
 {
     [DbContext(typeof(GarageContext))]
-    partial class GarageContextModelSnapshot : ModelSnapshot
+    [Migration("20231130143127_ticketChanged")]
+    partial class ticketChanged
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -5188,10 +5191,6 @@ namespace PimpMyRideServer.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("clientEmail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("clientFullName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

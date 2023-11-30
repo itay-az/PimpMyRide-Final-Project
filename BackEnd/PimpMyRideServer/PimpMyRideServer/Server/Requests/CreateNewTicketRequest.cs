@@ -20,7 +20,6 @@ namespace PimpMyRideServer.Server.Requests
         public string clientFullName { get; set; }
         public string clientPhoneNumber { get; set; }
         public string clientEmail { get; set; }
-
         public string causeOfArrival { get; set; }
 
         public CreateNewTicketRequest(string carId, string carManufacture, string carModel, string carEngine, int carYear, int carKilometer, string vinNumber, string clientFullName, string clientPhoneNumber, string clientEmail, string causeOfArrival)
