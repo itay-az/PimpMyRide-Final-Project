@@ -33,5 +33,7 @@ namespace Garage.Responses
 
         public double totalLaborPrice { get; set; }
         public double totalLaborDiscount { get; set; }
+
+        public double price { get; set; }
     }
 }

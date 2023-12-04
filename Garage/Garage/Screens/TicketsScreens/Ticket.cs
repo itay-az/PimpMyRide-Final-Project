@@ -28,6 +28,7 @@ namespace Garage.Screens.TicketsScreens
         private static List<Labor> labors;
         private string ticketId;
         private string partId;
+        private int laborId;
 
         public Ticket(string ticketId)
         {
@@ -84,9 +85,19 @@ namespace Garage.Screens.TicketsScreens
                 totalPartDiscountTxt.Text = jsonResult.totalPartsDiscount.ToString();
                 totalLaborPriceTxt.Text = jsonResult.totalLaborPrice.ToString();
                 totalLaborDiscountTxt.Text = jsonResult.totalLaborDiscount.ToString();
-
+                totalPartPriceAfterDiscountTxt.Text = (jsonResult.totalPartsPrice - jsonResult.totalPartsDiscount).ToString();
+                totalLaborPriceAfterDiscountTxt.Text = (jsonResult.totalLaborPrice - jsonResult.totalLaborDiscount).ToString();
+                totalTicketPriceTxt.Text = jsonResult.price.ToString();
                 refreshPartsDataGridView();
                 refreshLaborsDataGridView();
+                if(jsonResult.parts.Count > 0)
+                {
+                    partId = partsDataGridView.Rows[0].Cells[0].Value.ToString();
+                }
+                if(jsonResult.labors.Count > 0)
+                {
+                    laborId = int.Parse(laborDataGridView.Rows[0].Cells[0].Value.ToString());
+                }
             }
             else
             {
@@ -97,7 +108,8 @@ namespace Garage.Screens.TicketsScreens
         private void addPartToTicketBtn_Click(object sender, EventArgs e)
         {
             AddPartToTicketForm addPartToTicketForm = new AddPartToTicketForm(int.Parse(ticketId));
-            this.Close();
+            addPartToTicketForm.FormClosed += (s, args) => { GetTicketById(ticketId); this.Show(); };
+            this.Hide();
             addPartToTicketForm.ShowDialog();
         }
 
@@ -166,7 +178,7 @@ namespace Garage.Screens.TicketsScreens
                         discount = decimal.Parse(row.Cells["discount"].Value.ToString())
                     };
 
-                    if(part.quantity <=0)
+                    if (part.quantity <= 0)
                     {
                         MessageBox.Show("Quantity value cannot be equal or less than 0");
                         IsOkToUpdate = false;
@@ -188,7 +200,7 @@ namespace Garage.Screens.TicketsScreens
                 }
             }
 
-            if(IsOkToUpdate)
+            if (IsOkToUpdate)
             {
                 updatePartsOnTicket(newPartsList);
             }
@@ -203,12 +215,12 @@ namespace Garage.Screens.TicketsScreens
                 MessageBox.Show("Parts Updated");
             }
 
-            else 
+            else
             {
                 var responseResult = await response.Content.ReadAsStringAsync();
                 var jsonResult = JsonConvert.DeserializeObject<OnFailure>(responseResult);
 
-                MessageBox.Show(jsonResult.message); 
+                MessageBox.Show(jsonResult.message);
             }
 
         }
@@ -216,7 +228,8 @@ namespace Garage.Screens.TicketsScreens
         private void addLaborBtn_Click(object sender, EventArgs e)
         {
             AddLaborToTicketForm addLaborToTicketForm = new AddLaborToTicketForm(int.Parse(ticketId));
-            this.Close();
+            addLaborToTicketForm.FormClosed += (s, args) => { GetTicketById(ticketId); this.Show(); };
+            this.Hide();
             addLaborToTicketForm.ShowDialog();
         }
 
@@ -276,7 +289,7 @@ namespace Garage.Screens.TicketsScreens
 
         private void partsDataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if ((e.ColumnIndex == 2 || e.ColumnIndex == 3 ) && e.RowIndex >= 0) // e.RowIndex >= 0 ensures it's not a header cell
+            if ((e.ColumnIndex == 2 || e.ColumnIndex == 3) && e.RowIndex >= 0) // e.RowIndex >= 0 ensures it's not a header cell
             {
                 string newValue = e.FormattedValue.ToString();
 
@@ -291,7 +304,7 @@ namespace Garage.Screens.TicketsScreens
                     e.Cancel = true;
                 }
             }
-            if(e.ColumnIndex == 4 && e.RowIndex >= 0 )
+            if (e.ColumnIndex == 4 && e.RowIndex >= 0)
             {
                 string newValue = e.FormattedValue.ToString();
 
@@ -310,7 +323,7 @@ namespace Garage.Screens.TicketsScreens
 
         private void laborDataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if ( e.ColumnIndex == 4 && e.RowIndex >= 0) // e.RowIndex >= 0 ensures it's not a header cell
+            if (e.ColumnIndex == 4 && e.RowIndex >= 0) // e.RowIndex >= 0 ensures it's not a header cell
             {
                 string newValue = e.FormattedValue.ToString();
 
@@ -325,6 +338,34 @@ namespace Garage.Screens.TicketsScreens
                     e.Cancel = true;
                 }
             }
+        }
+
+        private void deleteLaborBtn_Click(object sender, EventArgs e)
+        {
+            RemoveLaborFromTicket();
+        }
+
+        private async void RemoveLaborFromTicket()
+        {
+            HttpResponseMessage response = await Program.client.DeleteAsync("Tickets/removeLaborFromTicket/" + ticketId + "/" + laborId);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var responseResult = await response.Content.ReadAsStringAsync();
+                var jsonResult = JsonConvert.DeserializeObject<Models.Ticket>(responseResult);
+
+                GetTicketById(jsonResult.ticketId.ToString());
+
+            }
+            else
+            {
+                MessageBox.Show("Error");
+            }
+        }
+
+        private void laborDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            laborId = int.Parse(laborDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString());
         }
     }
     }

@@ -68,10 +68,12 @@
             this.totalPartDiscountTxt = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.totalLaborDiscountTxt = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.totalLaborPriceAfterDiscountTxt = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.totalLaborPriceTxt = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.totalLaborPriceAfterDiscountTxt = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.totalTicketPriceTxt = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.partsDataGridView)).BeginInit();
@@ -329,6 +331,7 @@
             this.laborDataGridView.Name = "laborDataGridView";
             this.laborDataGridView.Size = new System.Drawing.Size(577, 471);
             this.laborDataGridView.TabIndex = 0;
+            this.laborDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.laborDataGridView_CellContentClick);
             this.laborDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.laborDataGridView_CellValidating);
             // 
             // addPartToTicketBtn
@@ -395,6 +398,7 @@
             this.deleteLaborBtn.TabIndex = 118;
             this.deleteLaborBtn.Text = "Delete Labor";
             this.deleteLaborBtn.UseVisualStyleBackColor = true;
+            this.deleteLaborBtn.Click += new System.EventHandler(this.deleteLaborBtn_Click);
             // 
             // updateLaborBtn
             // 
@@ -498,26 +502,6 @@
             this.totalLaborDiscountTxt.Size = new System.Drawing.Size(188, 29);
             this.totalLaborDiscountTxt.TabIndex = 129;
             // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label14.ForeColor = System.Drawing.Color.White;
-            this.label14.Location = new System.Drawing.Point(1313, 622);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(121, 24);
-            this.label14.TabIndex = 128;
-            this.label14.Text = "Total price :";
-            // 
-            // totalLaborPriceAfterDiscountTxt
-            // 
-            this.totalLaborPriceAfterDiscountTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.totalLaborPriceAfterDiscountTxt.Location = new System.Drawing.Point(1550, 622);
-            this.totalLaborPriceAfterDiscountTxt.Name = "totalLaborPriceAfterDiscountTxt";
-            this.totalLaborPriceAfterDiscountTxt.ReadOnly = true;
-            this.totalLaborPriceAfterDiscountTxt.Size = new System.Drawing.Size(188, 29);
-            this.totalLaborPriceAfterDiscountTxt.TabIndex = 127;
-            // 
             // label15
             // 
             this.label15.AutoSize = true;
@@ -538,16 +522,58 @@
             this.totalLaborPriceTxt.Size = new System.Drawing.Size(188, 29);
             this.totalLaborPriceTxt.TabIndex = 125;
             // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label14.ForeColor = System.Drawing.Color.White;
+            this.label14.Location = new System.Drawing.Point(1313, 621);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(121, 24);
+            this.label14.TabIndex = 132;
+            this.label14.Text = "Total price :";
+            // 
+            // totalLaborPriceAfterDiscountTxt
+            // 
+            this.totalLaborPriceAfterDiscountTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.totalLaborPriceAfterDiscountTxt.Location = new System.Drawing.Point(1550, 621);
+            this.totalLaborPriceAfterDiscountTxt.Name = "totalLaborPriceAfterDiscountTxt";
+            this.totalLaborPriceAfterDiscountTxt.ReadOnly = true;
+            this.totalLaborPriceAfterDiscountTxt.Size = new System.Drawing.Size(188, 29);
+            this.totalLaborPriceAfterDiscountTxt.TabIndex = 131;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label16.ForeColor = System.Drawing.Color.White;
+            this.label16.Location = new System.Drawing.Point(1273, 839);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(121, 24);
+            this.label16.TabIndex = 134;
+            this.label16.Text = "Total price :";
+            // 
+            // totalTicketPriceTxt
+            // 
+            this.totalTicketPriceTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.totalTicketPriceTxt.Location = new System.Drawing.Point(1485, 839);
+            this.totalTicketPriceTxt.Name = "totalTicketPriceTxt";
+            this.totalTicketPriceTxt.ReadOnly = true;
+            this.totalTicketPriceTxt.Size = new System.Drawing.Size(188, 29);
+            this.totalTicketPriceTxt.TabIndex = 133;
+            // 
             // Ticket
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
             this.ClientSize = new System.Drawing.Size(1910, 982);
-            this.Controls.Add(this.label13);
-            this.Controls.Add(this.totalLaborDiscountTxt);
+            this.Controls.Add(this.label16);
+            this.Controls.Add(this.totalTicketPriceTxt);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.totalLaborPriceAfterDiscountTxt);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.totalLaborDiscountTxt);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.totalLaborPriceTxt);
             this.Controls.Add(this.label11);
@@ -641,9 +667,11 @@
         private System.Windows.Forms.TextBox totalPartDiscountTxt;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox totalLaborDiscountTxt;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox totalLaborPriceAfterDiscountTxt;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox totalLaborPriceTxt;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox totalLaborPriceAfterDiscountTxt;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox totalTicketPriceTxt;
     }
 }

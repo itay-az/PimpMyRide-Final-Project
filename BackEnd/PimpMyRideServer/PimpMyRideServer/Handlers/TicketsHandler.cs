@@ -155,7 +155,7 @@ namespace PimpMyRideServer.Handlers
                 clientEmail = ticket.clientEmail,
                 causeOfArrival = ticket.problems,
                 parts = ticket.parts,
-                labors = ticket.labors,
+                labors = ticket.labors, 
                 totalPartsPrice = ticket.totalPartsPrice,
                 totalPartsDiscount = ticket.totalPartsDiscount,
                 totalLaborPrice = ticket.totalLaborPrice,
@@ -220,10 +220,24 @@ namespace PimpMyRideServer.Handlers
 
                 ticket.parts.Add(ticketPart);
 
-                ticket.calculatePartPrice();
 
-                ticket.calculate();
+                ticket.totalPartsDiscount = 0;
+                ticket.totalPartsPrice = 0;
+                foreach (TicketPart part in ticket.parts)
+                {
+                    ticket.totalPartsPrice += decimal.ToDouble(part.price);
+                    ticket.totalPartsDiscount += decimal.ToDouble(part.GetTotalDiscount());
+                }
 
+                ticket.totalLaborPrice = 0;
+                ticket.totalLaborDiscount = 0;
+                foreach (TicketLabor labor in ticket.labors)
+                {
+                    ticket.totalLaborPrice += decimal.ToDouble(labor.price);
+                    ticket.totalLaborDiscount += decimal.ToDouble(labor.GetTotalDiscount());
+                }
+
+                ticket.price = ticket.totalLaborPrice + ticket.totalPartsPrice - ticket.totalLaborDiscount - ticket.totalPartsDiscount;
 
                 Server.Server.context.Ticket.Update(ticket);
 
@@ -257,9 +271,24 @@ namespace PimpMyRideServer.Handlers
 
             ticket.parts.Remove(ticketPart);
 
-            ticket.calculatePartPrice();
-            ticket.calculate();
-            
+
+            ticket.totalPartsDiscount = 0;
+            ticket.totalPartsPrice = 0;
+            foreach (TicketPart part in ticket.parts)
+            {
+                ticket.totalPartsPrice += decimal.ToDouble(part.price);
+                ticket.totalPartsDiscount += decimal.ToDouble(part.GetTotalDiscount());
+            }
+
+            ticket.totalLaborPrice = 0;
+            ticket.totalLaborDiscount = 0;
+            foreach (TicketLabor labor in ticket.labors)
+            {
+                ticket.totalLaborPrice += decimal.ToDouble(labor.price);
+                ticket.totalLaborDiscount += decimal.ToDouble(labor.GetTotalDiscount());
+            }
+            ticket.price = ticket.totalLaborPrice + ticket.totalPartsPrice - ticket.totalLaborDiscount - ticket.totalPartsDiscount;
+
 
             Server.Server.context.Part.Update(storagePart);
             Server.Server.context.Ticket.Update(ticket);
@@ -301,8 +330,23 @@ namespace PimpMyRideServer.Handlers
 
             ticket.parts = partFromBody;
 
-            ticket.calculatePartPrice();
-            ticket.calculate();
+
+            ticket.totalPartsDiscount = 0;
+            ticket.totalPartsPrice = 0;
+            foreach (TicketPart part in ticket.parts)
+            {
+                ticket.totalPartsPrice += decimal.ToDouble(part.price);
+                ticket.totalPartsDiscount += decimal.ToDouble(part.GetTotalDiscount());
+            }
+
+            ticket.totalLaborPrice = 0;
+            ticket.totalLaborDiscount = 0;
+            foreach (TicketLabor labor in ticket.labors)
+            {
+                ticket.totalLaborPrice += decimal.ToDouble(labor.price);
+                ticket.totalLaborDiscount += decimal.ToDouble(labor.GetTotalDiscount());
+            }
+            ticket.price = ticket.totalLaborPrice + ticket.totalPartsPrice - ticket.totalLaborDiscount - ticket.totalPartsDiscount;
 
             Server.Server.context.Ticket.Update(ticket);
 
@@ -412,9 +456,23 @@ namespace PimpMyRideServer.Handlers
 
             ticket.labors.Add(LaborFromBody);
 
-            ticket.calculateLaborPrice();
-            ticket.calculate();
+            ticket.totalPartsDiscount = 0;
+            ticket.totalPartsPrice = 0;
+            foreach (TicketPart part in ticket.parts)
+            {
+                ticket.totalPartsPrice += decimal.ToDouble(part.price);
+                ticket.totalPartsDiscount += decimal.ToDouble(part.GetTotalDiscount());
+            }
 
+            ticket.totalLaborPrice = 0;
+            ticket.totalLaborDiscount = 0;
+            foreach (TicketLabor labor in ticket.labors)
+            {
+                ticket.totalLaborPrice += decimal.ToDouble(labor.price);
+                ticket.totalLaborDiscount += decimal.ToDouble(labor.GetTotalDiscount());
+            }
+
+            ticket.price = ticket.totalLaborPrice + ticket.totalPartsPrice - ticket.totalLaborDiscount - ticket.totalPartsDiscount;
 
             Server.Server.context.Ticket.Update(ticket);
 
@@ -449,8 +507,23 @@ namespace PimpMyRideServer.Handlers
 
             ticket.labors.Remove(labor);
 
-            ticket.calculateLaborPrice();
-            ticket.calculate();
+
+            ticket.totalPartsDiscount = 0;
+            ticket.totalPartsPrice = 0;
+            foreach (TicketPart part in ticket.parts)
+            {
+                ticket.totalPartsPrice += decimal.ToDouble(part.price);
+                ticket.totalPartsDiscount += decimal.ToDouble(part.GetTotalDiscount());
+            }
+
+            ticket.totalLaborPrice = 0;
+            ticket.totalLaborDiscount = 0;
+            foreach (TicketLabor laborInTicket in ticket.labors)
+            {
+                ticket.totalLaborPrice += decimal.ToDouble(labor.price);
+                ticket.totalLaborDiscount += decimal.ToDouble(laborInTicket.GetTotalDiscount());
+            }
+            ticket.price = ticket.totalLaborPrice + ticket.totalPartsPrice - ticket.totalLaborDiscount - ticket.totalPartsDiscount;
 
             Server.Server.context.Ticket.Update(ticket);
 
@@ -473,8 +546,22 @@ namespace PimpMyRideServer.Handlers
 
             ticket.labors = laborsFromBody;
 
-            ticket.calculateLaborPrice();
-            ticket.calculate();
+            ticket.totalPartsDiscount = 0;
+            ticket.totalPartsPrice = 0;
+            foreach (TicketPart part in ticket.parts)
+            {
+                ticket.totalPartsPrice += decimal.ToDouble(part.price);
+                ticket.totalPartsDiscount += decimal.ToDouble(part.GetTotalDiscount());
+            }
+
+            ticket.totalLaborPrice = 0;
+            ticket.totalLaborDiscount = 0;
+            foreach (TicketLabor labor in ticket.labors)
+            {
+                ticket.totalLaborPrice += decimal.ToDouble(labor.price);
+                ticket.totalLaborDiscount += decimal.ToDouble(labor.GetTotalDiscount());
+            }
+            ticket.price = ticket.totalLaborPrice + ticket.totalPartsPrice - ticket.totalLaborDiscount - ticket.totalPartsDiscount;
 
             Server.Server.context.Ticket.Update(ticket);
 

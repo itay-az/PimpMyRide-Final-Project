@@ -75,21 +75,20 @@ namespace PimpMyRideServer.Models
             this.state = ticketType;
         }
 
+
+        /*
         // calculate total parts cost
         public void calculatePartPrice()
         {
             double priceTmp = 0;
-            double discountTmp = 0;
 
             if (this.parts.Count > 0)
             {
                 foreach (var part in this.parts)
                 {
-                    priceTmp += Decimal.ToDouble(part.price);
-                    discountTmp += Decimal.ToDouble(part.discount);
+                    this.totalPartsPrice += Decimal.ToDouble(part.GetTotalPrice());
+                    this.totalPartsDiscount += Decimal.ToDouble(part.GetTotalDiscount());
                 }
-                this.totalPartsDiscount = priceTmp * (discountTmp * 0.01);
-                this.totalPartsPrice = priceTmp - totalPartsDiscount;
             }
             else
             { this.totalPartsPrice = 0; }
@@ -105,11 +104,10 @@ namespace PimpMyRideServer.Models
             {
                 foreach (var labor in this.labors)
                 {
-                    priceTmp += Decimal.ToDouble(labor.time) * Decimal.ToDouble(labor.price);
-                    discountTmp += Decimal.ToDouble(labor.discount);
+                    this.totalLaborDiscount +=Decimal.ToDouble(labor.GetTotalDiscount());
+                    totalLaborPrice +=Decimal.ToDouble(labor.GetTotalPrice());
                 }
-                this.totalLaborDiscount = priceTmp * (discountTmp * 0.01);
-                this.totalLaborPrice = priceTmp - totalLaborDiscount;
+
             }
             else
                 this.totalLaborPrice = 0;
@@ -132,7 +130,7 @@ namespace PimpMyRideServer.Models
             calculateTotalPrice();
 
         }
-
+        */
 
     }
 }

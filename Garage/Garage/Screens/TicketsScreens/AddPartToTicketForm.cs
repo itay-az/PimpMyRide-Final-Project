@@ -40,6 +40,7 @@ namespace Garage.Screens.TicketsScreens
                 var responseResult = await response.Content.ReadAsStringAsync();
                 var jsonResult = JsonConvert.DeserializeObject<List<GetAllPartsRequest>>(responseResult);
                 allPartsDataGridView.DataSource = jsonResult;
+
             }
             else
             {
@@ -83,15 +84,12 @@ namespace Garage.Screens.TicketsScreens
                 HttpResponseMessage response = await Program.client.PutAsJsonAsync("Tickets/addPartToTicket/" + ticketId, part);
                 if (response.IsSuccessStatusCode)
                 {
-
-                    Ticket ticket = new Ticket(ticketId.ToString());
                     this.Close();
-                    ticket.ShowDialog();
 
                 }
                 else
                 {
-                    MessageBox.Show("Error");
+                    MessageBox.Show("Please select from the list","Error",MessageBoxButtons.OK);
                 }
             }
             
@@ -100,6 +98,7 @@ namespace Garage.Screens.TicketsScreens
 
         private void allPartsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+
             part = new AddPartToTicketRequest
             {
                 partId = allPartsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString(),
@@ -120,7 +119,7 @@ namespace Garage.Screens.TicketsScreens
                 AddPartToTicketAsync(part);
             }
             else
-                MessageBox.Show("All inputs are required!");
+                MessageBox.Show("Please select from the list", "Error", MessageBoxButtons.OK);
 
         }
 
@@ -133,7 +132,7 @@ namespace Garage.Screens.TicketsScreens
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message,"Error");
                 return false;
             }
 

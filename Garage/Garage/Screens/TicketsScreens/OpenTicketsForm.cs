@@ -66,6 +66,7 @@ namespace Garage.Screens.TicketsScreens
         private void selectTicketBtn_Click(object sender, EventArgs e)
         {
             Ticket ticket = new Ticket(ticketId);
+            ticket.FormClosed += (s, args) => this.Show();
             ticket.ShowDialog();
         }
     }
