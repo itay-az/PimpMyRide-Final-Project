@@ -139,3 +139,5 @@ D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\obj\Debug\
 D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\obj\Debug\Garage.exe
 D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\obj\Debug\Garage.pdb
 D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\obj\Debug\Garage.Screens.TicketsScreens.AddLaborToTicketForm.resources
+D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\obj\Debug\Garage.Screens.TicketsScreens.CreateNewOfferForm.resources
+D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\obj\Debug\Garage.Screens.TicketsScreens.OpenOffersForm.resources

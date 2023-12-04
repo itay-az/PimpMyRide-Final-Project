@@ -74,6 +74,7 @@
             this.totalLaborPriceAfterDiscountTxt = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.totalTicketPriceTxt = new System.Windows.Forms.TextBox();
+            this.exportToTicketBtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.partsDataGridView)).BeginInit();
@@ -562,12 +563,25 @@
             this.totalTicketPriceTxt.Size = new System.Drawing.Size(188, 29);
             this.totalTicketPriceTxt.TabIndex = 133;
             // 
+            // exportToTicketBtn
+            // 
+            this.exportToTicketBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.exportToTicketBtn.Location = new System.Drawing.Point(228, 700);
+            this.exportToTicketBtn.Name = "exportToTicketBtn";
+            this.exportToTicketBtn.Size = new System.Drawing.Size(204, 45);
+            this.exportToTicketBtn.TabIndex = 135;
+            this.exportToTicketBtn.Text = "Client approved";
+            this.exportToTicketBtn.UseVisualStyleBackColor = true;
+            this.exportToTicketBtn.Visible = false;
+            this.exportToTicketBtn.Click += new System.EventHandler(this.exportToTicketBtn_Click);
+            // 
             // Ticket
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
             this.ClientSize = new System.Drawing.Size(1910, 982);
+            this.Controls.Add(this.exportToTicketBtn);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.totalTicketPriceTxt);
             this.Controls.Add(this.label14);
@@ -673,5 +687,6 @@
         private System.Windows.Forms.TextBox totalLaborPriceAfterDiscountTxt;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox totalTicketPriceTxt;
+        private System.Windows.Forms.Button exportToTicketBtn;
     }
 }

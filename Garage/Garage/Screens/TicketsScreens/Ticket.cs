@@ -23,6 +23,8 @@ namespace Garage.Screens.TicketsScreens
         public Ticket()
         {
             InitializeComponent();
+            exportToTicketBtn.Visible = false;
+
         }
         private static List<TicketPart> parts;
         private static List<Labor> labors;
@@ -35,6 +37,8 @@ namespace Garage.Screens.TicketsScreens
             InitializeComponent();
             GetTicketById(ticketId);
             this.ticketId = ticketId;
+            exportToTicketBtn.Visible = false;
+
         }
 
         private void refreshPartsDataGridView()
@@ -97,6 +101,10 @@ namespace Garage.Screens.TicketsScreens
                 if(jsonResult.labors.Count > 0)
                 {
                     laborId = int.Parse(laborDataGridView.Rows[0].Cells[0].Value.ToString());
+                }
+                if(jsonResult.state == TicketType.IS_OFFER)
+                {
+                    exportToTicketBtn.Visible = true;
                 }
             }
             else
@@ -366,6 +374,23 @@ namespace Garage.Screens.TicketsScreens
         private void laborDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             laborId = int.Parse(laborDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString());
+        }
+
+        private void exportToTicketBtn_Click(object sender, EventArgs e)
+        {
+            changeStateToOpenTicket(ticketId);
+        }
+
+        private async void changeStateToOpenTicket(string ticketId)
+        {
+            HttpResponseMessage response = await Program.client.PutAsync("Tickets/updateOfferToTicket/" + ticketId, null);
+
+            if (response.IsSuccessStatusCode)
+            {
+                MessageBox.Show("Offer Updated");
+            }
+
+            else { MessageBox.Show("Error"); }
         }
     }
     }

@@ -116,6 +116,28 @@ namespace PimpMyRideServer.Controllers
             return ((TicketsHandler)handler).HandleCloseTicketById(ticketId);
 
         }
+        [HttpPost("createOffer")]
+        public ActionResult CreateNewOffer([FromBody] CreateNewTicketRequest request)
+        {
+            return ((TicketsHandler)handler).HandleCreateOffer(request);
+        }
+
+        [HttpGet("searchTicketByCarNumber/{carNumber}")]
+        public ActionResult SearchTicketByCarNumber(string carNumber)
+        {
+            return ((TicketsHandler)handler).SearchTicketByCarNumber(carNumber);
+        }
+        [HttpGet("searchOfferByCarNumber/{carNumber}")]
+        public ActionResult SearchOfferByCarNumber(string carNumber)
+        {
+            return ((TicketsHandler)handler).SearchOfferByCarNumber(carNumber);
+        }
+
+        [HttpPut("updateOfferToTicket/{ticketId}")]
+        public ActionResult UpdateOfferToTicket(string ticketId)
+        {
+            return ((TicketsHandler)handler).UpdateOfferToTicket(int.Parse(ticketId));
+        }
     }
 
 

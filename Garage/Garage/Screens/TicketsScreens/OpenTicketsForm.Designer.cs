@@ -35,6 +35,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.AllTicketsDataGridView = new System.Windows.Forms.DataGridView();
             this.selectTicketBtn = new System.Windows.Forms.Button();
+            this.searchBtn = new System.Windows.Forms.Button();
+            this.carNumberLbl = new System.Windows.Forms.Label();
+            this.searchCarNumberTxt = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.AllTicketsDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,7 +69,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.AllTicketsDataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             this.AllTicketsDataGridView.EnableHeadersVisualStyles = false;
-            this.AllTicketsDataGridView.Location = new System.Drawing.Point(12, 12);
+            this.AllTicketsDataGridView.Location = new System.Drawing.Point(12, 79);
             this.AllTicketsDataGridView.Name = "AllTicketsDataGridView";
             this.AllTicketsDataGridView.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -95,18 +98,53 @@
             this.selectTicketBtn.UseVisualStyleBackColor = true;
             this.selectTicketBtn.Click += new System.EventHandler(this.selectTicketBtn_Click);
             // 
+            // searchBtn
+            // 
+            this.searchBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.searchBtn.Location = new System.Drawing.Point(560, 23);
+            this.searchBtn.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
+            this.searchBtn.Name = "searchBtn";
+            this.searchBtn.Size = new System.Drawing.Size(138, 41);
+            this.searchBtn.TabIndex = 91;
+            this.searchBtn.Text = "Search";
+            this.searchBtn.UseVisualStyleBackColor = true;
+            this.searchBtn.Click += new System.EventHandler(this.searchBtn_Click);
+            // 
+            // carNumberLbl
+            // 
+            this.carNumberLbl.AutoSize = true;
+            this.carNumberLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.carNumberLbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.carNumberLbl.Location = new System.Drawing.Point(15, 23);
+            this.carNumberLbl.Name = "carNumberLbl";
+            this.carNumberLbl.Size = new System.Drawing.Size(135, 24);
+            this.carNumberLbl.TabIndex = 90;
+            this.carNumberLbl.Text = "Car Number :";
+            // 
+            // searchCarNumberTxt
+            // 
+            this.searchCarNumberTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.searchCarNumberTxt.Location = new System.Drawing.Point(191, 23);
+            this.searchCarNumberTxt.Name = "searchCarNumberTxt";
+            this.searchCarNumberTxt.Size = new System.Drawing.Size(286, 29);
+            this.searchCarNumberTxt.TabIndex = 89;
+            // 
             // OpenTicketsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-            this.ClientSize = new System.Drawing.Size(1461, 664);
+            this.ClientSize = new System.Drawing.Size(1554, 734);
+            this.Controls.Add(this.searchBtn);
+            this.Controls.Add(this.carNumberLbl);
+            this.Controls.Add(this.searchCarNumberTxt);
             this.Controls.Add(this.selectTicketBtn);
             this.Controls.Add(this.AllTicketsDataGridView);
             this.Name = "OpenTicketsForm";
             this.Text = "OpenTicketsForm";
             ((System.ComponentModel.ISupportInitialize)(this.AllTicketsDataGridView)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -114,5 +152,8 @@
 
         private System.Windows.Forms.DataGridView AllTicketsDataGridView;
         private System.Windows.Forms.Button selectTicketBtn;
+        private System.Windows.Forms.Button searchBtn;
+        private System.Windows.Forms.Label carNumberLbl;
+        private System.Windows.Forms.TextBox searchCarNumberTxt;
     }
 }

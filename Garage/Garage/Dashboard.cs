@@ -178,5 +178,17 @@ namespace Garage
             OrderFromSupplierForm orderFromSupplierForm = new OrderFromSupplierForm();
             openForm(orderFromSupplierForm);
         }
+
+        private void createNewOfferBtn_Click(object sender, EventArgs e)
+        {
+            CreateNewOfferForm createNewOfferForm = new CreateNewOfferForm();
+            openForm(createNewOfferForm);
+        }
+
+        private void getAllOffersBtn_Click(object sender, EventArgs e)
+        {
+            OpenOffersForm openOffersForm = new OpenOffersForm();
+            openForm(openOffersForm);
+        }
     }
 }

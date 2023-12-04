@@ -28,8 +28,6 @@ namespace Garage
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new LoginForm());
 
-
-
         }
     }
 }

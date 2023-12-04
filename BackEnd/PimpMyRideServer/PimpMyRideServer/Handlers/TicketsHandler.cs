@@ -17,20 +17,24 @@ namespace PimpMyRideServer.Handlers
 {
     public class TicketsHandler : Handler, GetHandler
     {
-        private ActionResult onFailure(string message)
+        private ActionResult onFailure(string message, string errorCode, int statusCode = StatusCodes.Status404NotFound, string details = null, List<ValidationError> validationErrors = null)
         {
-            FailureResponse failureResponse = new FailureResponse
+            var errorResponse = new ErrorResponse
             {
-                status = false,
-                message = message
+                Success = false,
+                Message = message,
+                StatusCode = statusCode,
+                ErrorCode = errorCode,
+                Details = details,
+                ValidationErrors = validationErrors
             };
 
-            JsonResult jsonResult = new JsonResult(failureResponse);
-            jsonResult.StatusCode = StatusCodes.Status404NotFound;
-            jsonResult.Value = message;
+            JsonResult jsonResult = new JsonResult(errorResponse);
+            jsonResult.StatusCode = statusCode;
+
             return jsonResult;
         }
-        
+
         public ActionResult HandleCreate(CreateNewTicketRequest request)
         {
             Ticket newTicket = new Ticket(request.carId,request.clientFullName,request.clientId,request.clientPhoneNumber,request.clientEmail,request.causeOfArrival);
@@ -39,11 +43,11 @@ namespace PimpMyRideServer.Handlers
 
             if (car == null)
             {
-                return onFailure("Car doesnt exist");
+                return onFailure("Car doesnt exist","Not found");
             }
             if (tickets != null)
             {
-                return new StatusCodeResult(StatusCodes.Status409Conflict);
+                return onFailure("There is an open ticket with the same details", "Error",409);
             }
 
 
@@ -58,25 +62,22 @@ namespace PimpMyRideServer.Handlers
 
         public ActionResult HandleCreateOffer(CreateNewTicketRequest request)
         {
-            Ticket newTicket = new Ticket(request.carId, request.clientId, request.causeOfArrival,TicketType.IS_OFFER);
+            Ticket newTicket = new Ticket(request.carId, request.clientFullName, request.clientId, request.clientPhoneNumber, request.clientEmail, request.causeOfArrival,TicketType.IS_OFFER);
             var client = Server.Server.context.Clients.SingleOrDefault(client => client.clientId == request.clientId);
             var car = Server.Server.context.Car.SingleOrDefault(car => car.carId == request.carId);
-            var tickets = Server.Server.context.Ticket.SingleOrDefault(t => t.carId == request.carId);
+            var tickets = Server.Server.context.Ticket.SingleOrDefault(t => t.carId == request.carId && t.state == TicketType.IS_OFFER);
             if (client == null)
             {
-                return onFailure("Client doesnt exist");
+                return onFailure("Client doesnt exist", "Not found");
             }
             if (car == null)
             {
-                return onFailure("Car doesnt exist");
+                return onFailure("Car doesnt exist", "Not found");
             }
             if (tickets != null)
             {
                 return new StatusCodeResult(StatusCodes.Status409Conflict);
             }
-
-
-            Server.Server.context.SaveChanges();
 
             Server.Server.context.Ticket.Add(newTicket);
             Server.Server.context.SaveChanges();
@@ -91,7 +92,7 @@ namespace PimpMyRideServer.Handlers
 
             if (ticket == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return onFailure("No open tickets found", "Not found");
             }
 
             JsonResult jsonResults = new JsonResult(ticket);
@@ -107,7 +108,7 @@ namespace PimpMyRideServer.Handlers
 
             if (ticket == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return onFailure("Ticket doesnt exist", "Not found");
             }
 
             Server.Server.context.Ticket.Remove(ticket);
@@ -121,7 +122,7 @@ namespace PimpMyRideServer.Handlers
 
             if (ticket == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return onFailure("Ticket doesnt exist", "Not found");
             }
 
             ticket.state = TicketType.IS_CLOSED;
@@ -161,11 +162,12 @@ namespace PimpMyRideServer.Handlers
                 totalLaborPrice = ticket.totalLaborPrice,
                 totalLaborDiscount = ticket.totalLaborDiscount,
                 price = ticket.price,
+                state = ticket.state
             };  
 
             if (ticket == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return onFailure("Ticket doesnt exist", "Not found");
             }
 
             JsonResult jsonResults = new JsonResult(response);
@@ -182,11 +184,11 @@ namespace PimpMyRideServer.Handlers
 
             if (existingPart == null)
             {
-                return onFailure("Part doesnt exist");
+                return onFailure("Part doesnt exist", "Not found");
             }
             else if (existingPart.quantity < partFromBody.quantity)
             {
-                return onFailure("Quantity requested is higher than current quantity");
+                return onFailure("Not enough part units", "Not found",500);
             }
 
             existingPart.quantity -= partFromBody.quantity;
@@ -210,12 +212,12 @@ namespace PimpMyRideServer.Handlers
                 var ticket = Server.Server.context.Ticket.Include("parts").SingleOrDefault(t => t.ticketId == ticketId);
                 if (ticket == null)
                 {
-                    return onFailure("Ticket doesnt exist");
+                    return onFailure("Ticket doesnt exist", "Not found");
                 }
 
                 if (ticket.parts.Where(e => e.partId.Equals(partFromBody.partId)).ToList().Count() > 0)
                 {
-                    return onFailure("Part already exist in the ticket");
+                    return onFailure("Part already exist in this ticket, please update the amount needed", "Not found");
                 }
 
                 ticket.parts.Add(ticketPart);
@@ -261,7 +263,7 @@ namespace PimpMyRideServer.Handlers
 
             if (ticket == null)
             {
-                return onFailure("Ticket not found");
+                return onFailure("Ticket doesnt exist", "Not found");
             }
 
             var ticketPart = ticket.parts.SingleOrDefault(p => p.partId == partId);
@@ -307,17 +309,17 @@ namespace PimpMyRideServer.Handlers
 
             if (ticket == null)
             {
-                return onFailure("Ticket not found");
+                return onFailure("Ticket doesnt exist", "Not found");
             }
 
-            for(int i = 0; i < ticket.parts.Count; i++)
+            for (int i = 0; i < ticket.parts.Count; i++)
             {
                 if (ticket.parts[i].quantity != partFromBody[i].quantity)
                 {
                     var partFromStorage = Server.Server.context.Part.SingleOrDefault(p => p.partId == partFromBody[i].partId);
                     if (partFromStorage.quantity < partFromBody[i].quantity || (partFromStorage.quantity - partFromBody[i].quantity) < 0)
                     {
-                        return onFailure("Not enough parts in storage");
+                        return onFailure("Not enough part units", "Not found", 500);
                     }
 
                     decimal tmp = ticket.parts[i].quantity - partFromBody[i].quantity;
@@ -360,7 +362,7 @@ namespace PimpMyRideServer.Handlers
             var labors = Server.Server.context.Labor;
             if(labors.SingleOrDefault(l => l.Id == labor.Id) != null)
             {
-                return onFailure("Labor already exist");
+                return onFailure("Labor already exist in the cuurent ticket", "Error",500);
             }
 
             labors.Add(labor);
@@ -375,7 +377,7 @@ namespace PimpMyRideServer.Handlers
             var labors = Server.Server.context.Labor.ToList();
             if(labors == null)
             {
-                return onFailure("No labors found");
+                return onFailure("No labors exist", "Not found");
             }
             JsonResult jsonResult = new JsonResult(labors);
             jsonResult.StatusCode = StatusCodes.Status200OK;
@@ -387,7 +389,7 @@ namespace PimpMyRideServer.Handlers
             var labor = Server.Server.context.Labor.SingleOrDefault(l => l.Id == id);
             if(labor == null)
             {
-                return onFailure("Labor doesnt exist");
+                return onFailure("No labors exist", "Not found");
             }
             JsonResult jsonResult = new JsonResult(labor);
             jsonResult.StatusCode = StatusCodes.Status200OK;
@@ -400,7 +402,7 @@ namespace PimpMyRideServer.Handlers
             var existingLabor = Server.Server.context.Labor.SingleOrDefault(l => l.Id == id);
             if (existingLabor == null)
             {
-                return onFailure("Labor doesnt exist");
+                return onFailure("No labors exist", "Not found");
             }
 
             existingLabor.time = laborFromBody.time;
@@ -422,7 +424,7 @@ namespace PimpMyRideServer.Handlers
 
             if (existingLabor == null)
             {
-                return onFailure("Labor doesnt exist");
+                return onFailure("No labors exist", "Not found");
             }
 
             Server.Server.context.Labor.Remove(existingLabor);
@@ -438,7 +440,7 @@ namespace PimpMyRideServer.Handlers
 
             if (existingLabor == null)
             {
-                return onFailure("Labor doesnt exist");
+                return onFailure("No labors exist", "Not found");
             }
 
 
@@ -446,12 +448,12 @@ namespace PimpMyRideServer.Handlers
 
             if (ticket == null)
             {
-                return onFailure("Ticket doesnt exist");
+                return onFailure("Ticket doesnt exist", "Not found");
             }
 
             if (ticket.labors.Where(e => e.Id.Equals(LaborFromBody.Id)).ToList().Count() > 0)
             {
-                return onFailure("Labor already exist in the ticket");
+                return onFailure("Labor already exist in the current ticket", "Error",500);
             }
 
             ticket.labors.Add(LaborFromBody);
@@ -492,14 +494,14 @@ namespace PimpMyRideServer.Handlers
 
             if (ticket == null)
             {
-                return onFailure("Ticket not found");
+                return onFailure("Ticket doesnt exist", "Not found");
             }
 
             var labor = ticket.labors.SingleOrDefault(labor => labor.Id == laborId);
 
             if(labor == null)
             {
-                return onFailure("Labor not found");
+                return onFailure("Labor doesnt exist", "Not found");
             }
             ticket.price -= Decimal.ToDouble(labor.price);
             ticket.totalLaborPrice -= Decimal.ToDouble(labor.price);
@@ -540,7 +542,7 @@ namespace PimpMyRideServer.Handlers
 
             if (ticket == null)
             {
-                return onFailure("Ticket not found");
+                return onFailure("Ticket doesnt exist", "Not found");
             }
 
 
@@ -583,12 +585,80 @@ namespace PimpMyRideServer.Handlers
 
             if (labors == null)
             {
-                return onFailure("No parts found");
+                return onFailure("Labor doesnt exist", "Not found");
             }
 
             JsonResult jsonResult = new JsonResult(labors);
             jsonResult.StatusCode = StatusCodes.Status200OK;
             return jsonResult;
         }
+
+
+        public ActionResult SearchTicketByCarNumber(string carNumber)
+        {
+            if (carNumber == String.Empty)
+            {
+                return HandleGet();
+            }
+
+            var tickets = Server.Server.context.Ticket
+                .Where(t => t.carId.Contains(carNumber) && t.state == TicketType.IS_OPEN)
+                .ToList();
+
+            if (tickets == null)
+            {
+                return onFailure("No open ticket found", "Not found");
+            }
+
+            JsonResult jsonResult = new JsonResult(tickets);
+            jsonResult.StatusCode = StatusCodes.Status200OK;
+            return jsonResult;
+        }
+
+        public ActionResult SearchOfferByCarNumber(string carNumber)
+        {
+            if (carNumber == String.Empty)
+            {
+                return HandleGet();
+            }
+
+            var tickets = Server.Server.context.Ticket
+                .Where(t => t.carId.Contains(carNumber) && t.state == TicketType.IS_OFFER)
+                .ToList();
+
+            if (tickets == null)
+            {
+                return onFailure("No open offers found", "Not found");
+            }
+
+            JsonResult jsonResult = new JsonResult(tickets);
+            jsonResult.StatusCode = StatusCodes.Status200OK;
+            return jsonResult;
+        }
+
+
+        public ActionResult UpdateOfferToTicket(int ticketId)
+        {
+            var ticket = Server.Server.context.Ticket
+                .SingleOrDefault(t => t.ticketId == ticketId && t.state == TicketType.IS_OFFER);
+
+            if(ticket == null)
+            {
+                return onFailure("Ticket doesnt exist", "Not found");
+            }
+
+            ticket.state = TicketType.IS_OPEN;
+
+            Server.Server.context.Ticket.Update(ticket);
+            Server.Server.context.SaveChanges();
+
+            return new StatusCodeResult(StatusCodes.Status200OK);
+
+        }
+
     }
+
+
+
+
 }

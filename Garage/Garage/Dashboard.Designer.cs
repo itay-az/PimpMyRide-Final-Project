@@ -50,7 +50,6 @@
             this.ticketPanel = new System.Windows.Forms.Panel();
             this.getAllOffersBtn = new System.Windows.Forms.Button();
             this.createNewOfferBtn = new System.Windows.Forms.Button();
-            this.allTicketsBtn = new System.Windows.Forms.Button();
             this.openTicketsBtn = new System.Windows.Forms.Button();
             this.createNewTicketBtn = new System.Windows.Forms.Button();
             this.ticketsMenuBtn = new System.Windows.Forms.Button();
@@ -95,7 +94,7 @@
             this.logoutBtn.FlatAppearance.BorderSize = 0;
             this.logoutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.logoutBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.logoutBtn.Location = new System.Drawing.Point(0, 868);
+            this.logoutBtn.Location = new System.Drawing.Point(0, 827);
             this.logoutBtn.Name = "logoutBtn";
             this.logoutBtn.Size = new System.Drawing.Size(177, 35);
             this.logoutBtn.TabIndex = 10;
@@ -111,7 +110,7 @@
             this.adminPanel.Controls.Add(this.maintenanceBtn);
             this.adminPanel.Controls.Add(this.adminUsersBtn);
             this.adminPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.adminPanel.Location = new System.Drawing.Point(0, 743);
+            this.adminPanel.Location = new System.Drawing.Point(0, 702);
             this.adminPanel.Name = "adminPanel";
             this.adminPanel.Size = new System.Drawing.Size(177, 125);
             this.adminPanel.TabIndex = 9;
@@ -173,7 +172,7 @@
             this.adminMenuBtn.FlatAppearance.BorderSize = 0;
             this.adminMenuBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.adminMenuBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.adminMenuBtn.Location = new System.Drawing.Point(0, 708);
+            this.adminMenuBtn.Location = new System.Drawing.Point(0, 667);
             this.adminMenuBtn.Name = "adminMenuBtn";
             this.adminMenuBtn.Size = new System.Drawing.Size(177, 35);
             this.adminMenuBtn.TabIndex = 8;
@@ -191,7 +190,7 @@
             this.suppliersPanel.Controls.Add(this.createNewSupplierBtn);
             this.suppliersPanel.Controls.Add(this.allSuppliersBtn);
             this.suppliersPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.suppliersPanel.Location = new System.Drawing.Point(0, 500);
+            this.suppliersPanel.Location = new System.Drawing.Point(0, 459);
             this.suppliersPanel.Name = "suppliersPanel";
             this.suppliersPanel.Size = new System.Drawing.Size(177, 208);
             this.suppliersPanel.TabIndex = 6;
@@ -289,7 +288,7 @@
             this.storageMenuBtn.FlatAppearance.BorderSize = 0;
             this.storageMenuBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.storageMenuBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.storageMenuBtn.Location = new System.Drawing.Point(0, 465);
+            this.storageMenuBtn.Location = new System.Drawing.Point(0, 424);
             this.storageMenuBtn.Name = "storageMenuBtn";
             this.storageMenuBtn.Size = new System.Drawing.Size(177, 35);
             this.storageMenuBtn.TabIndex = 5;
@@ -305,7 +304,7 @@
             this.clientsPanel.Controls.Add(this.allClientsBtn);
             this.clientsPanel.Controls.Add(this.searchClientBtn);
             this.clientsPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.clientsPanel.Location = new System.Drawing.Point(0, 326);
+            this.clientsPanel.Location = new System.Drawing.Point(0, 285);
             this.clientsPanel.Name = "clientsPanel";
             this.clientsPanel.Size = new System.Drawing.Size(177, 139);
             this.clientsPanel.TabIndex = 4;
@@ -369,7 +368,7 @@
             this.clientMenuBtn.FlatAppearance.BorderSize = 0;
             this.clientMenuBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.clientMenuBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.clientMenuBtn.Location = new System.Drawing.Point(0, 291);
+            this.clientMenuBtn.Location = new System.Drawing.Point(0, 250);
             this.clientMenuBtn.Name = "clientMenuBtn";
             this.clientMenuBtn.Size = new System.Drawing.Size(177, 35);
             this.clientMenuBtn.TabIndex = 3;
@@ -383,13 +382,12 @@
             this.ticketPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
             this.ticketPanel.Controls.Add(this.getAllOffersBtn);
             this.ticketPanel.Controls.Add(this.createNewOfferBtn);
-            this.ticketPanel.Controls.Add(this.allTicketsBtn);
             this.ticketPanel.Controls.Add(this.openTicketsBtn);
             this.ticketPanel.Controls.Add(this.createNewTicketBtn);
             this.ticketPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.ticketPanel.Location = new System.Drawing.Point(0, 81);
             this.ticketPanel.Name = "ticketPanel";
-            this.ticketPanel.Size = new System.Drawing.Size(177, 210);
+            this.ticketPanel.Size = new System.Drawing.Size(177, 169);
             this.ticketPanel.TabIndex = 2;
             // 
             // getAllOffersBtn
@@ -399,14 +397,15 @@
             this.getAllOffersBtn.FlatAppearance.BorderSize = 0;
             this.getAllOffersBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.getAllOffersBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.getAllOffersBtn.Location = new System.Drawing.Point(0, 168);
+            this.getAllOffersBtn.Location = new System.Drawing.Point(0, 126);
             this.getAllOffersBtn.Name = "getAllOffersBtn";
             this.getAllOffersBtn.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.getAllOffersBtn.Size = new System.Drawing.Size(177, 42);
             this.getAllOffersBtn.TabIndex = 4;
-            this.getAllOffersBtn.Text = "Get All Offers";
+            this.getAllOffersBtn.Text = "Open Offers";
             this.getAllOffersBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.getAllOffersBtn.UseVisualStyleBackColor = false;
+            this.getAllOffersBtn.Click += new System.EventHandler(this.getAllOffersBtn_Click);
             // 
             // createNewOfferBtn
             // 
@@ -415,7 +414,7 @@
             this.createNewOfferBtn.FlatAppearance.BorderSize = 0;
             this.createNewOfferBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.createNewOfferBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.createNewOfferBtn.Location = new System.Drawing.Point(0, 126);
+            this.createNewOfferBtn.Location = new System.Drawing.Point(0, 84);
             this.createNewOfferBtn.Name = "createNewOfferBtn";
             this.createNewOfferBtn.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.createNewOfferBtn.Size = new System.Drawing.Size(177, 42);
@@ -423,22 +422,7 @@
             this.createNewOfferBtn.Text = "Create New Offer";
             this.createNewOfferBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.createNewOfferBtn.UseVisualStyleBackColor = false;
-            // 
-            // allTicketsBtn
-            // 
-            this.allTicketsBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-            this.allTicketsBtn.Dock = System.Windows.Forms.DockStyle.Top;
-            this.allTicketsBtn.FlatAppearance.BorderSize = 0;
-            this.allTicketsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.allTicketsBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.allTicketsBtn.Location = new System.Drawing.Point(0, 84);
-            this.allTicketsBtn.Name = "allTicketsBtn";
-            this.allTicketsBtn.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.allTicketsBtn.Size = new System.Drawing.Size(177, 42);
-            this.allTicketsBtn.TabIndex = 2;
-            this.allTicketsBtn.Text = "All Tickets";
-            this.allTicketsBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.allTicketsBtn.UseVisualStyleBackColor = false;
+            this.createNewOfferBtn.Click += new System.EventHandler(this.createNewOfferBtn_Click);
             // 
             // openTicketsBtn
             // 
@@ -550,7 +534,6 @@
         private System.Windows.Forms.Label helloLbl;
         private System.Windows.Forms.Panel ticketPanel;
         private System.Windows.Forms.Button createNewTicketBtn;
-        private System.Windows.Forms.Button allTicketsBtn;
         private System.Windows.Forms.Button openTicketsBtn;
         private System.Windows.Forms.Button getAllOffersBtn;
         private System.Windows.Forms.Button createNewOfferBtn;

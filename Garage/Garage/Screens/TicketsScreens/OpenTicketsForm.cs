@@ -1,4 +1,5 @@
-﻿using Garage.Requests;
+﻿using Garage.Models;
+using Garage.Requests;
 using Garage.Responses;
 using Newtonsoft.Json;
 using System;
@@ -11,6 +12,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Garage.Screens.TicketsScreens
 {
@@ -44,8 +46,6 @@ namespace Garage.Screens.TicketsScreens
                 var responseResult = await response.Content.ReadAsStringAsync();
                 var jsonResult = JsonConvert.DeserializeObject<List<GetAllTicketsResponse>>(responseResult);
 
-
-
                 AllTicketsDataGridView.DataSource = jsonResult;
                 try
                 {
@@ -68,6 +68,36 @@ namespace Garage.Screens.TicketsScreens
             Ticket ticket = new Ticket(ticketId);
             ticket.FormClosed += (s, args) => this.Show();
             ticket.ShowDialog();
+        }
+
+        private void searchBtn_Click(object sender, EventArgs e)
+        {
+            if (searchCarNumberTxt.Text == String.Empty)
+            {
+                MessageBox.Show("Please enter car number");
+            }
+            else
+                SearchTicketByCarNumber(searchCarNumberTxt.Text);
+        }
+
+        private async void SearchTicketByCarNumber(string carNumber)
+        {
+            HttpResponseMessage response = await Program.client.GetAsync("Tickets/searchTicketByCarNumber/" + carNumber);
+            if (response.IsSuccessStatusCode)
+            {
+                var responseResult = await response.Content.ReadAsStringAsync();
+                var jsonResult = JsonConvert.DeserializeObject<List<GetAllTicketsResponse>>(responseResult);
+
+                if(jsonResult.Count == 0)
+                {
+                    MessageBox.Show("Not found");
+                    GetAllTickets();
+                }
+                else 
+                    AllTicketsDataGridView.DataSource = jsonResult;
+                
+            }
+
         }
     }
 }

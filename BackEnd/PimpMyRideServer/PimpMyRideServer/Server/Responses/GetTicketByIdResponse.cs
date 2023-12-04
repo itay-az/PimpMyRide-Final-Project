@@ -31,5 +31,6 @@ namespace PimpMyRideServer.Server.Responses
         public double totalLaborDiscount { get; set; }
 
         public double price { get; set; }
+        public TicketType state { get; set; }
     }
 }

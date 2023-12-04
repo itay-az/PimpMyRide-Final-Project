@@ -1,6 +1,6 @@
 ﻿namespace Garage.Screens.TicketsScreens
 {
-    partial class CreateNewTicketForm
+    partial class CreateNewOfferForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,94 +28,52 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.clientFullNameTxt = new System.Windows.Forms.TextBox();
-            this.carNumberTxt = new System.Windows.Forms.TextBox();
-            this.carNumberLbl = new System.Windows.Forms.Label();
-            this.vinNumberTxt = new System.Windows.Forms.GroupBox();
+            this.createOfferBtn = new System.Windows.Forms.Button();
+            this.offerDetailsTxt = new System.Windows.Forms.TextBox();
             this.clientVinNumberTxt = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.clientKmTxt = new System.Windows.Forms.TextBox();
             this.clientEngineTxt = new System.Windows.Forms.TextBox();
             this.clientYearTxt = new System.Windows.Forms.TextBox();
             this.clientModelTxt = new System.Windows.Forms.TextBox();
             this.clientManufactureTxt = new System.Windows.Forms.TextBox();
+            this.searchClientBtn = new System.Windows.Forms.Button();
+            this.vinNumberTxt = new System.Windows.Forms.GroupBox();
             this.clientEmailTxt = new System.Windows.Forms.TextBox();
             this.clientPhoneNumberTxt = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.searchClientBtn = new System.Windows.Forms.Button();
+            this.clientFullNameTxt = new System.Windows.Forms.TextBox();
+            this.carNumberTxt = new System.Windows.Forms.TextBox();
+            this.carNumberLbl = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.cuaseOfArrivalTxt = new System.Windows.Forms.TextBox();
-            this.createTicketbtn = new System.Windows.Forms.Button();
             this.vinNumberTxt.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // clientFullNameTxt
+            // createOfferBtn
             // 
-            this.clientFullNameTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.clientFullNameTxt.Location = new System.Drawing.Point(150, 44);
-            this.clientFullNameTxt.Name = "clientFullNameTxt";
-            this.clientFullNameTxt.Size = new System.Drawing.Size(153, 22);
-            this.clientFullNameTxt.TabIndex = 42;
-            this.clientFullNameTxt.TextChanged += new System.EventHandler(this.clientFullNameTxt_TextChanged);
+            this.createOfferBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.createOfferBtn.Location = new System.Drawing.Point(541, 672);
+            this.createOfferBtn.Name = "createOfferBtn";
+            this.createOfferBtn.Size = new System.Drawing.Size(214, 45);
+            this.createOfferBtn.TabIndex = 94;
+            this.createOfferBtn.Text = "Create Offer";
+            this.createOfferBtn.UseVisualStyleBackColor = true;
+            this.createOfferBtn.Click += new System.EventHandler(this.createOfferBtn_Click);
             // 
-            // carNumberTxt
+            // offerDetailsTxt
             // 
-            this.carNumberTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.carNumberTxt.Location = new System.Drawing.Point(256, 27);
-            this.carNumberTxt.Name = "carNumberTxt";
-            this.carNumberTxt.Size = new System.Drawing.Size(214, 29);
-            this.carNumberTxt.TabIndex = 58;
-            this.carNumberTxt.TextChanged += new System.EventHandler(this.carNumberTxt_TextChanged);
-            // 
-            // carNumberLbl
-            // 
-            this.carNumberLbl.AutoSize = true;
-            this.carNumberLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.carNumberLbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.carNumberLbl.Location = new System.Drawing.Point(85, 27);
-            this.carNumberLbl.Name = "carNumberLbl";
-            this.carNumberLbl.Size = new System.Drawing.Size(143, 24);
-            this.carNumberLbl.TabIndex = 54;
-            this.carNumberLbl.Text = "Car Number: *";
-            this.carNumberLbl.Click += new System.EventHandler(this.carNumberLbl_Click);
-            // 
-            // vinNumberTxt
-            // 
-            this.vinNumberTxt.BackColor = System.Drawing.Color.White;
-            this.vinNumberTxt.Controls.Add(this.clientVinNumberTxt);
-            this.vinNumberTxt.Controls.Add(this.label12);
-            this.vinNumberTxt.Controls.Add(this.clientKmTxt);
-            this.vinNumberTxt.Controls.Add(this.clientEngineTxt);
-            this.vinNumberTxt.Controls.Add(this.clientYearTxt);
-            this.vinNumberTxt.Controls.Add(this.clientModelTxt);
-            this.vinNumberTxt.Controls.Add(this.clientManufactureTxt);
-            this.vinNumberTxt.Controls.Add(this.clientEmailTxt);
-            this.vinNumberTxt.Controls.Add(this.clientPhoneNumberTxt);
-            this.vinNumberTxt.Controls.Add(this.label10);
-            this.vinNumberTxt.Controls.Add(this.label8);
-            this.vinNumberTxt.Controls.Add(this.label7);
-            this.vinNumberTxt.Controls.Add(this.label6);
-            this.vinNumberTxt.Controls.Add(this.label5);
-            this.vinNumberTxt.Controls.Add(this.label3);
-            this.vinNumberTxt.Controls.Add(this.label2);
-            this.vinNumberTxt.Controls.Add(this.label1);
-            this.vinNumberTxt.Controls.Add(this.clientFullNameTxt);
-            this.vinNumberTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.vinNumberTxt.Location = new System.Drawing.Point(775, 27);
-            this.vinNumberTxt.Name = "vinNumberTxt";
-            this.vinNumberTxt.Size = new System.Drawing.Size(709, 279);
-            this.vinNumberTxt.TabIndex = 68;
-            this.vinNumberTxt.TabStop = false;
-            this.vinNumberTxt.Text = "Car details";
-            this.vinNumberTxt.Enter += new System.EventHandler(this.vinNumberTxt_Enter);
+            this.offerDetailsTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.offerDetailsTxt.Location = new System.Drawing.Point(9, 36);
+            this.offerDetailsTxt.Multiline = true;
+            this.offerDetailsTxt.Name = "offerDetailsTxt";
+            this.offerDetailsTxt.Size = new System.Drawing.Size(694, 200);
+            this.offerDetailsTxt.TabIndex = 87;
             // 
             // clientVinNumberTxt
             // 
@@ -124,7 +82,6 @@
             this.clientVinNumberTxt.Name = "clientVinNumberTxt";
             this.clientVinNumberTxt.Size = new System.Drawing.Size(153, 22);
             this.clientVinNumberTxt.TabIndex = 88;
-            this.clientVinNumberTxt.TextChanged += new System.EventHandler(this.clientVinNumberTxt_TextChanged);
             // 
             // label12
             // 
@@ -136,16 +93,6 @@
             this.label12.Size = new System.Drawing.Size(91, 16);
             this.label12.TabIndex = 87;
             this.label12.Text = "Vin Number:";
-            this.label12.Click += new System.EventHandler(this.label12_Click);
-            // 
-            // clientKmTxt
-            // 
-            this.clientKmTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.clientKmTxt.Location = new System.Drawing.Point(465, 241);
-            this.clientKmTxt.Name = "clientKmTxt";
-            this.clientKmTxt.Size = new System.Drawing.Size(153, 22);
-            this.clientKmTxt.TabIndex = 86;
-            this.clientKmTxt.TextChanged += new System.EventHandler(this.clientKmTxt_TextChanged);
             // 
             // clientEngineTxt
             // 
@@ -154,7 +101,6 @@
             this.clientEngineTxt.Name = "clientEngineTxt";
             this.clientEngineTxt.Size = new System.Drawing.Size(153, 22);
             this.clientEngineTxt.TabIndex = 85;
-            this.clientEngineTxt.TextChanged += new System.EventHandler(this.clientEngineTxt_TextChanged);
             // 
             // clientYearTxt
             // 
@@ -163,7 +109,6 @@
             this.clientYearTxt.Name = "clientYearTxt";
             this.clientYearTxt.Size = new System.Drawing.Size(153, 22);
             this.clientYearTxt.TabIndex = 84;
-            this.clientYearTxt.TextChanged += new System.EventHandler(this.clientYearTxt_TextChanged);
             // 
             // clientModelTxt
             // 
@@ -172,7 +117,6 @@
             this.clientModelTxt.Name = "clientModelTxt";
             this.clientModelTxt.Size = new System.Drawing.Size(153, 22);
             this.clientModelTxt.TabIndex = 83;
-            this.clientModelTxt.TextChanged += new System.EventHandler(this.clientModelTxt_TextChanged);
             // 
             // clientManufactureTxt
             // 
@@ -181,7 +125,44 @@
             this.clientManufactureTxt.Name = "clientManufactureTxt";
             this.clientManufactureTxt.Size = new System.Drawing.Size(153, 22);
             this.clientManufactureTxt.TabIndex = 82;
-            this.clientManufactureTxt.TextChanged += new System.EventHandler(this.clientManufactureTxt_TextChanged);
+            // 
+            // searchClientBtn
+            // 
+            this.searchClientBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.searchClientBtn.Location = new System.Drawing.Point(228, 101);
+            this.searchClientBtn.Name = "searchClientBtn";
+            this.searchClientBtn.Size = new System.Drawing.Size(214, 45);
+            this.searchClientBtn.TabIndex = 92;
+            this.searchClientBtn.Text = "Search car";
+            this.searchClientBtn.UseVisualStyleBackColor = true;
+            this.searchClientBtn.Click += new System.EventHandler(this.searchClientBtn_Click);
+            // 
+            // vinNumberTxt
+            // 
+            this.vinNumberTxt.BackColor = System.Drawing.Color.White;
+            this.vinNumberTxt.Controls.Add(this.clientVinNumberTxt);
+            this.vinNumberTxt.Controls.Add(this.label12);
+            this.vinNumberTxt.Controls.Add(this.clientEngineTxt);
+            this.vinNumberTxt.Controls.Add(this.clientYearTxt);
+            this.vinNumberTxt.Controls.Add(this.clientModelTxt);
+            this.vinNumberTxt.Controls.Add(this.clientManufactureTxt);
+            this.vinNumberTxt.Controls.Add(this.clientEmailTxt);
+            this.vinNumberTxt.Controls.Add(this.clientPhoneNumberTxt);
+            this.vinNumberTxt.Controls.Add(this.label10);
+            this.vinNumberTxt.Controls.Add(this.label7);
+            this.vinNumberTxt.Controls.Add(this.label6);
+            this.vinNumberTxt.Controls.Add(this.label5);
+            this.vinNumberTxt.Controls.Add(this.label3);
+            this.vinNumberTxt.Controls.Add(this.label2);
+            this.vinNumberTxt.Controls.Add(this.label1);
+            this.vinNumberTxt.Controls.Add(this.clientFullNameTxt);
+            this.vinNumberTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.vinNumberTxt.Location = new System.Drawing.Point(747, 26);
+            this.vinNumberTxt.Name = "vinNumberTxt";
+            this.vinNumberTxt.Size = new System.Drawing.Size(709, 279);
+            this.vinNumberTxt.TabIndex = 91;
+            this.vinNumberTxt.TabStop = false;
+            this.vinNumberTxt.Text = "Car details";
             // 
             // clientEmailTxt
             // 
@@ -190,7 +171,6 @@
             this.clientEmailTxt.Name = "clientEmailTxt";
             this.clientEmailTxt.Size = new System.Drawing.Size(153, 22);
             this.clientEmailTxt.TabIndex = 81;
-            this.clientEmailTxt.TextChanged += new System.EventHandler(this.clientEmailTxt_TextChanged);
             // 
             // clientPhoneNumberTxt
             // 
@@ -199,7 +179,6 @@
             this.clientPhoneNumberTxt.Name = "clientPhoneNumberTxt";
             this.clientPhoneNumberTxt.Size = new System.Drawing.Size(153, 22);
             this.clientPhoneNumberTxt.TabIndex = 79;
-            this.clientPhoneNumberTxt.TextChanged += new System.EventHandler(this.clientPhoneNumberTxt_TextChanged);
             // 
             // label10
             // 
@@ -211,19 +190,6 @@
             this.label10.Size = new System.Drawing.Size(95, 16);
             this.label10.TabIndex = 78;
             this.label10.Text = "Manufacture:";
-            this.label10.Click += new System.EventHandler(this.label10_Click);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-            this.label8.Location = new System.Drawing.Point(363, 241);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(32, 16);
-            this.label8.TabIndex = 76;
-            this.label8.Text = "KM:";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // label7
             // 
@@ -235,7 +201,6 @@
             this.label7.Size = new System.Drawing.Size(59, 16);
             this.label7.TabIndex = 75;
             this.label7.Text = "Engine:";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label6
             // 
@@ -247,7 +212,6 @@
             this.label6.Size = new System.Drawing.Size(44, 16);
             this.label6.TabIndex = 74;
             this.label6.Text = "Year:";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label5
             // 
@@ -259,7 +223,6 @@
             this.label5.Size = new System.Drawing.Size(54, 16);
             this.label5.TabIndex = 73;
             this.label5.Text = "Model:";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label3
             // 
@@ -271,7 +234,6 @@
             this.label3.Size = new System.Drawing.Size(110, 16);
             this.label3.TabIndex = 71;
             this.label3.Text = "Phone number:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
@@ -283,7 +245,6 @@
             this.label2.Size = new System.Drawing.Size(50, 16);
             this.label2.TabIndex = 70;
             this.label2.Text = "Email:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -295,68 +256,60 @@
             this.label1.Size = new System.Drawing.Size(85, 16);
             this.label1.TabIndex = 69;
             this.label1.Text = "Full Name: ";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
-            // searchClientBtn
+            // clientFullNameTxt
             // 
-            this.searchClientBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.searchClientBtn.Location = new System.Drawing.Point(256, 102);
-            this.searchClientBtn.Name = "searchClientBtn";
-            this.searchClientBtn.Size = new System.Drawing.Size(214, 45);
-            this.searchClientBtn.TabIndex = 87;
-            this.searchClientBtn.Text = "Search car";
-            this.searchClientBtn.UseVisualStyleBackColor = true;
-            this.searchClientBtn.Click += new System.EventHandler(this.searchClientBtn_Click);
+            this.clientFullNameTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.clientFullNameTxt.Location = new System.Drawing.Point(150, 44);
+            this.clientFullNameTxt.Name = "clientFullNameTxt";
+            this.clientFullNameTxt.Size = new System.Drawing.Size(153, 22);
+            this.clientFullNameTxt.TabIndex = 42;
+            // 
+            // carNumberTxt
+            // 
+            this.carNumberTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.carNumberTxt.Location = new System.Drawing.Point(228, 26);
+            this.carNumberTxt.Name = "carNumberTxt";
+            this.carNumberTxt.Size = new System.Drawing.Size(214, 29);
+            this.carNumberTxt.TabIndex = 90;
+            // 
+            // carNumberLbl
+            // 
+            this.carNumberLbl.AutoSize = true;
+            this.carNumberLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.carNumberLbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.carNumberLbl.Location = new System.Drawing.Point(57, 26);
+            this.carNumberLbl.Name = "carNumberLbl";
+            this.carNumberLbl.Size = new System.Drawing.Size(143, 24);
+            this.carNumberLbl.TabIndex = 89;
+            this.carNumberLbl.Text = "Car Number: *";
             // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.Color.White;
-            this.groupBox1.Controls.Add(this.cuaseOfArrivalTxt);
+            this.groupBox1.Controls.Add(this.offerDetailsTxt);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.groupBox1.Location = new System.Drawing.Point(775, 330);
+            this.groupBox1.Location = new System.Drawing.Point(747, 329);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(709, 270);
-            this.groupBox1.TabIndex = 87;
+            this.groupBox1.TabIndex = 93;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Cause of arrival";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            this.groupBox1.Text = "Offer details:";
             // 
-            // cuaseOfArrivalTxt
-            // 
-            this.cuaseOfArrivalTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.cuaseOfArrivalTxt.Location = new System.Drawing.Point(9, 36);
-            this.cuaseOfArrivalTxt.Multiline = true;
-            this.cuaseOfArrivalTxt.Name = "cuaseOfArrivalTxt";
-            this.cuaseOfArrivalTxt.Size = new System.Drawing.Size(694, 200);
-            this.cuaseOfArrivalTxt.TabIndex = 87;
-            this.cuaseOfArrivalTxt.TextChanged += new System.EventHandler(this.cuaseOfArrivalTxt_TextChanged);
-            // 
-            // createTicketbtn
-            // 
-            this.createTicketbtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.createTicketbtn.Location = new System.Drawing.Point(569, 673);
-            this.createTicketbtn.Name = "createTicketbtn";
-            this.createTicketbtn.Size = new System.Drawing.Size(214, 45);
-            this.createTicketbtn.TabIndex = 88;
-            this.createTicketbtn.Text = "Create ticket";
-            this.createTicketbtn.UseVisualStyleBackColor = true;
-            this.createTicketbtn.Click += new System.EventHandler(this.createTicketbtn_Click);
-            // 
-            // CreateNewTicketForm
+            // CreateNewOfferForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
             this.ClientSize = new System.Drawing.Size(1512, 743);
-            this.Controls.Add(this.createTicketbtn);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.createOfferBtn);
             this.Controls.Add(this.searchClientBtn);
             this.Controls.Add(this.vinNumberTxt);
             this.Controls.Add(this.carNumberTxt);
             this.Controls.Add(this.carNumberLbl);
-            this.MinimumSize = new System.Drawing.Size(16, 40);
-            this.Name = "CreateNewTicketForm";
-            this.Text = "CreateNewTicketForm";
+            this.Controls.Add(this.groupBox1);
+            this.Name = "CreateNewOfferForm";
+            this.Text = "CreateNewOfferForm";
             this.vinNumberTxt.ResumeLayout(false);
             this.vinNumberTxt.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -367,30 +320,29 @@
         }
 
         #endregion
-        private System.Windows.Forms.TextBox clientFullNameTxt;
-        private System.Windows.Forms.TextBox carNumberTxt;
-        private System.Windows.Forms.Label carNumberLbl;
+
+        private System.Windows.Forms.Button createOfferBtn;
+        private System.Windows.Forms.TextBox offerDetailsTxt;
+        private System.Windows.Forms.TextBox clientVinNumberTxt;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox clientEngineTxt;
+        private System.Windows.Forms.TextBox clientYearTxt;
+        private System.Windows.Forms.TextBox clientModelTxt;
+        private System.Windows.Forms.TextBox clientManufactureTxt;
+        private System.Windows.Forms.Button searchClientBtn;
         private System.Windows.Forms.GroupBox vinNumberTxt;
+        private System.Windows.Forms.TextBox clientEmailTxt;
+        private System.Windows.Forms.TextBox clientPhoneNumberTxt;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox clientKmTxt;
-        private System.Windows.Forms.TextBox clientEngineTxt;
-        private System.Windows.Forms.TextBox clientYearTxt;
-        private System.Windows.Forms.TextBox clientModelTxt;
-        private System.Windows.Forms.TextBox clientManufactureTxt;
-        private System.Windows.Forms.TextBox clientEmailTxt;
-        private System.Windows.Forms.TextBox clientPhoneNumberTxt;
-        private System.Windows.Forms.Button searchClientBtn;
+        private System.Windows.Forms.TextBox clientFullNameTxt;
+        private System.Windows.Forms.TextBox carNumberTxt;
+        private System.Windows.Forms.Label carNumberLbl;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox cuaseOfArrivalTxt;
-        private System.Windows.Forms.Button createTicketbtn;
-        private System.Windows.Forms.TextBox clientVinNumberTxt;
-        private System.Windows.Forms.Label label12;
     }
 }

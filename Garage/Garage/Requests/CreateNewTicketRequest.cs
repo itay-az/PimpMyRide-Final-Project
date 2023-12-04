@@ -44,5 +44,20 @@ namespace Garage.Requests
             this.clientEmail = clientEmail;
             this.causeOfArrival = causeOfArrival;
         }
+
+        public CreateNewTicketRequest(string carId, string carManufacture, string carModel, string carEngine, int carYear, string vinNumber, string clientId, string clientFullName, string clientPhoneNumber, string clientEmail, string causeOfArrival)
+        {
+            this.clientId = clientId;
+            this.carId = carId;
+            this.carManufacture = carManufacture;
+            this.carModel = carModel;
+            this.carEngine = carEngine;
+            this.carYear = carYear;
+            this.vinNumber = vinNumber;
+            this.clientFullName = clientFullName;
+            this.clientPhoneNumber = clientPhoneNumber;
+            this.clientEmail = clientEmail;
+            this.causeOfArrival = causeOfArrival;
+        }
     }
 }

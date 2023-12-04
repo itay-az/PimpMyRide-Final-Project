@@ -101,5 +101,120 @@ namespace Garage.Screens.TicketsScreens
 
             createNewTicket();
         }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void vinNumberTxt_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void carNumberTxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void carNumberLbl_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clientFullNameTxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clientVinNumberTxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clientKmTxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clientEngineTxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clientYearTxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clientModelTxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clientManufactureTxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clientEmailTxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void clientPhoneNumberTxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cuaseOfArrivalTxt_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

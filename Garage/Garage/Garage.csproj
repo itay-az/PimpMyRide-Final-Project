@@ -293,11 +293,23 @@
     <Compile Include="Screens\TicketsScreens\AddPartToTicketForm.Designer.cs">
       <DependentUpon>AddPartToTicketForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\TicketsScreens\CreateNewOfferForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\TicketsScreens\CreateNewOfferForm.Designer.cs">
+      <DependentUpon>CreateNewOfferForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\TicketsScreens\CreateNewTicketForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Screens\TicketsScreens\CreateNewTicketForm.Designer.cs">
       <DependentUpon>CreateNewTicketForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\TicketsScreens\OpenOffersForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\TicketsScreens\OpenOffersForm.Designer.cs">
+      <DependentUpon>OpenOffersForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\TicketsScreens\OpenTicketsForm.cs">
       <SubType>Form</SubType>
@@ -388,8 +400,14 @@
     <EmbeddedResource Include="Screens\TicketsScreens\AddPartToTicketForm.resx">
       <DependentUpon>AddPartToTicketForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Screens\TicketsScreens\CreateNewOfferForm.resx">
+      <DependentUpon>CreateNewOfferForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Screens\TicketsScreens\CreateNewTicketForm.resx">
       <DependentUpon>CreateNewTicketForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\TicketsScreens\OpenOffersForm.resx">
+      <DependentUpon>OpenOffersForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\TicketsScreens\OpenTicketsForm.resx">
       <DependentUpon>OpenTicketsForm.cs</DependentUpon>

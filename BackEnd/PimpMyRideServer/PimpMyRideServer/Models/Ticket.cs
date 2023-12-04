@@ -60,7 +60,6 @@ namespace PimpMyRideServer.Models
             this.clientPhone = clientPhone;
             this.clientEmail = clientEmail;
             this.clientFullName = clientFullName;
-
         }
 
         public Ticket(string carId, string clientId, string problems, TicketType ticketType)
@@ -75,62 +74,22 @@ namespace PimpMyRideServer.Models
             this.state = ticketType;
         }
 
-
-        /*
-        // calculate total parts cost
-        public void calculatePartPrice()
+        public Ticket(string carId, string clientFullName, string clientId, string clientPhone, string clientEmail, string problems, TicketType ticketType)
         {
-            double priceTmp = 0;
-
-            if (this.parts.Count > 0)
-            {
-                foreach (var part in this.parts)
-                {
-                    this.totalPartsPrice += Decimal.ToDouble(part.GetTotalPrice());
-                    this.totalPartsDiscount += Decimal.ToDouble(part.GetTotalDiscount());
-                }
-            }
-            else
-            { this.totalPartsPrice = 0; }
-        }
-
-        // calculate total labor cost
-
-        public void calculateLaborPrice()
-        {
-            double priceTmp = 0;
-            double discountTmp = 0;
-            if (this.labors.Count > 0)
-            {
-                foreach (var labor in this.labors)
-                {
-                    this.totalLaborDiscount +=Decimal.ToDouble(labor.GetTotalDiscount());
-                    totalLaborPrice +=Decimal.ToDouble(labor.GetTotalPrice());
-                }
-
-            }
-            else
-                this.totalLaborPrice = 0;
-        }
-
-        // calculate total cost
-
-        public void calculateTotalPrice()
-        {
-            this.price = this.totalPartsPrice + this.totalLaborPrice;
+            this.carId = carId;
+            this.clientId = clientId;
+            this.problems = problems;
+            this.parts = new List<TicketPart>();
+            this.labors = new List<TicketLabor>();
+            this.dateTime = DateTime.Now;
+            this.price = 0;
+            this.state = ticketType;
+            this.clientPhone = clientPhone;
+            this.clientEmail = clientEmail;
+            this.clientFullName = clientFullName;
         }
 
 
-
-
-        public void calculate()
-        {
-            calculatePartPrice();
-            calculateLaborPrice();
-            calculateTotalPrice();
-
-        }
-        */
 
     }
 }
