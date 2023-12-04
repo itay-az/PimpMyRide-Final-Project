@@ -39,28 +39,36 @@ namespace Garage.Screens.TicketsScreens
 
         public async void GetAllTickets()
         {
-            HttpResponseMessage response = await Program.client.GetAsync("Tickets/");
-            if (response.IsSuccessStatusCode)
+            try
             {
 
-                var responseResult = await response.Content.ReadAsStringAsync();
-                var jsonResult = JsonConvert.DeserializeObject<List<GetAllTicketsResponse>>(responseResult);
+                HttpResponseMessage response = await Program.client.GetAsync("Tickets/");
+                if (response.IsSuccessStatusCode)
+                {
 
-                AllTicketsDataGridView.DataSource = jsonResult;
-                try
-                {
-                    ticketId = AllTicketsDataGridView.Rows[0].Cells[0].Value.ToString();
+                    var responseResult = await response.Content.ReadAsStringAsync();
+                    var jsonResult = JsonConvert.DeserializeObject<List<GetAllTicketsResponse>>(responseResult);
+
+                    AllTicketsDataGridView.DataSource = jsonResult;
+                    try
+                    {
+                        ticketId = AllTicketsDataGridView.Rows[0].Cells[0].Value.ToString();
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show("No open tickets");
+                    }
                 }
-                catch (Exception e)
+                else
                 {
-                    MessageBox.Show("No open tickets");
+                    await HandleErrorResponse(response);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Error");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
 
         private void selectTicketBtn_Click(object sender, EventArgs e)
@@ -82,22 +90,51 @@ namespace Garage.Screens.TicketsScreens
 
         private async void SearchTicketByCarNumber(string carNumber)
         {
-            HttpResponseMessage response = await Program.client.GetAsync("Tickets/searchTicketByCarNumber/" + carNumber);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var responseResult = await response.Content.ReadAsStringAsync();
-                var jsonResult = JsonConvert.DeserializeObject<List<GetAllTicketsResponse>>(responseResult);
 
-                if(jsonResult.Count == 0)
+                HttpResponseMessage response = await Program.client.GetAsync("Tickets/searchTicketByCarNumber/" + carNumber);
+                if (response.IsSuccessStatusCode)
                 {
-                    MessageBox.Show("Not found");
-                    GetAllTickets();
-                }
-                else 
-                    AllTicketsDataGridView.DataSource = jsonResult;
+                    var responseResult = await response.Content.ReadAsStringAsync();
+                    var jsonResult = JsonConvert.DeserializeObject<List<GetAllTicketsResponse>>(responseResult);
+
+                    if(jsonResult.Count == 0)
+                    {
+                        MessageBox.Show("Not found");
+                        GetAllTickets();
+                    }
+                    else 
+                        AllTicketsDataGridView.DataSource = jsonResult;
                 
+                }
+                else
+                {
+                    await HandleErrorResponse(response);
+                }
             }
 
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async Task HandleErrorResponse(HttpResponseMessage response)
+        {
+            string content = await response.Content.ReadAsStringAsync();
+
+            try
+            {
+                ErrorResponse errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(content);
+
+                MessageBox.Show($"Error: {errorResponse.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            catch (JsonException)
+            {
+                MessageBox.Show("Invalid response format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

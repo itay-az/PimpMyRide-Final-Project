@@ -1,5 +1,5 @@
-﻿using Garage.Models;
-using Garage.Responses;
+﻿using Garage.Responses;
+using Garage.Screens.TicketsScreens;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -12,67 +12,48 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Garage.Screens.TicketsScreens
+namespace Garage.Screens.ClientsScreens
 {
-    public partial class OpenOffersForm : Form
+    public partial class CarHistoryForm : Form
     {
         private string ticketId;
 
-        public OpenOffersForm()
+        public CarHistoryForm()
         {
             InitializeComponent();
         }
-
-        private void searchBtn_Click(object sender, EventArgs e)
+        public CarHistoryForm(string carId)
         {
-            if (searchCarNumberTxt.Text == String.Empty)
-            {
-                MessageBox.Show("Please enter car number");
-            }
-            else
-                SearchOfferByCarNumber(searchCarNumberTxt.Text);
+            InitializeComponent();
+            GetCarHistoryByCarId(carId);
         }
 
-        private async void SearchOfferByCarNumber(string carNumber)
+        private async void GetCarHistoryByCarId(string carId)
         {
             try
             {
+                HttpResponseMessage response = await Program.client.GetAsync("client/getHistory/" + carId);
 
-                HttpResponseMessage response = await Program.client.GetAsync("Tickets/searchOfferByCarNumber/" + carNumber);
                 if (response.IsSuccessStatusCode)
                 {
                     var responseResult = await response.Content.ReadAsStringAsync();
-                    var jsonResult = JsonConvert.DeserializeObject<List<GetAllTicketsResponse>>(responseResult);
+                    var jsonResult = JsonConvert.DeserializeObject<List<Models.Ticket>>(responseResult);
 
-                    if (jsonResult.Count == 0)
-                    {
-                        MessageBox.Show("Not found");
-                        return;
-                    }
-                
-                    AllOffersDataGridView.DataSource = jsonResult;
-                    ticketId = AllOffersDataGridView.Rows[0].Cells[0].Value.ToString();
-
-
+                    carHistoryDataGridView.DataSource = jsonResult;
+                    ticketId = carHistoryDataGridView.Rows[0].Cells[0].Value.ToString();
                 }
+
                 else
                 {
                     await HandleErrorResponse(response);
                 }
             }
-            catch (Exception ex)
+            catch(Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
         }
 
-        private void selectTicketBtn_Click(object sender, EventArgs e)
-        {
-            Ticket ticket = new Ticket(ticketId);
-            ticket.FormClosed += (s, args) => this.Show();
-            ticket.ShowDialog();
-        }
 
         private async Task HandleErrorResponse(HttpResponseMessage response)
         {
@@ -88,6 +69,25 @@ namespace Garage.Screens.TicketsScreens
             catch (JsonException)
             {
                 MessageBox.Show("Invalid response format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void selectTicketBtn_Click(object sender, EventArgs e)
+        {
+            Ticket ticket = new Ticket(ticketId);
+            ticket.FormClosed += (s, args) => this.Show();
+            ticket.ShowDialog();
+        }
+
+        private void carHistoryDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (carHistoryDataGridView.Rows.Count == 0)
+            {
+                MessageBox.Show("No open tickets");
+            }
+            else
+            {
+                this.ticketId = carHistoryDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
             }
         }
     }

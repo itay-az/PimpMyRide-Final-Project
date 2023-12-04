@@ -267,5 +267,11 @@ namespace Garage.Screens.ClientsScreens
                 MessageBox.Show(" Failed ", "Error");
             }
         }
+
+        private void clientHistoryBtn_Click(object sender, EventArgs e)
+        {
+            CarHistoryForm carHistoryForm = new CarHistoryForm(carNumberComboBox.Text);
+            carHistoryForm.ShowDialog();
+        }
     }
 }

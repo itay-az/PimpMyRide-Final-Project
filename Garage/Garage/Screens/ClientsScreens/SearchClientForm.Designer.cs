@@ -281,6 +281,7 @@
             this.clientHistoryBtn.TabIndex = 76;
             this.clientHistoryBtn.Text = "Car history";
             this.clientHistoryBtn.UseVisualStyleBackColor = true;
+            this.clientHistoryBtn.Click += new System.EventHandler(this.clientHistoryBtn_Click);
             // 
             // updateClientBtn
             // 

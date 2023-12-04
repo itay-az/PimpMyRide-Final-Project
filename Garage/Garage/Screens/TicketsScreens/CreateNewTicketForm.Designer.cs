@@ -64,7 +64,6 @@
             this.clientFullNameTxt.Name = "clientFullNameTxt";
             this.clientFullNameTxt.Size = new System.Drawing.Size(153, 22);
             this.clientFullNameTxt.TabIndex = 42;
-            this.clientFullNameTxt.TextChanged += new System.EventHandler(this.clientFullNameTxt_TextChanged);
             // 
             // carNumberTxt
             // 
@@ -73,7 +72,6 @@
             this.carNumberTxt.Name = "carNumberTxt";
             this.carNumberTxt.Size = new System.Drawing.Size(214, 29);
             this.carNumberTxt.TabIndex = 58;
-            this.carNumberTxt.TextChanged += new System.EventHandler(this.carNumberTxt_TextChanged);
             // 
             // carNumberLbl
             // 
@@ -85,7 +83,6 @@
             this.carNumberLbl.Size = new System.Drawing.Size(143, 24);
             this.carNumberLbl.TabIndex = 54;
             this.carNumberLbl.Text = "Car Number: *";
-            this.carNumberLbl.Click += new System.EventHandler(this.carNumberLbl_Click);
             // 
             // vinNumberTxt
             // 
@@ -115,7 +112,6 @@
             this.vinNumberTxt.TabIndex = 68;
             this.vinNumberTxt.TabStop = false;
             this.vinNumberTxt.Text = "Car details";
-            this.vinNumberTxt.Enter += new System.EventHandler(this.vinNumberTxt_Enter);
             // 
             // clientVinNumberTxt
             // 
@@ -124,7 +120,6 @@
             this.clientVinNumberTxt.Name = "clientVinNumberTxt";
             this.clientVinNumberTxt.Size = new System.Drawing.Size(153, 22);
             this.clientVinNumberTxt.TabIndex = 88;
-            this.clientVinNumberTxt.TextChanged += new System.EventHandler(this.clientVinNumberTxt_TextChanged);
             // 
             // label12
             // 
@@ -136,7 +131,6 @@
             this.label12.Size = new System.Drawing.Size(91, 16);
             this.label12.TabIndex = 87;
             this.label12.Text = "Vin Number:";
-            this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
             // clientKmTxt
             // 
@@ -145,7 +139,6 @@
             this.clientKmTxt.Name = "clientKmTxt";
             this.clientKmTxt.Size = new System.Drawing.Size(153, 22);
             this.clientKmTxt.TabIndex = 86;
-            this.clientKmTxt.TextChanged += new System.EventHandler(this.clientKmTxt_TextChanged);
             // 
             // clientEngineTxt
             // 
@@ -154,7 +147,6 @@
             this.clientEngineTxt.Name = "clientEngineTxt";
             this.clientEngineTxt.Size = new System.Drawing.Size(153, 22);
             this.clientEngineTxt.TabIndex = 85;
-            this.clientEngineTxt.TextChanged += new System.EventHandler(this.clientEngineTxt_TextChanged);
             // 
             // clientYearTxt
             // 
@@ -163,7 +155,6 @@
             this.clientYearTxt.Name = "clientYearTxt";
             this.clientYearTxt.Size = new System.Drawing.Size(153, 22);
             this.clientYearTxt.TabIndex = 84;
-            this.clientYearTxt.TextChanged += new System.EventHandler(this.clientYearTxt_TextChanged);
             // 
             // clientModelTxt
             // 
@@ -172,7 +163,6 @@
             this.clientModelTxt.Name = "clientModelTxt";
             this.clientModelTxt.Size = new System.Drawing.Size(153, 22);
             this.clientModelTxt.TabIndex = 83;
-            this.clientModelTxt.TextChanged += new System.EventHandler(this.clientModelTxt_TextChanged);
             // 
             // clientManufactureTxt
             // 
@@ -181,7 +171,6 @@
             this.clientManufactureTxt.Name = "clientManufactureTxt";
             this.clientManufactureTxt.Size = new System.Drawing.Size(153, 22);
             this.clientManufactureTxt.TabIndex = 82;
-            this.clientManufactureTxt.TextChanged += new System.EventHandler(this.clientManufactureTxt_TextChanged);
             // 
             // clientEmailTxt
             // 
@@ -190,7 +179,6 @@
             this.clientEmailTxt.Name = "clientEmailTxt";
             this.clientEmailTxt.Size = new System.Drawing.Size(153, 22);
             this.clientEmailTxt.TabIndex = 81;
-            this.clientEmailTxt.TextChanged += new System.EventHandler(this.clientEmailTxt_TextChanged);
             // 
             // clientPhoneNumberTxt
             // 
@@ -199,7 +187,6 @@
             this.clientPhoneNumberTxt.Name = "clientPhoneNumberTxt";
             this.clientPhoneNumberTxt.Size = new System.Drawing.Size(153, 22);
             this.clientPhoneNumberTxt.TabIndex = 79;
-            this.clientPhoneNumberTxt.TextChanged += new System.EventHandler(this.clientPhoneNumberTxt_TextChanged);
             // 
             // label10
             // 
@@ -211,7 +198,6 @@
             this.label10.Size = new System.Drawing.Size(95, 16);
             this.label10.TabIndex = 78;
             this.label10.Text = "Manufacture:";
-            this.label10.Click += new System.EventHandler(this.label10_Click);
             // 
             // label8
             // 
@@ -223,7 +209,6 @@
             this.label8.Size = new System.Drawing.Size(32, 16);
             this.label8.TabIndex = 76;
             this.label8.Text = "KM:";
-            this.label8.Click += new System.EventHandler(this.label8_Click);
             // 
             // label7
             // 
@@ -235,7 +220,6 @@
             this.label7.Size = new System.Drawing.Size(59, 16);
             this.label7.TabIndex = 75;
             this.label7.Text = "Engine:";
-            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // label6
             // 
@@ -247,7 +231,6 @@
             this.label6.Size = new System.Drawing.Size(44, 16);
             this.label6.TabIndex = 74;
             this.label6.Text = "Year:";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // label5
             // 
@@ -259,7 +242,6 @@
             this.label5.Size = new System.Drawing.Size(54, 16);
             this.label5.TabIndex = 73;
             this.label5.Text = "Model:";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // label3
             // 
@@ -271,7 +253,6 @@
             this.label3.Size = new System.Drawing.Size(110, 16);
             this.label3.TabIndex = 71;
             this.label3.Text = "Phone number:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label2
             // 
@@ -283,7 +264,6 @@
             this.label2.Size = new System.Drawing.Size(50, 16);
             this.label2.TabIndex = 70;
             this.label2.Text = "Email:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -295,7 +275,6 @@
             this.label1.Size = new System.Drawing.Size(85, 16);
             this.label1.TabIndex = 69;
             this.label1.Text = "Full Name: ";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // searchClientBtn
             // 
@@ -319,7 +298,6 @@
             this.groupBox1.TabIndex = 87;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cause of arrival";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // cuaseOfArrivalTxt
             // 
@@ -329,7 +307,6 @@
             this.cuaseOfArrivalTxt.Name = "cuaseOfArrivalTxt";
             this.cuaseOfArrivalTxt.Size = new System.Drawing.Size(694, 200);
             this.cuaseOfArrivalTxt.TabIndex = 87;
-            this.cuaseOfArrivalTxt.TextChanged += new System.EventHandler(this.cuaseOfArrivalTxt_TextChanged);
             // 
             // createTicketbtn
             // 

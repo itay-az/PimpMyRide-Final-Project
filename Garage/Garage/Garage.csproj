@@ -168,6 +168,7 @@
     <Compile Include="LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Responses\ErrorResponse.cs" />
     <Compile Include="Responses\GetAllOrdersResponse.cs" />
     <Compile Include="Responses\GetAllTicketsResponse.cs" />
     <Compile Include="Responses\GetCarByCarIdResponse.cs" />
@@ -208,6 +209,12 @@
     </Compile>
     <Compile Include="Screens\ClientsScreens\AllClientsForm.Designer.cs">
       <DependentUpon>AllClientsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\ClientsScreens\CarHistoryForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\ClientsScreens\CarHistoryForm.Designer.cs">
+      <DependentUpon>CarHistoryForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\ClientsScreens\CreateNewClient.cs">
       <SubType>Form</SubType>
@@ -293,6 +300,12 @@
     <Compile Include="Screens\TicketsScreens\AddPartToTicketForm.Designer.cs">
       <DependentUpon>AddPartToTicketForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Screens\TicketsScreens\CloseTicketForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\TicketsScreens\CloseTicketForm.Designer.cs">
+      <DependentUpon>CloseTicketForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Screens\TicketsScreens\CreateNewOfferForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -361,6 +374,9 @@
     <EmbeddedResource Include="Screens\ClientsScreens\AllClientsForm.resx">
       <DependentUpon>AllClientsForm.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Screens\ClientsScreens\CarHistoryForm.resx">
+      <DependentUpon>CarHistoryForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Screens\ClientsScreens\CreateNewClient.resx">
       <DependentUpon>CreateNewClient.cs</DependentUpon>
     </EmbeddedResource>
@@ -399,6 +415,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\TicketsScreens\AddPartToTicketForm.resx">
       <DependentUpon>AddPartToTicketForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\TicketsScreens\CloseTicketForm.resx">
+      <DependentUpon>CloseTicketForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\TicketsScreens\CreateNewOfferForm.resx">
       <DependentUpon>CreateNewOfferForm.cs</DependentUpon>

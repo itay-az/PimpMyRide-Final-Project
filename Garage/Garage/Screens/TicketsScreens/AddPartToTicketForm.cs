@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
@@ -34,17 +35,26 @@ namespace Garage.Screens.TicketsScreens
 
         public async void GetAllParts()
         {
-            HttpResponseMessage response = await Program.client.GetAsync("StorageHandler/getParts/");
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var responseResult = await response.Content.ReadAsStringAsync();
-                var jsonResult = JsonConvert.DeserializeObject<List<GetAllPartsRequest>>(responseResult);
-                allPartsDataGridView.DataSource = jsonResult;
 
+                HttpResponseMessage response = await Program.client.GetAsync("StorageHandler/getParts/");
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseResult = await response.Content.ReadAsStringAsync();
+                    var jsonResult = JsonConvert.DeserializeObject<List<GetAllPartsRequest>>(responseResult);
+                    allPartsDataGridView.DataSource = jsonResult;
+
+                }
+                else
+                {
+                    await HandleErrorResponse(response);
+
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Error");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -55,41 +65,59 @@ namespace Garage.Screens.TicketsScreens
 
         private async void  searchForPartByFreeText(string text)
         {
-            HttpResponseMessage response = await Program.client.GetAsync("StorageHandler/searchPart/" + text);
-            if (response.IsSuccessStatusCode)
+            try
             {
 
-                var responseResult = await response.Content.ReadAsStringAsync();
-                var jsonResult = JsonConvert.DeserializeObject<List<Parts>>(responseResult);
+                HttpResponseMessage response = await Program.client.GetAsync("StorageHandler/searchPart/" + text);
+                if (response.IsSuccessStatusCode)
+                {
+
+                    var responseResult = await response.Content.ReadAsStringAsync();
+                    var jsonResult = JsonConvert.DeserializeObject<List<Parts>>(responseResult);
 
 
 
-                allPartsDataGridView.DataSource = jsonResult;
+                    allPartsDataGridView.DataSource = jsonResult;
+                }
+                else
+                {
+                    GetAllParts();
+                    await HandleErrorResponse(response);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                GetAllParts();
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
 
         private async void AddPartToTicketAsync(AddPartToTicketRequest part)
         {
+
             if(part.partId == null)
             {
                 MessageBox.Show("Error");
             }
             else
             {
-                HttpResponseMessage response = await Program.client.PutAsJsonAsync("Tickets/addPartToTicket/" + ticketId, part);
-                if (response.IsSuccessStatusCode)
+                try
                 {
-                    this.Close();
 
+                    HttpResponseMessage response = await Program.client.PutAsJsonAsync("Tickets/addPartToTicket/" + ticketId, part);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        this.Close();
+
+                    }
+                    else
+                    {
+                        await HandleErrorResponse(response);
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Please select from the list","Error",MessageBoxButtons.OK);
+                    MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             
@@ -136,6 +164,23 @@ namespace Garage.Screens.TicketsScreens
                 return false;
             }
 
+        }
+
+        private async Task HandleErrorResponse(HttpResponseMessage response)
+        {
+            string content = await response.Content.ReadAsStringAsync();
+
+            try
+            {
+                ErrorResponse errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(content);
+
+                MessageBox.Show($"Error: {errorResponse.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            catch (JsonException)
+            {
+                MessageBox.Show("Invalid response format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

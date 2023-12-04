@@ -9,6 +9,7 @@ using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
@@ -66,50 +67,68 @@ namespace Garage.Screens.TicketsScreens
 
         private async void GetTicketById(string ticketId)
         {
-            HttpResponseMessage response = await Program.client.GetAsync("Tickets/getTicket/" + ticketId);
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var responseResult = await response.Content.ReadAsStringAsync();
-                var jsonResult = JsonConvert.DeserializeObject<GetTicketByIdResponse>(responseResult);
+                HttpResponseMessage response = await Program.client.GetAsync("Tickets/getTicket/" + ticketId);
 
-                clientFullNameTxt.Text = jsonResult.clientFullName;
-                clientEmailTxt.Text = jsonResult.clientEmail;
-                clientPhoneNumberTxt.Text = jsonResult.clientPhoneNumber;
-                clientManufactureTxt.Text = jsonResult.carManufacture;
-                clientModelTxt.Text = jsonResult.carModel;
-                clientYearTxt.Text = jsonResult.carYear.ToString();
-                clientEngineTxt.Text = jsonResult.carEngine;
-                clientVinNumberTxt.Text = jsonResult.vinNumber;
-                clientKmTxt.Text = jsonResult.carKilometer.ToString();
-                cuaseOfArrivalTxt.Text = jsonResult.causeOfArrival;
-                parts = jsonResult.parts;
-                labors = jsonResult.labors;
-                totalPartPriceTxt.Text = jsonResult.totalPartsPrice.ToString();
-                totalPartDiscountTxt.Text = jsonResult.totalPartsDiscount.ToString();
-                totalLaborPriceTxt.Text = jsonResult.totalLaborPrice.ToString();
-                totalLaborDiscountTxt.Text = jsonResult.totalLaborDiscount.ToString();
-                totalPartPriceAfterDiscountTxt.Text = (jsonResult.totalPartsPrice - jsonResult.totalPartsDiscount).ToString();
-                totalLaborPriceAfterDiscountTxt.Text = (jsonResult.totalLaborPrice - jsonResult.totalLaborDiscount).ToString();
-                totalTicketPriceTxt.Text = jsonResult.price.ToString();
-                refreshPartsDataGridView();
-                refreshLaborsDataGridView();
-                if(jsonResult.parts.Count > 0)
+                if (response.IsSuccessStatusCode)
                 {
-                    partId = partsDataGridView.Rows[0].Cells[0].Value.ToString();
+                    var responseResult = await response.Content.ReadAsStringAsync();
+                    var jsonResult = JsonConvert.DeserializeObject<GetTicketByIdResponse>(responseResult);
+
+                    clientFullNameTxt.Text = jsonResult.clientFullName;
+                    clientEmailTxt.Text = jsonResult.clientEmail;
+                    clientPhoneNumberTxt.Text = jsonResult.clientPhoneNumber;
+                    clientManufactureTxt.Text = jsonResult.carManufacture;
+                    clientModelTxt.Text = jsonResult.carModel;
+                    clientYearTxt.Text = jsonResult.carYear.ToString();
+                    clientEngineTxt.Text = jsonResult.carEngine;
+                    clientVinNumberTxt.Text = jsonResult.vinNumber;
+                    clientKmTxt.Text = jsonResult.carKilometer.ToString();
+                    cuaseOfArrivalTxt.Text = jsonResult.causeOfArrival;
+                    parts = jsonResult.parts;
+                    labors = jsonResult.labors;
+                    totalPartPriceTxt.Text = jsonResult.totalPartsPrice.ToString();
+                    totalPartDiscountTxt.Text = jsonResult.totalPartsDiscount.ToString();
+                    totalLaborPriceTxt.Text = jsonResult.totalLaborPrice.ToString();
+                    totalLaborDiscountTxt.Text = jsonResult.totalLaborDiscount.ToString();
+                    totalPartPriceAfterDiscountTxt.Text = (jsonResult.totalPartsPrice - jsonResult.totalPartsDiscount).ToString();
+                    totalLaborPriceAfterDiscountTxt.Text = (jsonResult.totalLaborPrice - jsonResult.totalLaborDiscount).ToString();
+                    totalTicketPriceTxt.Text = jsonResult.price.ToString();
+                    refreshPartsDataGridView();
+                    refreshLaborsDataGridView();
+                    if (jsonResult.parts.Count > 0)
+                    {
+                        partId = partsDataGridView.Rows[0].Cells[0].Value.ToString();
+                    }
+                    if (jsonResult.labors.Count > 0)
+                    {
+                        laborId = int.Parse(laborDataGridView.Rows[0].Cells[0].Value.ToString());
+                    }
+                    if (jsonResult.state == TicketType.IS_OFFER)
+                    {
+                        exportToTicketBtn.Visible = true;
+                    }
+                    if (jsonResult.state == TicketType.IS_CLOSED)
+                    {
+                        partsDataGridView.Columns[2].ReadOnly = true;
+                        partsDataGridView.Columns[3].ReadOnly = true;
+                        partsDataGridView.Columns[4].ReadOnly = true;
+                        laborDataGridView.Columns[4].ReadOnly = true;
+
+                        deleteTicketBtn.Visible = false;
+                        closeTicketBtn.Visible = false;
+                    }
                 }
-                if(jsonResult.labors.Count > 0)
+                else
                 {
-                    laborId = int.Parse(laborDataGridView.Rows[0].Cells[0].Value.ToString());
-                }
-                if(jsonResult.state == TicketType.IS_OFFER)
-                {
-                    exportToTicketBtn.Visible = true;
+                    await HandleErrorResponse(response);
                 }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Client not found, Please create new client", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
 
@@ -128,19 +147,27 @@ namespace Garage.Screens.TicketsScreens
 
         private async void deletePartFromTicket()
         {
-            HttpResponseMessage response = await Program.client.DeleteAsync("Tickets/removePartFromTicket/" + ticketId + "/" + partId);
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var responseResult = await response.Content.ReadAsStringAsync();
-                var jsonResult = JsonConvert.DeserializeObject<Garage.Models.Ticket>(responseResult);
+                HttpResponseMessage response = await Program.client.DeleteAsync("Tickets/removePartFromTicket/" + ticketId + "/" + partId);
 
-                GetTicketById(jsonResult.ticketId.ToString());
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseResult = await response.Content.ReadAsStringAsync();
+                    var jsonResult = JsonConvert.DeserializeObject<Garage.Models.Ticket>(responseResult);
 
+                    GetTicketById(jsonResult.ticketId.ToString());
+
+                }
+                else
+                {
+                    await HandleErrorResponse(response);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Error");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
 
@@ -156,15 +183,24 @@ namespace Garage.Screens.TicketsScreens
 
         private async void deleteTicket(string ticketId)
         {
-            HttpResponseMessage response = await Program.client.DeleteAsync("Tickets/deleteTicket/" + ticketId);
+            try
+            {
 
-            if (response.IsSuccessStatusCode)
-            {
-                this.Close();
+                HttpResponseMessage response = await Program.client.DeleteAsync("Tickets/deleteTicket/" + ticketId);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    this.Close();
+                }
+                else
+                {
+                    await HandleErrorResponse(response);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Error");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
 
@@ -216,19 +252,25 @@ namespace Garage.Screens.TicketsScreens
 
         private async void updatePartsOnTicket(List<TicketPart> parts)
         {
-            HttpResponseMessage response = await Program.client.PutAsJsonAsync("Tickets/updatePartsOnTicket/" + ticketId, parts);
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                MessageBox.Show("Parts Updated");
+
+                HttpResponseMessage response = await Program.client.PutAsJsonAsync("Tickets/updatePartsOnTicket/" + ticketId, parts);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Parts Updated");
+                }
+
+                else
+                {
+                    await HandleErrorResponse(response);
+                }
             }
-
-            else
+            catch (Exception ex)
             {
-                var responseResult = await response.Content.ReadAsStringAsync();
-                var jsonResult = JsonConvert.DeserializeObject<OnFailure>(responseResult);
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                MessageBox.Show(jsonResult.message);
             }
 
         }
@@ -267,33 +309,36 @@ namespace Garage.Screens.TicketsScreens
 
         private async void updateLaborsOnTicket(List<Labor> labors)
         {
-            HttpResponseMessage response = await Program.client.PutAsJsonAsync("Tickets/updateLaborsOnTicket/" + ticketId, labors);
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                MessageBox.Show("Labors Updated");
+
+                HttpResponseMessage response = await Program.client.PutAsJsonAsync("Tickets/updateLaborsOnTicket/" + ticketId, labors);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Labors Updated");
+                }
+
+                else
+                {
+                    await HandleErrorResponse(response);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            else { MessageBox.Show("Error"); }
         }
 
         private void closeTicketBtn_Click(object sender, EventArgs e)
         {
-            CloseTicketById(ticketId);
+            CloseTicketForm closeTicketForm = new CloseTicketForm(double.Parse(totalTicketPriceTxt.Text),ticketId);
+            closeTicketForm.ShowDialog();
+
         }
 
-        private async void CloseTicketById(string ticketId)
-        {
-            HttpResponseMessage response = await Program.client.DeleteAsync("Tickets/closeTicket/" + ticketId);
-
-            if (response.IsSuccessStatusCode)
-            {
-                MessageBox.Show("Ticket closed!");
-                this.Close();
-            }
-
-            else { MessageBox.Show("Error"); }
-        }
+        
 
         private void partsDataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
@@ -355,19 +400,27 @@ namespace Garage.Screens.TicketsScreens
 
         private async void RemoveLaborFromTicket()
         {
-            HttpResponseMessage response = await Program.client.DeleteAsync("Tickets/removeLaborFromTicket/" + ticketId + "/" + laborId);
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var responseResult = await response.Content.ReadAsStringAsync();
-                var jsonResult = JsonConvert.DeserializeObject<Models.Ticket>(responseResult);
 
-                GetTicketById(jsonResult.ticketId.ToString());
+                HttpResponseMessage response = await Program.client.DeleteAsync("Tickets/removeLaborFromTicket/" + ticketId + "/" + laborId);
 
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseResult = await response.Content.ReadAsStringAsync();
+                    var jsonResult = JsonConvert.DeserializeObject<Models.Ticket>(responseResult);
+
+                    GetTicketById(jsonResult.ticketId.ToString());
+
+                }
+                else
+                {
+                    await HandleErrorResponse(response);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Error");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -383,15 +436,43 @@ namespace Garage.Screens.TicketsScreens
 
         private async void changeStateToOpenTicket(string ticketId)
         {
-            HttpResponseMessage response = await Program.client.PutAsync("Tickets/updateOfferToTicket/" + ticketId, null);
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                MessageBox.Show("Offer Updated");
-            }
 
-            else { MessageBox.Show("Error"); }
+                HttpResponseMessage response = await Program.client.PutAsync("Tickets/updateOfferToTicket/" + ticketId, null);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Offer Updated");
+                }
+
+                else
+                {
+                    await HandleErrorResponse(response);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private async Task HandleErrorResponse(HttpResponseMessage response)
+        {
+            string content = await response.Content.ReadAsStringAsync();
+
+            try
+            {
+                ErrorResponse errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(content);
+
+                MessageBox.Show($"Error: {errorResponse.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            catch (JsonException)
+            {
+                MessageBox.Show("Invalid response format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
-    }
+}
 

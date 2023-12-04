@@ -41,36 +41,44 @@ namespace Garage.Screens.TicketsScreens
 
         public async void searchClientByCarId(string id)
         {
-            HttpResponseMessage response = await Program.client.GetAsync("client/getCarByCarId/" + id);
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var responseResult = await response.Content.ReadAsStringAsync();
-                var jsonResult = JsonConvert.DeserializeObject<GetCarByCarIdResponse>(responseResult);
 
-                this.clientId = jsonResult.clientId;
-                clientFullNameTxt.Text = jsonResult.clientFullName;
-                clientPhoneNumberTxt.Text = jsonResult.clientPhoneNumber;
-                clientEmailTxt.Text = jsonResult.clientEmail;
-                clientManufactureTxt.Text = jsonResult.carManufacture;
-                clientModelTxt.Text = jsonResult.carModel;
-                clientYearTxt.Text = jsonResult.carYear.ToString();
-                clientEngineTxt.Text = jsonResult.carEngine;
-                clientVinNumberTxt.Text = jsonResult.vinNumber;
-            }
-            else if ((int)response.StatusCode == 404)
-            {
-                MessageBox.Show("Car not found, Create new?", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
-                if (MessageBoxButtons.YesNo != 0)
+                HttpResponseMessage response = await Program.client.GetAsync("client/getCarByCarId/" + id);
+
+                if (response.IsSuccessStatusCode)
                 {
-                    SearchClientForm searchClientForm = new SearchClientForm();
-                    LoginForm.dashboardForm.openForm(searchClientForm);
-                }
+                    var responseResult = await response.Content.ReadAsStringAsync();
+                    var jsonResult = JsonConvert.DeserializeObject<GetCarByCarIdResponse>(responseResult);
 
+                    this.clientId = jsonResult.clientId;
+                    clientFullNameTxt.Text = jsonResult.clientFullName;
+                    clientPhoneNumberTxt.Text = jsonResult.clientPhoneNumber;
+                    clientEmailTxt.Text = jsonResult.clientEmail;
+                    clientManufactureTxt.Text = jsonResult.carManufacture;
+                    clientModelTxt.Text = jsonResult.carModel;
+                    clientYearTxt.Text = jsonResult.carYear.ToString();
+                    clientEngineTxt.Text = jsonResult.carEngine;
+                    clientVinNumberTxt.Text = jsonResult.vinNumber;
+                }
+                else if ((int)response.StatusCode == 404)
+                {
+                    MessageBox.Show("Car not found, Create new?", "Error", MessageBoxButtons.YesNo, MessageBoxIcon.Error);
+                    if (MessageBoxButtons.YesNo != 0)
+                    {
+                        SearchClientForm searchClientForm = new SearchClientForm();
+                        LoginForm.dashboardForm.openForm(searchClientForm);
+                    }
+
+                }
+                else
+                {
+                    await HandleErrorResponse(response);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Error");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -86,16 +94,42 @@ namespace Garage.Screens.TicketsScreens
 
         public async void createNewOffer()
         {
-            CreateNewTicketRequest createNewTicketRequest = new CreateNewTicketRequest(carNumberTxt.Text, clientManufactureTxt.Text, clientModelTxt.Text, clientEngineTxt.Text, int.Parse(clientYearTxt.Text), clientVinNumberTxt.Text, clientId, clientFullNameTxt.Text, clientPhoneNumberTxt.Text, clientEmailTxt.Text, offerDetailsTxt.Text);
-            HttpResponseMessage response = await Program.client.PostAsJsonAsync("Tickets/createOffer", createNewTicketRequest);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                MessageBox.Show("Ticket Created!");
+                CreateNewTicketRequest createNewTicketRequest = new CreateNewTicketRequest(carNumberTxt.Text, clientManufactureTxt.Text, clientModelTxt.Text, clientEngineTxt.Text, int.Parse(clientYearTxt.Text), clientVinNumberTxt.Text, clientId, clientFullNameTxt.Text, clientPhoneNumberTxt.Text, clientEmailTxt.Text, offerDetailsTxt.Text);
+                HttpResponseMessage response = await Program.client.PostAsJsonAsync("Tickets/createOffer", createNewTicketRequest);
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Ticket Created!");
+
+                }
+                else
+                {
+                    await HandleErrorResponse(response);
+                }
 
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Error");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+
+        private async Task HandleErrorResponse(HttpResponseMessage response)
+        {
+            string content = await response.Content.ReadAsStringAsync();
+
+            try
+            {
+                ErrorResponse errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(content);
+
+                MessageBox.Show($"Error: {errorResponse.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+            catch (JsonException)
+            {
+                MessageBox.Show("Invalid response format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

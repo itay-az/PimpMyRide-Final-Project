@@ -11,6 +11,23 @@ namespace PimpMyRideServer.Handlers
 {
     public class ClientHandler : CreateHandler, GetByIdHandler, GetHandler
     {
+        private ActionResult onFailure(string message, string errorCode, int statusCode = StatusCodes.Status404NotFound, string details = null, List<ValidationError> validationErrors = null)
+        {
+            var errorResponse = new ErrorResponse
+            {
+                Success = false,
+                Message = message,
+                StatusCode = statusCode,
+                ErrorCode = errorCode,
+                Details = details,
+                ValidationErrors = validationErrors
+            };
+
+            JsonResult jsonResult = new JsonResult(errorResponse);
+            jsonResult.StatusCode = statusCode;
+
+            return jsonResult;
+        }
         public ActionResult HandleCreate(Request request)
         {
             CreateClientRequest createClientRequest = (CreateClientRequest)request;
@@ -198,6 +215,21 @@ namespace PimpMyRideServer.Handlers
             }
             return new ClientResponse(client.clientId, client.name, client.phone, client.email, client.address, cars);
 
+        }
+
+        public ActionResult HandleGetCarHistory(string carId)
+        {
+            var carHistoryTickets = Server.Server.context.Ticket.Where(t => t.carId == carId && t.state ==TicketType.IS_CLOSED).ToList();
+
+            if(carHistoryTickets == null)
+            {
+                return onFailure("No history for this car", "Not found");
+            }
+
+            JsonResult jsonResult = new JsonResult(carHistoryTickets);
+            jsonResult.StatusCode = StatusCodes.Status200OK;
+
+            return jsonResult;
         }
 
     }

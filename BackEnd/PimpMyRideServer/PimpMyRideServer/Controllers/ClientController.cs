@@ -62,7 +62,12 @@ namespace PimpMyRideServer.Controllers
         [HttpPut("client/addCar/{clientId}")]
         public ActionResult AddCarToClient(string clientId, [FromBody] AddCarToClientRequest car)
         {
-            return ((ClientHandler)handler).HandleAddCarToClient(clientId,car);
+            return ((ClientHandler)handler).HandleAddCarToClient(clientId, car);
+        }
+        [HttpGet("getHistory/{carId}")]
+        public ActionResult GetCarHistory(string carId)
+        {
+            return ((ClientHandler)handler).HandleGetCarHistory(carId);
         }
     }
 }
