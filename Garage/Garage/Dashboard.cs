@@ -8,6 +8,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -22,6 +23,11 @@ namespace Garage
         {
             InitializeComponent();
             HideMenus();
+            timer1.Interval = 1000;
+            timer1.Start();
+
+            UpdateClock();
+
         }
 
         public Dashboard(string jobTitle,string userName)
@@ -189,6 +195,16 @@ namespace Garage
         {
             OpenOffersForm openOffersForm = new OpenOffersForm();
             openForm(openOffersForm);
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            UpdateClock();
+        }
+        private void UpdateClock()
+        {
+            timerLbl.Text = DateTime.Now.ToString("HH:mm:ss \n dd/MM/yyyy");
+            
         }
     }
 }

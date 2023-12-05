@@ -34,14 +34,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.allPartsDataGrid = new System.Windows.Forms.DataGridView();
-            this.ticketsListComboBox = new System.Windows.Forms.ComboBox();
             this.updatePartBtn = new System.Windows.Forms.Button();
             this.deletePartBtn = new System.Windows.Forms.Button();
             this.createPartBtn = new System.Windows.Forms.Button();
             this.partPriceTxt = new System.Windows.Forms.TextBox();
             this.partNameTxt = new System.Windows.Forms.TextBox();
             this.partIdTxt = new System.Windows.Forms.TextBox();
-            this.ticketsLbl = new System.Windows.Forms.Label();
             this.priceLbl = new System.Windows.Forms.Label();
             this.partNameLbl = new System.Windows.Forms.Label();
             this.partIdLbl = new System.Windows.Forms.Label();
@@ -92,28 +90,15 @@
             this.allPartsDataGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
             this.allPartsDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.allPartsDataGrid.Size = new System.Drawing.Size(490, 615);
+            this.allPartsDataGrid.Size = new System.Drawing.Size(623, 615);
             this.allPartsDataGrid.TabIndex = 2;
             this.allPartsDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.allPartsDataGrid_CellContentClick);
             // 
-            // ticketsListComboBox
-            // 
-            this.ticketsListComboBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.ticketsListComboBox.FormattingEnabled = true;
-            this.ticketsListComboBox.Items.AddRange(new object[] {
-            "Manager",
-            "ServiceAdvisor",
-            "Warehouse"});
-            this.ticketsListComboBox.Location = new System.Drawing.Point(842, 271);
-            this.ticketsListComboBox.Name = "ticketsListComboBox";
-            this.ticketsListComboBox.Size = new System.Drawing.Size(286, 32);
-            this.ticketsListComboBox.TabIndex = 33;
-            // 
             // updatePartBtn
             // 
-            this.updatePartBtn.BackColor = System.Drawing.Color.Gold;
+            this.updatePartBtn.BackColor = System.Drawing.SystemColors.Control;
             this.updatePartBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.updatePartBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.updatePartBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.updatePartBtn.ForeColor = System.Drawing.SystemColors.ControlText;
             this.updatePartBtn.Location = new System.Drawing.Point(823, 342);
             this.updatePartBtn.Name = "updatePartBtn";
@@ -125,9 +110,9 @@
             // 
             // deletePartBtn
             // 
-            this.deletePartBtn.BackColor = System.Drawing.Color.Red;
+            this.deletePartBtn.BackColor = System.Drawing.SystemColors.Control;
             this.deletePartBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.deletePartBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.deletePartBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.deletePartBtn.ForeColor = System.Drawing.SystemColors.ControlText;
             this.deletePartBtn.Location = new System.Drawing.Point(978, 342);
             this.deletePartBtn.Name = "deletePartBtn";
@@ -139,10 +124,10 @@
             // 
             // createPartBtn
             // 
-            this.createPartBtn.BackColor = System.Drawing.Color.LawnGreen;
+            this.createPartBtn.BackColor = System.Drawing.SystemColors.Control;
             this.createPartBtn.FlatAppearance.BorderSize = 0;
             this.createPartBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.createPartBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.createPartBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.createPartBtn.ForeColor = System.Drawing.SystemColors.ControlText;
             this.createPartBtn.Location = new System.Drawing.Point(667, 342);
             this.createPartBtn.Name = "createPartBtn";
@@ -175,17 +160,6 @@
             this.partIdTxt.Name = "partIdTxt";
             this.partIdTxt.Size = new System.Drawing.Size(286, 29);
             this.partIdTxt.TabIndex = 27;
-            // 
-            // ticketsLbl
-            // 
-            this.ticketsLbl.AutoSize = true;
-            this.ticketsLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.ticketsLbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ticketsLbl.Location = new System.Drawing.Point(672, 271);
-            this.ticketsLbl.Name = "ticketsLbl";
-            this.ticketsLbl.Size = new System.Drawing.Size(119, 24);
-            this.ticketsLbl.TabIndex = 26;
-            this.ticketsLbl.Text = "Tickets List:";
             // 
             // priceLbl
             // 
@@ -247,14 +221,12 @@
             this.ClientSize = new System.Drawing.Size(1515, 705);
             this.Controls.Add(this.quantityTxt);
             this.Controls.Add(this.quantityLbl);
-            this.Controls.Add(this.ticketsListComboBox);
             this.Controls.Add(this.updatePartBtn);
             this.Controls.Add(this.deletePartBtn);
             this.Controls.Add(this.createPartBtn);
             this.Controls.Add(this.partPriceTxt);
             this.Controls.Add(this.partNameTxt);
             this.Controls.Add(this.partIdTxt);
-            this.Controls.Add(this.ticketsLbl);
             this.Controls.Add(this.priceLbl);
             this.Controls.Add(this.partNameLbl);
             this.Controls.Add(this.partIdLbl);
@@ -270,14 +242,12 @@
         #endregion
 
         private System.Windows.Forms.DataGridView allPartsDataGrid;
-        private System.Windows.Forms.ComboBox ticketsListComboBox;
         private System.Windows.Forms.Button updatePartBtn;
         private System.Windows.Forms.Button deletePartBtn;
         private System.Windows.Forms.Button createPartBtn;
         private System.Windows.Forms.TextBox partPriceTxt;
         private System.Windows.Forms.TextBox partNameTxt;
         private System.Windows.Forms.TextBox partIdTxt;
-        private System.Windows.Forms.Label ticketsLbl;
         private System.Windows.Forms.Label priceLbl;
         private System.Windows.Forms.Label partNameLbl;
         private System.Windows.Forms.Label partIdLbl;

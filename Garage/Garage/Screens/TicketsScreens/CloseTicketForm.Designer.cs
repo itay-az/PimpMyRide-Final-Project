@@ -80,10 +80,12 @@
             this.cardDateTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.cardDateTxt.Location = new System.Drawing.Point(359, 172);
             this.cardDateTxt.Name = "cardDateTxt";
-            this.cardDateTxt.ReadOnly = true;
             this.cardDateTxt.Size = new System.Drawing.Size(188, 29);
             this.cardDateTxt.TabIndex = 129;
             this.cardDateTxt.Visible = false;
+            this.cardDateTxt.TextChanged += new System.EventHandler(this.cardDateTxt_TextChanged);
+            this.cardDateTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cardDateTxt_KeyPress);
+            this.cardDateTxt.Validating += new System.ComponentModel.CancelEventHandler(this.cardDateTxt_Validating);
             // 
             // cardDigitsLbl
             // 
@@ -102,10 +104,10 @@
             this.cardDigitsTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.cardDigitsTxt.Location = new System.Drawing.Point(359, 219);
             this.cardDigitsTxt.Name = "cardDigitsTxt";
-            this.cardDigitsTxt.ReadOnly = true;
             this.cardDigitsTxt.Size = new System.Drawing.Size(188, 29);
             this.cardDigitsTxt.TabIndex = 127;
             this.cardDigitsTxt.Visible = false;
+            this.cardDigitsTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cardDigitsTxt_KeyPress);
             // 
             // cardNumberLbl
             // 
@@ -124,10 +126,12 @@
             this.cardNumberTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.cardNumberTxt.Location = new System.Drawing.Point(359, 129);
             this.cardNumberTxt.Name = "cardNumberTxt";
-            this.cardNumberTxt.ReadOnly = true;
             this.cardNumberTxt.Size = new System.Drawing.Size(188, 29);
             this.cardNumberTxt.TabIndex = 125;
             this.cardNumberTxt.Visible = false;
+            this.cardNumberTxt.TextChanged += new System.EventHandler(this.cardNumberTxt_TextChanged);
+            this.cardNumberTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cardNumberTxt_KeyPress);
+            this.cardNumberTxt.Validating += new System.ComponentModel.CancelEventHandler(this.cardNumberTxt_Validating);
             // 
             // amountLbl
             // 

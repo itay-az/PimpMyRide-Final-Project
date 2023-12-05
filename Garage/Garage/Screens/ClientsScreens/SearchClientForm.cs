@@ -132,7 +132,6 @@ namespace Garage.Screens.ClientsScreens
             carYearLbl.Visible = true;
             carEngineLbl.Visible = true;
             vinNumberLbl.Visible = true;
-            carKilometerLbl.Visible = true;
 
             searchClientFullNameTxt.Visible = true;
             searchClientEmailTxt.Visible = true;
@@ -143,7 +142,6 @@ namespace Garage.Screens.ClientsScreens
             searchCarYearTxt.Visible = true;
             searchCarEngineTxt.Visible = true;
             searchVinNumberTxt.Visible = true;
-            carKilometerTxt.Visible = true;
 
             clientHistoryBtn.Visible = true;
 
@@ -160,7 +158,6 @@ namespace Garage.Screens.ClientsScreens
             carYearLbl.Visible = false;
             carEngineLbl.Visible = false;
             vinNumberLbl.Visible = false;
-            carKilometerLbl.Visible = false;
 
             searchClientFullNameTxt.Visible = false;
             searchClientEmailTxt.Visible = false;
@@ -171,7 +168,6 @@ namespace Garage.Screens.ClientsScreens
             searchCarYearTxt.Visible = false;
             searchCarEngineTxt.Visible = false;
             searchVinNumberTxt.Visible = false;
-            carKilometerTxt.Visible = false;
 
             clientHistoryBtn.Visible = false;
 

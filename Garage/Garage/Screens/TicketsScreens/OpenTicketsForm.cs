@@ -1,18 +1,11 @@
-﻿using Garage.Models;
-using Garage.Requests;
-using Garage.Responses;
+﻿using Garage.Responses;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Net.Mime.MediaTypeNames;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Garage.Screens.TicketsScreens
 {
@@ -134,6 +127,40 @@ namespace Garage.Screens.TicketsScreens
             catch (JsonException)
             {
                 MessageBox.Show("Invalid response format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private bool IsValidCarNumber(string carNumber)
+        {
+            return carNumber.Length <= 8 && IsDigitsOnly(carNumber);
+        }
+
+        private bool IsDigitsOnly(string str)
+        {
+            foreach (char c in str)
+            {
+                if (!char.IsDigit(c))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private void searchCarNumberTxt_Validating(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            if (!IsValidCarNumber(searchCarNumberTxt.Text))
+            {
+                MessageBox.Show("Invalid car number. Please enter a valid car number with digits and a maximum length of 8 characters.");
+                searchCarNumberTxt.Focus();
+            }
+        }
+
+        private void searchCarNumberTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8 )
+            {
+                e.Handled = true;
             }
         }
     }

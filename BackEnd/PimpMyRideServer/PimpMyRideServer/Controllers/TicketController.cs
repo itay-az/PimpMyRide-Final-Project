@@ -17,11 +17,15 @@ namespace PimpMyRideServer.Controllers
             this.handler = new TicketsHandler();
         }
 
+
+
+        // create new ticket controller
         [HttpPost]
         public ActionResult CreateTicket([FromBody] CreateNewTicketRequest request)
         {
             return ((TicketsHandler)handler).HandleCreate(request);
         }
+
 
         [HttpGet]
         public ActionResult GetAllTickets()

@@ -143,6 +143,11 @@
     <Compile Include="Models\TicketPart.cs" />
     <Compile Include="Models\TicketType.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Requests\AddCarToClientRequest.cs" />
     <Compile Include="Requests\AddPartToTicketRequest.cs" />
     <Compile Include="Requests\CreateClientRequest.cs" />
@@ -226,36 +231,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Screens\ClientsScreens\SearchClientForm.Designer.cs">
-      <DependentUpon>SearchClientForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Screens\ServiceAdvisor\AllClientsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Screens\ServiceAdvisor\AllClientsForm.Designer.cs">
-      <DependentUpon>AllClientsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Screens\ServiceAdvisor\AllOffersForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Screens\ServiceAdvisor\AllOffersForm.Designer.cs">
-      <DependentUpon>AllOffersForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Screens\ServiceAdvisor\CreateOfferForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Screens\ServiceAdvisor\CreateOfferForm.Designer.cs">
-      <DependentUpon>CreateOfferForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Screens\ServiceAdvisor\ServiceAdvisorMenu.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Screens\ServiceAdvisor\ServiceAdvisorMenu.Designer.cs">
-      <DependentUpon>ServiceAdvisorMenu.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Screens\ServiceAdvisor\SearchClientForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Screens\ServiceAdvisor\SearchClientForm.Designer.cs">
       <DependentUpon>SearchClientForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\StorageScreens\AllPartsForm.cs">
@@ -363,14 +338,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <EmbeddedResource Include="Screens\ClientsScreens\AllClientsForm.resx">
       <DependentUpon>AllClientsForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -381,18 +351,6 @@
       <DependentUpon>CreateNewClient.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\ClientsScreens\SearchClientForm.resx">
-      <DependentUpon>SearchClientForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Screens\ServiceAdvisor\AllClientsForm.resx">
-      <DependentUpon>AllClientsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Screens\ServiceAdvisor\AllOffersForm.resx">
-      <DependentUpon>AllOffersForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Screens\ServiceAdvisor\ServiceAdvisorMenu.resx">
-      <DependentUpon>ServiceAdvisorMenu.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Screens\ServiceAdvisor\SearchClientForm.resx">
       <DependentUpon>SearchClientForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\StorageScreens\AllPartsForm.resx">
@@ -491,6 +449,7 @@
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
+    <None Include="Resources\PimpMyRide .jpeg" />
     <None Include="Resources\PimpMyRide 2.jpeg" />
     <None Include="Resources\WhatsApp Image 2023-09-22 at 15.26.23.jpeg" />
     <None Include="Resources\pimpMyRideLogo.png" />

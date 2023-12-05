@@ -6,11 +6,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Garage.Screens.TicketsScreens
 {
@@ -130,6 +132,93 @@ namespace Garage.Screens.TicketsScreens
         private void closeTicketBtn_Click(object sender, EventArgs e)
         {
             CloseTicketById(this.ticketId);
+        }
+
+        private void cardDigitsTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (cardDigitsTxt.Text.Length >= 3)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void cardDateTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8 && e.KeyChar != '/' )
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void cardDateTxt_TextChanged(object sender, EventArgs e)
+        {
+
+            if (cardDateTxt.Text.Length == 2 && !cardDateTxt.Text.Contains("/"))
+            {
+                cardDateTxt.Text += "/";
+                cardDateTxt.SelectionStart = cardDateTxt.Text.Length;
+            }
+
+            // Limit the total length to 7 characters
+            if (cardDateTxt.Text.Length > 7)
+            {
+                cardDateTxt.Text = cardDateTxt.Text.Substring(0, 7);
+                cardDateTxt.SelectionStart = cardDateTxt.Text.Length;
+            }
+
+        }
+
+        private void cardDateTxt_Validating(object sender, CancelEventArgs e)
+        {
+            if (!IsValidDate(cardDateTxt.Text))
+            {
+                MessageBox.Show("Invalid date format. Please enter a valid date in mm/yyyy format.");
+                cardDateTxt.Focus();
+            }
+        }
+
+        private bool IsValidDate(string date)
+        {
+            return DateTime.TryParseExact(date, "MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out _);
+        }
+
+        private bool IsValidCreditCard(string creditCardNumber)
+        {
+            string strippedCreditCardNumber = creditCardNumber.Replace("-", "");
+
+            return strippedCreditCardNumber.Length == 16 && long.TryParse(strippedCreditCardNumber, out _);
+        }
+
+        private void cardNumberTxt_Validating(object sender, CancelEventArgs e)
+        {
+            if (!IsValidCreditCard(cardNumberTxt.Text))
+            {
+                MessageBox.Show("Invalid credit card number. Please enter a valid credit card number.");
+                cardNumberTxt.Focus();
+            }
+        }
+
+        private void cardNumberTxt_TextChanged(object sender, EventArgs e)
+        {
+            if (cardNumberTxt.Text.Length == 4 || cardNumberTxt.Text.Length == 9 || cardNumberTxt.Text.Length == 14)
+            {
+                cardNumberTxt.Text += "-";
+                cardNumberTxt.SelectionStart = cardNumberTxt.Text.Length;
+            }
+
+                if (cardNumberTxt.Text.Length > 19)
+            {
+                cardNumberTxt.Text = cardNumberTxt.Text.Substring(0, 19);
+                cardNumberTxt.SelectionStart = cardNumberTxt.Text.Length;
+            }
+        }
+
+        private void cardNumberTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8  && e.KeyChar != '-')
+            {
+                e.Handled = true;
+            }
         }
     }
 }

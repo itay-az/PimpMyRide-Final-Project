@@ -35,6 +35,8 @@ namespace PimpMyRideServer.Handlers
             return jsonResult;
         }
 
+        
+
         public ActionResult HandleCreate(CreateNewTicketRequest request)
         {
             Ticket newTicket = new Ticket(request.carId,request.clientFullName,request.clientId,request.clientPhoneNumber,request.clientEmail,request.causeOfArrival);

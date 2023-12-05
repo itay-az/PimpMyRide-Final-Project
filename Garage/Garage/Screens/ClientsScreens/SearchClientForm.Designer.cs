@@ -54,8 +54,6 @@
             this.updateClientBtn = new System.Windows.Forms.Button();
             this.addCarToClientBtn = new System.Windows.Forms.Button();
             this.carNumberComboBox = new System.Windows.Forms.ComboBox();
-            this.carKilometerTxt = new System.Windows.Forms.TextBox();
-            this.carKilometerLbl = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // searchVinNumberTxt
@@ -167,7 +165,7 @@
             // searchClientBtn
             // 
             this.searchClientBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.searchClientBtn.Location = new System.Drawing.Point(49, 467);
+            this.searchClientBtn.Location = new System.Drawing.Point(49, 400);
             this.searchClientBtn.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
             this.searchClientBtn.Name = "searchClientBtn";
             this.searchClientBtn.Size = new System.Drawing.Size(214, 45);
@@ -274,7 +272,7 @@
             // clientHistoryBtn
             // 
             this.clientHistoryBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.clientHistoryBtn.Location = new System.Drawing.Point(753, 467);
+            this.clientHistoryBtn.Location = new System.Drawing.Point(753, 400);
             this.clientHistoryBtn.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
             this.clientHistoryBtn.Name = "clientHistoryBtn";
             this.clientHistoryBtn.Size = new System.Drawing.Size(214, 45);
@@ -286,7 +284,7 @@
             // updateClientBtn
             // 
             this.updateClientBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.updateClientBtn.Location = new System.Drawing.Point(288, 467);
+            this.updateClientBtn.Location = new System.Drawing.Point(288, 400);
             this.updateClientBtn.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
             this.updateClientBtn.Name = "updateClientBtn";
             this.updateClientBtn.Size = new System.Drawing.Size(214, 45);
@@ -298,7 +296,7 @@
             // addCarToClientBtn
             // 
             this.addCarToClientBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.addCarToClientBtn.Location = new System.Drawing.Point(520, 467);
+            this.addCarToClientBtn.Location = new System.Drawing.Point(520, 400);
             this.addCarToClientBtn.Name = "addCarToClientBtn";
             this.addCarToClientBtn.Size = new System.Drawing.Size(214, 45);
             this.addCarToClientBtn.TabIndex = 78;
@@ -316,33 +314,12 @@
             this.carNumberComboBox.TabIndex = 79;
             this.carNumberComboBox.SelectedIndexChanged += new System.EventHandler(this.carNumberComboBox_SelectedIndexChanged);
             // 
-            // carKilometerTxt
-            // 
-            this.carKilometerTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.carKilometerTxt.Location = new System.Drawing.Point(732, 393);
-            this.carKilometerTxt.Name = "carKilometerTxt";
-            this.carKilometerTxt.Size = new System.Drawing.Size(286, 29);
-            this.carKilometerTxt.TabIndex = 81;
-            // 
-            // carKilometerLbl
-            // 
-            this.carKilometerLbl.AutoSize = true;
-            this.carKilometerLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.carKilometerLbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.carKilometerLbl.Location = new System.Drawing.Point(561, 393);
-            this.carKilometerLbl.Name = "carKilometerLbl";
-            this.carKilometerLbl.Size = new System.Drawing.Size(148, 24);
-            this.carKilometerLbl.TabIndex = 80;
-            this.carKilometerLbl.Text = "Car Kilometer :";
-            // 
             // SearchClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
             this.ClientSize = new System.Drawing.Size(1062, 597);
-            this.Controls.Add(this.carKilometerTxt);
-            this.Controls.Add(this.carKilometerLbl);
             this.Controls.Add(this.carNumberComboBox);
             this.Controls.Add(this.addCarToClientBtn);
             this.Controls.Add(this.updateClientBtn);
@@ -404,7 +381,5 @@
         private System.Windows.Forms.Button updateClientBtn;
         private System.Windows.Forms.Button addCarToClientBtn;
         private System.Windows.Forms.ComboBox carNumberComboBox;
-        private System.Windows.Forms.TextBox carKilometerTxt;
-        private System.Windows.Forms.Label carKilometerLbl;
     }
 }

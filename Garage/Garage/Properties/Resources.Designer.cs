@@ -59,35 +59,5 @@ namespace Garage.Properties {
                 resourceCulture = value;
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap PimpMyRide_2 {
-            get {
-                object obj = ResourceManager.GetObject("PimpMyRide 2", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap pimpMyRideLogo {
-            get {
-                object obj = ResourceManager.GetObject("pimpMyRideLogo", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap WhatsApp_Image_2023_09_22_at_15_26_23 {
-            get {
-                object obj = ResourceManager.GetObject("WhatsApp Image 2023-09-22 at 15.26.23", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
     }
 }

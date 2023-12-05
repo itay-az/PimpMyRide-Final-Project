@@ -28,7 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.timerLbl = new System.Windows.Forms.Label();
             this.logoutBtn = new System.Windows.Forms.Button();
             this.adminPanel = new System.Windows.Forms.Panel();
             this.addNewManufactureBtn = new System.Windows.Forms.Button();
@@ -56,6 +59,7 @@
             this.helloLbl = new System.Windows.Forms.Label();
             this.getAllPartsBtn = new System.Windows.Forms.Panel();
             this.logoPictureBox = new System.Windows.Forms.PictureBox();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.adminPanel.SuspendLayout();
             this.suppliersPanel.SuspendLayout();
@@ -69,6 +73,7 @@
             // 
             this.panel1.AutoScroll = true;
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
+            this.panel1.Controls.Add(this.timerLbl);
             this.panel1.Controls.Add(this.logoutBtn);
             this.panel1.Controls.Add(this.adminPanel);
             this.panel1.Controls.Add(this.adminMenuBtn);
@@ -83,8 +88,18 @@
             this.panel1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(194, 742);
+            this.panel1.Size = new System.Drawing.Size(194, 747);
             this.panel1.TabIndex = 0;
+            // 
+            // timerLbl
+            // 
+            this.timerLbl.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.timerLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.timerLbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.timerLbl.Location = new System.Drawing.Point(0, 856);
+            this.timerLbl.Name = "timerLbl";
+            this.timerLbl.Size = new System.Drawing.Size(177, 102);
+            this.timerLbl.TabIndex = 11;
             // 
             // logoutBtn
             // 
@@ -93,8 +108,9 @@
             this.logoutBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
             this.logoutBtn.FlatAppearance.BorderSize = 0;
             this.logoutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.logoutBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.logoutBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.logoutBtn.Location = new System.Drawing.Point(0, 827);
+            this.logoutBtn.Location = new System.Drawing.Point(0, 821);
             this.logoutBtn.Name = "logoutBtn";
             this.logoutBtn.Size = new System.Drawing.Size(177, 35);
             this.logoutBtn.TabIndex = 10;
@@ -110,7 +126,7 @@
             this.adminPanel.Controls.Add(this.maintenanceBtn);
             this.adminPanel.Controls.Add(this.adminUsersBtn);
             this.adminPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.adminPanel.Location = new System.Drawing.Point(0, 702);
+            this.adminPanel.Location = new System.Drawing.Point(0, 696);
             this.adminPanel.Name = "adminPanel";
             this.adminPanel.Size = new System.Drawing.Size(177, 125);
             this.adminPanel.TabIndex = 9;
@@ -120,8 +136,9 @@
             this.addNewManufactureBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
             this.addNewManufactureBtn.FlatAppearance.BorderSize = 0;
             this.addNewManufactureBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addNewManufactureBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.addNewManufactureBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.addNewManufactureBtn.Location = new System.Drawing.Point(0, 81);
+            this.addNewManufactureBtn.Location = new System.Drawing.Point(0, 83);
             this.addNewManufactureBtn.Name = "addNewManufactureBtn";
             this.addNewManufactureBtn.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.addNewManufactureBtn.Size = new System.Drawing.Size(194, 41);
@@ -137,6 +154,7 @@
             this.maintenanceBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.maintenanceBtn.FlatAppearance.BorderSize = 0;
             this.maintenanceBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.maintenanceBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.maintenanceBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.maintenanceBtn.Location = new System.Drawing.Point(0, 42);
             this.maintenanceBtn.Name = "maintenanceBtn";
@@ -153,6 +171,7 @@
             this.adminUsersBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.adminUsersBtn.FlatAppearance.BorderSize = 0;
             this.adminUsersBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.adminUsersBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.adminUsersBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.adminUsersBtn.Location = new System.Drawing.Point(0, 0);
             this.adminUsersBtn.Name = "adminUsersBtn";
@@ -171,8 +190,9 @@
             this.adminMenuBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
             this.adminMenuBtn.FlatAppearance.BorderSize = 0;
             this.adminMenuBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.adminMenuBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.adminMenuBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.adminMenuBtn.Location = new System.Drawing.Point(0, 667);
+            this.adminMenuBtn.Location = new System.Drawing.Point(0, 661);
             this.adminMenuBtn.Name = "adminMenuBtn";
             this.adminMenuBtn.Size = new System.Drawing.Size(177, 35);
             this.adminMenuBtn.TabIndex = 8;
@@ -190,7 +210,7 @@
             this.suppliersPanel.Controls.Add(this.createNewSupplierBtn);
             this.suppliersPanel.Controls.Add(this.allSuppliersBtn);
             this.suppliersPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.suppliersPanel.Location = new System.Drawing.Point(0, 459);
+            this.suppliersPanel.Location = new System.Drawing.Point(0, 453);
             this.suppliersPanel.Name = "suppliersPanel";
             this.suppliersPanel.Size = new System.Drawing.Size(177, 208);
             this.suppliersPanel.TabIndex = 6;
@@ -201,6 +221,7 @@
             this.allOrdersBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.allOrdersBtn.FlatAppearance.BorderSize = 0;
             this.allOrdersBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.allOrdersBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.allOrdersBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.allOrdersBtn.Location = new System.Drawing.Point(0, 168);
             this.allOrdersBtn.Name = "allOrdersBtn";
@@ -218,6 +239,7 @@
             this.allPartsBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.allPartsBtn.FlatAppearance.BorderSize = 0;
             this.allPartsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.allPartsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.allPartsBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.allPartsBtn.Location = new System.Drawing.Point(0, 126);
             this.allPartsBtn.Name = "allPartsBtn";
@@ -235,6 +257,7 @@
             this.newOrderBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.newOrderBtn.FlatAppearance.BorderSize = 0;
             this.newOrderBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.newOrderBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.newOrderBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.newOrderBtn.Location = new System.Drawing.Point(0, 84);
             this.newOrderBtn.Name = "newOrderBtn";
@@ -252,6 +275,7 @@
             this.createNewSupplierBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.createNewSupplierBtn.FlatAppearance.BorderSize = 0;
             this.createNewSupplierBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.createNewSupplierBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.createNewSupplierBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.createNewSupplierBtn.Location = new System.Drawing.Point(0, 42);
             this.createNewSupplierBtn.Name = "createNewSupplierBtn";
@@ -269,6 +293,7 @@
             this.allSuppliersBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.allSuppliersBtn.FlatAppearance.BorderSize = 0;
             this.allSuppliersBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.allSuppliersBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.allSuppliersBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.allSuppliersBtn.Location = new System.Drawing.Point(0, 0);
             this.allSuppliersBtn.Name = "allSuppliersBtn";
@@ -287,8 +312,9 @@
             this.storageMenuBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
             this.storageMenuBtn.FlatAppearance.BorderSize = 0;
             this.storageMenuBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.storageMenuBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.storageMenuBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.storageMenuBtn.Location = new System.Drawing.Point(0, 424);
+            this.storageMenuBtn.Location = new System.Drawing.Point(0, 418);
             this.storageMenuBtn.Name = "storageMenuBtn";
             this.storageMenuBtn.Size = new System.Drawing.Size(177, 35);
             this.storageMenuBtn.TabIndex = 5;
@@ -304,7 +330,7 @@
             this.clientsPanel.Controls.Add(this.allClientsBtn);
             this.clientsPanel.Controls.Add(this.searchClientBtn);
             this.clientsPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.clientsPanel.Location = new System.Drawing.Point(0, 285);
+            this.clientsPanel.Location = new System.Drawing.Point(0, 279);
             this.clientsPanel.Name = "clientsPanel";
             this.clientsPanel.Size = new System.Drawing.Size(177, 139);
             this.clientsPanel.TabIndex = 4;
@@ -315,6 +341,7 @@
             this.createNewClientBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.createNewClientBtn.FlatAppearance.BorderSize = 0;
             this.createNewClientBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.createNewClientBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.createNewClientBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.createNewClientBtn.Location = new System.Drawing.Point(0, 84);
             this.createNewClientBtn.Name = "createNewClientBtn";
@@ -332,6 +359,7 @@
             this.allClientsBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.allClientsBtn.FlatAppearance.BorderSize = 0;
             this.allClientsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.allClientsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.allClientsBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.allClientsBtn.Location = new System.Drawing.Point(0, 42);
             this.allClientsBtn.Name = "allClientsBtn";
@@ -349,6 +377,7 @@
             this.searchClientBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.searchClientBtn.FlatAppearance.BorderSize = 0;
             this.searchClientBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.searchClientBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.searchClientBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.searchClientBtn.Location = new System.Drawing.Point(0, 0);
             this.searchClientBtn.Name = "searchClientBtn";
@@ -367,8 +396,9 @@
             this.clientMenuBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
             this.clientMenuBtn.FlatAppearance.BorderSize = 0;
             this.clientMenuBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.clientMenuBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.clientMenuBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.clientMenuBtn.Location = new System.Drawing.Point(0, 250);
+            this.clientMenuBtn.Location = new System.Drawing.Point(0, 244);
             this.clientMenuBtn.Name = "clientMenuBtn";
             this.clientMenuBtn.Size = new System.Drawing.Size(177, 35);
             this.clientMenuBtn.TabIndex = 3;
@@ -385,7 +415,7 @@
             this.ticketPanel.Controls.Add(this.openTicketsBtn);
             this.ticketPanel.Controls.Add(this.createNewTicketBtn);
             this.ticketPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.ticketPanel.Location = new System.Drawing.Point(0, 81);
+            this.ticketPanel.Location = new System.Drawing.Point(0, 75);
             this.ticketPanel.Name = "ticketPanel";
             this.ticketPanel.Size = new System.Drawing.Size(177, 169);
             this.ticketPanel.TabIndex = 2;
@@ -396,6 +426,7 @@
             this.getAllOffersBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.getAllOffersBtn.FlatAppearance.BorderSize = 0;
             this.getAllOffersBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.getAllOffersBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.getAllOffersBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.getAllOffersBtn.Location = new System.Drawing.Point(0, 126);
             this.getAllOffersBtn.Name = "getAllOffersBtn";
@@ -413,6 +444,7 @@
             this.createNewOfferBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.createNewOfferBtn.FlatAppearance.BorderSize = 0;
             this.createNewOfferBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.createNewOfferBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.createNewOfferBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.createNewOfferBtn.Location = new System.Drawing.Point(0, 84);
             this.createNewOfferBtn.Name = "createNewOfferBtn";
@@ -430,6 +462,7 @@
             this.openTicketsBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.openTicketsBtn.FlatAppearance.BorderSize = 0;
             this.openTicketsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.openTicketsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.openTicketsBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.openTicketsBtn.Location = new System.Drawing.Point(0, 42);
             this.openTicketsBtn.Name = "openTicketsBtn";
@@ -447,6 +480,7 @@
             this.createNewTicketBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.createNewTicketBtn.FlatAppearance.BorderSize = 0;
             this.createNewTicketBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.createNewTicketBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.createNewTicketBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.createNewTicketBtn.Location = new System.Drawing.Point(0, 0);
             this.createNewTicketBtn.Name = "createNewTicketBtn";
@@ -465,8 +499,9 @@
             this.ticketsMenuBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
             this.ticketsMenuBtn.FlatAppearance.BorderSize = 0;
             this.ticketsMenuBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.ticketsMenuBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.ticketsMenuBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.ticketsMenuBtn.Location = new System.Drawing.Point(0, 46);
+            this.ticketsMenuBtn.Location = new System.Drawing.Point(0, 40);
             this.ticketsMenuBtn.Name = "ticketsMenuBtn";
             this.ticketsMenuBtn.Size = new System.Drawing.Size(177, 35);
             this.ticketsMenuBtn.TabIndex = 1;
@@ -478,11 +513,11 @@
             // helloLbl
             // 
             this.helloLbl.Dock = System.Windows.Forms.DockStyle.Top;
-            this.helloLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.helloLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.helloLbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.helloLbl.Location = new System.Drawing.Point(0, 0);
             this.helloLbl.Name = "helloLbl";
-            this.helloLbl.Size = new System.Drawing.Size(177, 46);
+            this.helloLbl.Size = new System.Drawing.Size(177, 40);
             this.helloLbl.TabIndex = 0;
             this.helloLbl.Text = "Hello ";
             // 
@@ -493,23 +528,30 @@
             this.getAllPartsBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.getAllPartsBtn.Location = new System.Drawing.Point(194, 0);
             this.getAllPartsBtn.Name = "getAllPartsBtn";
-            this.getAllPartsBtn.Size = new System.Drawing.Size(1190, 742);
+            this.getAllPartsBtn.Size = new System.Drawing.Size(1571, 747);
             this.getAllPartsBtn.TabIndex = 1;
             // 
             // logoPictureBox
             // 
-            this.logoPictureBox.Image = global::Garage.Properties.Resources.PimpMyRide_2;
-            this.logoPictureBox.Location = new System.Drawing.Point(0, 3);
+            this.logoPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("logoPictureBox.Image")));
+            this.logoPictureBox.Location = new System.Drawing.Point(204, 75);
             this.logoPictureBox.Name = "logoPictureBox";
-            this.logoPictureBox.Size = new System.Drawing.Size(503, 494);
+            this.logoPictureBox.Padding = new System.Windows.Forms.Padding(25);
+            this.logoPictureBox.Size = new System.Drawing.Size(547, 528);
             this.logoPictureBox.TabIndex = 2;
             this.logoPictureBox.TabStop = false;
+            // 
+            // timer1
+            // 
+            this.timer1.Enabled = true;
+            this.timer1.Interval = 1000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1384, 742);
+            this.ClientSize = new System.Drawing.Size(1765, 747);
             this.ControlBox = false;
             this.Controls.Add(this.getAllPartsBtn);
             this.Controls.Add(this.panel1);
@@ -531,7 +573,6 @@
 
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button ticketsMenuBtn;
-        private System.Windows.Forms.Label helloLbl;
         private System.Windows.Forms.Panel ticketPanel;
         private System.Windows.Forms.Button createNewTicketBtn;
         private System.Windows.Forms.Button openTicketsBtn;
@@ -557,5 +598,8 @@
         private System.Windows.Forms.Button addNewManufactureBtn;
         private System.Windows.Forms.Button allPartsBtn;
         private System.Windows.Forms.Button allOrdersBtn;
+        private System.Windows.Forms.Label helloLbl;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label timerLbl;
     }
 }

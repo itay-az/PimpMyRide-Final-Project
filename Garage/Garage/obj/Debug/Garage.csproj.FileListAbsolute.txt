@@ -119,10 +119,6 @@ D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\obj\Debug\
 D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\obj\Debug\Garage.Screens.ClientsScreens.AllClientsForm.resources
 D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\obj\Debug\Garage.Screens.ClientsScreens.CreateNewClient.resources
 D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\obj\Debug\Garage.Screens.ClientsScreens.SearchClientForm.resources
-D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\obj\Debug\Garage.Screens.ServiceAdvisor.AllClientsForm.resources
-D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\obj\Debug\Garage.Screens.ServiceAdvisor.AllOffersForm.resources
-D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\obj\Debug\Garage.Screens.ServiceAdvisor.ServiceAdvisorMenu.resources
-D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\obj\Debug\Garage.Screens.ServiceAdvisor.SearchClientForm.resources
 D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\obj\Debug\Garage.Screens.StorageScreens.AllPartsForm.resources
 D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\obj\Debug\Garage.Screens.StorageScreens.AllSuppliersForm.resources
 D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\obj\Debug\Garage.Screens.StorageScreens.CreateNewSupplierForm.resources

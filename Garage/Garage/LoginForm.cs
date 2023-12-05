@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 using Newtonsoft.Json;
 using System.Text;
 using Garage.Models;
-using Garage.Screens.ServiceAdvisor;
+using System.Drawing;
 
 namespace Garage
 {
@@ -16,7 +16,12 @@ namespace Garage
         public LoginForm()
         {
             InitializeComponent();
+
+            Loginbtn.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Loginbtn.Width, Loginbtn.Height, 15, 15));
         }
+
+        [System.Runtime.InteropServices.DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
 
         private void Loginbtn_Click(object sender, EventArgs e)
         {
@@ -53,5 +58,9 @@ namespace Garage
             }
         }
 
+        private void Loginbtn_Click_1(object sender, EventArgs e)
+        {
+            LoginRequest(UserNametxt.Text,Passwordtxt.Text);
+        }
     }
 }
