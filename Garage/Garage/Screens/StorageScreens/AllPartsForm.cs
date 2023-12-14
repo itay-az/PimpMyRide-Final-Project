@@ -52,12 +52,10 @@ namespace Garage.Screens.StorageScreens
                     allPartsDataGrid.Columns["partName"].HeaderText = "Part Name";
                     allPartsDataGrid.Columns["price"].HeaderText = "Price";
                     allPartsDataGrid.Columns["quantity"].HeaderText = "Quantity";
-
                 }
                 else
                 {
                     await ErrorHandling.HandleErrorResponse(response);
-
                 }
             }
             catch (Exception ex)
@@ -73,7 +71,6 @@ namespace Garage.Screens.StorageScreens
         {
             try
             {
-
                 partIdTxt.Text = allPartsDataGrid.Rows[e.RowIndex].Cells[0].Value.ToString();
                 partNameTxt.Text = allPartsDataGrid.Rows[e.RowIndex].Cells[1].Value.ToString();
                 partPriceTxt.Text = allPartsDataGrid.Rows[e.RowIndex].Cells[2].Value.ToString();
