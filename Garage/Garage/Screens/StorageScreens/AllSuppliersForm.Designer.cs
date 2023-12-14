@@ -55,7 +55,7 @@
             this.supplierPhoneTxt.Location = new System.Drawing.Point(1318, 207);
             this.supplierPhoneTxt.Name = "supplierPhoneTxt";
             this.supplierPhoneTxt.Size = new System.Drawing.Size(286, 29);
-            this.supplierPhoneTxt.TabIndex = 49;
+            this.supplierPhoneTxt.TabIndex = 4;
             // 
             // supplierPhonebl
             // 
@@ -77,7 +77,7 @@
             this.updateSupplierBtn.Location = new System.Drawing.Point(1143, 329);
             this.updateSupplierBtn.Name = "updateSupplierBtn";
             this.updateSupplierBtn.Size = new System.Drawing.Size(230, 50);
-            this.updateSupplierBtn.TabIndex = 46;
+            this.updateSupplierBtn.TabIndex = 6;
             this.updateSupplierBtn.Text = "Update Supplier";
             this.updateSupplierBtn.UseVisualStyleBackColor = false;
             this.updateSupplierBtn.Click += new System.EventHandler(this.updateSupplierBtn_Click);
@@ -91,7 +91,7 @@
             this.deletePartBtn.Location = new System.Drawing.Point(1379, 329);
             this.deletePartBtn.Name = "deletePartBtn";
             this.deletePartBtn.Size = new System.Drawing.Size(230, 50);
-            this.deletePartBtn.TabIndex = 45;
+            this.deletePartBtn.TabIndex = 7;
             this.deletePartBtn.Text = "Delete Supplier";
             this.deletePartBtn.UseVisualStyleBackColor = false;
             this.deletePartBtn.Click += new System.EventHandler(this.deletePartBtn_Click);
@@ -102,7 +102,7 @@
             this.supplierAddressTxt.Location = new System.Drawing.Point(1318, 163);
             this.supplierAddressTxt.Name = "supplierAddressTxt";
             this.supplierAddressTxt.Size = new System.Drawing.Size(286, 29);
-            this.supplierAddressTxt.TabIndex = 43;
+            this.supplierAddressTxt.TabIndex = 3;
             // 
             // supplierNameTxt
             // 
@@ -110,7 +110,7 @@
             this.supplierNameTxt.Location = new System.Drawing.Point(1318, 119);
             this.supplierNameTxt.Name = "supplierNameTxt";
             this.supplierNameTxt.Size = new System.Drawing.Size(286, 29);
-            this.supplierNameTxt.TabIndex = 42;
+            this.supplierNameTxt.TabIndex = 2;
             // 
             // supplierIdTxt
             // 
@@ -118,7 +118,7 @@
             this.supplierIdTxt.Location = new System.Drawing.Point(1318, 75);
             this.supplierIdTxt.Name = "supplierIdTxt";
             this.supplierIdTxt.Size = new System.Drawing.Size(286, 29);
-            this.supplierIdTxt.TabIndex = 41;
+            this.supplierIdTxt.TabIndex = 1;
             // 
             // supplierAdressLbl
             // 
@@ -205,7 +205,7 @@
             this.supplierEmailTxt.Location = new System.Drawing.Point(1318, 250);
             this.supplierEmailTxt.Name = "supplierEmailTxt";
             this.supplierEmailTxt.Size = new System.Drawing.Size(286, 29);
-            this.supplierEmailTxt.TabIndex = 51;
+            this.supplierEmailTxt.TabIndex = 5;
             // 
             // supplierEmailLbl
             // 

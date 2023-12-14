@@ -49,7 +49,7 @@
             this.paymentMethodComboBox.Location = new System.Drawing.Point(23, 21);
             this.paymentMethodComboBox.Name = "paymentMethodComboBox";
             this.paymentMethodComboBox.Size = new System.Drawing.Size(286, 32);
-            this.paymentMethodComboBox.TabIndex = 80;
+            this.paymentMethodComboBox.TabIndex = 1;
             this.paymentMethodComboBox.SelectedIndexChanged += new System.EventHandler(this.paymentMethodComboBox_SelectedIndexChanged);
             // 
             // closeTicketBtn
@@ -58,7 +58,7 @@
             this.closeTicketBtn.Location = new System.Drawing.Point(749, 463);
             this.closeTicketBtn.Name = "closeTicketBtn";
             this.closeTicketBtn.Size = new System.Drawing.Size(249, 45);
-            this.closeTicketBtn.TabIndex = 113;
+            this.closeTicketBtn.TabIndex = 7;
             this.closeTicketBtn.Text = "Close Ticket";
             this.closeTicketBtn.UseVisualStyleBackColor = true;
             this.closeTicketBtn.Click += new System.EventHandler(this.closeTicketBtn_Click);
@@ -81,7 +81,7 @@
             this.cardDateTxt.Location = new System.Drawing.Point(359, 172);
             this.cardDateTxt.Name = "cardDateTxt";
             this.cardDateTxt.Size = new System.Drawing.Size(188, 29);
-            this.cardDateTxt.TabIndex = 129;
+            this.cardDateTxt.TabIndex = 3;
             this.cardDateTxt.Visible = false;
             this.cardDateTxt.TextChanged += new System.EventHandler(this.cardDateTxt_TextChanged);
             this.cardDateTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cardDateTxt_KeyPress);
@@ -105,7 +105,7 @@
             this.cardDigitsTxt.Location = new System.Drawing.Point(359, 219);
             this.cardDigitsTxt.Name = "cardDigitsTxt";
             this.cardDigitsTxt.Size = new System.Drawing.Size(188, 29);
-            this.cardDigitsTxt.TabIndex = 127;
+            this.cardDigitsTxt.TabIndex = 4;
             this.cardDigitsTxt.Visible = false;
             this.cardDigitsTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cardDigitsTxt_KeyPress);
             // 
@@ -127,7 +127,7 @@
             this.cardNumberTxt.Location = new System.Drawing.Point(359, 129);
             this.cardNumberTxt.Name = "cardNumberTxt";
             this.cardNumberTxt.Size = new System.Drawing.Size(188, 29);
-            this.cardNumberTxt.TabIndex = 125;
+            this.cardNumberTxt.TabIndex = 2;
             this.cardNumberTxt.Visible = false;
             this.cardNumberTxt.TextChanged += new System.EventHandler(this.cardNumberTxt_TextChanged);
             this.cardNumberTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.cardNumberTxt_KeyPress);
@@ -151,7 +151,7 @@
             this.ticketPriceTxt.Name = "ticketPriceTxt";
             this.ticketPriceTxt.ReadOnly = true;
             this.ticketPriceTxt.Size = new System.Drawing.Size(188, 29);
-            this.ticketPriceTxt.TabIndex = 131;
+            this.ticketPriceTxt.TabIndex = 5;
             // 
             // amountOfPaymentsComboBox
             // 
@@ -173,7 +173,7 @@
             this.amountOfPaymentsComboBox.Location = new System.Drawing.Point(452, 339);
             this.amountOfPaymentsComboBox.Name = "amountOfPaymentsComboBox";
             this.amountOfPaymentsComboBox.Size = new System.Drawing.Size(95, 32);
-            this.amountOfPaymentsComboBox.TabIndex = 133;
+            this.amountOfPaymentsComboBox.TabIndex = 6;
             this.amountOfPaymentsComboBox.Visible = false;
             // 
             // amountOfPaymentsLbl

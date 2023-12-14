@@ -59,7 +59,7 @@
             this.supplierPhoneTxt.Location = new System.Drawing.Point(308, 265);
             this.supplierPhoneTxt.Name = "supplierPhoneTxt";
             this.supplierPhoneTxt.Size = new System.Drawing.Size(286, 29);
-            this.supplierPhoneTxt.TabIndex = 59;
+            this.supplierPhoneTxt.TabIndex = 4;
             // 
             // supplierAddressTxt
             // 
@@ -67,7 +67,7 @@
             this.supplierAddressTxt.Location = new System.Drawing.Point(308, 211);
             this.supplierAddressTxt.Name = "supplierAddressTxt";
             this.supplierAddressTxt.Size = new System.Drawing.Size(286, 29);
-            this.supplierAddressTxt.TabIndex = 58;
+            this.supplierAddressTxt.TabIndex = 3;
             // 
             // supplierFullNameTxt
             // 
@@ -75,7 +75,7 @@
             this.supplierFullNameTxt.Location = new System.Drawing.Point(308, 157);
             this.supplierFullNameTxt.Name = "supplierFullNameTxt";
             this.supplierFullNameTxt.Size = new System.Drawing.Size(286, 29);
-            this.supplierFullNameTxt.TabIndex = 57;
+            this.supplierFullNameTxt.TabIndex = 2;
             // 
             // supplierIdTxt
             // 
@@ -83,7 +83,7 @@
             this.supplierIdTxt.Location = new System.Drawing.Point(308, 99);
             this.supplierIdTxt.Name = "supplierIdTxt";
             this.supplierIdTxt.Size = new System.Drawing.Size(286, 29);
-            this.supplierIdTxt.TabIndex = 56;
+            this.supplierIdTxt.TabIndex = 1;
             // 
             // supplierPhoneLbl
             // 
@@ -135,7 +135,7 @@
             this.createNewSupplierBtn.Location = new System.Drawing.Point(308, 412);
             this.createNewSupplierBtn.Name = "createNewSupplierBtn";
             this.createNewSupplierBtn.Size = new System.Drawing.Size(286, 45);
-            this.createNewSupplierBtn.TabIndex = 61;
+            this.createNewSupplierBtn.TabIndex = 6;
             this.createNewSupplierBtn.Text = "Create Supplier";
             this.createNewSupplierBtn.UseVisualStyleBackColor = true;
             this.createNewSupplierBtn.Click += new System.EventHandler(this.createNewSupplierBtn_Click);
@@ -146,7 +146,7 @@
             this.supplierEmailTxt.Location = new System.Drawing.Point(308, 315);
             this.supplierEmailTxt.Name = "supplierEmailTxt";
             this.supplierEmailTxt.Size = new System.Drawing.Size(286, 29);
-            this.supplierEmailTxt.TabIndex = 63;
+            this.supplierEmailTxt.TabIndex = 5;
             // 
             // supplierEmailLbl
             // 

@@ -49,7 +49,7 @@
             this.searchPartTxt.Location = new System.Drawing.Point(188, 28);
             this.searchPartTxt.Name = "searchPartTxt";
             this.searchPartTxt.Size = new System.Drawing.Size(286, 29);
-            this.searchPartTxt.TabIndex = 56;
+            this.searchPartTxt.TabIndex = 1;
             // 
             // partNameLbl
             // 
@@ -69,7 +69,7 @@
             this.searchPartBtn.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
             this.searchPartBtn.Name = "searchPartBtn";
             this.searchPartBtn.Size = new System.Drawing.Size(138, 41);
-            this.searchPartBtn.TabIndex = 62;
+            this.searchPartBtn.TabIndex = 2;
             this.searchPartBtn.Text = "Search";
             this.searchPartBtn.UseVisualStyleBackColor = true;
             this.searchPartBtn.Click += new System.EventHandler(this.searchPartBtn_Click);
@@ -117,7 +117,7 @@
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
             this.allPartsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.allPartsDataGridView.Size = new System.Drawing.Size(999, 324);
-            this.allPartsDataGridView.TabIndex = 63;
+            this.allPartsDataGridView.TabIndex = 3;
             this.allPartsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.allPartsDataGridView_CellContentClick);
             // 
             // addPartToTicketBtn
@@ -126,7 +126,7 @@
             this.addPartToTicketBtn.Location = new System.Drawing.Point(801, 488);
             this.addPartToTicketBtn.Name = "addPartToTicketBtn";
             this.addPartToTicketBtn.Size = new System.Drawing.Size(214, 45);
-            this.addPartToTicketBtn.TabIndex = 111;
+            this.addPartToTicketBtn.TabIndex = 5;
             this.addPartToTicketBtn.Text = "Add Part";
             this.addPartToTicketBtn.UseVisualStyleBackColor = true;
             this.addPartToTicketBtn.Click += new System.EventHandler(this.addPartToTicketBtn_Click);
@@ -148,7 +148,7 @@
             this.partAmountTxt.Location = new System.Drawing.Point(801, 431);
             this.partAmountTxt.Name = "partAmountTxt";
             this.partAmountTxt.Size = new System.Drawing.Size(214, 29);
-            this.partAmountTxt.TabIndex = 112;
+            this.partAmountTxt.TabIndex = 4;
             // 
             // AddPartToTicketForm
             // 

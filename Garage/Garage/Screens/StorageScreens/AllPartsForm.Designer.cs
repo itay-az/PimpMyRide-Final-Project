@@ -91,7 +91,7 @@
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
             this.allPartsDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.allPartsDataGrid.Size = new System.Drawing.Size(623, 615);
-            this.allPartsDataGrid.TabIndex = 2;
+            this.allPartsDataGrid.TabIndex = 8;
             this.allPartsDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.allPartsDataGrid_CellContentClick);
             // 
             // updatePartBtn
@@ -103,7 +103,7 @@
             this.updatePartBtn.Location = new System.Drawing.Point(823, 342);
             this.updatePartBtn.Name = "updatePartBtn";
             this.updatePartBtn.Size = new System.Drawing.Size(150, 50);
-            this.updatePartBtn.TabIndex = 32;
+            this.updatePartBtn.TabIndex = 6;
             this.updatePartBtn.Text = "Update Part";
             this.updatePartBtn.UseVisualStyleBackColor = false;
             this.updatePartBtn.Click += new System.EventHandler(this.updatePartBtn_Click);
@@ -117,7 +117,7 @@
             this.deletePartBtn.Location = new System.Drawing.Point(978, 342);
             this.deletePartBtn.Name = "deletePartBtn";
             this.deletePartBtn.Size = new System.Drawing.Size(150, 50);
-            this.deletePartBtn.TabIndex = 31;
+            this.deletePartBtn.TabIndex = 7;
             this.deletePartBtn.Text = "Delete Part";
             this.deletePartBtn.UseVisualStyleBackColor = false;
             this.deletePartBtn.Click += new System.EventHandler(this.deletePartBtn_Click);
@@ -132,7 +132,7 @@
             this.createPartBtn.Location = new System.Drawing.Point(667, 342);
             this.createPartBtn.Name = "createPartBtn";
             this.createPartBtn.Size = new System.Drawing.Size(150, 50);
-            this.createPartBtn.TabIndex = 30;
+            this.createPartBtn.TabIndex = 5;
             this.createPartBtn.Text = "Create Part";
             this.createPartBtn.UseVisualStyleBackColor = false;
             this.createPartBtn.Click += new System.EventHandler(this.createPartBtn_Click);
@@ -143,7 +143,7 @@
             this.partPriceTxt.Location = new System.Drawing.Point(842, 180);
             this.partPriceTxt.Name = "partPriceTxt";
             this.partPriceTxt.Size = new System.Drawing.Size(286, 29);
-            this.partPriceTxt.TabIndex = 29;
+            this.partPriceTxt.TabIndex = 3;
             // 
             // partNameTxt
             // 
@@ -151,7 +151,7 @@
             this.partNameTxt.Location = new System.Drawing.Point(842, 136);
             this.partNameTxt.Name = "partNameTxt";
             this.partNameTxt.Size = new System.Drawing.Size(286, 29);
-            this.partNameTxt.TabIndex = 28;
+            this.partNameTxt.TabIndex = 2;
             // 
             // partIdTxt
             // 
@@ -159,7 +159,7 @@
             this.partIdTxt.Location = new System.Drawing.Point(842, 92);
             this.partIdTxt.Name = "partIdTxt";
             this.partIdTxt.Size = new System.Drawing.Size(286, 29);
-            this.partIdTxt.TabIndex = 27;
+            this.partIdTxt.TabIndex = 1;
             // 
             // priceLbl
             // 
@@ -200,7 +200,7 @@
             this.quantityTxt.Location = new System.Drawing.Point(842, 224);
             this.quantityTxt.Name = "quantityTxt";
             this.quantityTxt.Size = new System.Drawing.Size(286, 29);
-            this.quantityTxt.TabIndex = 35;
+            this.quantityTxt.TabIndex = 4;
             // 
             // quantityLbl
             // 

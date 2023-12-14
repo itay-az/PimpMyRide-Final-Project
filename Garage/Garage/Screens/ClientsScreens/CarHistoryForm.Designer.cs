@@ -80,7 +80,7 @@
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
             this.carHistoryDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.carHistoryDataGridView.Size = new System.Drawing.Size(1200, 640);
-            this.carHistoryDataGridView.TabIndex = 2;
+            this.carHistoryDataGridView.TabIndex = 0;
             this.carHistoryDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.carHistoryDataGridView_CellContentClick);
             // 
             // selectTicketBtn
@@ -89,7 +89,7 @@
             this.selectTicketBtn.Location = new System.Drawing.Point(1225, 79);
             this.selectTicketBtn.Name = "selectTicketBtn";
             this.selectTicketBtn.Size = new System.Drawing.Size(214, 45);
-            this.selectTicketBtn.TabIndex = 89;
+            this.selectTicketBtn.TabIndex = 1;
             this.selectTicketBtn.Text = "Select";
             this.selectTicketBtn.UseVisualStyleBackColor = true;
             this.selectTicketBtn.Click += new System.EventHandler(this.selectTicketBtn_Click);

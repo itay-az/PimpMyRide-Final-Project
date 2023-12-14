@@ -96,7 +96,7 @@
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
             this.AllUsersGridView.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.AllUsersGridView.Size = new System.Drawing.Size(749, 382);
-            this.AllUsersGridView.TabIndex = 0;
+            this.AllUsersGridView.TabIndex = 7;
             this.AllUsersGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.AllUsersGridView_CellContentClick);
             // 
             // userBindingSource
@@ -119,7 +119,7 @@
             this.emailTxt.Location = new System.Drawing.Point(1142, 207);
             this.emailTxt.Name = "emailTxt";
             this.emailTxt.Size = new System.Drawing.Size(286, 29);
-            this.emailTxt.TabIndex = 16;
+            this.emailTxt.TabIndex = 2;
             // 
             // passwordTxt
             // 
@@ -127,7 +127,7 @@
             this.passwordTxt.Location = new System.Drawing.Point(1142, 153);
             this.passwordTxt.Name = "passwordTxt";
             this.passwordTxt.Size = new System.Drawing.Size(286, 29);
-            this.passwordTxt.TabIndex = 15;
+            this.passwordTxt.TabIndex = 1;
             // 
             // userNameTxt
             // 
@@ -135,7 +135,7 @@
             this.userNameTxt.Location = new System.Drawing.Point(1142, 95);
             this.userNameTxt.Name = "userNameTxt";
             this.userNameTxt.Size = new System.Drawing.Size(286, 29);
-            this.userNameTxt.TabIndex = 14;
+            this.userNameTxt.TabIndex = 0;
             // 
             // jobtitleLbl
             // 
@@ -191,7 +191,7 @@
             this.createBtn.Location = new System.Drawing.Point(967, 369);
             this.createBtn.Name = "createBtn";
             this.createBtn.Size = new System.Drawing.Size(150, 50);
-            this.createBtn.TabIndex = 18;
+            this.createBtn.TabIndex = 4;
             this.createBtn.Text = "Create User";
             this.createBtn.UseVisualStyleBackColor = false;
             this.createBtn.Click += new System.EventHandler(this.createBtn_Click);
@@ -205,7 +205,7 @@
             this.deleteBtn.Location = new System.Drawing.Point(1278, 369);
             this.deleteBtn.Name = "deleteBtn";
             this.deleteBtn.Size = new System.Drawing.Size(150, 50);
-            this.deleteBtn.TabIndex = 19;
+            this.deleteBtn.TabIndex = 6;
             this.deleteBtn.Text = "Delete User";
             this.deleteBtn.UseVisualStyleBackColor = false;
             this.deleteBtn.Click += new System.EventHandler(this.deleteBtn_Click);
@@ -219,7 +219,7 @@
             this.updateUserBtn.Location = new System.Drawing.Point(1123, 369);
             this.updateUserBtn.Name = "updateUserBtn";
             this.updateUserBtn.Size = new System.Drawing.Size(150, 50);
-            this.updateUserBtn.TabIndex = 20;
+            this.updateUserBtn.TabIndex = 5;
             this.updateUserBtn.Text = "Update User";
             this.updateUserBtn.UseVisualStyleBackColor = false;
             this.updateUserBtn.Click += new System.EventHandler(this.updateUserBtn_Click);
@@ -245,7 +245,7 @@
             this.jobTitleTxt.Location = new System.Drawing.Point(1142, 261);
             this.jobTitleTxt.Name = "jobTitleTxt";
             this.jobTitleTxt.Size = new System.Drawing.Size(286, 32);
-            this.jobTitleTxt.TabIndex = 22;
+            this.jobTitleTxt.TabIndex = 3;
             // 
             // AllUsersForm
             // 

@@ -7,6 +7,7 @@ using Newtonsoft.Json;
 using System.Text;
 using Garage.Models;
 using System.Drawing;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Garage
 {
@@ -17,8 +18,51 @@ namespace Garage
         {
             InitializeComponent();
 
-            Loginbtn.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(0, 0, Loginbtn.Width, Loginbtn.Height, 15, 15));
+            Loginbtn.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Loginbtn.Width, Loginbtn.Height, 15, 15));
+
+            UserNametxt.GotFocus += UserNametxt_GotFocus;
+            UserNametxt.LostFocus += UserNametxt_LostFocus;
+            Passwordtxt.GotFocus += Passwordtxt_GotFocus;
+            Passwordtxt.LostFocus += Passwordtxt_LostFocus;
+
         }
+
+        private void UserNametxt_GotFocus(object sender, EventArgs e)
+        {
+            if (UserNametxt.Text == "Enter user name")
+            {
+                UserNametxt.Text = "";
+                UserNametxt.ForeColor = Color.Black;
+            }
+        }
+
+        private void UserNametxt_LostFocus(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(UserNametxt.Text))
+            {
+                UserNametxt.Text = "Enter user name";
+                UserNametxt.ForeColor = Color.Gray;
+            }
+        }
+
+        private void Passwordtxt_GotFocus(object sender, EventArgs e)
+        {
+            if (Passwordtxt.Text == "Enter Password")
+            {
+                Passwordtxt.Text = "";
+                Passwordtxt.ForeColor = Color.Black;
+            }
+        }
+
+        private void Passwordtxt_LostFocus(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(Passwordtxt.Text))
+            {
+                Passwordtxt.Text = "Enter Password";
+                Passwordtxt.ForeColor = Color.Gray;
+            }
+        }
+
 
         [System.Runtime.InteropServices.DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);

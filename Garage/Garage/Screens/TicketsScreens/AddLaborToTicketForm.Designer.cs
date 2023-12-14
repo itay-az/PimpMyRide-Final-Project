@@ -47,7 +47,7 @@
             this.addPartToTicketBtn.Location = new System.Drawing.Point(797, 478);
             this.addPartToTicketBtn.Name = "addPartToTicketBtn";
             this.addPartToTicketBtn.Size = new System.Drawing.Size(214, 45);
-            this.addPartToTicketBtn.TabIndex = 118;
+            this.addPartToTicketBtn.TabIndex = 4;
             this.addPartToTicketBtn.Text = "Add Labor";
             this.addPartToTicketBtn.UseVisualStyleBackColor = true;
             this.addPartToTicketBtn.Click += new System.EventHandler(this.addPartToTicketBtn_Click);
@@ -95,7 +95,7 @@
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
             this.allLaborsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.allLaborsDataGridView.Size = new System.Drawing.Size(999, 324);
-            this.allLaborsDataGridView.TabIndex = 117;
+            this.allLaborsDataGridView.TabIndex = 3;
             this.allLaborsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.allLaborsDataGridView_CellContentClick);
             // 
             // searchPartBtn
@@ -105,7 +105,7 @@
             this.searchPartBtn.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
             this.searchPartBtn.Name = "searchPartBtn";
             this.searchPartBtn.Size = new System.Drawing.Size(138, 41);
-            this.searchPartBtn.TabIndex = 116;
+            this.searchPartBtn.TabIndex = 2;
             this.searchPartBtn.Text = "Search";
             this.searchPartBtn.UseVisualStyleBackColor = true;
             this.searchPartBtn.Click += new System.EventHandler(this.searchPartBtn_Click);
@@ -127,7 +127,7 @@
             this.searchLaborTxt.Location = new System.Drawing.Point(184, 18);
             this.searchLaborTxt.Name = "searchLaborTxt";
             this.searchLaborTxt.Size = new System.Drawing.Size(286, 29);
-            this.searchLaborTxt.TabIndex = 114;
+            this.searchLaborTxt.TabIndex = 1;
             // 
             // AddLaborToTicketForm
             // 

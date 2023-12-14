@@ -62,7 +62,7 @@
             this.clientPhoneTxt.Location = new System.Drawing.Point(219, 169);
             this.clientPhoneTxt.Name = "clientPhoneTxt";
             this.clientPhoneTxt.Size = new System.Drawing.Size(286, 29);
-            this.clientPhoneTxt.TabIndex = 29;
+            this.clientPhoneTxt.TabIndex = 2;
             // 
             // clientFullNameTxt
             // 
@@ -70,7 +70,7 @@
             this.clientFullNameTxt.Location = new System.Drawing.Point(219, 115);
             this.clientFullNameTxt.Name = "clientFullNameTxt";
             this.clientFullNameTxt.Size = new System.Drawing.Size(286, 29);
-            this.clientFullNameTxt.TabIndex = 28;
+            this.clientFullNameTxt.TabIndex = 1;
             // 
             // clientIdTxt
             // 
@@ -78,7 +78,7 @@
             this.clientIdTxt.Location = new System.Drawing.Point(219, 57);
             this.clientIdTxt.Name = "clientIdTxt";
             this.clientIdTxt.Size = new System.Drawing.Size(286, 29);
-            this.clientIdTxt.TabIndex = 27;
+            this.clientIdTxt.TabIndex = 0;
             // 
             // clientEmailLbl
             // 
@@ -141,7 +141,7 @@
             this.clientEmailTxt.Location = new System.Drawing.Point(219, 223);
             this.clientEmailTxt.Name = "clientEmailTxt";
             this.clientEmailTxt.Size = new System.Drawing.Size(286, 29);
-            this.clientEmailTxt.TabIndex = 35;
+            this.clientEmailTxt.TabIndex = 3;
             // 
             // createNewClientBtn
             // 
@@ -149,7 +149,7 @@
             this.createNewClientBtn.Location = new System.Drawing.Point(253, 372);
             this.createNewClientBtn.Name = "createNewClientBtn";
             this.createNewClientBtn.Size = new System.Drawing.Size(214, 45);
-            this.createNewClientBtn.TabIndex = 36;
+            this.createNewClientBtn.TabIndex = 12;
             this.createNewClientBtn.Text = "Create client";
             this.createNewClientBtn.UseVisualStyleBackColor = true;
             this.createNewClientBtn.Click += new System.EventHandler(this.createNewClientBtn_Click);
@@ -160,7 +160,7 @@
             this.clientAddressTxt.Location = new System.Drawing.Point(219, 282);
             this.clientAddressTxt.Name = "clientAddressTxt";
             this.clientAddressTxt.Size = new System.Drawing.Size(286, 29);
-            this.clientAddressTxt.TabIndex = 32;
+            this.clientAddressTxt.TabIndex = 4;
             // 
             // carYearTxt
             // 
@@ -168,7 +168,7 @@
             this.carYearTxt.Location = new System.Drawing.Point(735, 223);
             this.carYearTxt.Name = "carYearTxt";
             this.carYearTxt.Size = new System.Drawing.Size(286, 29);
-            this.carYearTxt.TabIndex = 46;
+            this.carYearTxt.TabIndex = 8;
             // 
             // carEngineTxt
             // 
@@ -176,7 +176,7 @@
             this.carEngineTxt.Location = new System.Drawing.Point(735, 282);
             this.carEngineTxt.Name = "carEngineTxt";
             this.carEngineTxt.Size = new System.Drawing.Size(286, 29);
-            this.carEngineTxt.TabIndex = 45;
+            this.carEngineTxt.TabIndex = 9;
             // 
             // carEngineLbl
             // 
@@ -195,7 +195,7 @@
             this.carNumberTxt.Location = new System.Drawing.Point(735, 57);
             this.carNumberTxt.Name = "carNumberTxt";
             this.carNumberTxt.Size = new System.Drawing.Size(286, 29);
-            this.carNumberTxt.TabIndex = 41;
+            this.carNumberTxt.TabIndex = 5;
             // 
             // carYearLbl
             // 
@@ -247,7 +247,7 @@
             this.carKMTxt.Location = new System.Drawing.Point(735, 341);
             this.carKMTxt.Name = "carKMTxt";
             this.carKMTxt.Size = new System.Drawing.Size(286, 29);
-            this.carKMTxt.TabIndex = 48;
+            this.carKMTxt.TabIndex = 10;
             // 
             // kmLbl
             // 
@@ -266,7 +266,7 @@
             this.vinNumberTxt.Location = new System.Drawing.Point(735, 400);
             this.vinNumberTxt.Name = "vinNumberTxt";
             this.vinNumberTxt.Size = new System.Drawing.Size(286, 29);
-            this.vinNumberTxt.TabIndex = 50;
+            this.vinNumberTxt.TabIndex = 11;
             // 
             // vinNumberLbl
             // 
@@ -298,7 +298,7 @@
             this.manufactureComboBox.Location = new System.Drawing.Point(735, 106);
             this.manufactureComboBox.Name = "manufactureComboBox";
             this.manufactureComboBox.Size = new System.Drawing.Size(286, 32);
-            this.manufactureComboBox.TabIndex = 52;
+            this.manufactureComboBox.TabIndex = 6;
             this.manufactureComboBox.SelectedIndexChanged += new System.EventHandler(this.manufactureComboBox_SelectedIndexChanged);
             // 
             // modelsComboBox
@@ -309,7 +309,7 @@
             this.modelsComboBox.Location = new System.Drawing.Point(735, 169);
             this.modelsComboBox.Name = "modelsComboBox";
             this.modelsComboBox.Size = new System.Drawing.Size(286, 32);
-            this.modelsComboBox.TabIndex = 53;
+            this.modelsComboBox.TabIndex = 7;
             // 
             // CreateNewClient
             // 

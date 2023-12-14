@@ -96,7 +96,7 @@
             this.timerLbl.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.timerLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.timerLbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.timerLbl.Location = new System.Drawing.Point(0, 856);
+            this.timerLbl.Location = new System.Drawing.Point(0, 855);
             this.timerLbl.Name = "timerLbl";
             this.timerLbl.Size = new System.Drawing.Size(177, 102);
             this.timerLbl.TabIndex = 11;
@@ -110,7 +110,7 @@
             this.logoutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.logoutBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.logoutBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.logoutBtn.Location = new System.Drawing.Point(0, 821);
+            this.logoutBtn.Location = new System.Drawing.Point(0, 820);
             this.logoutBtn.Name = "logoutBtn";
             this.logoutBtn.Size = new System.Drawing.Size(177, 35);
             this.logoutBtn.TabIndex = 10;
@@ -126,9 +126,9 @@
             this.adminPanel.Controls.Add(this.maintenanceBtn);
             this.adminPanel.Controls.Add(this.adminUsersBtn);
             this.adminPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.adminPanel.Location = new System.Drawing.Point(0, 696);
+            this.adminPanel.Location = new System.Drawing.Point(0, 690);
             this.adminPanel.Name = "adminPanel";
-            this.adminPanel.Size = new System.Drawing.Size(177, 125);
+            this.adminPanel.Size = new System.Drawing.Size(177, 130);
             this.adminPanel.TabIndex = 9;
             // 
             // addNewManufactureBtn
@@ -138,10 +138,10 @@
             this.addNewManufactureBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addNewManufactureBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.addNewManufactureBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.addNewManufactureBtn.Location = new System.Drawing.Point(0, 83);
+            this.addNewManufactureBtn.Location = new System.Drawing.Point(0, 90);
             this.addNewManufactureBtn.Name = "addNewManufactureBtn";
             this.addNewManufactureBtn.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.addNewManufactureBtn.Size = new System.Drawing.Size(194, 41);
+            this.addNewManufactureBtn.Size = new System.Drawing.Size(177, 41);
             this.addNewManufactureBtn.TabIndex = 2;
             this.addNewManufactureBtn.Text = "Add/Delete Manufactures";
             this.addNewManufactureBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -192,10 +192,10 @@
             this.adminMenuBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.adminMenuBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.adminMenuBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.adminMenuBtn.Location = new System.Drawing.Point(0, 661);
+            this.adminMenuBtn.Location = new System.Drawing.Point(0, 655);
             this.adminMenuBtn.Name = "adminMenuBtn";
             this.adminMenuBtn.Size = new System.Drawing.Size(177, 35);
-            this.adminMenuBtn.TabIndex = 8;
+            this.adminMenuBtn.TabIndex = 4;
             this.adminMenuBtn.Text = "Admin";
             this.adminMenuBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.adminMenuBtn.UseVisualStyleBackColor = false;
@@ -210,7 +210,7 @@
             this.suppliersPanel.Controls.Add(this.createNewSupplierBtn);
             this.suppliersPanel.Controls.Add(this.allSuppliersBtn);
             this.suppliersPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.suppliersPanel.Location = new System.Drawing.Point(0, 453);
+            this.suppliersPanel.Location = new System.Drawing.Point(0, 447);
             this.suppliersPanel.Name = "suppliersPanel";
             this.suppliersPanel.Size = new System.Drawing.Size(177, 208);
             this.suppliersPanel.TabIndex = 6;
@@ -227,7 +227,7 @@
             this.allOrdersBtn.Name = "allOrdersBtn";
             this.allOrdersBtn.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.allOrdersBtn.Size = new System.Drawing.Size(177, 42);
-            this.allOrdersBtn.TabIndex = 6;
+            this.allOrdersBtn.TabIndex = 4;
             this.allOrdersBtn.Text = "All Orders";
             this.allOrdersBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.allOrdersBtn.UseVisualStyleBackColor = false;
@@ -245,7 +245,7 @@
             this.allPartsBtn.Name = "allPartsBtn";
             this.allPartsBtn.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.allPartsBtn.Size = new System.Drawing.Size(177, 42);
-            this.allPartsBtn.TabIndex = 5;
+            this.allPartsBtn.TabIndex = 3;
             this.allPartsBtn.Text = "All parts";
             this.allPartsBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.allPartsBtn.UseVisualStyleBackColor = false;
@@ -263,7 +263,7 @@
             this.newOrderBtn.Name = "newOrderBtn";
             this.newOrderBtn.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.newOrderBtn.Size = new System.Drawing.Size(177, 42);
-            this.newOrderBtn.TabIndex = 4;
+            this.newOrderBtn.TabIndex = 2;
             this.newOrderBtn.Text = "New Order";
             this.newOrderBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.newOrderBtn.UseVisualStyleBackColor = false;
@@ -281,7 +281,7 @@
             this.createNewSupplierBtn.Name = "createNewSupplierBtn";
             this.createNewSupplierBtn.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.createNewSupplierBtn.Size = new System.Drawing.Size(177, 42);
-            this.createNewSupplierBtn.TabIndex = 3;
+            this.createNewSupplierBtn.TabIndex = 1;
             this.createNewSupplierBtn.Text = "Create New Supplier";
             this.createNewSupplierBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.createNewSupplierBtn.UseVisualStyleBackColor = false;
@@ -299,7 +299,7 @@
             this.allSuppliersBtn.Name = "allSuppliersBtn";
             this.allSuppliersBtn.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.allSuppliersBtn.Size = new System.Drawing.Size(177, 42);
-            this.allSuppliersBtn.TabIndex = 1;
+            this.allSuppliersBtn.TabIndex = 0;
             this.allSuppliersBtn.Text = "All Suppliers";
             this.allSuppliersBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.allSuppliersBtn.UseVisualStyleBackColor = false;
@@ -314,10 +314,10 @@
             this.storageMenuBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.storageMenuBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.storageMenuBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.storageMenuBtn.Location = new System.Drawing.Point(0, 418);
+            this.storageMenuBtn.Location = new System.Drawing.Point(0, 412);
             this.storageMenuBtn.Name = "storageMenuBtn";
             this.storageMenuBtn.Size = new System.Drawing.Size(177, 35);
-            this.storageMenuBtn.TabIndex = 5;
+            this.storageMenuBtn.TabIndex = 3;
             this.storageMenuBtn.Text = "Storage";
             this.storageMenuBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.storageMenuBtn.UseVisualStyleBackColor = false;
@@ -332,7 +332,7 @@
             this.clientsPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.clientsPanel.Location = new System.Drawing.Point(0, 279);
             this.clientsPanel.Name = "clientsPanel";
-            this.clientsPanel.Size = new System.Drawing.Size(177, 139);
+            this.clientsPanel.Size = new System.Drawing.Size(177, 133);
             this.clientsPanel.TabIndex = 4;
             // 
             // createNewClientBtn
@@ -347,7 +347,7 @@
             this.createNewClientBtn.Name = "createNewClientBtn";
             this.createNewClientBtn.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.createNewClientBtn.Size = new System.Drawing.Size(177, 42);
-            this.createNewClientBtn.TabIndex = 3;
+            this.createNewClientBtn.TabIndex = 2;
             this.createNewClientBtn.Text = "Create New Client";
             this.createNewClientBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.createNewClientBtn.UseVisualStyleBackColor = false;
@@ -401,7 +401,7 @@
             this.clientMenuBtn.Location = new System.Drawing.Point(0, 244);
             this.clientMenuBtn.Name = "clientMenuBtn";
             this.clientMenuBtn.Size = new System.Drawing.Size(177, 35);
-            this.clientMenuBtn.TabIndex = 3;
+            this.clientMenuBtn.TabIndex = 2;
             this.clientMenuBtn.Text = "Clients";
             this.clientMenuBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.clientMenuBtn.UseVisualStyleBackColor = false;
@@ -432,7 +432,7 @@
             this.getAllOffersBtn.Name = "getAllOffersBtn";
             this.getAllOffersBtn.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.getAllOffersBtn.Size = new System.Drawing.Size(177, 42);
-            this.getAllOffersBtn.TabIndex = 4;
+            this.getAllOffersBtn.TabIndex = 3;
             this.getAllOffersBtn.Text = "Open Offers";
             this.getAllOffersBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.getAllOffersBtn.UseVisualStyleBackColor = false;
@@ -450,7 +450,7 @@
             this.createNewOfferBtn.Name = "createNewOfferBtn";
             this.createNewOfferBtn.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.createNewOfferBtn.Size = new System.Drawing.Size(177, 42);
-            this.createNewOfferBtn.TabIndex = 3;
+            this.createNewOfferBtn.TabIndex = 2;
             this.createNewOfferBtn.Text = "Create New Offer";
             this.createNewOfferBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.createNewOfferBtn.UseVisualStyleBackColor = false;

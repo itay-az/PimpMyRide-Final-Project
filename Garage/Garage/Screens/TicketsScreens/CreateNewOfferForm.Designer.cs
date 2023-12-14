@@ -61,7 +61,7 @@
             this.createOfferBtn.Location = new System.Drawing.Point(541, 672);
             this.createOfferBtn.Name = "createOfferBtn";
             this.createOfferBtn.Size = new System.Drawing.Size(214, 45);
-            this.createOfferBtn.TabIndex = 94;
+            this.createOfferBtn.TabIndex = 12;
             this.createOfferBtn.Text = "Create Offer";
             this.createOfferBtn.UseVisualStyleBackColor = true;
             this.createOfferBtn.Click += new System.EventHandler(this.createOfferBtn_Click);
@@ -73,7 +73,7 @@
             this.offerDetailsTxt.Multiline = true;
             this.offerDetailsTxt.Name = "offerDetailsTxt";
             this.offerDetailsTxt.Size = new System.Drawing.Size(694, 200);
-            this.offerDetailsTxt.TabIndex = 87;
+            this.offerDetailsTxt.TabIndex = 11;
             // 
             // clientVinNumberTxt
             // 
@@ -81,7 +81,7 @@
             this.clientVinNumberTxt.Location = new System.Drawing.Point(465, 199);
             this.clientVinNumberTxt.Name = "clientVinNumberTxt";
             this.clientVinNumberTxt.Size = new System.Drawing.Size(153, 22);
-            this.clientVinNumberTxt.TabIndex = 88;
+            this.clientVinNumberTxt.TabIndex = 10;
             // 
             // label12
             // 
@@ -100,7 +100,7 @@
             this.clientEngineTxt.Location = new System.Drawing.Point(465, 156);
             this.clientEngineTxt.Name = "clientEngineTxt";
             this.clientEngineTxt.Size = new System.Drawing.Size(153, 22);
-            this.clientEngineTxt.TabIndex = 85;
+            this.clientEngineTxt.TabIndex = 9;
             // 
             // clientYearTxt
             // 
@@ -108,7 +108,7 @@
             this.clientYearTxt.Location = new System.Drawing.Point(465, 117);
             this.clientYearTxt.Name = "clientYearTxt";
             this.clientYearTxt.Size = new System.Drawing.Size(153, 22);
-            this.clientYearTxt.TabIndex = 84;
+            this.clientYearTxt.TabIndex = 8;
             // 
             // clientModelTxt
             // 
@@ -116,7 +116,7 @@
             this.clientModelTxt.Location = new System.Drawing.Point(465, 75);
             this.clientModelTxt.Name = "clientModelTxt";
             this.clientModelTxt.Size = new System.Drawing.Size(153, 22);
-            this.clientModelTxt.TabIndex = 83;
+            this.clientModelTxt.TabIndex = 7;
             // 
             // clientManufactureTxt
             // 
@@ -124,7 +124,7 @@
             this.clientManufactureTxt.Location = new System.Drawing.Point(465, 34);
             this.clientManufactureTxt.Name = "clientManufactureTxt";
             this.clientManufactureTxt.Size = new System.Drawing.Size(153, 22);
-            this.clientManufactureTxt.TabIndex = 82;
+            this.clientManufactureTxt.TabIndex = 6;
             // 
             // searchClientBtn
             // 
@@ -132,7 +132,7 @@
             this.searchClientBtn.Location = new System.Drawing.Point(228, 101);
             this.searchClientBtn.Name = "searchClientBtn";
             this.searchClientBtn.Size = new System.Drawing.Size(214, 45);
-            this.searchClientBtn.TabIndex = 92;
+            this.searchClientBtn.TabIndex = 2;
             this.searchClientBtn.Text = "Search car";
             this.searchClientBtn.UseVisualStyleBackColor = true;
             this.searchClientBtn.Click += new System.EventHandler(this.searchClientBtn_Click);
@@ -170,7 +170,7 @@
             this.clientEmailTxt.Location = new System.Drawing.Point(150, 120);
             this.clientEmailTxt.Name = "clientEmailTxt";
             this.clientEmailTxt.Size = new System.Drawing.Size(153, 22);
-            this.clientEmailTxt.TabIndex = 81;
+            this.clientEmailTxt.TabIndex = 5;
             // 
             // clientPhoneNumberTxt
             // 
@@ -178,7 +178,7 @@
             this.clientPhoneNumberTxt.Location = new System.Drawing.Point(150, 81);
             this.clientPhoneNumberTxt.Name = "clientPhoneNumberTxt";
             this.clientPhoneNumberTxt.Size = new System.Drawing.Size(153, 22);
-            this.clientPhoneNumberTxt.TabIndex = 79;
+            this.clientPhoneNumberTxt.TabIndex = 4;
             // 
             // label10
             // 
@@ -263,7 +263,7 @@
             this.clientFullNameTxt.Location = new System.Drawing.Point(150, 44);
             this.clientFullNameTxt.Name = "clientFullNameTxt";
             this.clientFullNameTxt.Size = new System.Drawing.Size(153, 22);
-            this.clientFullNameTxt.TabIndex = 42;
+            this.clientFullNameTxt.TabIndex = 3;
             // 
             // carNumberTxt
             // 
@@ -271,7 +271,7 @@
             this.carNumberTxt.Location = new System.Drawing.Point(228, 26);
             this.carNumberTxt.Name = "carNumberTxt";
             this.carNumberTxt.Size = new System.Drawing.Size(214, 29);
-            this.carNumberTxt.TabIndex = 90;
+            this.carNumberTxt.TabIndex = 1;
             // 
             // carNumberLbl
             // 

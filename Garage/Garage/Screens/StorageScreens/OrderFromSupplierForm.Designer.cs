@@ -88,7 +88,7 @@
             dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
             this.allOrdersDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle5;
             this.allOrdersDataGridView.Size = new System.Drawing.Size(641, 664);
-            this.allOrdersDataGridView.TabIndex = 3;
+            this.allOrdersDataGridView.TabIndex = 1;
             this.allOrdersDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.allOrdersDataGridView_CellContentClick);
             // 
             // orderDetailsDataGridView
@@ -134,7 +134,7 @@
             dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(238)))), ((int)(((byte)(239)))), ((int)(((byte)(249)))));
             this.orderDetailsDataGridView.RowsDefaultCellStyle = dataGridViewCellStyle10;
             this.orderDetailsDataGridView.Size = new System.Drawing.Size(585, 673);
-            this.orderDetailsDataGridView.TabIndex = 4;
+            this.orderDetailsDataGridView.TabIndex = 3;
             this.orderDetailsDataGridView.Visible = false;
             // 
             // showDetailsBtn
@@ -143,7 +143,7 @@
             this.showDetailsBtn.Location = new System.Drawing.Point(663, 321);
             this.showDetailsBtn.Name = "showDetailsBtn";
             this.showDetailsBtn.Size = new System.Drawing.Size(214, 45);
-            this.showDetailsBtn.TabIndex = 79;
+            this.showDetailsBtn.TabIndex = 2;
             this.showDetailsBtn.Text = "Show Details";
             this.showDetailsBtn.UseVisualStyleBackColor = true;
             this.showDetailsBtn.Click += new System.EventHandler(this.showDetailsBtn_Click);

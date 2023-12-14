@@ -62,7 +62,7 @@
             this.searchVinNumberTxt.Location = new System.Drawing.Point(732, 335);
             this.searchVinNumberTxt.Name = "searchVinNumberTxt";
             this.searchVinNumberTxt.Size = new System.Drawing.Size(286, 29);
-            this.searchVinNumberTxt.TabIndex = 75;
+            this.searchVinNumberTxt.TabIndex = 10;
             // 
             // vinNumberLbl
             // 
@@ -81,7 +81,7 @@
             this.searchCarYearTxt.Location = new System.Drawing.Point(732, 214);
             this.searchCarYearTxt.Name = "searchCarYearTxt";
             this.searchCarYearTxt.Size = new System.Drawing.Size(286, 29);
-            this.searchCarYearTxt.TabIndex = 71;
+            this.searchCarYearTxt.TabIndex = 8;
             // 
             // searchCarEngineTxt
             // 
@@ -89,7 +89,7 @@
             this.searchCarEngineTxt.Location = new System.Drawing.Point(732, 273);
             this.searchCarEngineTxt.Name = "searchCarEngineTxt";
             this.searchCarEngineTxt.Size = new System.Drawing.Size(286, 29);
-            this.searchCarEngineTxt.TabIndex = 70;
+            this.searchCarEngineTxt.TabIndex = 9;
             // 
             // carEngineLbl
             // 
@@ -108,7 +108,7 @@
             this.searchCarModelTxt.Location = new System.Drawing.Point(732, 160);
             this.searchCarModelTxt.Name = "searchCarModelTxt";
             this.searchCarModelTxt.Size = new System.Drawing.Size(286, 29);
-            this.searchCarModelTxt.TabIndex = 68;
+            this.searchCarModelTxt.TabIndex = 7;
             // 
             // searchCarManuTxt
             // 
@@ -116,7 +116,7 @@
             this.searchCarManuTxt.Location = new System.Drawing.Point(732, 106);
             this.searchCarManuTxt.Name = "searchCarManuTxt";
             this.searchCarManuTxt.Size = new System.Drawing.Size(286, 29);
-            this.searchCarManuTxt.TabIndex = 67;
+            this.searchCarManuTxt.TabIndex = 6;
             // 
             // carYearLbl
             // 
@@ -169,7 +169,7 @@
             this.searchClientBtn.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
             this.searchClientBtn.Name = "searchClientBtn";
             this.searchClientBtn.Size = new System.Drawing.Size(214, 45);
-            this.searchClientBtn.TabIndex = 61;
+            this.searchClientBtn.TabIndex = 11;
             this.searchClientBtn.Text = "Search client";
             this.searchClientBtn.UseVisualStyleBackColor = true;
             this.searchClientBtn.Click += new System.EventHandler(this.searchClientBtn_Click);
@@ -180,7 +180,7 @@
             this.searchClientEmailTxt.Location = new System.Drawing.Point(216, 214);
             this.searchClientEmailTxt.Name = "searchClientEmailTxt";
             this.searchClientEmailTxt.Size = new System.Drawing.Size(286, 29);
-            this.searchClientEmailTxt.TabIndex = 60;
+            this.searchClientEmailTxt.TabIndex = 3;
             // 
             // searchClientAddressTxt
             // 
@@ -188,7 +188,7 @@
             this.searchClientAddressTxt.Location = new System.Drawing.Point(216, 273);
             this.searchClientAddressTxt.Name = "searchClientAddressTxt";
             this.searchClientAddressTxt.Size = new System.Drawing.Size(286, 29);
-            this.searchClientAddressTxt.TabIndex = 59;
+            this.searchClientAddressTxt.TabIndex = 4;
             // 
             // clientAddressLbl
             // 
@@ -207,7 +207,7 @@
             this.searchClientPhoneTxt.Location = new System.Drawing.Point(216, 160);
             this.searchClientPhoneTxt.Name = "searchClientPhoneTxt";
             this.searchClientPhoneTxt.Size = new System.Drawing.Size(286, 29);
-            this.searchClientPhoneTxt.TabIndex = 57;
+            this.searchClientPhoneTxt.TabIndex = 2;
             // 
             // searchClientFullNameTxt
             // 
@@ -215,7 +215,7 @@
             this.searchClientFullNameTxt.Location = new System.Drawing.Point(216, 106);
             this.searchClientFullNameTxt.Name = "searchClientFullNameTxt";
             this.searchClientFullNameTxt.Size = new System.Drawing.Size(286, 29);
-            this.searchClientFullNameTxt.TabIndex = 56;
+            this.searchClientFullNameTxt.TabIndex = 1;
             // 
             // searchClientIdTxt
             // 
@@ -223,7 +223,7 @@
             this.searchClientIdTxt.Location = new System.Drawing.Point(216, 48);
             this.searchClientIdTxt.Name = "searchClientIdTxt";
             this.searchClientIdTxt.Size = new System.Drawing.Size(286, 29);
-            this.searchClientIdTxt.TabIndex = 55;
+            this.searchClientIdTxt.TabIndex = 0;
             // 
             // clientEmailLbl
             // 
@@ -276,7 +276,7 @@
             this.clientHistoryBtn.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
             this.clientHistoryBtn.Name = "clientHistoryBtn";
             this.clientHistoryBtn.Size = new System.Drawing.Size(214, 45);
-            this.clientHistoryBtn.TabIndex = 76;
+            this.clientHistoryBtn.TabIndex = 14;
             this.clientHistoryBtn.Text = "Car history";
             this.clientHistoryBtn.UseVisualStyleBackColor = true;
             this.clientHistoryBtn.Click += new System.EventHandler(this.clientHistoryBtn_Click);
@@ -288,7 +288,7 @@
             this.updateClientBtn.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
             this.updateClientBtn.Name = "updateClientBtn";
             this.updateClientBtn.Size = new System.Drawing.Size(214, 45);
-            this.updateClientBtn.TabIndex = 77;
+            this.updateClientBtn.TabIndex = 12;
             this.updateClientBtn.Text = "Update";
             this.updateClientBtn.UseVisualStyleBackColor = true;
             this.updateClientBtn.Click += new System.EventHandler(this.updateClientBtn_Click);
@@ -299,7 +299,7 @@
             this.addCarToClientBtn.Location = new System.Drawing.Point(520, 400);
             this.addCarToClientBtn.Name = "addCarToClientBtn";
             this.addCarToClientBtn.Size = new System.Drawing.Size(214, 45);
-            this.addCarToClientBtn.TabIndex = 78;
+            this.addCarToClientBtn.TabIndex = 13;
             this.addCarToClientBtn.Text = "Add Car";
             this.addCarToClientBtn.UseVisualStyleBackColor = true;
             this.addCarToClientBtn.Click += new System.EventHandler(this.addCarToClientBtn_Click);
@@ -311,7 +311,7 @@
             this.carNumberComboBox.Location = new System.Drawing.Point(732, 48);
             this.carNumberComboBox.Name = "carNumberComboBox";
             this.carNumberComboBox.Size = new System.Drawing.Size(286, 32);
-            this.carNumberComboBox.TabIndex = 79;
+            this.carNumberComboBox.TabIndex = 5;
             this.carNumberComboBox.SelectedIndexChanged += new System.EventHandler(this.carNumberComboBox_SelectedIndexChanged);
             // 
             // SearchClientForm

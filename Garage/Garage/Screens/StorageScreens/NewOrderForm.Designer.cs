@@ -60,7 +60,7 @@
             this.chooseSupplierComboBox.Location = new System.Drawing.Point(254, 94);
             this.chooseSupplierComboBox.Name = "chooseSupplierComboBox";
             this.chooseSupplierComboBox.Size = new System.Drawing.Size(193, 32);
-            this.chooseSupplierComboBox.TabIndex = 54;
+            this.chooseSupplierComboBox.TabIndex = 1;
             // 
             // chooseSupplierLbl
             // 
@@ -90,7 +90,7 @@
             this.partQuantityTxt.Location = new System.Drawing.Point(254, 297);
             this.partQuantityTxt.Name = "partQuantityTxt";
             this.partQuantityTxt.Size = new System.Drawing.Size(193, 29);
-            this.partQuantityTxt.TabIndex = 61;
+            this.partQuantityTxt.TabIndex = 5;
             // 
             // partIdTxt
             // 
@@ -98,7 +98,7 @@
             this.partIdTxt.Location = new System.Drawing.Point(254, 197);
             this.partIdTxt.Name = "partIdTxt";
             this.partIdTxt.Size = new System.Drawing.Size(193, 29);
-            this.partIdTxt.TabIndex = 60;
+            this.partIdTxt.TabIndex = 3;
             // 
             // partNameTxt
             // 
@@ -106,7 +106,7 @@
             this.partNameTxt.Location = new System.Drawing.Point(254, 146);
             this.partNameTxt.Name = "partNameTxt";
             this.partNameTxt.Size = new System.Drawing.Size(193, 29);
-            this.partNameTxt.TabIndex = 59;
+            this.partNameTxt.TabIndex = 2;
             // 
             // quantityLbl
             // 
@@ -147,7 +147,7 @@
             this.morePartsBtn.Location = new System.Drawing.Point(122, 382);
             this.morePartsBtn.Name = "morePartsBtn";
             this.morePartsBtn.Size = new System.Drawing.Size(214, 45);
-            this.morePartsBtn.TabIndex = 62;
+            this.morePartsBtn.TabIndex = 6;
             this.morePartsBtn.Text = "More Parts";
             this.morePartsBtn.UseVisualStyleBackColor = true;
             this.morePartsBtn.Click += new System.EventHandler(this.morePartsBtn_Click);
@@ -158,7 +158,7 @@
             this.placeOrderbtn.Location = new System.Drawing.Point(418, 530);
             this.placeOrderbtn.Name = "placeOrderbtn";
             this.placeOrderbtn.Size = new System.Drawing.Size(214, 45);
-            this.placeOrderbtn.TabIndex = 63;
+            this.placeOrderbtn.TabIndex = 7;
             this.placeOrderbtn.Text = "Place Order";
             this.placeOrderbtn.UseVisualStyleBackColor = true;
             this.placeOrderbtn.Click += new System.EventHandler(this.placeOrderbtn_Click);
@@ -236,7 +236,7 @@
             this.partPriceTxt.Location = new System.Drawing.Point(254, 245);
             this.partPriceTxt.Name = "partPriceTxt";
             this.partPriceTxt.Size = new System.Drawing.Size(193, 29);
-            this.partPriceTxt.TabIndex = 68;
+            this.partPriceTxt.TabIndex = 4;
             // 
             // partPriceLbl
             // 

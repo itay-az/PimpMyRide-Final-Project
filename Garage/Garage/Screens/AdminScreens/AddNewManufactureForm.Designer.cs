@@ -39,38 +39,40 @@
             // addManufactureNameLbl
             // 
             this.addManufactureNameLbl.AutoSize = true;
-            this.addManufactureNameLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.addManufactureNameLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.addManufactureNameLbl.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.addManufactureNameLbl.Location = new System.Drawing.Point(54, 44);
             this.addManufactureNameLbl.Name = "addManufactureNameLbl";
-            this.addManufactureNameLbl.Size = new System.Drawing.Size(172, 24);
+            this.addManufactureNameLbl.Size = new System.Drawing.Size(189, 24);
             this.addManufactureNameLbl.TabIndex = 0;
             this.addManufactureNameLbl.Text = "Manufacture name:";
             // 
             // addModelNameLbl
             // 
             this.addModelNameLbl.AutoSize = true;
-            this.addModelNameLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.addModelNameLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.addModelNameLbl.ForeColor = System.Drawing.SystemColors.ControlLight;
             this.addModelNameLbl.Location = new System.Drawing.Point(54, 95);
             this.addModelNameLbl.Name = "addModelNameLbl";
-            this.addModelNameLbl.Size = new System.Drawing.Size(121, 24);
+            this.addModelNameLbl.Size = new System.Drawing.Size(132, 24);
             this.addModelNameLbl.TabIndex = 1;
             this.addModelNameLbl.Text = "Model name:";
             // 
             // addManufactureNameTxt
             // 
+            this.addManufactureNameTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.addManufactureNameTxt.Location = new System.Drawing.Point(309, 47);
             this.addManufactureNameTxt.Name = "addManufactureNameTxt";
-            this.addManufactureNameTxt.Size = new System.Drawing.Size(214, 20);
-            this.addManufactureNameTxt.TabIndex = 2;
+            this.addManufactureNameTxt.Size = new System.Drawing.Size(214, 29);
+            this.addManufactureNameTxt.TabIndex = 1;
             // 
             // addModelNameTxt
             // 
+            this.addModelNameTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.addModelNameTxt.Location = new System.Drawing.Point(309, 99);
             this.addModelNameTxt.Name = "addModelNameTxt";
-            this.addModelNameTxt.Size = new System.Drawing.Size(214, 20);
-            this.addModelNameTxt.TabIndex = 3;
+            this.addModelNameTxt.Size = new System.Drawing.Size(214, 29);
+            this.addModelNameTxt.TabIndex = 2;
             // 
             // addManufactureWithModelBtn
             // 
@@ -79,7 +81,7 @@
             this.addManufactureWithModelBtn.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
             this.addManufactureWithModelBtn.Name = "addManufactureWithModelBtn";
             this.addManufactureWithModelBtn.Size = new System.Drawing.Size(214, 45);
-            this.addManufactureWithModelBtn.TabIndex = 62;
+            this.addManufactureWithModelBtn.TabIndex = 3;
             this.addManufactureWithModelBtn.Text = "Add model";
             this.addManufactureWithModelBtn.UseVisualStyleBackColor = true;
             this.addManufactureWithModelBtn.Click += new System.EventHandler(this.addManufactureWithModelBtn_Click);
@@ -91,7 +93,7 @@
             this.deleteModelBtn.Margin = new System.Windows.Forms.Padding(3, 3, 15, 3);
             this.deleteModelBtn.Name = "deleteModelBtn";
             this.deleteModelBtn.Size = new System.Drawing.Size(214, 45);
-            this.deleteModelBtn.TabIndex = 63;
+            this.deleteModelBtn.TabIndex = 4;
             this.deleteModelBtn.Text = "Delete model";
             this.deleteModelBtn.UseVisualStyleBackColor = true;
             this.deleteModelBtn.Click += new System.EventHandler(this.deleteModelBtn_Click);

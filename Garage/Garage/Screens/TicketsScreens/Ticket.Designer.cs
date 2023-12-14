@@ -89,7 +89,7 @@
             this.clientVinNumberTxt.Name = "clientVinNumberTxt";
             this.clientVinNumberTxt.ReadOnly = true;
             this.clientVinNumberTxt.Size = new System.Drawing.Size(153, 22);
-            this.clientVinNumberTxt.TabIndex = 106;
+            this.clientVinNumberTxt.TabIndex = 8;
             // 
             // label12
             // 
@@ -109,7 +109,7 @@
             this.clientKmTxt.Name = "clientKmTxt";
             this.clientKmTxt.ReadOnly = true;
             this.clientKmTxt.Size = new System.Drawing.Size(153, 22);
-            this.clientKmTxt.TabIndex = 104;
+            this.clientKmTxt.TabIndex = 9;
             // 
             // clientEngineTxt
             // 
@@ -118,7 +118,7 @@
             this.clientEngineTxt.Name = "clientEngineTxt";
             this.clientEngineTxt.ReadOnly = true;
             this.clientEngineTxt.Size = new System.Drawing.Size(153, 22);
-            this.clientEngineTxt.TabIndex = 103;
+            this.clientEngineTxt.TabIndex = 7;
             // 
             // clientYearTxt
             // 
@@ -127,7 +127,7 @@
             this.clientYearTxt.Name = "clientYearTxt";
             this.clientYearTxt.ReadOnly = true;
             this.clientYearTxt.Size = new System.Drawing.Size(153, 22);
-            this.clientYearTxt.TabIndex = 102;
+            this.clientYearTxt.TabIndex = 6;
             // 
             // clientModelTxt
             // 
@@ -136,7 +136,7 @@
             this.clientModelTxt.Name = "clientModelTxt";
             this.clientModelTxt.ReadOnly = true;
             this.clientModelTxt.Size = new System.Drawing.Size(153, 22);
-            this.clientModelTxt.TabIndex = 101;
+            this.clientModelTxt.TabIndex = 5;
             // 
             // clientManufactureTxt
             // 
@@ -145,7 +145,7 @@
             this.clientManufactureTxt.Name = "clientManufactureTxt";
             this.clientManufactureTxt.ReadOnly = true;
             this.clientManufactureTxt.Size = new System.Drawing.Size(153, 22);
-            this.clientManufactureTxt.TabIndex = 100;
+            this.clientManufactureTxt.TabIndex = 4;
             // 
             // clientEmailTxt
             // 
@@ -154,7 +154,7 @@
             this.clientEmailTxt.Name = "clientEmailTxt";
             this.clientEmailTxt.ReadOnly = true;
             this.clientEmailTxt.Size = new System.Drawing.Size(153, 22);
-            this.clientEmailTxt.TabIndex = 99;
+            this.clientEmailTxt.TabIndex = 2;
             // 
             // clientPhoneNumberTxt
             // 
@@ -163,7 +163,7 @@
             this.clientPhoneNumberTxt.Name = "clientPhoneNumberTxt";
             this.clientPhoneNumberTxt.ReadOnly = true;
             this.clientPhoneNumberTxt.Size = new System.Drawing.Size(153, 22);
-            this.clientPhoneNumberTxt.TabIndex = 98;
+            this.clientPhoneNumberTxt.TabIndex = 2;
             // 
             // label10
             // 
@@ -260,7 +260,7 @@
             this.clientFullNameTxt.Name = "clientFullNameTxt";
             this.clientFullNameTxt.ReadOnly = true;
             this.clientFullNameTxt.Size = new System.Drawing.Size(153, 22);
-            this.clientFullNameTxt.TabIndex = 89;
+            this.clientFullNameTxt.TabIndex = 1;
             // 
             // groupBox1
             // 
@@ -282,7 +282,7 @@
             this.cuaseOfArrivalTxt.Name = "cuaseOfArrivalTxt";
             this.cuaseOfArrivalTxt.ReadOnly = true;
             this.cuaseOfArrivalTxt.Size = new System.Drawing.Size(594, 200);
-            this.cuaseOfArrivalTxt.TabIndex = 87;
+            this.cuaseOfArrivalTxt.TabIndex = 10;
             // 
             // groupBox2
             // 
@@ -305,7 +305,7 @@
             this.partsDataGridView.Location = new System.Drawing.Point(6, 22);
             this.partsDataGridView.Name = "partsDataGridView";
             this.partsDataGridView.Size = new System.Drawing.Size(630, 471);
-            this.partsDataGridView.TabIndex = 0;
+            this.partsDataGridView.TabIndex = 11;
             this.partsDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.partsDataGridView_CellContentClick);
             this.partsDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.partsDataGridView_CellValidating);
             // 
@@ -331,7 +331,7 @@
             this.laborDataGridView.Location = new System.Drawing.Point(4, 22);
             this.laborDataGridView.Name = "laborDataGridView";
             this.laborDataGridView.Size = new System.Drawing.Size(577, 471);
-            this.laborDataGridView.TabIndex = 0;
+            this.laborDataGridView.TabIndex = 12;
             this.laborDataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.laborDataGridView_CellContentClick);
             this.laborDataGridView.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.laborDataGridView_CellValidating);
             // 
@@ -341,7 +341,7 @@
             this.addPartToTicketBtn.Location = new System.Drawing.Point(668, 700);
             this.addPartToTicketBtn.Name = "addPartToTicketBtn";
             this.addPartToTicketBtn.Size = new System.Drawing.Size(204, 45);
-            this.addPartToTicketBtn.TabIndex = 110;
+            this.addPartToTicketBtn.TabIndex = 19;
             this.addPartToTicketBtn.Text = "Add Part";
             this.addPartToTicketBtn.UseVisualStyleBackColor = true;
             this.addPartToTicketBtn.Click += new System.EventHandler(this.addPartToTicketBtn_Click);
@@ -352,7 +352,7 @@
             this.closeTicketBtn.Location = new System.Drawing.Point(1475, 922);
             this.closeTicketBtn.Name = "closeTicketBtn";
             this.closeTicketBtn.Size = new System.Drawing.Size(249, 45);
-            this.closeTicketBtn.TabIndex = 112;
+            this.closeTicketBtn.TabIndex = 27;
             this.closeTicketBtn.Text = "Close Ticket";
             this.closeTicketBtn.UseVisualStyleBackColor = true;
             this.closeTicketBtn.Click += new System.EventHandler(this.closeTicketBtn_Click);
@@ -363,7 +363,7 @@
             this.deleteTicketBtn.Location = new System.Drawing.Point(1215, 922);
             this.deleteTicketBtn.Name = "deleteTicketBtn";
             this.deleteTicketBtn.Size = new System.Drawing.Size(242, 45);
-            this.deleteTicketBtn.TabIndex = 113;
+            this.deleteTicketBtn.TabIndex = 26;
             this.deleteTicketBtn.Text = "Delete Ticket";
             this.deleteTicketBtn.UseVisualStyleBackColor = true;
             this.deleteTicketBtn.Click += new System.EventHandler(this.deleteTicketBtn_Click);
@@ -374,7 +374,7 @@
             this.updatePartBtn.Location = new System.Drawing.Point(887, 700);
             this.updatePartBtn.Name = "updatePartBtn";
             this.updatePartBtn.Size = new System.Drawing.Size(204, 45);
-            this.updatePartBtn.TabIndex = 114;
+            this.updatePartBtn.TabIndex = 20;
             this.updatePartBtn.Text = "Update Part";
             this.updatePartBtn.UseVisualStyleBackColor = true;
             this.updatePartBtn.Click += new System.EventHandler(this.updatePartBtn_Click);
@@ -385,7 +385,7 @@
             this.deletePartBtn.Location = new System.Drawing.Point(1106, 700);
             this.deletePartBtn.Name = "deletePartBtn";
             this.deletePartBtn.Size = new System.Drawing.Size(204, 45);
-            this.deletePartBtn.TabIndex = 115;
+            this.deletePartBtn.TabIndex = 21;
             this.deletePartBtn.Text = "Delete Part";
             this.deletePartBtn.UseVisualStyleBackColor = true;
             this.deletePartBtn.Click += new System.EventHandler(this.deletePartBtn_Click);
@@ -396,7 +396,7 @@
             this.deleteLaborBtn.Location = new System.Drawing.Point(1718, 700);
             this.deleteLaborBtn.Name = "deleteLaborBtn";
             this.deleteLaborBtn.Size = new System.Drawing.Size(185, 45);
-            this.deleteLaborBtn.TabIndex = 118;
+            this.deleteLaborBtn.TabIndex = 24;
             this.deleteLaborBtn.Text = "Delete Labor";
             this.deleteLaborBtn.UseVisualStyleBackColor = true;
             this.deleteLaborBtn.Click += new System.EventHandler(this.deleteLaborBtn_Click);
@@ -407,7 +407,7 @@
             this.updateLaborBtn.Location = new System.Drawing.Point(1518, 700);
             this.updateLaborBtn.Name = "updateLaborBtn";
             this.updateLaborBtn.Size = new System.Drawing.Size(185, 45);
-            this.updateLaborBtn.TabIndex = 117;
+            this.updateLaborBtn.TabIndex = 23;
             this.updateLaborBtn.Text = "Update Labor";
             this.updateLaborBtn.UseVisualStyleBackColor = true;
             this.updateLaborBtn.Click += new System.EventHandler(this.updateLaborBtn_Click);
@@ -418,7 +418,7 @@
             this.addLaborBtn.Location = new System.Drawing.Point(1316, 700);
             this.addLaborBtn.Name = "addLaborBtn";
             this.addLaborBtn.Size = new System.Drawing.Size(185, 45);
-            this.addLaborBtn.TabIndex = 116;
+            this.addLaborBtn.TabIndex = 22;
             this.addLaborBtn.Text = "Add Labor";
             this.addLaborBtn.UseVisualStyleBackColor = true;
             this.addLaborBtn.Click += new System.EventHandler(this.addLaborBtn_Click);
@@ -441,7 +441,7 @@
             this.totalPartPriceTxt.Name = "totalPartPriceTxt";
             this.totalPartPriceTxt.ReadOnly = true;
             this.totalPartPriceTxt.Size = new System.Drawing.Size(188, 29);
-            this.totalPartPriceTxt.TabIndex = 119;
+            this.totalPartPriceTxt.TabIndex = 13;
             // 
             // label9
             // 
@@ -461,7 +461,7 @@
             this.totalPartPriceAfterDiscountTxt.Name = "totalPartPriceAfterDiscountTxt";
             this.totalPartPriceAfterDiscountTxt.ReadOnly = true;
             this.totalPartPriceAfterDiscountTxt.Size = new System.Drawing.Size(188, 29);
-            this.totalPartPriceAfterDiscountTxt.TabIndex = 121;
+            this.totalPartPriceAfterDiscountTxt.TabIndex = 15;
             // 
             // label11
             // 
@@ -481,7 +481,7 @@
             this.totalPartDiscountTxt.Name = "totalPartDiscountTxt";
             this.totalPartDiscountTxt.ReadOnly = true;
             this.totalPartDiscountTxt.Size = new System.Drawing.Size(188, 29);
-            this.totalPartDiscountTxt.TabIndex = 123;
+            this.totalPartDiscountTxt.TabIndex = 14;
             // 
             // label13
             // 
@@ -501,7 +501,7 @@
             this.totalLaborDiscountTxt.Name = "totalLaborDiscountTxt";
             this.totalLaborDiscountTxt.ReadOnly = true;
             this.totalLaborDiscountTxt.Size = new System.Drawing.Size(188, 29);
-            this.totalLaborDiscountTxt.TabIndex = 129;
+            this.totalLaborDiscountTxt.TabIndex = 17;
             // 
             // label15
             // 
@@ -521,7 +521,7 @@
             this.totalLaborPriceTxt.Name = "totalLaborPriceTxt";
             this.totalLaborPriceTxt.ReadOnly = true;
             this.totalLaborPriceTxt.Size = new System.Drawing.Size(188, 29);
-            this.totalLaborPriceTxt.TabIndex = 125;
+            this.totalLaborPriceTxt.TabIndex = 16;
             // 
             // label14
             // 
@@ -541,7 +541,7 @@
             this.totalLaborPriceAfterDiscountTxt.Name = "totalLaborPriceAfterDiscountTxt";
             this.totalLaborPriceAfterDiscountTxt.ReadOnly = true;
             this.totalLaborPriceAfterDiscountTxt.Size = new System.Drawing.Size(188, 29);
-            this.totalLaborPriceAfterDiscountTxt.TabIndex = 131;
+            this.totalLaborPriceAfterDiscountTxt.TabIndex = 18;
             // 
             // label16
             // 
@@ -561,7 +561,7 @@
             this.totalTicketPriceTxt.Name = "totalTicketPriceTxt";
             this.totalTicketPriceTxt.ReadOnly = true;
             this.totalTicketPriceTxt.Size = new System.Drawing.Size(188, 29);
-            this.totalTicketPriceTxt.TabIndex = 133;
+            this.totalTicketPriceTxt.TabIndex = 25;
             // 
             // exportToTicketBtn
             // 
