@@ -317,7 +317,7 @@
     <Compile Include="SearchCar.Designer.cs">
       <DependentUpon>SearchCar.cs</DependentUpon>
     </Compile>
-    <Compile Include="Utils\InputValidationUtils.cs" />
+    <Compile Include="Utils\ErrorHandling.cs" />
     <Compile Include="Warehouse.cs">
       <SubType>Form</SubType>
     </Compile>

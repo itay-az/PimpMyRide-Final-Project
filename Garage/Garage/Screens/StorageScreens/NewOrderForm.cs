@@ -1,5 +1,7 @@
 ﻿using Garage.Models;
 using Garage.Requests;
+using Garage.Responses;
+using Garage.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -30,23 +32,31 @@ namespace Garage.Screens.StorageScreens
 
         private async void GetSuppliers()
         {
-            HttpResponseMessage response = await Program.client.GetAsync("StorageHandler/getAllSuppliers/");
-            if (response.IsSuccessStatusCode)
+            try
             {
 
-                var responseResult = await response.Content.ReadAsStringAsync();
-                var jsonResult = JsonConvert.DeserializeObject<List<Supplier>>(responseResult);
-
-                foreach( Supplier supplier in jsonResult)
+                HttpResponseMessage response = await Program.client.GetAsync("StorageHandler/getAllSuppliers/");
+                if (response.IsSuccessStatusCode)
                 {
-                    suppliersName.Add(supplier.supplierName);
 
+                    var responseResult = await response.Content.ReadAsStringAsync();
+                    var jsonResult = JsonConvert.DeserializeObject<List<Supplier>>(responseResult);
+
+                    foreach( Supplier supplier in jsonResult)
+                    {
+                        suppliersName.Add(supplier.supplierName);
+
+                    }
+                    chooseSupplierComboBox.DataSource = suppliersName;
                 }
-                chooseSupplierComboBox.DataSource = suppliersName;
+                else
+                {
+                    await ErrorHandling.HandleErrorResponse(response);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Error");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -81,7 +91,6 @@ namespace Garage.Screens.StorageScreens
                 try
                 {
                     part.partId = partIdTxt.Text;
-
                 }
                 catch (Exception ex)
                 {
@@ -138,25 +147,32 @@ namespace Garage.Screens.StorageScreens
                 price = sumPrice
             };
 
-            HttpResponseMessage response = await Program.client.PostAsJsonAsync(
-               "StorageHandler/newOrder", createNewOrderRequest);
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var result = await response.Content.ReadAsStringAsync();
-                MessageBox.Show("Order Added successfully", "success");
+                HttpResponseMessage response = await Program.client.PostAsJsonAsync("StorageHandler/newOrder", createNewOrderRequest);
 
-                this.Close();
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsStringAsync();
+                    MessageBox.Show("Order Added successfully", "success");
+
+                    this.Close();
+                }
+                else if (response.StatusCode.Equals(HttpStatusCode.Conflict))
+                {
+                    MessageBox.Show("Order Already exists", "conflict");
+
+                }
+                else
+                {
+                    await ErrorHandling.HandleErrorResponse(response);
+                }
             }
-            else if (response.StatusCode.Equals(HttpStatusCode.Conflict))
+            catch (Exception ex)
             {
-                MessageBox.Show("Order Already exists", "conflict");
-
-            }
-            else
-            {
-                MessageBox.Show(" Failed ", "Error");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }

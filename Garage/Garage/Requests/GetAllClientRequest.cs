@@ -14,6 +14,5 @@ namespace Garage.Requests
         public string phone { get; set; }
         public string email { get; set; }
         public string address { get; set; }
-        public List<Car> cars { get; set; }
     }
 }

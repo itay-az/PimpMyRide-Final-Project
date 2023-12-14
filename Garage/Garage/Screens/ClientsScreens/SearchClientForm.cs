@@ -1,5 +1,6 @@
 ﻿using Garage.Models;
 using Garage.Requests;
+using Garage.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -54,30 +55,39 @@ namespace Garage.Screens.ClientsScreens
         {
             HttpResponseMessage response = await Program.client.GetAsync("client/getClientByClientId/" + id);
 
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var responseResult = await response.Content.ReadAsStringAsync();
-                jsonResult = JsonConvert.DeserializeObject<Client>(responseResult);
-                changeVisibilityToTrue();
-
-                searchClientFullNameTxt.Text = jsonResult.name;
-                searchClientEmailTxt.Text = jsonResult.email;
-                searchClientAddressTxt.Text = jsonResult.address;
-                searchClientPhoneTxt.Text = jsonResult.phone;
-                carNumberComboBox.Text = jsonResult.cars[0].carId.ToString();
-                searchCarManuTxt.Text = jsonResult.cars[0].carManufacture.ToString();
-                searchCarModelTxt.Text = jsonResult.cars[0].carModel.ToString();
-                searchCarYearTxt.Text = jsonResult.cars[0].carYear.ToString();
-                searchCarEngineTxt.Text = jsonResult.cars[0].carEngine.ToString();
-                searchVinNumberTxt.Text = jsonResult.cars[0].vinNumber.ToString();
-                foreach(Car c in jsonResult.cars)
+                if (response.IsSuccessStatusCode)
                 {
-                    carNumberComboBox.Items.Add(c.carId.ToString());
+                    var responseResult = await response.Content.ReadAsStringAsync();
+                    jsonResult = JsonConvert.DeserializeObject<Client>(responseResult);
+                    changeVisibilityToTrue();
+
+                    searchClientFullNameTxt.Text = jsonResult.name;
+                    searchClientEmailTxt.Text = jsonResult.email;
+                    searchClientAddressTxt.Text = jsonResult.address;
+                    searchClientPhoneTxt.Text = jsonResult.phone;
+                    carNumberComboBox.Text = jsonResult.cars[0].carId.ToString();
+                    searchCarManuTxt.Text = jsonResult.cars[0].carManufacture.ToString();
+                    searchCarModelTxt.Text = jsonResult.cars[0].carModel.ToString();
+                    searchCarYearTxt.Text = jsonResult.cars[0].carYear.ToString();
+                    searchCarEngineTxt.Text = jsonResult.cars[0].carEngine.ToString();
+                    searchVinNumberTxt.Text = jsonResult.cars[0].vinNumber.ToString();
+                    foreach(Car c in jsonResult.cars)
+                    {
+                        carNumberComboBox.Items.Add(c.carId.ToString());
+                    }
                 }
+                else
+                {
+                    await ErrorHandling.HandleErrorResponse(response);
+                }
+
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Client not found, Please create new client", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
 
@@ -96,28 +106,37 @@ namespace Garage.Screens.ClientsScreens
         public async void searchClientByCarId(string id)
         {
             HttpResponseMessage response = await Program.client.GetAsync("client/getClientByCarId/" + id);
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var responseResult = await response.Content.ReadAsStringAsync();
-                var jsonResult = JsonConvert.DeserializeObject<Client>(responseResult);
-                changeVisibilityToTrue();
 
-                searchClientIdTxt.Text = jsonResult.clientId;
-                searchClientFullNameTxt.Text = jsonResult.name;
-                searchClientEmailTxt.Text = jsonResult.email;
-                searchClientAddressTxt.Text = jsonResult.address;
-                searchClientPhoneTxt.Text = jsonResult.phone;
-                carNumberComboBox.Text = jsonResult.cars[0].carId.ToString();
-                searchCarManuTxt.Text = jsonResult.cars[0].carManufacture.ToString();
-                searchCarModelTxt.Text = jsonResult.cars[0].carModel.ToString();
-                searchCarYearTxt.Text = jsonResult.cars[0].carYear.ToString();
-                searchCarEngineTxt.Text = jsonResult.cars[0].carEngine.ToString();
-                searchVinNumberTxt.Text = jsonResult.cars[0].vinNumber.ToString();
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseResult = await response.Content.ReadAsStringAsync();
+                    var jsonResult = JsonConvert.DeserializeObject<Client>(responseResult);
+                    changeVisibilityToTrue();
+
+                    searchClientIdTxt.Text = jsonResult.clientId;
+                    searchClientFullNameTxt.Text = jsonResult.name;
+                    searchClientEmailTxt.Text = jsonResult.email;
+                    searchClientAddressTxt.Text = jsonResult.address;
+                    searchClientPhoneTxt.Text = jsonResult.phone;
+                    carNumberComboBox.Text = jsonResult.cars[0].carId.ToString();
+                    searchCarManuTxt.Text = jsonResult.cars[0].carManufacture.ToString();
+                    searchCarModelTxt.Text = jsonResult.cars[0].carModel.ToString();
+                    searchCarYearTxt.Text = jsonResult.cars[0].carYear.ToString();
+                    searchCarEngineTxt.Text = jsonResult.cars[0].carEngine.ToString();
+                    searchVinNumberTxt.Text = jsonResult.cars[0].vinNumber.ToString();
+                }
+                else
+                {
+                    await ErrorHandling.HandleErrorResponse(response);
+                }
             }
-            else
+
+            catch (Exception ex)
             {
-                MessageBox.Show("Error");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
 
@@ -208,20 +227,29 @@ namespace Garage.Screens.ClientsScreens
             HttpResponseMessage response = await Program.client.PutAsJsonAsync(
                "client/" + client.clientId, createClientRequest);
 
-            if (response.IsSuccessStatusCode)
+            try
             {
-                MessageBox.Show("Client " + client.name + " Updated successfully", "success");
 
-                this.Close();
-            }
-            else if (response.StatusCode.Equals(HttpStatusCode.Conflict))
-            {
-                MessageBox.Show($"Client {client.name} or car {car.carManufacture} {car.carModel} already exist");
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Client " + client.name + " Updated successfully", "success");
 
+                    this.Close();
+                }
+                else if (response.StatusCode.Equals(HttpStatusCode.Conflict))
+                {
+                    MessageBox.Show($"Client {client.name} or car {car.carManufacture} {car.carModel} already exist");
+
+                }
+                else
+                {
+                    await ErrorHandling.HandleErrorResponse(response);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(" Failed ", "Error");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
 
@@ -247,20 +275,29 @@ namespace Garage.Screens.ClientsScreens
 
             HttpResponseMessage response = await Program.client.PutAsJsonAsync("client/client/addCar/" + addCarToClientRequest.clientId, addCarToClientRequest);
 
-            if (response.IsSuccessStatusCode)
+            try
             {
-                MessageBox.Show($"Car {addCarToClientRequest.carManufacture} {addCarToClientRequest.carModel} has been added successfully to client {searchClientFullNameTxt.Text}", "success");
 
-                this.Close();
-            }
-            else if (response.StatusCode.Equals(HttpStatusCode.Conflict))
-            {
-                MessageBox.Show($"Client {searchClientFullNameTxt.Text} or car {addCarToClientRequest.carManufacture} {addCarToClientRequest.carModel} already exist");
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show($"Car {addCarToClientRequest.carManufacture} {addCarToClientRequest.carModel} has been added successfully to client {searchClientFullNameTxt.Text}", "success");
 
+                    this.Close();
+                }
+                else if (response.StatusCode.Equals(HttpStatusCode.Conflict))
+                {
+                    MessageBox.Show($"Client {searchClientFullNameTxt.Text} or car {addCarToClientRequest.carManufacture} {addCarToClientRequest.carModel} already exist");
+
+                }
+                else
+                {
+                    await ErrorHandling.HandleErrorResponse(response);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(" Failed ", "Error");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
 

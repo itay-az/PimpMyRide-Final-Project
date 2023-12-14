@@ -16,6 +16,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 using Newtonsoft.Json;
 using System.Threading;
 using System.Data.Entity.Infrastructure;
+using Garage.Utils;
 
 namespace Garage.Screens.ClientsScreens
 {
@@ -36,23 +37,33 @@ namespace Garage.Screens.ClientsScreens
         private async void getManufactures()
         {
             HttpResponseMessage response = await Program.client.GetAsync("StorageHandler/getManufactures");
-            if (response.IsSuccessStatusCode)
+            try
             {
-                string result = await response.Content.ReadAsStringAsync();
-                manuList = JsonConvert.DeserializeObject<List<GetManufacturesRequest>>(result);
-                inserManufacturesToComboBox();
+                if (response.IsSuccessStatusCode)
+                {
+                    string result = await response.Content.ReadAsStringAsync();
+                    manuList = JsonConvert.DeserializeObject<List<GetManufacturesRequest>>(result);
+                    inserManufacturesToComboBox();
 
+                }
+                else
+                {
+                    await ErrorHandling.HandleErrorResponse(response);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Error");
+                await ErrorHandling.HandleErrorResponse(response);
+
             }
         }
 
         private async Task<List<GetModelsByManufactureRequest>> getModels()
         {
 
-                HttpResponseMessage response = await Program.client.GetAsync("StorageHandler/" + manufactureComboBox.Text);
+            HttpResponseMessage response = await Program.client.GetAsync("StorageHandler/" + manufactureComboBox.Text);
+            try
+            {
                 if (response.IsSuccessStatusCode)
                 {
                     string result = await response.Content.ReadAsStringAsync();
@@ -60,12 +71,18 @@ namespace Garage.Screens.ClientsScreens
                 }
                 else
                 {
-                    MessageBox.Show("Error");
+                    await ErrorHandling.HandleErrorResponse(response);
                     return new List<GetModelsByManufactureRequest>();
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return new List<GetModelsByManufactureRequest>();
 
-            
-            
+            }
+
+
 
         }
 
@@ -92,10 +109,10 @@ namespace Garage.Screens.ClientsScreens
 
         public bool isNegative(string toCheck)
         {
-            if(isNumeric(toCheck))
+            if (isNumeric(toCheck))
             {
                 int num = int.Parse(toCheck);
-                if(num < 0) 
+                if (num < 0)
                 {
                     return true;
                 }
@@ -106,9 +123,9 @@ namespace Garage.Screens.ClientsScreens
 
         private bool isNumInString(string toCheck)
         {
-            foreach(char ch in toCheck)
+            foreach (char ch in toCheck)
             {
-                if(!isNumeric(ch))
+                if (!isNumeric(ch))
                 {
                     return true;
                 }
@@ -134,7 +151,7 @@ namespace Garage.Screens.ClientsScreens
             else if (isNegative(clientIdTxt.Text) ||
                 isNegative(clientPhoneTxt.Text) || isNegative(carNumberTxt.Text) ||
                 isNegative(carYearTxt.Text) || isNegative(carEngineTxt.Text) ||
-                isNegative(carKMTxt.Text)) 
+                isNegative(carKMTxt.Text))
             {
                 MessageBox.Show("One or more fields is negative", "Error");
                 return true;
@@ -151,27 +168,27 @@ namespace Garage.Screens.ClientsScreens
                 MessageBox.Show("Client name cannot be a number", "Error");
                 return true;
             }
-                return false;
-            
+            return false;
+
         }
 
         private void createNewClientBtn_Click(object sender, EventArgs e)
         {
-            if(fieldCheck())
+            if (fieldCheck())
             {
-                MessageBox.Show("One or more inputs is incorrect","Error");
+                MessageBox.Show("One or more inputs is incorrect", "Error");
             }
             else
             {
-                car = new Car(carNumberTxt.Text, clientIdTxt.Text, manufactureComboBox.Text, modelsComboBox.Text,carEngineTxt.Text, int.Parse(carYearTxt.Text), vinNumberTxt.Text);
-                client = new Client(clientIdTxt.Text, clientFullNameTxt.Text, clientPhoneTxt.Text,clientEmailTxt.Text, clientAddressTxt.Text,car);
+                car = new Car(carNumberTxt.Text, clientIdTxt.Text, manufactureComboBox.Text, modelsComboBox.Text, carEngineTxt.Text, int.Parse(carYearTxt.Text), vinNumberTxt.Text);
+                client = new Client(clientIdTxt.Text, clientFullNameTxt.Text, clientPhoneTxt.Text, clientEmailTxt.Text, clientAddressTxt.Text, car);
 
                 CreateClientRequest(client, car);
             }
         }
 
 
-        private async void CreateClientRequest(Client client,Car car)
+        private async void CreateClientRequest(Client client, Car car)
         {
 
             CreateClientRequest createClientRequest = new CreateClientRequest
@@ -190,8 +207,11 @@ namespace Garage.Screens.ClientsScreens
                 vinNumber = car.vinNumber
             };
 
-                HttpResponseMessage response = await Program.client.PostAsJsonAsync(
-                   "client/", createClientRequest);
+            HttpResponseMessage response = await Program.client.PostAsJsonAsync(
+               "client/", createClientRequest);
+
+            try
+            {
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -207,11 +227,18 @@ namespace Garage.Screens.ClientsScreens
                 }
                 else
                 {
-                    MessageBox.Show(" Failed ", "Error");
+                    await ErrorHandling.HandleErrorResponse(response);
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
+
         }
 
-        public void initializeModels ()
+        public void initializeModels()
         {
 
             modelsComboBox.Items.Clear();
@@ -224,14 +251,8 @@ namespace Garage.Screens.ClientsScreens
 
         private async void manufactureComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-
-
             modelList = await getModels();
-
             initializeModels();
-            
-
-
         }
     }
 }

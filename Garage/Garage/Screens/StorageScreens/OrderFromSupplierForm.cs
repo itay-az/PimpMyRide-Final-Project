@@ -1,6 +1,7 @@
 ﻿using Garage.Models;
 using Garage.Requests;
 using Garage.Responses;
+using Garage.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -37,29 +38,44 @@ namespace Garage.Screens.StorageScreens
 
         private async void GetAllOrders()
         {
-            HttpResponseMessage response = await Program.client.GetAsync("StorageHandler/getAllOrders/");
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var responseResult = await response.Content.ReadAsStringAsync();
-                var jsonResult = JsonConvert.DeserializeObject<List<GetAllOrdersResponse>>(responseResult);
 
-                List<AllOrder> allOrders = new List<AllOrder>();
-                foreach (var order in jsonResult)
+                HttpResponseMessage response = await Program.client.GetAsync("StorageHandler/getAllOrders/");
+                if (response.IsSuccessStatusCode)
                 {
-                    allOrders.Add(new AllOrder
-                    {
-                        orderId = order.orderId,
-                        supplierName = order.supplierName,
-                        date = order.dateTime.ToString(),
-                        price = order.price
-                    });
-                }
-                allOrdersDataGridView.DataSource = allOrders;
+                    var responseResult = await response.Content.ReadAsStringAsync();
+                    var jsonResult = JsonConvert.DeserializeObject<List<GetAllOrdersResponse>>(responseResult);
 
+                    List<AllOrder> allOrders = new List<AllOrder>();
+                    foreach (var order in jsonResult)
+                    {
+                        allOrders.Add(new AllOrder
+                        {
+                            orderId = order.orderId,
+                            supplierName = order.supplierName,
+                            date = order.dateTime.ToString(),
+                            price = order.price
+                        });
+                    }
+                    allOrdersDataGridView.DataSource = allOrders;
+
+
+                    allOrdersDataGridView.Columns["orderId"].HeaderText = "Order Id";
+                    allOrdersDataGridView.Columns["supplierName"].HeaderText = "Supplier Name";
+                    allOrdersDataGridView.Columns["price"].HeaderText = "Price";
+                    allOrdersDataGridView.Columns["date"].HeaderText = "Date";
+
+
+                }
+                else
+                {
+                    await ErrorHandling.HandleErrorResponse(response);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Error");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -67,24 +83,30 @@ namespace Garage.Screens.StorageScreens
 
         private async void GetOrderDetails(int orderId)
         {
-            HttpResponseMessage response = await Program.client.GetAsync("StorageHandler/getOrderById/" + orderId);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var responseResult = await response.Content.ReadAsStringAsync();
-                var jsonResult = JsonConvert.DeserializeObject<Order>(responseResult);
-                orderDetailsDataGridView.DataSource = jsonResult.parts;
-                orderDetailsDataGridView.Visible = true;
+
+                HttpResponseMessage response = await Program.client.GetAsync("StorageHandler/getOrderById/" + orderId);
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseResult = await response.Content.ReadAsStringAsync();
+                    var jsonResult = JsonConvert.DeserializeObject<Order>(responseResult);
+                    orderDetailsDataGridView.DataSource = jsonResult.parts;
+                    orderDetailsDataGridView.Visible = true;
+                }
+                else
+                {
+                    await ErrorHandling.HandleErrorResponse(response);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Error");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
 
-        public void FillDTV(Order order)
-        {
 
-        }
 
         private void showDetailsBtn_Click(object sender, EventArgs e)
         {
@@ -93,7 +115,18 @@ namespace Garage.Screens.StorageScreens
 
         private void allOrdersDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            orderId = int.Parse(allOrdersDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString());
+            try
+            {
+
+                orderId = int.Parse(allOrdersDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
         }
+
+
     }
 }

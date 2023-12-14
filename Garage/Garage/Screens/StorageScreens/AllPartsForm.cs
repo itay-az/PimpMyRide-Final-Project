@@ -1,5 +1,7 @@
 ﻿using Garage.Models;
 using Garage.Requests;
+using Garage.Responses;
+using Garage.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -7,6 +9,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Text;
@@ -35,26 +38,52 @@ namespace Garage.Screens.StorageScreens
 
         public async void GetAllParts()
         {
-            HttpResponseMessage response = await Program.client.GetAsync("StorageHandler/getParts/");
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var responseResult = await response.Content.ReadAsStringAsync();
-                var jsonResult = JsonConvert.DeserializeObject<List<GetAllPartsRequest>>(responseResult);
-                allPartsDataGrid.DataSource = jsonResult;
+                HttpResponseMessage response = await Program.client.GetAsync("StorageHandler/getParts/");
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseResult = await response.Content.ReadAsStringAsync();
+                    var jsonResult = JsonConvert.DeserializeObject<List<GetAllPartsRequest>>(responseResult);
+                    allPartsDataGrid.DataSource = jsonResult;
+
+
+                    allPartsDataGrid.Columns["partId"].HeaderText = "Id";
+                    allPartsDataGrid.Columns["partName"].HeaderText = "Part Name";
+                    allPartsDataGrid.Columns["price"].HeaderText = "Price";
+                    allPartsDataGrid.Columns["quantity"].HeaderText = "Quantity";
+
+                }
+                else
+                {
+                    await ErrorHandling.HandleErrorResponse(response);
+
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Error");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
 
+            
+
         private void allPartsDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            partIdTxt.Text = allPartsDataGrid.Rows[e.RowIndex].Cells[0].Value.ToString();
-            partNameTxt.Text = allPartsDataGrid.Rows[e.RowIndex].Cells[1].Value.ToString();
-            partPriceTxt.Text = allPartsDataGrid.Rows[e.RowIndex].Cells[2].Value.ToString();
-            quantityTxt.Text = allPartsDataGrid.Rows[e.RowIndex].Cells[3].Value.ToString();
-            //ticketsListComboBox.Text = allPartsDataGrid.Rows[e.RowIndex].Cells[4].Value.ToString();
+            try
+            {
+
+                partIdTxt.Text = allPartsDataGrid.Rows[e.RowIndex].Cells[0].Value.ToString();
+                partNameTxt.Text = allPartsDataGrid.Rows[e.RowIndex].Cells[1].Value.ToString();
+                partPriceTxt.Text = allPartsDataGrid.Rows[e.RowIndex].Cells[2].Value.ToString();
+                quantityTxt.Text = allPartsDataGrid.Rows[e.RowIndex].Cells[3].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
         }
 
         private void createPartBtn_Click(object sender, EventArgs e)
@@ -74,15 +103,23 @@ namespace Garage.Screens.StorageScreens
             createNewPartRequest.partName = partNameTxt.Text;
             createNewPartRequest.quantity = decimal.Parse(quantityTxt.Text);
 
-            HttpResponseMessage response = await Program.client.PostAsJsonAsync("StorageHandler/createNewPart", createNewPartRequest);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                MessageBox.Show("Added successfully","Success",MessageBoxButtons.OK);
-                GetAllParts();
+
+                HttpResponseMessage response = await Program.client.PostAsJsonAsync("StorageHandler/createNewPart", createNewPartRequest);
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Added successfully","Success",MessageBoxButtons.OK);
+                    GetAllParts();
+                }
+                else
+                {
+                    await ErrorHandling.HandleErrorResponse(response);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Error");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -103,16 +140,27 @@ namespace Garage.Screens.StorageScreens
             createNewPartRequest.partName = partNameTxt.Text;
             createNewPartRequest.quantity = decimal.Parse(quantityTxt.Text);
 
-            HttpResponseMessage response = await Program.client.PutAsJsonAsync("StorageHandler/updatePart/" + partIdTxt.Text, createNewPartRequest);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                MessageBox.Show("Part updated successfully!", "Success", MessageBoxButtons.OK);
-                GetAllParts();
+
+                HttpResponseMessage response = await Program.client.PutAsJsonAsync("StorageHandler/updatePart/" + partIdTxt.Text, createNewPartRequest);
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Part updated successfully!", "Success", MessageBoxButtons.OK);
+                    GetAllParts();
+                }
+                else
+                {
+                    await ErrorHandling.HandleErrorResponse(response);
+                }
             }
-            else
+
+            catch (Exception ex)
             {
-                MessageBox.Show("Error");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
+
         }
 
         private void deletePartBtn_Click(object sender, EventArgs e)
@@ -122,16 +170,27 @@ namespace Garage.Screens.StorageScreens
 
         private async void DeletePartById()
         {
-            HttpResponseMessage response = await Program.client.DeleteAsync("StorageHandler/deletePart/" + partIdTxt.Text);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                MessageBox.Show("Part deleted successfully!", "Success", MessageBoxButtons.OK);
-                GetAllParts();
+
+                HttpResponseMessage response = await Program.client.DeleteAsync("StorageHandler/deletePart/" + partIdTxt.Text);
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Part deleted successfully!", "Success", MessageBoxButtons.OK);
+                    GetAllParts();
+                }
+                else
+                {
+                    await ErrorHandling.HandleErrorResponse(response);
+                }
             }
-            else
+
+            catch (Exception ex)
             {
-                MessageBox.Show("Error");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        
     }
 }

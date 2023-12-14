@@ -628,7 +628,7 @@ namespace PimpMyRideServer.Handlers
                 .Where(t => t.carId.Contains(carNumber) && t.state == TicketType.IS_OFFER)
                 .ToList();
 
-            if (tickets == null)
+            if (tickets == null || tickets.Count == 0)
             {
                 return onFailure("No open offers found", "Not found");
             }

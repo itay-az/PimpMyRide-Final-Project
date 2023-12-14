@@ -1,5 +1,6 @@
 ﻿using Garage.Responses;
 using Garage.Screens.TicketsScreens;
+using Garage.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -41,11 +42,20 @@ namespace Garage.Screens.ClientsScreens
 
                     carHistoryDataGridView.DataSource = jsonResult;
                     ticketId = carHistoryDataGridView.Rows[0].Cells[0].Value.ToString();
+
+                    
+                    carHistoryDataGridView.Columns["ticketId"].HeaderText = "Ticket Id";
+                    carHistoryDataGridView.Columns["carId"].HeaderText = "Car Number";
+                    carHistoryDataGridView.Columns["clientId"].HeaderText = "Client Id";
+                    carHistoryDataGridView.Columns["dateTime"].HeaderText = "Date";
+                    carHistoryDataGridView.Columns["price"].HeaderText = "Total price";
+                    carHistoryDataGridView.Columns["state"].HeaderText = "State";
+
                 }
 
                 else
                 {
-                    await HandleErrorResponse(response);
+                    await ErrorHandling.HandleErrorResponse(response);
                 }
             }
             catch(Exception ex)
@@ -55,22 +65,6 @@ namespace Garage.Screens.ClientsScreens
         }
 
 
-        private async Task HandleErrorResponse(HttpResponseMessage response)
-        {
-            string content = await response.Content.ReadAsStringAsync();
-
-            try
-            {
-                ErrorResponse errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(content);
-
-                MessageBox.Show($"Error: {errorResponse.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }
-            catch (JsonException)
-            {
-                MessageBox.Show("Invalid response format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
         private void selectTicketBtn_Click(object sender, EventArgs e)
         {
@@ -81,13 +75,22 @@ namespace Garage.Screens.ClientsScreens
 
         private void carHistoryDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (carHistoryDataGridView.Rows.Count == 0)
+            try
             {
-                MessageBox.Show("No open tickets");
+
+                if (carHistoryDataGridView.Rows.Count == 0)
+                {
+                    MessageBox.Show("No open tickets");
+                }
+                else
+                {
+                    this.ticketId = carHistoryDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+                }
             }
-            else
+
+            catch (Exception ex)
             {
-                this.ticketId = carHistoryDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

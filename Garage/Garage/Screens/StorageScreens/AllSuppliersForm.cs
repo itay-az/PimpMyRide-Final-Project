@@ -1,5 +1,7 @@
 ﻿using Garage.Models;
 using Garage.Requests;
+using Garage.Responses;
+using Garage.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -25,16 +27,32 @@ namespace Garage.Screens.StorageScreens
 
         private async void GetAllSuppliers()
         {
-            HttpResponseMessage response = await Program.client.GetAsync("StorageHandler/getAllSuppliers/");
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var responseResult = await response.Content.ReadAsStringAsync();
-                var jsonResult = JsonConvert.DeserializeObject<List<GetAllSuppliersRequest>>(responseResult);
-                allSuppliersDataGrid.DataSource = jsonResult;
+
+                HttpResponseMessage response = await Program.client.GetAsync("StorageHandler/getAllSuppliers/");
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseResult = await response.Content.ReadAsStringAsync();
+                    var jsonResult = JsonConvert.DeserializeObject<List<GetAllSuppliersRequest>>(responseResult);
+                    allSuppliersDataGrid.DataSource = jsonResult;
+
+                    allSuppliersDataGrid.Columns["supplierId"].HeaderText = "Supplier Id";
+                    allSuppliersDataGrid.Columns["supplierName"].HeaderText = "Supplier Name";
+                    allSuppliersDataGrid.Columns["supplierAddress"].HeaderText = "Supplier Address";
+                    allSuppliersDataGrid.Columns["supplierPhone"].HeaderText = "Supplier Phone";
+                    allSuppliersDataGrid.Columns["supplierEmail"].HeaderText = "Supplier Email";
+
+                }
+                else
+                {
+                    await ErrorHandling.HandleErrorResponse(response);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Error");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
 
@@ -53,37 +71,54 @@ namespace Garage.Screens.StorageScreens
             getAllSuppliersRequest.supplierEmail = supplierEmailTxt.Text;
             getAllSuppliersRequest.orders = new List<Order>();
 
-            HttpResponseMessage response = await Program.client.PutAsJsonAsync("StorageHandler/updateSupplier/" + supplierIdTxt.Text, getAllSuppliersRequest);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                MessageBox.Show("Supplier updated successfully!", "Success", MessageBoxButtons.OK);
-                GetAllSuppliers();
+
+                HttpResponseMessage response = await Program.client.PutAsJsonAsync("StorageHandler/updateSupplier/" + supplierIdTxt.Text, getAllSuppliersRequest);
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Supplier updated successfully!", "Success", MessageBoxButtons.OK);
+                    GetAllSuppliers();
+                }
+                else
+                {
+                    await ErrorHandling.HandleErrorResponse(response);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Error");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
 
         private void allSuppliersDataGrid_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            supplierIdTxt.Text = allSuppliersDataGrid.Rows[e.RowIndex].Cells[0].Value.ToString();
+            try
+            {
 
-            supplierNameTxt.Text = allSuppliersDataGrid.Rows[e.RowIndex].Cells[1].Value.ToString();
+                supplierIdTxt.Text = allSuppliersDataGrid.Rows[e.RowIndex].Cells[0].Value.ToString();
 
-            if(allSuppliersDataGrid.Rows[e.RowIndex].Cells[2].Value != null)
-                supplierAddressTxt.Text = allSuppliersDataGrid.Rows[e.RowIndex].Cells[2].Value.ToString();
-            else
-                supplierAddressTxt.Text = "";
-            if (allSuppliersDataGrid.Rows[e.RowIndex].Cells[3].Value != null)
-                supplierPhoneTxt.Text = allSuppliersDataGrid.Rows[e.RowIndex].Cells[3].Value.ToString();
-            else
-                supplierPhoneTxt.Text = "";
-            if (allSuppliersDataGrid.Rows[e.RowIndex].Cells[4].Value != null)
-                supplierEmailTxt.Text = allSuppliersDataGrid.Rows[e.RowIndex].Cells[4].Value.ToString();
-            else
-                supplierEmailTxt.Text = "";
-            //supplierListComboBox.Text = allSuppliersDataGrid.Rows[e.RowIndex].Cells[5].Value.ToString();
+                supplierNameTxt.Text = allSuppliersDataGrid.Rows[e.RowIndex].Cells[1].Value.ToString();
+
+                if(allSuppliersDataGrid.Rows[e.RowIndex].Cells[2].Value != null)
+                    supplierAddressTxt.Text = allSuppliersDataGrid.Rows[e.RowIndex].Cells[2].Value.ToString();
+                else
+                    supplierAddressTxt.Text = "";
+                if (allSuppliersDataGrid.Rows[e.RowIndex].Cells[3].Value != null)
+                    supplierPhoneTxt.Text = allSuppliersDataGrid.Rows[e.RowIndex].Cells[3].Value.ToString();
+                else
+                    supplierPhoneTxt.Text = "";
+                if (allSuppliersDataGrid.Rows[e.RowIndex].Cells[4].Value != null)
+                    supplierEmailTxt.Text = allSuppliersDataGrid.Rows[e.RowIndex].Cells[4].Value.ToString();
+                else
+                    supplierEmailTxt.Text = "";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
 
         }
 
@@ -94,16 +129,28 @@ namespace Garage.Screens.StorageScreens
 
         private async void DeleteSupplierById()
         {
-            HttpResponseMessage response = await Program.client.DeleteAsync("StorageHandler/deleteSupplierById/" + supplierIdTxt.Text);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                MessageBox.Show("Supplier deleted successfully!", "Success", MessageBoxButtons.OK);
-                GetAllSuppliers();
+
+                HttpResponseMessage response = await Program.client.DeleteAsync("StorageHandler/deleteSupplierById/" + supplierIdTxt.Text);
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Supplier deleted successfully!", "Success", MessageBoxButtons.OK);
+                    GetAllSuppliers();
+                }
+                else
+                {
+                    await ErrorHandling.HandleErrorResponse(response);
+                }
             }
-            else
+
+            catch (Exception ex)
             {
-                MessageBox.Show("Error");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
+
+        
     }
 }

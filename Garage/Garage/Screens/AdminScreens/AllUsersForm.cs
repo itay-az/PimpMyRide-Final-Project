@@ -14,6 +14,9 @@ using System.Windows.Forms;
 using Newtonsoft.Json;
 using System.Net;
 using System.Timers;
+using Garage.Utils;
+using static Garage.Models.JobTitleClass;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Garage.Screens.AdminScreens
 {
@@ -32,40 +35,69 @@ namespace Garage.Screens.AdminScreens
         public async void GetAllUsers()
         {
             HttpResponseMessage response = await Program.client.GetAsync("user/");
-            if(response.IsSuccessStatusCode)
+            try
             {
-                string result = await response.Content.ReadAsStringAsync();
-                List<GetAllUsersRequest> list = JsonConvert.DeserializeObject<List<GetAllUsersRequest>>(result);
 
-                AllUsersGridView.DataSource = list;
+                if (response.IsSuccessStatusCode)
+                {
+                    string result = await response.Content.ReadAsStringAsync();
+                    List<GetAllUsersRequest> list = JsonConvert.DeserializeObject<List<GetAllUsersRequest>>(result);
+
+                    AllUsersGridView.DataSource = list;
+
+                    AllUsersGridView.Columns["Id"].HeaderText = "Id";
+                    AllUsersGridView.Columns["UserName"].HeaderText = "User Name";
+                    AllUsersGridView.Columns["Password"].HeaderText = "Password";
+                    AllUsersGridView.Columns["Email"].HeaderText = "Email";
+                    AllUsersGridView.Columns["JobTitle"].HeaderText = "Job Title";
+                }
+                else
+                {
+                    await ErrorHandling.HandleErrorResponse(response);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Error");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
 
+
         private void AllUsersForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'garageDataSet.User' table. You can move, or remove it, as needed.
             this.userTableAdapter.Fill(this.garageDataSet.User);
 
         }
 
         private void AllUsersGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            useridLbl.Text = AllUsersGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
-            userNameTxt.Text =  AllUsersGridView.Rows[e.RowIndex].Cells[1].Value.ToString();
-            passwordTxt.Text = AllUsersGridView.Rows[e.RowIndex].Cells[2].Value.ToString();
-            emailTxt.Text = AllUsersGridView.Rows[e.RowIndex].Cells[3].Value.ToString();
-            jobTitleTxt.Text = AllUsersGridView.Rows[e.RowIndex].Cells[4].Value.ToString();
+            try
+            {
+                useridLbl.Text = AllUsersGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+                userNameTxt.Text = AllUsersGridView.Rows[e.RowIndex].Cells[1].Value.ToString();
+                passwordTxt.Text = AllUsersGridView.Rows[e.RowIndex].Cells[2].Value.ToString();
+                emailTxt.Text = AllUsersGridView.Rows[e.RowIndex].Cells[3].Value.ToString();
+                jobTitleTxt.Text = AllUsersGridView.Rows[e.RowIndex].Cells[4].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
         }
 
         private void createBtn_Click(object sender, EventArgs e)
         {
-            createUserRequest(userNameTxt.Text, passwordTxt.Text, emailTxt.Text, jobTitleTxt.Text);
-            AllUsersForm allUsersForm = new AllUsersForm();
-            
+            if (userNameTxt.Text == String.Empty || passwordTxt.Text == String.Empty || emailTxt.Text == String.Empty || jobTitleTxt.Text == String.Empty)
+            {
+                MessageBox.Show("All inputs are required", "error");
+            }
+            else
+            {
+                createUserRequest(userNameTxt.Text, passwordTxt.Text, emailTxt.Text, jobTitleTxt.Text);
+                AllUsersForm allUsersForm = new AllUsersForm();
+            }
             refreshData();
         }
 
@@ -106,21 +138,19 @@ namespace Garage.Screens.AdminScreens
 
         private async void createUserRequest(string username, string password, string email, string jobTitle)
         {
-            if (username == String.Empty || password == String.Empty || email == String.Empty || jobTitle == String.Empty)
+
+            CreateUserRequest createUserRequest = new CreateUserRequest
             {
-                MessageBox.Show("All inputs are required", "error");
-            }
-            else
+                UserName = username,
+                Password = password,
+                Email = email,
+                JobTitle = jobTitle == "Manager" ? JobTitleClass.JobTitle.Manager : jobTitle == "ServiceAdvisor" ? JobTitleClass.JobTitle.ServiceAdvisor : JobTitleClass.JobTitle.Warehouse
+            };
+            HttpResponseMessage response = await Program.client.PostAsJsonAsync(
+               "user/", createUserRequest);
+
+            try
             {
-                CreateUserRequest createUserRequest = new CreateUserRequest
-                {
-                    UserName = username,
-                    Password = password,
-                    Email = email,
-                    JobTitle = jobTitle == "Manager" ? JobTitleClass.JobTitle.Manager : jobTitle == "ServiceAdvisor" ? JobTitleClass.JobTitle.ServiceAdvisor : JobTitleClass.JobTitle.Warehouse
-                };
-                HttpResponseMessage response = await Program.client.PostAsJsonAsync(
-                   "user/", createUserRequest);
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -136,9 +166,14 @@ namespace Garage.Screens.AdminScreens
                 }
                 else
                 {
-                    MessageBox.Show(" Failed ", "Error");
+                    await ErrorHandling.HandleErrorResponse(response);
 
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
 
 
@@ -147,27 +182,50 @@ namespace Garage.Screens.AdminScreens
         public async void UpdateUser(User user)
         {
             HttpResponseMessage response = await Program.client.PutAsJsonAsync("user/" + user.Id, user);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                MessageBox.Show("User " + user.UserName + " updated succesfully");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("User " + user.UserName + " updated succesfully");
+                }
+                else
+                {
+                    await ErrorHandling.HandleErrorResponse(response);
+
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Error", " UserNotFound");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
-            this.Refresh();
+            finally
+            {
+
+                this.Refresh();
+            }
         }
 
         public async void DeleteUser(User user)
         {
             HttpResponseMessage response = await Program.client.DeleteAsync("user/" + user.Id);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                MessageBox.Show("User " + user.UserName + " deleted succesfully");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("User " + user.UserName + " deleted succesfully");
+                }
+                else
+                {
+                    await ErrorHandling.HandleErrorResponse(response);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Error", " UserNotFound");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
 
         }

@@ -1,4 +1,5 @@
 ﻿using Garage.Responses;
+using Garage.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -20,13 +21,22 @@ namespace Garage.Screens.TicketsScreens
 
         private void AllTicketsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (AllTicketsDataGridView.Rows.Count == 0)
+            try
             {
-                MessageBox.Show("No open tickets");
+
+                if (AllTicketsDataGridView.Rows.Count == 0)
+                {
+                    MessageBox.Show("No open tickets");
+                }
+                else 
+                {
+                    ticketId = AllTicketsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+                }
             }
-            else 
+            catch (Exception ex)
             {
-                ticketId = AllTicketsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
 
@@ -43,6 +53,14 @@ namespace Garage.Screens.TicketsScreens
                     var jsonResult = JsonConvert.DeserializeObject<List<GetAllTicketsResponse>>(responseResult);
 
                     AllTicketsDataGridView.DataSource = jsonResult;
+
+                    AllTicketsDataGridView.Columns["ticketId"].HeaderText = "Ticket Id";
+                    AllTicketsDataGridView.Columns["carId"].HeaderText = "Car Id";
+                    AllTicketsDataGridView.Columns["clientId"].HeaderText = "Client Id";
+                    AllTicketsDataGridView.Columns["problems"].HeaderText = "Problems";
+                    AllTicketsDataGridView.Columns["dateTime"].HeaderText = "Date";
+                    AllTicketsDataGridView.Columns["price"].HeaderText = "Price";
+
                     try
                     {
                         ticketId = AllTicketsDataGridView.Rows[0].Cells[0].Value.ToString();
@@ -54,7 +72,7 @@ namespace Garage.Screens.TicketsScreens
                 }
                 else
                 {
-                    await HandleErrorResponse(response);
+                    await ErrorHandling.HandleErrorResponse(response);
                 }
             }
             catch (Exception ex)
@@ -75,7 +93,7 @@ namespace Garage.Screens.TicketsScreens
         {
             if (searchCarNumberTxt.Text == String.Empty)
             {
-                MessageBox.Show("Please enter car number");
+                MessageBox.Show("Please enter car number", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
                 SearchTicketByCarNumber(searchCarNumberTxt.Text);
@@ -103,7 +121,7 @@ namespace Garage.Screens.TicketsScreens
                 }
                 else
                 {
-                    await HandleErrorResponse(response);
+                    await ErrorHandling.HandleErrorResponse(response);
                 }
             }
 
@@ -113,22 +131,7 @@ namespace Garage.Screens.TicketsScreens
             }
         }
 
-        private async Task HandleErrorResponse(HttpResponseMessage response)
-        {
-            string content = await response.Content.ReadAsStringAsync();
 
-            try
-            {
-                ErrorResponse errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(content);
-
-                MessageBox.Show($"Error: {errorResponse.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }
-            catch (JsonException)
-            {
-                MessageBox.Show("Invalid response format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
         private bool IsValidCarNumber(string carNumber)
         {

@@ -1,5 +1,6 @@
 ﻿using Garage.Models;
 using Garage.Responses;
+using Garage.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -27,7 +28,7 @@ namespace Garage.Screens.TicketsScreens
         {
             if (searchCarNumberTxt.Text == String.Empty)
             {
-                MessageBox.Show("Please enter car number");
+                MessageBox.Show("Please enter car number", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
                 SearchOfferByCarNumber(searchCarNumberTxt.Text);
@@ -35,10 +36,9 @@ namespace Garage.Screens.TicketsScreens
 
         private async void SearchOfferByCarNumber(string carNumber)
         {
+            HttpResponseMessage response = await Program.client.GetAsync("Tickets/searchOfferByCarNumber/" + carNumber);
             try
             {
-
-                HttpResponseMessage response = await Program.client.GetAsync("Tickets/searchOfferByCarNumber/" + carNumber);
                 if (response.IsSuccessStatusCode)
                 {
                     var responseResult = await response.Content.ReadAsStringAsync();
@@ -46,18 +46,26 @@ namespace Garage.Screens.TicketsScreens
 
                     if (jsonResult.Count == 0)
                     {
-                        MessageBox.Show("Not found");
+                        await ErrorHandling.HandleErrorResponse(response);
                         return;
                     }
                 
                     AllOffersDataGridView.DataSource = jsonResult;
                     ticketId = AllOffersDataGridView.Rows[0].Cells[0].Value.ToString();
 
+                    AllOffersDataGridView.Columns["ticketId"].HeaderText = "Ticket Id";
+                    AllOffersDataGridView.Columns["carId"].HeaderText = "Car Id";
+                    AllOffersDataGridView.Columns["clientId"].HeaderText = "Client Id";
+                    AllOffersDataGridView.Columns["problems"].HeaderText = "Problems";
+                    AllOffersDataGridView.Columns["dateTime"].HeaderText = "Date";
+                    AllOffersDataGridView.Columns["price"].HeaderText = "Price";
+
+
 
                 }
                 else
                 {
-                    await HandleErrorResponse(response);
+                    await ErrorHandling.HandleErrorResponse(response);
                 }
             }
             catch (Exception ex)
@@ -74,21 +82,6 @@ namespace Garage.Screens.TicketsScreens
             ticket.ShowDialog();
         }
 
-        private async Task HandleErrorResponse(HttpResponseMessage response)
-        {
-            string content = await response.Content.ReadAsStringAsync();
-
-            try
-            {
-                ErrorResponse errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(content);
-
-                MessageBox.Show($"Error: {errorResponse.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }
-            catch (JsonException)
-            {
-                MessageBox.Show("Invalid response format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
+        
     }
 }

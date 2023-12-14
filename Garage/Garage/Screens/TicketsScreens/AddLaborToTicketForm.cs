@@ -1,6 +1,7 @@
 ﻿using Garage.Models;
 using Garage.Requests;
 using Garage.Responses;
+using Garage.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -48,10 +49,18 @@ namespace Garage.Screens.TicketsScreens
                     var responseResult = await response.Content.ReadAsStringAsync();
                     var jsonResult = JsonConvert.DeserializeObject<List<Labor>>(responseResult);
                     allLaborsDataGridView.DataSource = jsonResult;
+
+
+                    allLaborsDataGridView.Columns["Id"].HeaderText = "Id";
+                    allLaborsDataGridView.Columns["description"].HeaderText = "Description";
+                    allLaborsDataGridView.Columns["price"].HeaderText = "Price";
+                    allLaborsDataGridView.Columns["time"].HeaderText = "Time";
+                    allLaborsDataGridView.Columns["discount"].HeaderText = "Discount";
                 }
                 else
                 {
-                    await HandleErrorResponse(response);                }
+                    await ErrorHandling.HandleErrorResponse(response);
+                }
             }
             catch (Exception ex)
             {
@@ -74,11 +83,17 @@ namespace Garage.Screens.TicketsScreens
 
 
                     allLaborsDataGridView.DataSource = jsonResult;
+
+                    allLaborsDataGridView.Columns["Id"].HeaderText = "Id";
+                    allLaborsDataGridView.Columns["description"].HeaderText = "Description";
+                    allLaborsDataGridView.Columns["price"].HeaderText = "Price";
+                    allLaborsDataGridView.Columns["time"].HeaderText = "Time";
+                    allLaborsDataGridView.Columns["discount"].HeaderText = "Discount";
                 }
                 else
                 {
                     GetAllLabors();
-                    await HandleErrorResponse(response);
+                    await ErrorHandling.HandleErrorResponse(response);
                 }
             }
             catch (Exception ex)
@@ -112,7 +127,7 @@ namespace Garage.Screens.TicketsScreens
                 }
                 else
                 {
-                    await HandleErrorResponse(response);
+                    await ErrorHandling.HandleErrorResponse(response);
                 }
             }
             catch (Exception ex)
@@ -124,28 +139,22 @@ namespace Garage.Screens.TicketsScreens
 
         private void allLaborsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            labor.Id = int.Parse(allLaborsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString());
-            labor.description = allLaborsDataGridView.Rows[e.RowIndex].Cells[1].Value.ToString();
-            labor.price = decimal.Parse(allLaborsDataGridView.Rows[e.RowIndex].Cells[2].Value.ToString());
-            labor.time = decimal.Parse(allLaborsDataGridView.Rows[e.RowIndex].Cells[3].Value.ToString());
-            labor.discount = 0;
-        }
-
-        private async Task HandleErrorResponse(HttpResponseMessage response)
-        {
-            string content = await response.Content.ReadAsStringAsync();
-
             try
             {
-                ErrorResponse errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(content);
 
-                MessageBox.Show($"Error: {errorResponse.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
+                labor.Id = int.Parse(allLaborsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString());
+                labor.description = allLaborsDataGridView.Rows[e.RowIndex].Cells[1].Value.ToString();
+                labor.price = decimal.Parse(allLaborsDataGridView.Rows[e.RowIndex].Cells[2].Value.ToString());
+                labor.time = decimal.Parse(allLaborsDataGridView.Rows[e.RowIndex].Cells[3].Value.ToString());
+                labor.discount = 0;
             }
-            catch (JsonException)
+            catch (Exception ex)
             {
-                MessageBox.Show("Invalid response format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
+
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Garage.Models;
 using Garage.Responses;
+using Garage.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -45,15 +46,30 @@ namespace Garage.Screens.TicketsScreens
         private void refreshPartsDataGridView()
         {
             partsDataGridView.DataSource = parts;
+
+            partsDataGridView.Columns["partId"].HeaderText = "Part Id";
+            partsDataGridView.Columns["partName"].HeaderText = "Part Name";
+            partsDataGridView.Columns["price"].HeaderText = "Price";
+            partsDataGridView.Columns["quantity"].HeaderText = "Quantity";
+            partsDataGridView.Columns["discount"].HeaderText = "Discount";
+            partsDataGridView.Columns["unitPrice"].HeaderText = "Unit Price";
+
             partsDataGridView.Columns[0].ReadOnly = true;
             partsDataGridView.Columns[1].ReadOnly = true;
             partsDataGridView.Columns[5].ReadOnly = true;
-
         }
 
         private void refreshLaborsDataGridView()
         {
             laborDataGridView.DataSource = labors;
+
+            laborDataGridView.Columns["Id"].HeaderText = "Labor Id";
+            laborDataGridView.Columns["description"].HeaderText = "Description";
+            laborDataGridView.Columns["price"].HeaderText = "Price";
+            laborDataGridView.Columns["time"].HeaderText = "Time";
+            laborDataGridView.Columns["discount"].HeaderText = "Discount";
+
+
             laborDataGridView.Columns[0].ReadOnly = true;
             laborDataGridView.Columns[1].ReadOnly = true;
             laborDataGridView.Columns[2].ReadOnly = true;
@@ -87,6 +103,7 @@ namespace Garage.Screens.TicketsScreens
                     clientKmTxt.Text = jsonResult.carKilometer.ToString();
                     cuaseOfArrivalTxt.Text = jsonResult.causeOfArrival;
                     parts = jsonResult.parts;
+
                     labors = jsonResult.labors;
                     totalPartPriceTxt.Text = jsonResult.totalPartsPrice.ToString();
                     totalPartDiscountTxt.Text = jsonResult.totalPartsDiscount.ToString();
@@ -122,7 +139,7 @@ namespace Garage.Screens.TicketsScreens
                 }
                 else
                 {
-                    await HandleErrorResponse(response);
+                    await ErrorHandling.HandleErrorResponse(response);
                 }
             }
             catch (Exception ex)
@@ -161,7 +178,7 @@ namespace Garage.Screens.TicketsScreens
                 }
                 else
                 {
-                    await HandleErrorResponse(response);
+                    await ErrorHandling.HandleErrorResponse(response);
                 }
             }
             catch (Exception ex)
@@ -173,7 +190,16 @@ namespace Garage.Screens.TicketsScreens
 
         private void partsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            partId = partsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+            try
+            {
+
+                partId = partsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
         }
 
         private void deleteTicketBtn_Click(object sender, EventArgs e)
@@ -194,7 +220,7 @@ namespace Garage.Screens.TicketsScreens
                 }
                 else
                 {
-                    await HandleErrorResponse(response);
+                    await ErrorHandling.HandleErrorResponse(response);
                 }
             }
             catch (Exception ex)
@@ -264,7 +290,7 @@ namespace Garage.Screens.TicketsScreens
 
                 else
                 {
-                    await HandleErrorResponse(response);
+                    await ErrorHandling.HandleErrorResponse(response);
                 }
             }
             catch (Exception ex)
@@ -321,7 +347,7 @@ namespace Garage.Screens.TicketsScreens
 
                 else
                 {
-                    await HandleErrorResponse(response);
+                    await ErrorHandling.HandleErrorResponse(response);
                 }
             }
             catch (Exception ex)
@@ -342,7 +368,7 @@ namespace Garage.Screens.TicketsScreens
 
         private void partsDataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if ((e.ColumnIndex == 2 || e.ColumnIndex == 3) && e.RowIndex >= 0) // e.RowIndex >= 0 ensures it's not a header cell
+            if ((e.ColumnIndex == 2 || e.ColumnIndex == 3) && e.RowIndex >= 0) 
             {
                 string newValue = e.FormattedValue.ToString();
 
@@ -376,7 +402,7 @@ namespace Garage.Screens.TicketsScreens
 
         private void laborDataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (e.ColumnIndex == 4 && e.RowIndex >= 0) // e.RowIndex >= 0 ensures it's not a header cell
+            if (e.ColumnIndex == 4 && e.RowIndex >= 0) 
             {
                 string newValue = e.FormattedValue.ToString();
 
@@ -415,7 +441,7 @@ namespace Garage.Screens.TicketsScreens
                 }
                 else
                 {
-                    await HandleErrorResponse(response);
+                    await ErrorHandling.HandleErrorResponse(response);
                 }
             }
             catch (Exception ex)
@@ -426,7 +452,16 @@ namespace Garage.Screens.TicketsScreens
 
         private void laborDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            laborId = int.Parse(laborDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString());
+            try
+            {
+
+                laborId = int.Parse(laborDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
         }
 
         private void exportToTicketBtn_Click(object sender, EventArgs e)
@@ -448,7 +483,7 @@ namespace Garage.Screens.TicketsScreens
 
                 else
                 {
-                    await HandleErrorResponse(response);
+                    await ErrorHandling.HandleErrorResponse(response);
                 }
             }
             catch (Exception ex)
@@ -457,22 +492,7 @@ namespace Garage.Screens.TicketsScreens
             }
         }
 
-        private async Task HandleErrorResponse(HttpResponseMessage response)
-        {
-            string content = await response.Content.ReadAsStringAsync();
 
-            try
-            {
-                ErrorResponse errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(content);
-
-                MessageBox.Show($"Error: {errorResponse.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }
-            catch (JsonException)
-            {
-                MessageBox.Show("Invalid response format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
     }
 }
 

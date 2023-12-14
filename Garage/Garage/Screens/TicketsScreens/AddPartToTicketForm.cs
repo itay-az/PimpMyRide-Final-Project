@@ -1,6 +1,7 @@
 ﻿using Garage.Models;
 using Garage.Requests;
 using Garage.Responses;
+using Garage.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -26,6 +27,7 @@ namespace Garage.Screens.TicketsScreens
             InitializeComponent();
             GetAllParts();
         }
+
         public AddPartToTicketForm(int ticketId)
         {
             InitializeComponent();
@@ -45,10 +47,15 @@ namespace Garage.Screens.TicketsScreens
                     var jsonResult = JsonConvert.DeserializeObject<List<GetAllPartsRequest>>(responseResult);
                     allPartsDataGridView.DataSource = jsonResult;
 
+                    allPartsDataGridView.Columns["partId"].HeaderText = "Part Id";
+                    allPartsDataGridView.Columns["partName"].HeaderText = "Part Name";
+                    allPartsDataGridView.Columns["price"].HeaderText = "Price";
+                    allPartsDataGridView.Columns["quantity"].HeaderText = "Quantity";
+
                 }
                 else
                 {
-                    await HandleErrorResponse(response);
+                    await ErrorHandling.HandleErrorResponse(response);
 
                 }
             }
@@ -78,11 +85,17 @@ namespace Garage.Screens.TicketsScreens
 
 
                     allPartsDataGridView.DataSource = jsonResult;
+
+                    allPartsDataGridView.Columns["partId"].HeaderText = "Part Id";
+                    allPartsDataGridView.Columns["partName"].HeaderText = "Part Name";
+                    allPartsDataGridView.Columns["price"].HeaderText = "Price";
+                    allPartsDataGridView.Columns["quantity"].HeaderText = "Quantity";
+
                 }
                 else
                 {
                     GetAllParts();
-                    await HandleErrorResponse(response);
+                    await ErrorHandling.HandleErrorResponse(response);
                 }
             }
             catch (Exception ex)
@@ -103,16 +116,14 @@ namespace Garage.Screens.TicketsScreens
             {
                 try
                 {
-
                     HttpResponseMessage response = await Program.client.PutAsJsonAsync("Tickets/addPartToTicket/" + ticketId, part);
                     if (response.IsSuccessStatusCode)
                     {
                         this.Close();
-
                     }
                     else
                     {
-                        await HandleErrorResponse(response);
+                        await ErrorHandling.HandleErrorResponse(response);
                     }
                 }
                 catch (Exception ex)
@@ -126,15 +137,23 @@ namespace Garage.Screens.TicketsScreens
 
         private void allPartsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-
-            part = new AddPartToTicketRequest
+            try
             {
-                partId = allPartsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString(),
-                partName = allPartsDataGridView.Rows[e.RowIndex].Cells[1].Value.ToString(),
-                price = decimal.Parse(allPartsDataGridView.Rows[e.RowIndex].Cells[2].Value.ToString()),
-                quantity = 0,
-                discount = 0
-            };
+
+                part = new AddPartToTicketRequest
+                {
+                    partId = allPartsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString(),
+                    partName = allPartsDataGridView.Rows[e.RowIndex].Cells[1].Value.ToString(),
+                    price = decimal.Parse(allPartsDataGridView.Rows[e.RowIndex].Cells[2].Value.ToString()),
+                    quantity = 0,
+                    discount = 0
+                };
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
         }
 
         private void addPartToTicketBtn_Click(object sender, EventArgs e)
@@ -163,24 +182,7 @@ namespace Garage.Screens.TicketsScreens
                 MessageBox.Show(ex.Message,"Error");
                 return false;
             }
-
         }
 
-        private async Task HandleErrorResponse(HttpResponseMessage response)
-        {
-            string content = await response.Content.ReadAsStringAsync();
-
-            try
-            {
-                ErrorResponse errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(content);
-
-                MessageBox.Show($"Error: {errorResponse.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }
-            catch (JsonException)
-            {
-                MessageBox.Show("Invalid response format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Garage.Models;
 using Garage.Responses;
+using Garage.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -100,7 +101,7 @@ namespace Garage.Screens.TicketsScreens
 
                 else
                 {
-                    await HandleErrorResponse(response);
+                    await ErrorHandling.HandleErrorResponse(response);
                 }
             }
             catch (Exception ex)
@@ -108,26 +109,7 @@ namespace Garage.Screens.TicketsScreens
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private async Task HandleErrorResponse(HttpResponseMessage response)
-        {
-            string content = await response.Content.ReadAsStringAsync();
 
-            try
-            {
-                ErrorResponse errorResponse = JsonConvert.DeserializeObject<ErrorResponse>(content);
-
-                MessageBox.Show($"Error: {errorResponse.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }
-            catch (JsonException)
-            {
-                MessageBox.Show("Invalid response format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
 
         private void closeTicketBtn_Click(object sender, EventArgs e)
         {
@@ -159,7 +141,6 @@ namespace Garage.Screens.TicketsScreens
                 cardDateTxt.SelectionStart = cardDateTxt.Text.Length;
             }
 
-            // Limit the total length to 7 characters
             if (cardDateTxt.Text.Length > 7)
             {
                 cardDateTxt.Text = cardDateTxt.Text.Substring(0, 7);

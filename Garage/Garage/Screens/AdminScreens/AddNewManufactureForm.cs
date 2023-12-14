@@ -12,6 +12,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Garage.Utils;
 
 namespace Garage.Screens.AdminScreens
 {
@@ -24,7 +25,7 @@ namespace Garage.Screens.AdminScreens
 
         private void addManufactureWithModelBtn_Click(object sender, EventArgs e)
         {
-            CreateManufactureWithModel(addManufactureNameTxt.Text,addModelNameTxt.Text);
+            CreateManufactureWithModel(addManufactureNameTxt.Text, addModelNameTxt.Text);
         }
 
         private async void CreateManufactureWithModel(string manufactureName, string modelName)
@@ -35,21 +36,30 @@ namespace Garage.Screens.AdminScreens
             HttpResponseMessage response = await Program.client.PostAsJsonAsync(
                "StorageHandler/", createManufactureWithModelRequest);
 
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var result = await response.Content.ReadAsStringAsync();
-                MessageBox.Show("Manufacture " + createManufactureWithModelRequest.manufacturerName + " model " + createManufactureWithModelRequest.modelName + " added successfully", "success");
 
-                this.Close();
-            }
-            else if (response.StatusCode.Equals(HttpStatusCode.Conflict))
-            {
-                MessageBox.Show("Manufacture " + createManufactureWithModelRequest.manufacturerName + " model " + createManufactureWithModelRequest.modelName + " Already exists", "conflict");
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsStringAsync();
+                    MessageBox.Show("Manufacture " + createManufactureWithModelRequest.manufacturerName + " model " + createManufactureWithModelRequest.modelName + " added successfully", "success");
 
+                    this.Close();
+                }
+                else if (response.StatusCode.Equals(HttpStatusCode.Conflict))
+                {
+                    MessageBox.Show("Manufacture " + createManufactureWithModelRequest.manufacturerName + " model " + createManufactureWithModelRequest.modelName + " Already exists", "conflict");
+
+                }
+                else
+                {
+                    await ErrorHandling.HandleErrorResponse(response);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(" Failed ", "Error");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
 
@@ -61,14 +71,23 @@ namespace Garage.Screens.AdminScreens
         private async void DeleteManufactureAndModel(string manufactureName, string modelName)
         {
             HttpResponseMessage response = await Program.client.DeleteAsync("StorageHandler/removeModel/" + manufactureName + "/" + modelName);
-            if (response.IsSuccessStatusCode)
+            try
             {
-                MessageBox.Show("Deleted successfully", "success");
-                this.Close();
+
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Deleted successfully", "success");
+                    this.Close();
+                }
+                else
+                {
+                    await ErrorHandling.HandleErrorResponse(response);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(" Failed ", "Error");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
         }
     }

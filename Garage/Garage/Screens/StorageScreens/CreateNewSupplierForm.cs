@@ -1,5 +1,8 @@
 ﻿using Garage.Models;
 using Garage.Requests;
+using Garage.Responses;
+using Garage.Utils;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -33,7 +36,9 @@ namespace Garage.Screens.StorageScreens
 
         private async void CreateNewSupplierRequest(string supplierId, string supplierName, string supplierAddress, string supplierPhone, string supplierEmail)
         {
+
             CreateSupplierRequest createSupplierRequest = new CreateSupplierRequest();
+
             if (supplierAddress == String.Empty)
             {
                 createSupplierRequest.supplierId = supplierId;
@@ -57,27 +62,35 @@ namespace Garage.Screens.StorageScreens
 
             }
 
-            HttpResponseMessage response = await Program.client.PostAsJsonAsync(
-                   "StorageHandler/newSupplier/", createSupplierRequest);
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var result = await response.Content.ReadAsStringAsync();
-                MessageBox.Show("Supplier " + supplierName + " Added successfully", "success");
+                HttpResponseMessage response = await Program.client.PostAsJsonAsync("StorageHandler/newSupplier/", createSupplierRequest);
 
-                this.Close();
+                if (response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsStringAsync();
+                    MessageBox.Show("Supplier " + supplierName + " Added successfully", "success");
+
+                    this.Close();
+                }
+                else if (response.StatusCode.Equals(HttpStatusCode.Conflict))
+                {
+                    MessageBox.Show("Supplier " + supplierName + " Already exists", "conflict");
+                }
+                else
+                {
+                    await ErrorHandling.HandleErrorResponse(response);
+                }
             }
-            else if (response.StatusCode.Equals(HttpStatusCode.Conflict))
+            catch (Exception ex)
             {
-                MessageBox.Show("Supplier " + supplierName + " Already exists", "conflict");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-            }
-            else
-            {
-                MessageBox.Show(" Failed ", "Error");
             }
 
 
         }
+
+
     }
 }

@@ -143,7 +143,7 @@
             this.addNewManufactureBtn.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.addNewManufactureBtn.Size = new System.Drawing.Size(177, 41);
             this.addNewManufactureBtn.TabIndex = 2;
-            this.addNewManufactureBtn.Text = "Add/Delete Manufactures";
+            this.addNewManufactureBtn.Text = "Cars DB";
             this.addNewManufactureBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.addNewManufactureBtn.UseVisualStyleBackColor = false;
             this.addNewManufactureBtn.Click += new System.EventHandler(this.addNewManufactureBtn_Click);

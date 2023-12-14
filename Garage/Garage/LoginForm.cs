@@ -8,6 +8,7 @@ using System.Text;
 using Garage.Models;
 using System.Drawing;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using Garage.Utils;
 
 namespace Garage
 {
@@ -81,24 +82,29 @@ namespace Garage
                 return;
             }
 
-            LoginRequest payload = new LoginRequest(username, password);
+            LoginRequest loginRequest = new LoginRequest(username, password);
 
             HttpResponseMessage response = await Program.client.PostAsJsonAsync(
-                "login/", payload);
-
-            await Console.Out.WriteLineAsync(response.ToString());
-            if(response.IsSuccessStatusCode)
+                "login/", loginRequest);
+            try
             {
-                var result = await response.Content.ReadAsStringAsync();
 
-                dashboardForm = new Dashboard(result, UserNametxt.Text);
-                dashboardForm.Show();
+                if(response.IsSuccessStatusCode)
+                {
+                    var result = await response.Content.ReadAsStringAsync();
 
+                    dashboardForm = new Dashboard(result, UserNametxt.Text);
+                    dashboardForm.Show();
+                }
+                else
+                { 
+                    await ErrorHandling.HandleErrorResponse(response);
+                }
             }
-            else
+            catch (Exception ex)
             {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                MessageBox.Show("UserName or password incorrect", "Error");
             }
         }
 

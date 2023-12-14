@@ -1,5 +1,6 @@
 ﻿using Garage.Models;
 using Garage.Requests;
+using Garage.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -24,27 +25,48 @@ namespace Garage.Screens.ClientsScreens
 
         public async void GetAllClients()
         {
-            HttpResponseMessage response = await Program.client.GetAsync("client/");
-            if (response.IsSuccessStatusCode)
+            try
             {
 
-                var responseResult = await response.Content.ReadAsStringAsync();
-                var jsonResult = JsonConvert.DeserializeObject<List<GetAllClientRequest>>(responseResult);
+                HttpResponseMessage response = await Program.client.GetAsync("client/");
+                if (response.IsSuccessStatusCode)
+                {
+
+                    var responseResult = await response.Content.ReadAsStringAsync();
+                    var jsonResult = JsonConvert.DeserializeObject<List<GetAllClientRequest>>(responseResult);
+
+                    AllClientsGridView.DataSource = jsonResult;
 
 
-
-                AllClientsGridView.DataSource = jsonResult;
+                    AllClientsGridView.Columns["clientId"].HeaderText = "Id";
+                    AllClientsGridView.Columns["name"].HeaderText = "Client Name";
+                    AllClientsGridView.Columns["phone"].HeaderText = "Client Phone";
+                    AllClientsGridView.Columns["email"].HeaderText = "Email";
+                    AllClientsGridView.Columns["address"].HeaderText = "Client address";
+                }
+                else
+                {
+                    await ErrorHandling.HandleErrorResponse(response);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Error");
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
         private void AllClientsForm_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'garageDataSet1.Clients' table. You can move, or remove it, as needed.
-            this.clientsTableAdapter.Fill(this.garageDataSet1.Clients);
+            try
+            {
+
+                this.clientsTableAdapter.Fill(this.garageDataSet1.Clients);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
 
         }
     }
