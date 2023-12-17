@@ -164,6 +164,7 @@
             this.maintenanceBtn.Text = "Maintenance";
             this.maintenanceBtn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.maintenanceBtn.UseVisualStyleBackColor = false;
+            this.maintenanceBtn.Click += new System.EventHandler(this.maintenanceBtn_Click);
             // 
             // adminUsersBtn
             // 

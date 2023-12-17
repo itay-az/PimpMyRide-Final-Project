@@ -206,5 +206,11 @@ namespace Garage
             timerLbl.Text = DateTime.Now.ToString("HH:mm:ss \n dd/MM/yyyy");
             
         }
+
+        private void maintenanceBtn_Click(object sender, EventArgs e)
+        {
+            MaintenanceForm maintenanceForm = new MaintenanceForm();
+            openForm(maintenanceForm);
+        }
     }
 }

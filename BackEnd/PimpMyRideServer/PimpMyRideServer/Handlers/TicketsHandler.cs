@@ -364,7 +364,7 @@ namespace PimpMyRideServer.Handlers
             var labors = Server.Server.context.Labor;
             if(labors.SingleOrDefault(l => l.Id == labor.Id) != null)
             {
-                return onFailure("Labor already exist in the cuurent ticket", "Error",500);
+                return onFailure("Labor already exist in the cuurent ticket", "Error",409);
             }
 
             labors.Add(labor);

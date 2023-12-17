@@ -139,3 +139,4 @@ D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\obj\Debug\
 D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\obj\Debug\Garage.Screens.TicketsScreens.OpenOffersForm.resources
 D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\obj\Debug\Garage.Screens.TicketsScreens.CloseTicketForm.resources
 D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\obj\Debug\Garage.Screens.ClientsScreens.CarHistoryForm.resources
+D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\obj\Debug\Garage.Screens.AdminScreens.MaintenanceForm.resources
