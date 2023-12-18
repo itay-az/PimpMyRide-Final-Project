@@ -164,7 +164,8 @@ namespace PimpMyRideServer.Handlers
                 totalLaborPrice = ticket.totalLaborPrice,
                 totalLaborDiscount = ticket.totalLaborDiscount,
                 price = ticket.price,
-                state = ticket.state
+                state = ticket.state,
+                dateTime = ticket.dateTime
             };  
 
             if (ticket == null)
@@ -194,6 +195,7 @@ namespace PimpMyRideServer.Handlers
             }
 
             existingPart.quantity -= partFromBody.quantity;
+
 
             Server.Server.context.Part.Update(existingPart);
             Server.Server.context.SaveChanges();

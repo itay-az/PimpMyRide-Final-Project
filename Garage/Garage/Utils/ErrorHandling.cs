@@ -23,7 +23,7 @@ namespace Garage.Utils
                 MessageBox.Show($"Error: {errorResponse.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
-            catch (JsonException)
+            catch (Exception ex)
             {
                 MessageBox.Show("Invalid response format.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }

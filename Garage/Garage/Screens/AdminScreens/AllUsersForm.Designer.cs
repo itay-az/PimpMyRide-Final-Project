@@ -183,10 +183,10 @@
             // 
             // createBtn
             // 
-            this.createBtn.BackColor = System.Drawing.Color.LawnGreen;
+            this.createBtn.BackColor = System.Drawing.SystemColors.Window;
             this.createBtn.FlatAppearance.BorderSize = 0;
             this.createBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.createBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.createBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.createBtn.ForeColor = System.Drawing.SystemColors.ControlText;
             this.createBtn.Location = new System.Drawing.Point(967, 369);
             this.createBtn.Name = "createBtn";
@@ -198,9 +198,9 @@
             // 
             // deleteBtn
             // 
-            this.deleteBtn.BackColor = System.Drawing.Color.Red;
+            this.deleteBtn.BackColor = System.Drawing.SystemColors.Window;
             this.deleteBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.deleteBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.deleteBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.deleteBtn.ForeColor = System.Drawing.SystemColors.ControlText;
             this.deleteBtn.Location = new System.Drawing.Point(1278, 369);
             this.deleteBtn.Name = "deleteBtn";
@@ -212,9 +212,9 @@
             // 
             // updateUserBtn
             // 
-            this.updateUserBtn.BackColor = System.Drawing.Color.Gold;
+            this.updateUserBtn.BackColor = System.Drawing.SystemColors.Window;
             this.updateUserBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.updateUserBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.updateUserBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.updateUserBtn.ForeColor = System.Drawing.SystemColors.ControlText;
             this.updateUserBtn.Location = new System.Drawing.Point(1123, 369);
             this.updateUserBtn.Name = "updateUserBtn";

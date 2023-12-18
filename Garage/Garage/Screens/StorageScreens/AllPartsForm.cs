@@ -28,12 +28,21 @@ namespace Garage.Screens.StorageScreens
 
         private bool ValidationTestsOnInput()
         {
-            if(Decimal.Parse(partPriceTxt.Text) <= 0 || Decimal.Parse(quantityTxt.Text) <= 0)
+            try
             {
-                MessageBox.Show("Price or quantity cannot be less or equal to 0","Error", MessageBoxButtons.OK);
+                if(Decimal.Parse(partPriceTxt.Text) <= 0 || Decimal.Parse(quantityTxt.Text) <= 0)
+                {
+                    MessageBox.Show("Price or quantity cannot be less or equal to 0","Error", MessageBoxButtons.OK);
+                    return false;
+                }
+                return true;
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            return true;
         }
 
         public async void GetAllParts()
@@ -52,6 +61,15 @@ namespace Garage.Screens.StorageScreens
                     allPartsDataGrid.Columns["partName"].HeaderText = "Part Name";
                     allPartsDataGrid.Columns["price"].HeaderText = "Price";
                     allPartsDataGrid.Columns["quantity"].HeaderText = "Quantity";
+
+                    foreach(GetAllPartsRequest part in jsonResult)
+                    {
+                        
+                        if(part.quantity < 10)
+                        {
+                            MessageBox.Show($"Notice: {part.partName} quanity is less than 10.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                    }
                 }
                 else
                 {

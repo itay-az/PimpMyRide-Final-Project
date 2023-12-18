@@ -32,5 +32,6 @@ namespace PimpMyRideServer.Server.Responses
 
         public double price { get; set; }
         public TicketType state { get; set; }
+        public DateTime dateTime { get; set; }
     }
 }

@@ -45,9 +45,7 @@
             this.supplierEmailTxt = new System.Windows.Forms.TextBox();
             this.supplierEmailLbl = new System.Windows.Forms.Label();
             this.allSuppliersDataGrid = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.allSuppliersDataGrid)).BeginInit();
-            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // supplierPhoneTxt
@@ -180,13 +178,13 @@
             this.allSuppliersDataGrid.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.allSuppliersDataGrid.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.allSuppliersDataGrid.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.allSuppliersDataGrid.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.allSuppliersDataGrid.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
             this.allSuppliersDataGrid.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.allSuppliersDataGrid.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(25)))), ((int)(((byte)(70)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
@@ -194,15 +192,15 @@
             this.allSuppliersDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.ForestGreen;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.allSuppliersDataGrid.DefaultCellStyle = dataGridViewCellStyle3;
             this.allSuppliersDataGrid.EnableHeadersVisualStyles = false;
             this.allSuppliersDataGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-            this.allSuppliersDataGrid.Location = new System.Drawing.Point(6, 28);
+            this.allSuppliersDataGrid.Location = new System.Drawing.Point(12, 12);
             this.allSuppliersDataGrid.Name = "allSuppliersDataGrid";
             this.allSuppliersDataGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
@@ -211,25 +209,13 @@
             this.allSuppliersDataGrid.TabIndex = 36;
             this.allSuppliersDataGrid.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.allSuppliersDataGrid_CellContentClick);
             // 
-            // groupBox1
-            // 
-            this.groupBox1.BackColor = System.Drawing.Color.White;
-            this.groupBox1.Controls.Add(this.allSuppliersDataGrid);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(1071, 659);
-            this.groupBox1.TabIndex = 51;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Suppliers";
-            // 
             // AllSuppliersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
             this.ClientSize = new System.Drawing.Size(1645, 683);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.allSuppliersDataGrid);
             this.Controls.Add(this.supplierEmailTxt);
             this.Controls.Add(this.supplierEmailLbl);
             this.Controls.Add(this.supplierPhoneTxt);
@@ -245,7 +231,6 @@
             this.Name = "AllSuppliersForm";
             this.Text = "AllSuppliersForm";
             ((System.ComponentModel.ISupportInitialize)(this.allSuppliersDataGrid)).EndInit();
-            this.groupBox1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -266,6 +251,5 @@
         private System.Windows.Forms.TextBox supplierEmailTxt;
         private System.Windows.Forms.Label supplierEmailLbl;
         private System.Windows.Forms.DataGridView allSuppliersDataGrid;
-        private System.Windows.Forms.GroupBox groupBox1;
     }
 }

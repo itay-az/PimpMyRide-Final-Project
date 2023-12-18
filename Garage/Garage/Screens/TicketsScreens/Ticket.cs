@@ -46,6 +46,7 @@ namespace Garage.Screens.TicketsScreens
         private double totalPartDiscount;
         private double totalLaborDiscount;
         private TicketType state;
+        private GetTicketByIdResponse ticketObject;
 
         public Ticket(string ticketId)
         {
@@ -104,7 +105,7 @@ namespace Garage.Screens.TicketsScreens
                 {
                     var responseResult = await response.Content.ReadAsStringAsync();
                     var jsonResult = JsonConvert.DeserializeObject<GetTicketByIdResponse>(responseResult);
-
+                    ticketObject = jsonResult;
                     clientFullNameTxt.Text = jsonResult.clientFullName;
                     clientEmailTxt.Text = jsonResult.clientEmail;
                     clientPhoneNumberTxt.Text = jsonResult.clientPhoneNumber;
@@ -525,29 +526,100 @@ namespace Garage.Screens.TicketsScreens
                     Document document = new Document(pdf);
 
 
-                    Paragraph dateParagraph = new Paragraph(DateTime.Now.ToString("yyyy-MM-dd"))
+                    Paragraph dateParagraph = new Paragraph(ticketObject.dateTime.ToString("yyyy-MM-dd"))
                         .SetFontSize(12)
                         .SetBold()
                         .SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.LEFT);
 
                     document.Add(dateParagraph);
-                    if(state == TicketType.IS_OPEN)
+
+                    if(ticketObject.state == TicketType.IS_OPEN || ticketObject.state == TicketType.IS_CLOSED)
                     {
                         document.Add(new Paragraph("Ticket id: " + ticketId)
                             .SetTextAlignment(TextAlignment.CENTER)
                             .SetFontSize(24)
                             .SetBold()
-                            .SetMarginBottom(20));
+                            .SetMarginBottom(20)
+                            .SetUnderline());
 
                     }
-                    else
+                    else if (ticketObject.state == TicketType.IS_OFFER)
                     {
                         document.Add(new Paragraph("Offer id: " + ticketId)
                             .SetTextAlignment(TextAlignment.CENTER)
                             .SetFontSize(24)
                             .SetBold()
-                            .SetMarginBottom(20));
+                            .SetMarginBottom(20)
+                            .SetUnderline());
                     }
+
+
+                    document.Add(new Paragraph("Client information :")
+                            .SetTextAlignment(TextAlignment.LEFT)
+                            .SetFontSize(14)
+                            .SetBold()
+                            .SetMarginBottom(5)
+                            .SetUnderline());
+
+                    Table clientInfoTable = new Table(4).UseAllAvailableWidth();
+                    clientInfoTable.AddCell(CreateCell("Client id", 14));
+                    clientInfoTable.AddCell(CreateCell("Full Name", 14));
+                    clientInfoTable.AddCell(CreateCell("Phone number", 14));
+                    clientInfoTable.AddCell(CreateCell("Email", (14)));
+
+                    clientInfoTable.AddCell(CreateCell(ticketObject.clientId, 14));
+                    clientInfoTable.AddCell(CreateCell(ticketObject.clientFullName, 14));
+                    clientInfoTable.AddCell(CreateCell(ticketObject.clientPhoneNumber, 14));
+                    clientInfoTable.AddCell(CreateCell(ticketObject.clientEmail, 14));
+
+                    document.Add(clientInfoTable.SetMarginBottom(20));
+
+
+                    document.Add(new Paragraph("Car information :")
+                            .SetTextAlignment(TextAlignment.LEFT)
+                            .SetFontSize(14)
+                            .SetBold()
+                            .SetMarginBottom(5)
+                            .SetUnderline());
+
+                    Table carInfoTable = new Table(7).UseAllAvailableWidth();
+                    carInfoTable.AddCell(CreateCell("Car number", 14));
+                    carInfoTable.AddCell(CreateCell("Manufacture", 14));
+                    carInfoTable.AddCell(CreateCell("Model", 14));
+                    carInfoTable.AddCell(CreateCell("Engine", (14)));
+                    carInfoTable.AddCell(CreateCell("Year", (14)));
+                    carInfoTable.AddCell(CreateCell("Kilometer", (14)));
+                    carInfoTable.AddCell(CreateCell("Vin Number", (14)));
+
+                    carInfoTable.AddCell(CreateCell(ticketObject.carId, 14));
+                    carInfoTable.AddCell(CreateCell(ticketObject.carManufacture, 14));
+                    carInfoTable.AddCell(CreateCell(ticketObject.carModel, 14));
+                    carInfoTable.AddCell(CreateCell(ticketObject.carEngine, 14));
+                    carInfoTable.AddCell(CreateCell(ticketObject.carYear.ToString(), 14));
+                    carInfoTable.AddCell(CreateCell(ticketObject.carKilometer.ToString(), 14));
+                    carInfoTable.AddCell(CreateCell(ticketObject.vinNumber, 14));
+
+                    document.Add(carInfoTable.SetMarginBottom(20));
+
+                    document.Add(new Paragraph($"Client complaint:")
+                        .SetTextAlignment(TextAlignment.LEFT)
+                        .SetFontSize(14)
+                        .SetBold()
+                        .SetUnderline());
+
+                    document.Add(new Paragraph($"{ticketObject.causeOfArrival}")
+                        .SetTextAlignment(TextAlignment.LEFT)
+                        .SetFontSize(12)
+                        .SetBold()
+                        .SetMarginBottom(20));
+
+
+                    document.Add(new Paragraph("Labor information :")
+                        .SetTextAlignment(TextAlignment.LEFT)
+                        .SetFontSize(14)
+                        .SetBold()
+                        .SetMarginBottom(5)
+                        .SetUnderline());
 
                     Table laborTable = new Table(5).UseAllAvailableWidth();
                     laborTable.AddCell(CreateCell("Labor id", 14));
@@ -556,7 +628,7 @@ namespace Garage.Screens.TicketsScreens
                     laborTable.AddCell(CreateCell("Labor Time", (14)));
                     laborTable.AddCell(CreateCell("Labor discount", 14));
 
-                    foreach (Labor labor in labors)
+                    foreach (Labor labor in ticketObject.labors)
                     {
                         laborTable.AddCell(CreateCell(labor.Id.ToString()));
                         laborTable.AddCell(CreateCell(labor.description));
@@ -568,19 +640,27 @@ namespace Garage.Screens.TicketsScreens
 
                     document.Add(laborTable);
 
+
+
                     Paragraph laborsParagraph = new Paragraph()
                    .AddTabStops(new TabStop(100f, iText.Layout.Properties.TabAlignment.LEFT))
                    .AddTabStops(new TabStop(500f, iText.Layout.Properties.TabAlignment.RIGHT))
-                   .Add(new Text($"Total labors price : {totalLaborPrice} "))
+                   .Add(new Text($"Total labors price : {totalLaborPrice} $ "))
                    .Add(new Tab())
-                   .Add(new Text($"Total labors discount: {totalLaborDiscount} "))
+                   .Add(new Text($"Total labors discount: {totalLaborDiscount} $"))
                    .SetBold()
                    .SetFontSize(12)
-                   .SetMarginTop(20)
+                   .SetMarginTop(5)
                    .SetMarginBottom(20);
 
                     document.Add(laborsParagraph);
 
+                    document.Add(new Paragraph("Parts information :")
+                        .SetTextAlignment(TextAlignment.LEFT)
+                        .SetFontSize(14)
+                        .SetBold()
+                        .SetMarginBottom(5)
+                        .SetUnderline());
 
                     Table partsTable = new Table(5).UseAllAvailableWidth();
                     partsTable.AddCell(CreateCell("Part id", 14));
@@ -589,7 +669,7 @@ namespace Garage.Screens.TicketsScreens
                     partsTable.AddCell(CreateCell("Quantity", (14)));
                     partsTable.AddCell(CreateCell("Part discount", 14));
 
-                    foreach (TicketPart part in parts)
+                    foreach (TicketPart part in ticketObject.parts)
                     {
                         partsTable.AddCell(CreateCell(part.partId));
                         partsTable.AddCell(CreateCell(part.partName));
@@ -604,20 +684,20 @@ namespace Garage.Screens.TicketsScreens
                     Paragraph partsParagraph = new Paragraph()
                    .AddTabStops(new TabStop(100f, iText.Layout.Properties.TabAlignment.LEFT))
                    .AddTabStops(new TabStop(500f, iText.Layout.Properties.TabAlignment.RIGHT))
-                   .Add(new Text($"Total parts price : {totalPartPrice} "))
+                   .Add(new Text($"Total parts price : {ticketObject.totalPartsPrice} $ "))
                    .Add(new Tab())
-                   .Add(new Text($"Total parts discount : {totalPartDiscount} "))
+                   .Add(new Text($"Total parts discount : {ticketObject.totalPartsDiscount} $ "))
                    .SetBold()
                    .SetFontSize(12)
-                   .SetMarginTop(20)
+                   .SetMarginTop(5)
                    .SetMarginBottom(20);
 
                     document.Add(partsParagraph);
 
-                    Paragraph totalParagraph = new Paragraph($"Total to pay : {totalLaborPrice + totalPartPrice} ")
-                        .SetTextAlignment(TextAlignment.RIGHT)
+                    Paragraph totalParagraph = new Paragraph($"Total to pay : {(ticketObject.totalLaborPrice + ticketObject.totalPartsPrice) - (ticketObject.totalPartsDiscount + ticketObject.totalLaborDiscount)} $ ")
+                        .SetTextAlignment(TextAlignment.LEFT)
                         .SetBold()
-                        .SetFontSize(12)
+                        .SetFontSize(16)
                         .SetMarginTop(20)
                         .SetMarginBottom(20);
 

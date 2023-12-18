@@ -14,5 +14,6 @@ namespace Garage.Requests
         public string partName { get; set; }
         public decimal price { get; set; }
         public decimal quantity { get; set; }
+
     }
 }

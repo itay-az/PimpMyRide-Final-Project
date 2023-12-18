@@ -155,13 +155,21 @@ namespace PimpMyRideServer.Handlers
                 List<PartResponse> response = new List<PartResponse>();
                 foreach (Part p in parts)
                 {
-                    response.Add(new PartResponse
+                    if(p.quantity == 0)
                     {
-                        partId = p.partId,
-                        partName = p.partName,
-                        price = p.price,
-                        quantity = p.quantity
-                    });
+                        continue;
+                    }
+                    else
+                    {
+
+                        response.Add(new PartResponse
+                        {
+                            partId = p.partId,
+                            partName = p.partName,
+                            price = p.price,
+                            quantity = p.quantity
+                        });
+                    }
                 }
 
                 JsonResult jsonResult = new JsonResult(response);
