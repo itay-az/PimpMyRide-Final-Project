@@ -75,6 +75,7 @@
             this.label16 = new System.Windows.Forms.Label();
             this.totalTicketPriceTxt = new System.Windows.Forms.TextBox();
             this.exportToTicketBtn = new System.Windows.Forms.Button();
+            this.exportToPdfBtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.partsDataGridView)).BeginInit();
@@ -575,12 +576,24 @@
             this.exportToTicketBtn.Visible = false;
             this.exportToTicketBtn.Click += new System.EventHandler(this.exportToTicketBtn_Click);
             // 
+            // exportToPdfBtn
+            // 
+            this.exportToPdfBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.exportToPdfBtn.Location = new System.Drawing.Point(669, 922);
+            this.exportToPdfBtn.Name = "exportToPdfBtn";
+            this.exportToPdfBtn.Size = new System.Drawing.Size(204, 45);
+            this.exportToPdfBtn.TabIndex = 136;
+            this.exportToPdfBtn.Text = "Export to pdf";
+            this.exportToPdfBtn.UseVisualStyleBackColor = true;
+            this.exportToPdfBtn.Click += new System.EventHandler(this.exportToPdfBtn_Click);
+            // 
             // Ticket
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
             this.ClientSize = new System.Drawing.Size(1910, 982);
+            this.Controls.Add(this.exportToPdfBtn);
             this.Controls.Add(this.exportToTicketBtn);
             this.Controls.Add(this.label16);
             this.Controls.Add(this.totalTicketPriceTxt);
@@ -688,5 +701,6 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.TextBox totalTicketPriceTxt;
         private System.Windows.Forms.Button exportToTicketBtn;
+        private System.Windows.Forms.Button exportToPdfBtn;
     }
 }

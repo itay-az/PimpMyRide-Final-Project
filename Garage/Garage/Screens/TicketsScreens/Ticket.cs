@@ -9,6 +9,7 @@ using System.Data;
 using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -17,6 +18,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Windows.Forms;
+using System.Xml.Linq;
+using iText.Kernel.Pdf;
+using iText.Layout;
+using iText.Layout.Element;
+using System.Security.Cryptography.Xml;
+using iText.Layout.Properties;
+using iText.IO.Image;
 
 namespace Garage.Screens.TicketsScreens
 {
@@ -33,6 +41,11 @@ namespace Garage.Screens.TicketsScreens
         private string ticketId;
         private string partId;
         private int laborId;
+        private double totalPartPrice;
+        private double totalLaborPrice;
+        private double totalPartDiscount;
+        private double totalLaborDiscount;
+        private TicketType state;
 
         public Ticket(string ticketId)
         {
@@ -106,14 +119,19 @@ namespace Garage.Screens.TicketsScreens
 
                     labors = jsonResult.labors;
                     totalPartPriceTxt.Text = jsonResult.totalPartsPrice.ToString();
+                    totalPartPrice = jsonResult.totalPartsPrice;
                     totalPartDiscountTxt.Text = jsonResult.totalPartsDiscount.ToString();
+                    totalPartDiscount = jsonResult.totalPartsDiscount;
                     totalLaborPriceTxt.Text = jsonResult.totalLaborPrice.ToString();
+                    totalLaborPrice = jsonResult.totalLaborPrice;
                     totalLaborDiscountTxt.Text = jsonResult.totalLaborDiscount.ToString();
+                    totalLaborDiscount = jsonResult.totalLaborDiscount;
                     totalPartPriceAfterDiscountTxt.Text = (jsonResult.totalPartsPrice - jsonResult.totalPartsDiscount).ToString();
                     totalLaborPriceAfterDiscountTxt.Text = (jsonResult.totalLaborPrice - jsonResult.totalLaborDiscount).ToString();
                     totalTicketPriceTxt.Text = jsonResult.price.ToString();
                     refreshPartsDataGridView();
                     refreshLaborsDataGridView();
+                    state = jsonResult.state;
                     if (jsonResult.parts.Count > 0)
                     {
                         partId = partsDataGridView.Rows[0].Cells[0].Value.ToString();
@@ -359,16 +377,16 @@ namespace Garage.Screens.TicketsScreens
 
         private void closeTicketBtn_Click(object sender, EventArgs e)
         {
-            CloseTicketForm closeTicketForm = new CloseTicketForm(double.Parse(totalTicketPriceTxt.Text),ticketId);
+            CloseTicketForm closeTicketForm = new CloseTicketForm(double.Parse(totalTicketPriceTxt.Text), ticketId);
             closeTicketForm.ShowDialog();
 
         }
 
-        
+
 
         private void partsDataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if ((e.ColumnIndex == 2 || e.ColumnIndex == 3) && e.RowIndex >= 0) 
+            if ((e.ColumnIndex == 2 || e.ColumnIndex == 3) && e.RowIndex >= 0)
             {
                 string newValue = e.FormattedValue.ToString();
 
@@ -402,7 +420,7 @@ namespace Garage.Screens.TicketsScreens
 
         private void laborDataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
-            if (e.ColumnIndex == 4 && e.RowIndex >= 0) 
+            if (e.ColumnIndex == 4 && e.RowIndex >= 0)
             {
                 string newValue = e.FormattedValue.ToString();
 
@@ -492,7 +510,166 @@ namespace Garage.Screens.TicketsScreens
             }
         }
 
+        private void exportToPdfBtn_Click(object sender, EventArgs e)
+        {
+            string projectDirectory = AppDomain.CurrentDomain.BaseDirectory;
 
+            string outputPath = Path.Combine(projectDirectory, "report.pdf");
+
+
+
+            using (PdfWriter writer = new PdfWriter(new FileStream(outputPath, FileMode.Create)))
+            {
+                using (PdfDocument pdf = new PdfDocument(writer))
+                {
+                    Document document = new Document(pdf);
+
+
+                    Paragraph dateParagraph = new Paragraph(DateTime.Now.ToString("yyyy-MM-dd"))
+                        .SetFontSize(12)
+                        .SetBold()
+                        .SetHorizontalAlignment(iText.Layout.Properties.HorizontalAlignment.LEFT);
+
+                    document.Add(dateParagraph);
+                    if(state == TicketType.IS_OPEN)
+                    {
+                        document.Add(new Paragraph("Ticket id: " + ticketId)
+                            .SetTextAlignment(TextAlignment.CENTER)
+                            .SetFontSize(24)
+                            .SetBold()
+                            .SetMarginBottom(20));
+
+                    }
+                    else
+                    {
+                        document.Add(new Paragraph("Offer id: " + ticketId)
+                            .SetTextAlignment(TextAlignment.CENTER)
+                            .SetFontSize(24)
+                            .SetBold()
+                            .SetMarginBottom(20));
+                    }
+
+                    Table laborTable = new Table(5).UseAllAvailableWidth();
+                    laborTable.AddCell(CreateCell("Labor id", 14));
+                    laborTable.AddCell(CreateCell("Labor description", 14));
+                    laborTable.AddCell(CreateCell("Labor price", 14));
+                    laborTable.AddCell(CreateCell("Labor Time", (14)));
+                    laborTable.AddCell(CreateCell("Labor discount", 14));
+
+                    foreach (Labor labor in labors)
+                    {
+                        laborTable.AddCell(CreateCell(labor.Id.ToString()));
+                        laborTable.AddCell(CreateCell(labor.description));
+                        laborTable.AddCell(CreateCell(labor.price.ToString()));
+                        laborTable.AddCell(CreateCell(labor.time.ToString()));
+                        laborTable.AddCell(CreateCell(labor.discount.ToString()));
+                    }
+
+
+                    document.Add(laborTable);
+
+                    Paragraph laborsParagraph = new Paragraph()
+                   .AddTabStops(new TabStop(100f, iText.Layout.Properties.TabAlignment.LEFT))
+                   .AddTabStops(new TabStop(500f, iText.Layout.Properties.TabAlignment.RIGHT))
+                   .Add(new Text($"Total labors price : {totalLaborPrice} "))
+                   .Add(new Tab())
+                   .Add(new Text($"Total labors discount: {totalLaborDiscount} "))
+                   .SetBold()
+                   .SetFontSize(12)
+                   .SetMarginTop(20)
+                   .SetMarginBottom(20);
+
+                    document.Add(laborsParagraph);
+
+
+                    Table partsTable = new Table(5).UseAllAvailableWidth();
+                    partsTable.AddCell(CreateCell("Part id", 14));
+                    partsTable.AddCell(CreateCell("Part name", 14));
+                    partsTable.AddCell(CreateCell("Part price", 14));
+                    partsTable.AddCell(CreateCell("Quantity", (14)));
+                    partsTable.AddCell(CreateCell("Part discount", 14));
+
+                    foreach (TicketPart part in parts)
+                    {
+                        partsTable.AddCell(CreateCell(part.partId));
+                        partsTable.AddCell(CreateCell(part.partName));
+                        partsTable.AddCell(CreateCell(part.price.ToString()));
+                        partsTable.AddCell(CreateCell(part.quantity.ToString()));
+                        partsTable.AddCell(CreateCell(part.discount.ToString()));
+                    }
+
+                    document.Add(partsTable);
+
+
+                    Paragraph partsParagraph = new Paragraph()
+                   .AddTabStops(new TabStop(100f, iText.Layout.Properties.TabAlignment.LEFT))
+                   .AddTabStops(new TabStop(500f, iText.Layout.Properties.TabAlignment.RIGHT))
+                   .Add(new Text($"Total parts price : {totalPartPrice} "))
+                   .Add(new Tab())
+                   .Add(new Text($"Total parts discount : {totalPartDiscount} "))
+                   .SetBold()
+                   .SetFontSize(12)
+                   .SetMarginTop(20)
+                   .SetMarginBottom(20);
+
+                    document.Add(partsParagraph);
+
+                    Paragraph totalParagraph = new Paragraph($"Total to pay : {totalLaborPrice + totalPartPrice} ")
+                        .SetTextAlignment(TextAlignment.RIGHT)
+                        .SetBold()
+                        .SetFontSize(12)
+                        .SetMarginTop(20)
+                        .SetMarginBottom(20);
+
+                    document.Add(totalParagraph);
+
+
+
+
+                    Paragraph signParagraph = new Paragraph()
+                                       .AddTabStops(new TabStop(100f, iText.Layout.Properties.TabAlignment.LEFT))
+                                       .AddTabStops(new TabStop(500f, iText.Layout.Properties.TabAlignment.RIGHT))
+                                       .Add(new Text("Customer signature: ______________"))
+                                       .Add(new Tab())
+                                       .Add(new Text("Buisness signature: ______________"))
+                                       .SetBold()
+                                       .SetFontSize(12);
+
+                    document.Add(signParagraph);
+
+
+                    document.Close();
+                }
+                OpenPdfWithDefaultViewer(outputPath);
+            }
+
+
+
+            static Cell CreateCell(string text, int fontSize = 12)
+            {
+                return new Cell()
+                    .Add(new Paragraph(text))
+                    .SetPadding(8)
+                    .SetTextAlignment(iText.Layout.Properties.TextAlignment.CENTER)
+                    .SetFontSize(fontSize)
+                    .SetBold();
+            }
+
+
+            static void OpenPdfWithDefaultViewer(string filePath)
+            {
+                try
+                {
+                    // Start the default PDF viewer
+                    Process.Start(filePath);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
     }
 }
+
 

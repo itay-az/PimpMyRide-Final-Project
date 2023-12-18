@@ -1,16 +1,15 @@
 {
   "ExpandedNodes": [
     "",
-    "\\BackEnd",
     "\\BackEnd\\PimpMyRideServer",
     "\\BackEnd\\PimpMyRideServer\\PimpMyRideServer",
     "\\BackEnd\\PimpMyRideServer\\PimpMyRideServer\\Controllers",
     "\\Garage",
     "\\Garage\\Garage",
-    "\\Garage\\Garage\\Models",
     "\\Garage\\Garage\\Screens",
+    "\\Garage\\Garage\\Screens\\StorageScreens",
     "\\Garage\\Garage\\Screens\\TicketsScreens"
   ],
-  "SelectedNode": "\\BackEnd\\PimpMyRideServer\\PimpMyRideServer\\Controllers\\ClientController.cs",
+  "SelectedNode": "\\Garage\\Garage\\Screens\\StorageScreens\\AllPartsForm.cs",
   "PreviewInSolutionExplorer": false
 }
