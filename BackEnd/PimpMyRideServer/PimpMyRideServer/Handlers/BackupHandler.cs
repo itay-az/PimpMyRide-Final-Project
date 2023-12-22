@@ -10,8 +10,10 @@ using System.Threading.Channels;
 
 namespace PimpMyRideServer.Handlers
 {
+    // backup handler that inherits from handler interface
     public class BackupHandler : Handler
     {
+        // the backup handler for the get request from the controller that performs immiediate backup file - returns status 200 (OK) 
         public ActionResult PerformBackUp() 
         {
             using(GarageContext context = new GarageContext()) 
@@ -28,6 +30,7 @@ namespace PimpMyRideServer.Handlers
             }
         }
 
+        // a function for a timed backup without returning any parameters
         static void PerformBackUpScheduled(object state)
         {
             using (GarageContext context = new GarageContext())
@@ -38,11 +41,10 @@ namespace PimpMyRideServer.Handlers
                 string sqlCommand = $"BACKUP DATABASE [{dbName}] TO DISK = '{dbBackup}' WITH FORMAT, INIT, SKIP, NOREWIND, NOUNLOAD, STATS = 10";
 
                 context.Database.ExecuteSqlRaw(sqlCommand);
-
-
             }
         }
 
+        // a function for scheduled time backup - currently set for midnight
         public static void ExecuteAtMidnight()
         {
             DateTime desiredTime = DateTime.Today.Add(new TimeSpan(00, 00, 0));
@@ -55,7 +57,6 @@ namespace PimpMyRideServer.Handlers
 
             TimerCallback callback = new TimerCallback(PerformBackUpScheduled);
             Timer timer = new Timer(callback, null, timeUntilDesiredTime, TimeSpan.FromDays(1));
-
         }
     }
 }

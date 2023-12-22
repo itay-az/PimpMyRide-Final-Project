@@ -6,9 +6,10 @@ using Microsoft.Extensions.Hosting;
 
 namespace PimpMyRideServer.Data
 {
+    // creating a customized database context that inherits from EF Core Database context
     public class GarageContext : DbContext
     {
-
+        // setting up tables as properties for the context
         public DbSet<Client> Clients { get; set; }
         public DbSet<Suppliers> Suppliers { get; set; }
         public DbSet<Part> Part { get; set; }
@@ -27,13 +28,14 @@ namespace PimpMyRideServer.Data
 
 
 
-
+        // asigining the sql string connection
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder
                 .UseSqlServer(@"Data Source=DESKTOP-T1R5O2U;Initial Catalog=Garage;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
         }
 
+        // this is where the relationship between the tables occur + creating tables with initialized content
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

@@ -5,11 +5,16 @@ namespace PimpMyRideServer.Server
 {
     public class Server
     {
+        // creating a static property of the database context
         public static GarageContext context;
 
+
+        // a function to start the server
         public void Start(string[] args)
         {
+            // creatin a new instant of the database context
             context = new GarageContext();
+            
             var builder = WebApplication.CreateBuilder(args);
 
 
@@ -31,7 +36,7 @@ namespace PimpMyRideServer.Server
 
             app.MapControllers();
 
-            
+            // function for backup every day at midnight
             BackupHandler.ExecuteAtMidnight();
 
             app.Run();

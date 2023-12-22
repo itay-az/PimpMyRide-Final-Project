@@ -9,9 +9,14 @@ using PimpMyRideServer.Server.Responses;
 
 namespace PimpMyRideServer.Handlers
 {
+
+    // client handler that handles all the http requests regarding the clients
     public class ClientHandler : CreateHandler, GetByIdHandler, GetHandler
     {
-
+        // function that handles the create http request, routing from the controller,
+        // it recieves a create request, checks if the client doesnt already exist,
+        // if everything checks out it creates a new client and returns status 200,
+        // otherwise it returns a customized failure response
         public ActionResult HandleCreate(Request request)
         {
             CreateClientRequest createClientRequest = (CreateClientRequest)request;
@@ -34,6 +39,10 @@ namespace PimpMyRideServer.Handlers
 
         }
 
+        // function that handles the delete http request, routing from the controller,
+        // it recieves an id, checks if the client exist,
+        // if everything checks out it deletes the client and returns status 200,
+        // otherwise it returns a customized failure response
         public ActionResult HandleDelete(string id)
         {
             var client = Server.Server.context.Clients.SingleOrDefault(c => c.clientId == id);
@@ -48,6 +57,10 @@ namespace PimpMyRideServer.Handlers
             return new StatusCodeResult(StatusCodes.Status200OK);
         }
 
+        // function that handles get all clients http request, routing from the controller,
+        // checks if there is at least one client,
+        // if everything checks out it returns all clients as json object with status 200,
+        // otherwise it returns a customized failure response
         public ActionResult HandleGet()
         {
 
@@ -65,6 +78,10 @@ namespace PimpMyRideServer.Handlers
             return jsonResult;
         }
 
+        // function that handles the get client by id http request, routing from the controller,
+        // it recieves a string id, checks if the client exist,
+        // if everything checks out it creates a new json object with all the details of the client and returns status 200,
+        // otherwise it returns a customized failure response
         public ActionResult HandlGetById(string id)
         {
             var client = Server.Server.context.Clients.Include("cars").SingleOrDefault(c => c.clientId == id);
@@ -80,6 +97,10 @@ namespace PimpMyRideServer.Handlers
             return jsonResult;
         }
 
+        // function that handles the get car by car number http request, routing from the controller,
+        // it recieves a string id, checks if the car exist,
+        // if everything checks out it creates a new json object with all the details of the car and returns status 200,
+        // otherwise it returns a customized failure response
         public ActionResult GetCarByCarId(string id)
         {
             var car = Server.Server.context.Car.SingleOrDefault(c => c.carId == id);
@@ -99,6 +120,10 @@ namespace PimpMyRideServer.Handlers
             return jsonResult;
         }
 
+        // function that handles the get client by car id http request, routing from the controller,
+        // it recieves a string id, checks if the client exist,
+        // if everything checks out it creates a new json object with all the details of the client and returns status 200,
+        // otherwise it returns a customized failure response
         public ActionResult HandleGetClientByCarId(string id)
         {
             var car = Server.Server.context.Car.SingleOrDefault(c => c.carId == id);
@@ -115,6 +140,10 @@ namespace PimpMyRideServer.Handlers
             return jsonResult;
         }
 
+        // function that handles the update client by id http request, routing from the controller,
+        // it recieves a string id, checks if the client exist,
+        // if everything checks out it returns status 200,
+        // otherwise it returns a customized failure response
         public ActionResult HandleUpdate(CreateClientRequest request)
         {
 
@@ -158,6 +187,12 @@ namespace PimpMyRideServer.Handlers
 
         }
 
+        // function that handles the add car to client by id http request, routing from the controller,
+        // it recieves a string id, checks if the client exist,
+        // if the client exists, it checks if the car exist, otherwise it returns a customized client not found object
+        // if tha car does exists, it updates the client information on the car table
+        // if everything checks out it creates a new json object with all the details of the client and returns status 200,
+        // otherwise it returns a customized failure response
         public ActionResult HandleAddCarToClient(string clientId, AddCarToClientRequest request)
         {
             var client = Server.Server.context.Clients.Include("cars").SingleOrDefault(c => c.clientId == clientId);
@@ -188,6 +223,7 @@ namespace PimpMyRideServer.Handlers
 
         }
 
+        // function that creates a customized response that contains multiple parameters from multiple entities inside the databse
         private ClientResponse buildClientResponse(Client client) 
         {
             var carsFromDB = Server.Server.context.Car.Where(car => car.clientId == client.clientId).ToList();
@@ -201,6 +237,10 @@ namespace PimpMyRideServer.Handlers
 
         }
 
+        // function that handles the get car history by car number http request, routing from the controller,
+        // it recieves a string car number, checks if the car exist,
+        // if everything checks out it creates a new json object with all the neccesary information and returns status 200,
+        // otherwise it returns a customized failure response
         public ActionResult HandleGetCarHistory(string carId)
         {
             var carHistoryTickets = Server.Server.context.Ticket.Where(t => t.carId == carId && t.state ==TicketType.IS_CLOSED).ToList();
