@@ -1,4 +1,5 @@
 ﻿using PimpMyRideServer.Data;
+using PimpMyRideServer.Handlers;
 
 namespace PimpMyRideServer.Server
 {
@@ -30,6 +31,8 @@ namespace PimpMyRideServer.Server
 
             app.MapControllers();
 
+            
+            BackupHandler.ExecuteAtMidnight();
 
             app.Run();
         }

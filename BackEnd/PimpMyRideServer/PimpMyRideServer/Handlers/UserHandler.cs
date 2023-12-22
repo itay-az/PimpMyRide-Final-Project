@@ -16,7 +16,7 @@ namespace PimpMyRideServer.Handlers
 
             if(you != null )
             {
-                return new StatusCodeResult(StatusCodes.Status409Conflict);
+                return ErrorHandler.onFailure("User already exist", "Conflict",409);
             }
             Console.WriteLine();
 
@@ -33,7 +33,7 @@ namespace PimpMyRideServer.Handlers
 
             if(user == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("User not found", "Not found");
             }
 
             Server.Server.context.User.Remove(user);
@@ -48,7 +48,7 @@ namespace PimpMyRideServer.Handlers
 
             if (users == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("Users not found", "Not found");
             }
             JsonResult jsonResult = new JsonResult(users);
             jsonResult.StatusCode = StatusCodes.Status200OK;
@@ -65,7 +65,7 @@ namespace PimpMyRideServer.Handlers
 
             if (user == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("User not found", "Not found");
             }
             JsonResult jsonResult = new JsonResult(user);
             jsonResult.StatusCode = StatusCodes.Status200OK;
@@ -78,7 +78,7 @@ namespace PimpMyRideServer.Handlers
             var user = Server.Server.context.User.SingleOrDefault(u => u.Id == request.Id);
             if (user == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("User not found", "Not found");
             }
 
             user.UserName = request.UserName;

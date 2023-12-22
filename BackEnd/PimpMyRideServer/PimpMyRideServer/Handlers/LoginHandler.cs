@@ -21,7 +21,7 @@ namespace PimpMyRideServer.Handlers
 
             if (user == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("User not found", "Not found");
             }
 
             return new OkObjectResult(user.JobTitle);

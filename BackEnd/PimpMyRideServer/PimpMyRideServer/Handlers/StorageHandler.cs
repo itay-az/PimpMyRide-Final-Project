@@ -12,17 +12,7 @@ namespace PimpMyRideServer.Handlers
 {
     public class StorageHandler :CreateHandler, GetByIdHandler, GetHandler
     {
-        private ActionResult onFailure(string message)
-        {
-            FailureResponse failureResponse = new FailureResponse
-            {
-                status = false,
-                message = message
-            };
-
-            JsonResult jsonResult = new JsonResult(failureResponse);
-            return jsonResult;
-        }
+        
         public ActionResult HandleCreate(Request request)
         {
             CreateManufactureAndModelRequest createManufactureAndModelRequest = (CreateManufactureAndModelRequest)request;
@@ -38,7 +28,7 @@ namespace PimpMyRideServer.Handlers
                 var modelDb = Server.Server.context.Model.SingleOrDefault(m =>m.manufacturerName == manufacture.manufacturerName && m.model == model.model);
                 if(modelDb != null)
                 {
-                    return new StatusCodeResult(StatusCodes.Status409Conflict);
+                    return ErrorHandler.onFailure("Model not found", "Not found");
                 }
                 Server.Server.context.Model.Add(model);
                 Server.Server.context.SaveChanges();
@@ -72,14 +62,14 @@ namespace PimpMyRideServer.Handlers
             var manufacture = Server.Server.context.Manufacture.Find(id);
             if(manufacture == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("Manufacture not found", "Not found");
             }
 
-            List<Model> models = Server.Server.context.Model.Where(model => model.manufacturerName.Equals(id)).ToList();
+            var models = Server.Server.context.Model.Where(model => model.manufacturerName.Equals(id)).ToList();
             
             if(models == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("Model not found", "Not found");
             }
             JsonResult jsonResults = new JsonResult(models);
             jsonResults.StatusCode = StatusCodes.Status200OK;
@@ -91,10 +81,10 @@ namespace PimpMyRideServer.Handlers
             var models = Server.Server.context.Model;
             if (models == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("Model not found", "Not found");
             }
 
-            
+
             JsonResult jsonResults = new JsonResult(models);
             jsonResults.StatusCode = StatusCodes.Status200OK;
             return jsonResults;
@@ -103,9 +93,9 @@ namespace PimpMyRideServer.Handlers
         public ActionResult HandleGetManufacture()
         {
             var manufactures = Server.Server.context.Manufacture;
-            if (manufactures == null)
+            if (manufactures == null || manufactures.Count() == 0)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("Manufactures not found", "Not found");
             }
 
 
@@ -121,12 +111,12 @@ namespace PimpMyRideServer.Handlers
 
             if (manufacture == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("Manufactures not found", "Not found");
             }
 
             else if (model == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("Model not found", "Not found");
             }
             Server.Server.context.Model.Remove(model);
             Server.Server.context.SaveChanges();
@@ -148,9 +138,9 @@ namespace PimpMyRideServer.Handlers
             {
                 var parts = context.Part.ToList();
                 
-                if (parts == null)
+                if (parts == null || parts.Count() == 0)
                 {
-                    return new StatusCodeResult(StatusCodes.Status404NotFound);
+                    return ErrorHandler.onFailure("Parts not found", "Not found");
                 }
                 List<PartResponse> response = new List<PartResponse>();
                 foreach (Part p in parts)
@@ -179,42 +169,13 @@ namespace PimpMyRideServer.Handlers
 
         }
         
-    /*
-        public ActionResult HandleAddTicketToPart(int partId, Part partFromBody)
-        {
-            var part = Server.Server.context.Part.SingleOrDefault(p => p.partId == partId);
-
-            if (part == null)
-            {
-                return false;
-            }
-
-            if(part.quantity < partFromBody.quantity)
-            {
-                return false;
-            }
-
-
-            foreach (Ticket ticket in partFromBody.tickets)
-            {
-                part.tickets.Add(ticket);
-            }
-
-            Server.Server.context.Part.Update(part);
-            Server.Server.context.SaveChanges();
-            JsonResult jsonResult = new JsonResult(part);
-            jsonResult.StatusCode = StatusCodes.Status200OK;
-            return jsonResult;
-        }
-        */
-        
         public ActionResult HandleGetPartById(string partId)
         {
             var part = Server.Server.context.Part.SingleOrDefault(p => p.partId == partId);
 
             if (part == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("Part not found", "Not found");
             }
 
             JsonResult jsonResult = new JsonResult(part);
@@ -228,7 +189,7 @@ namespace PimpMyRideServer.Handlers
 
             if(part == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("Part not found", "Not found");
             }
 
             part.price = partFromBody.price;
@@ -248,7 +209,7 @@ namespace PimpMyRideServer.Handlers
 
             if (part == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("Part not found", "Not found");
             }
             Server.Server.context.Part.Remove(part);
             Server.Server.context.SaveChanges();
@@ -275,7 +236,7 @@ namespace PimpMyRideServer.Handlers
 
                 if(parts == null)
                 {
-                    return onFailure("No parts found");
+                    return ErrorHandler.onFailure("Part not found", "Not found");
                 }
 
                 JsonResult jsonResult = new JsonResult(parts);
@@ -292,7 +253,7 @@ namespace PimpMyRideServer.Handlers
             var supplierFromDb = Server.Server.context.Suppliers.SingleOrDefault(s => s.supplierId == supplier.supplierId);
             if(supplierFromDb != null)
             {
-                return new StatusCodeResult(StatusCodes.Status409Conflict);
+                return ErrorHandler.onFailure("Supplier already exist", "Conflict", 409);
             }
 
             Server.Server.context.Suppliers.Add(supplier);
@@ -308,7 +269,7 @@ namespace PimpMyRideServer.Handlers
 
             if(suppliers == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("Suppliers not found", "Not found");
             }
 
             JsonResult jsonResult = new JsonResult(suppliers);
@@ -322,7 +283,7 @@ namespace PimpMyRideServer.Handlers
 
             if (supplier == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("Supplier not found", "Not found");
             }
 
             JsonResult jsonResult = new JsonResult(supplier);
@@ -336,7 +297,7 @@ namespace PimpMyRideServer.Handlers
 
             if (supplier == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("Supplier not found", "Not found");
             }
 
             supplier.supplierId = supplierFromBody.supplierId;
@@ -360,7 +321,7 @@ namespace PimpMyRideServer.Handlers
 
             if(suppliers == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("Supplier not found", "Not found");
             }
 
             Server.Server.context.Suppliers.Remove(suppliers);
@@ -378,10 +339,9 @@ namespace PimpMyRideServer.Handlers
 
             if(s == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("Supplier not found", "Not found");
             }
 
-            //Order order = new Order(createNewOrderRequest.parts, s.supplierName);
 
             Order order = new Order
             {
@@ -402,9 +362,9 @@ namespace PimpMyRideServer.Handlers
         {
             var orders = Server.Server.context.Order.Include("parts");
 
-            if (orders == null)
+            if (orders == null || orders.Count() == 0)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("Orders not found", "Not found");
             }
 
             JsonResult jsonResult = new JsonResult(orders);
@@ -417,7 +377,7 @@ namespace PimpMyRideServer.Handlers
 
             if (order == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("Order not found", "Not found");
             }
 
             JsonResult jsonResult = new JsonResult(order);
@@ -431,7 +391,7 @@ namespace PimpMyRideServer.Handlers
 
             if (order == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("Order not found", "Not found");
             }
 
             Server.Server.context.Order.Remove(order);

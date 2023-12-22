@@ -67,19 +67,6 @@ namespace PimpMyRideServer.Migrations
                     b.ToTable("Car");
                 });
 
-            modelBuilder.Entity("PimpMyRideServer.Models.CarService", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
-
-                    b.HasKey("id");
-
-                    b.ToTable("CarService");
-                });
-
             modelBuilder.Entity("PimpMyRideServer.Models.Client", b =>
                 {
                     b.Property<string>("clientId")
@@ -131,32 +118,6 @@ namespace PimpMyRideServer.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Labor");
-                });
-
-            modelBuilder.Entity("PimpMyRideServer.Models.ManualLabor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("discount")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<decimal>("time")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("ManualLabor");
                 });
 
             modelBuilder.Entity("PimpMyRideServer.Models.Manufacture", b =>
@@ -5343,72 +5304,6 @@ namespace PimpMyRideServer.Migrations
                         });
                 });
 
-            modelBuilder.Entity("PimpMyRideServer.Models.Worker", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
-
-                    b.Property<long>("bankAccountNumber")
-                        .HasColumnType("bigint");
-
-                    b.Property<float>("hourFee")
-                        .HasColumnType("real");
-
-                    b.Property<string>("name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<float>("seniority")
-                        .HasColumnType("real");
-
-                    b.Property<string>("workerAdress")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("workerEmail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("workerPhone")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("workerPosition")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("id");
-
-                    b.ToTable("Worker");
-                });
-
-            modelBuilder.Entity("PimpMyRideServer.Models.WorkerHours", b =>
-                {
-                    b.Property<int>("id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
-
-                    b.Property<int?>("Workerid")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("entryTimeStamp")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("exitTimeStamp")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("id");
-
-                    b.HasIndex("Workerid");
-
-                    b.ToTable("WorkerHours");
-                });
-
             modelBuilder.Entity("PimpMyRideServer.Models.Car", b =>
                 {
                     b.HasOne("PimpMyRideServer.Models.Client", "Client")
@@ -5448,13 +5343,6 @@ namespace PimpMyRideServer.Migrations
                         .HasForeignKey("ticketId");
                 });
 
-            modelBuilder.Entity("PimpMyRideServer.Models.WorkerHours", b =>
-                {
-                    b.HasOne("PimpMyRideServer.Models.Worker", null)
-                        .WithMany("workerHour")
-                        .HasForeignKey("Workerid");
-                });
-
             modelBuilder.Entity("PimpMyRideServer.Models.Client", b =>
                 {
                     b.Navigation("cars");
@@ -5475,11 +5363,6 @@ namespace PimpMyRideServer.Migrations
                     b.Navigation("labors");
 
                     b.Navigation("parts");
-                });
-
-            modelBuilder.Entity("PimpMyRideServer.Models.Worker", b =>
-                {
-                    b.Navigation("workerHour");
                 });
 #pragma warning restore 612, 618
         }

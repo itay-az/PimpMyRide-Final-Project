@@ -10,12 +10,9 @@ namespace PimpMyRideServer.Data
     {
 
         public DbSet<Client> Clients { get; set; }
-        public DbSet<Worker> Worker { get; set; }
-        public DbSet<WorkerHours> WorkerHours { get; set; }
         public DbSet<Suppliers> Suppliers { get; set; }
         public DbSet<Part> Part { get; set; }
         public DbSet<Car> Car { get; set; }
-        public DbSet<CarService> CarService { get; set; }
         public DbSet<User> User { get; set; }
         public DbSet<Manufacture> Manufacture { get; set; }
         public DbSet<Model> Model { get; set; }
@@ -45,7 +42,6 @@ namespace PimpMyRideServer.Data
 
             modelBuilder.Entity<Ticket>();
 
-            modelBuilder.Entity<ManualLabor>();
 
 
             modelBuilder.Entity<Client>(model =>

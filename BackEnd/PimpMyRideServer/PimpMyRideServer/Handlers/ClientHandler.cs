@@ -11,23 +11,7 @@ namespace PimpMyRideServer.Handlers
 {
     public class ClientHandler : CreateHandler, GetByIdHandler, GetHandler
     {
-        private ActionResult onFailure(string message, string errorCode, int statusCode = StatusCodes.Status404NotFound, string details = null, List<ValidationError> validationErrors = null)
-        {
-            var errorResponse = new ErrorResponse
-            {
-                Success = false,
-                Message = message,
-                StatusCode = statusCode,
-                ErrorCode = errorCode,
-                Details = details,
-                ValidationErrors = validationErrors
-            };
 
-            JsonResult jsonResult = new JsonResult(errorResponse);
-            jsonResult.StatusCode = statusCode;
-
-            return jsonResult;
-        }
         public ActionResult HandleCreate(Request request)
         {
             CreateClientRequest createClientRequest = (CreateClientRequest)request;
@@ -36,7 +20,7 @@ namespace PimpMyRideServer.Handlers
 
             if (c != null)
             {
-                return new StatusCodeResult(StatusCodes.Status409Conflict);
+                return ErrorHandler.onFailure("Client already exist", "Conflict",409);
             }
 
             Client client = new Client(createClientRequest.id, createClientRequest.name, createClientRequest.phone, createClientRequest.email, createClientRequest.address,new List<Car>());
@@ -56,7 +40,7 @@ namespace PimpMyRideServer.Handlers
 
             if (client == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("Client not found", "Not found");
             }
 
             Server.Server.context.Clients.Remove(client);
@@ -70,9 +54,9 @@ namespace PimpMyRideServer.Handlers
             var clients = Server.Server.context.Clients
                 .ToList();
 
-            if (clients.IsNullOrEmpty())
+            if (clients == null || clients.Count() == 0)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("Clients not found", "Not found");
             }
 
             JsonResult jsonResult = new JsonResult(clients);
@@ -87,7 +71,7 @@ namespace PimpMyRideServer.Handlers
 
             if (client == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("Client not found", "Not found");
             }
 
             JsonResult jsonResult = new JsonResult(client);
@@ -102,7 +86,7 @@ namespace PimpMyRideServer.Handlers
 
             if (car == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("Client not found", "Not found");
             }
 
             var client = Server.Server.context.Clients.SingleOrDefault(c => c.clientId == car.clientId);
@@ -122,7 +106,7 @@ namespace PimpMyRideServer.Handlers
 
             if (client == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("Client not found", "Not found");
             }
 
             JsonResult jsonResult = new JsonResult(buildClientResponse(client));
@@ -138,7 +122,7 @@ namespace PimpMyRideServer.Handlers
 
             if (client == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("Client not found", "Not found");
             }
 
             var car = client.cars.SingleOrDefault(c => c.carId == request.carId);
@@ -180,7 +164,7 @@ namespace PimpMyRideServer.Handlers
 
             if (client == null)
             {
-                return new StatusCodeResult(StatusCodes.Status404NotFound);
+                return ErrorHandler.onFailure("Client not found", "Not found");
             }
 
             var existingCar = Server.Server.context.Car.SingleOrDefault(c => c.carId == request.carId);
@@ -223,7 +207,7 @@ namespace PimpMyRideServer.Handlers
 
             if(carHistoryTickets == null)
             {
-                return onFailure("No history for this car", "Not found");
+                return ErrorHandler.onFailure("No history for this car", "Not found");
             }
 
             JsonResult jsonResult = new JsonResult(carHistoryTickets);
