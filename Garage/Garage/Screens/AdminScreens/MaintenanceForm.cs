@@ -141,7 +141,6 @@ namespace Garage.Screens.AdminScreens
         {
             try
             {
-
                 HttpResponseMessage response = await Program.client.DeleteAsync("Tickets/deleteLaborById/" + Id);
                 if (response.IsSuccessStatusCode)
                 {
@@ -162,7 +161,16 @@ namespace Garage.Screens.AdminScreens
 
         private void deleteLaborBtn_Click(object sender, EventArgs e)
         {
-            DeleteLaborById(int.Parse(laborIdTxt.Text));
+            try
+            {
+                DeleteLaborById(int.Parse(laborIdTxt.Text));
+
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
         }
 
         private void allLaborsDataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)

@@ -14,7 +14,7 @@ namespace PimpMyRideServer.Handlers
     public class LoginHandler : CreateHandler
     {
         // a function that recives a login request as a parameter
-        // it checks if the user information provided matches the one on the databse
+        // it checks if the user information provided matches the one on the database
         // if everything checks out it returns status 200,
         // otherwise it returns a customized failure response
         public ActionResult HandleCreate(Request request)

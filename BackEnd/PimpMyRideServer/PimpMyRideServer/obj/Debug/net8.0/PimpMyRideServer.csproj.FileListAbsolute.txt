@@ -373,7 +373,6 @@ D:\college\פרויקט גמר\PimpMyRide-Final-Project\BackEnd\PimpMyRideServer
 D:\college\פרויקט גמר\PimpMyRide-Final-Project\BackEnd\PimpMyRideServer\PimpMyRideServer\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
 D:\college\פרויקט גמר\PimpMyRide-Final-Project\BackEnd\PimpMyRideServer\PimpMyRideServer\bin\Debug\net8.0\System.Security.Permissions.dll
 D:\college\פרויקט גמר\PimpMyRide-Final-Project\BackEnd\PimpMyRideServer\PimpMyRideServer\bin\Debug\net8.0\System.Windows.Extensions.dll
-D:\college\פרויקט גמר\PimpMyRide-Final-Project\BackEnd\PimpMyRideServer\PimpMyRideServer\bin\Debug\net8.0\Z.EntityFramework.Extensions.EFCore.dll
 D:\college\פרויקט גמר\PimpMyRide-Final-Project\BackEnd\PimpMyRideServer\PimpMyRideServer\bin\Debug\net8.0\af\Humanizer.resources.dll
 D:\college\פרויקט גמר\PimpMyRide-Final-Project\BackEnd\PimpMyRideServer\PimpMyRideServer\bin\Debug\net8.0\ar\Humanizer.resources.dll
 D:\college\פרויקט גמר\PimpMyRide-Final-Project\BackEnd\PimpMyRideServer\PimpMyRideServer\bin\Debug\net8.0\az\Humanizer.resources.dll
@@ -565,3 +564,4 @@ D:\college\פרויקט גמר\PimpMyRide-Final-Project\BackEnd\PimpMyRideServer
 D:\college\פרויקט גמר\PimpMyRide-Final-Project\BackEnd\PimpMyRideServer\PimpMyRideServer\obj\Debug\net8.0\PimpMyRideServer.pdb
 D:\college\פרויקט גמר\PimpMyRide-Final-Project\BackEnd\PimpMyRideServer\PimpMyRideServer\obj\Debug\net8.0\PimpMyRideServer.genruntimeconfig.cache
 D:\college\פרויקט גמר\PimpMyRide-Final-Project\BackEnd\PimpMyRideServer\PimpMyRideServer\obj\Debug\net8.0\ref\PimpMyRideServer.dll
+D:\college\פרויקט גמר\PimpMyRide-Final-Project\BackEnd\PimpMyRideServer\PimpMyRideServer\bin\Debug\net8.0\runtimes\win\lib\net7.0\System.Security.Cryptography.ProtectedData.dll

@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.panel1 = new System.Windows.Forms.Panel();
             this.timerLbl = new System.Windows.Forms.Label();
             this.logoutBtn = new System.Windows.Forms.Button();
@@ -58,15 +57,12 @@
             this.ticketsMenuBtn = new System.Windows.Forms.Button();
             this.helloLbl = new System.Windows.Forms.Label();
             this.getAllPartsBtn = new System.Windows.Forms.Panel();
-            this.logoPictureBox = new System.Windows.Forms.PictureBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             this.adminPanel.SuspendLayout();
             this.suppliersPanel.SuspendLayout();
             this.clientsPanel.SuspendLayout();
             this.ticketPanel.SuspendLayout();
-            this.getAllPartsBtn.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -525,22 +521,11 @@
             // getAllPartsBtn
             // 
             this.getAllPartsBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-            this.getAllPartsBtn.Controls.Add(this.logoPictureBox);
             this.getAllPartsBtn.Dock = System.Windows.Forms.DockStyle.Fill;
             this.getAllPartsBtn.Location = new System.Drawing.Point(194, 0);
             this.getAllPartsBtn.Name = "getAllPartsBtn";
             this.getAllPartsBtn.Size = new System.Drawing.Size(1571, 747);
             this.getAllPartsBtn.TabIndex = 1;
-            // 
-            // logoPictureBox
-            // 
-            this.logoPictureBox.Image = ((System.Drawing.Image)(resources.GetObject("logoPictureBox.Image")));
-            this.logoPictureBox.Location = new System.Drawing.Point(204, 75);
-            this.logoPictureBox.Name = "logoPictureBox";
-            this.logoPictureBox.Padding = new System.Windows.Forms.Padding(25);
-            this.logoPictureBox.Size = new System.Drawing.Size(547, 528);
-            this.logoPictureBox.TabIndex = 2;
-            this.logoPictureBox.TabStop = false;
             // 
             // timer1
             // 
@@ -564,8 +549,6 @@
             this.suppliersPanel.ResumeLayout(false);
             this.clientsPanel.ResumeLayout(false);
             this.ticketPanel.ResumeLayout(false);
-            this.getAllPartsBtn.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.logoPictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -595,7 +578,6 @@
         private System.Windows.Forms.Button maintenanceBtn;
         private System.Windows.Forms.Button adminUsersBtn;
         private System.Windows.Forms.Panel getAllPartsBtn;
-        private System.Windows.Forms.PictureBox logoPictureBox;
         private System.Windows.Forms.Button addNewManufactureBtn;
         private System.Windows.Forms.Button allPartsBtn;
         private System.Windows.Forms.Button allOrdersBtn;

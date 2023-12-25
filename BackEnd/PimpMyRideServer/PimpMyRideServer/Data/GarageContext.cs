@@ -53,7 +53,23 @@ namespace PimpMyRideServer.Data
                 .HasForeignKey(e => e.clientId);
 
             });
-
+            
+            modelBuilder.Entity<Labor>(model =>
+            {
+                model.HasData(
+                    new { Id = 1, description = "15K Service", price = 300m, time = 1.0m, discount = 0.0m },
+                    new { Id = 2, description = "30K Service", price = 450m, time = 1.5m, discount = 0.0m },
+                    new { Id = 3, description = "45K Service", price = 600m, time = 2.0m, discount = 0.0m },
+                    new { Id = 4, description = "60K Service", price = 600m, time = 2.0m, discount = 0.0m },
+                    new { Id = 5, description = "75K Service", price = 300m, time = 1.0m, discount = 0.0m },
+                    new { Id = 6, description = "90K Service", price = 900m, time = 3.0m, discount = 0.0m },
+                    new { Id = 7, description = "105K Service", price = 450m, time = 1.5m, discount = 0.0m },
+                    new { Id = 8, description = "Brake pads Replacement", price = 300m, time = 1.0m, discount = 0.0m },
+                    new { Id = 9, description = "Brake rotors and pads Replacement", price = 450m, time = 1.5m, discount = 0.0m },
+                    new { Id = 10, description = "Axle Replacement", price = 300m, time = 1.0m, discount = 0.0m }
+                    );
+            });
+            
             modelBuilder.Entity<Manufacture>(model =>
             {
                 model.HasData(

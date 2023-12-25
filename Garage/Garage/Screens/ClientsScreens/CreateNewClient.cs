@@ -168,6 +168,12 @@ namespace Garage.Screens.ClientsScreens
                 MessageBox.Show("Client name cannot be a number", "Error");
                 return true;
             }
+            int.TryParse(carYearTxt.Text, out int year);
+            if(year > DateTime.Now.Year)
+            {
+                MessageBox.Show("Car Year cannot be a higher than current year", "Error");
+                return true;
+            }
             return false;
 
         }

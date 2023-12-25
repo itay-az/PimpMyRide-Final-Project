@@ -27,7 +27,6 @@ namespace Garage
             timer1.Start();
 
             UpdateClock();
-
         }
 
         public Dashboard(string jobTitle,string userName)
