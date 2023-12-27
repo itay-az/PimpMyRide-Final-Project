@@ -183,3 +183,4 @@ D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\bin\Debug\
 D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\bin\Debug\itext.bouncy-castle-adapter.dll
 D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\bin\Debug\BouncyCastle.Cryptography.xml
 D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\bin\Debug\itext.bouncy-castle-adapter.xml
+D:\college\פרויקט גמר\PimpMyRide-Final-Project\Garage\Garage\obj\Debug\Garage.Screens.AdminScreens.StatisticsForm.resources

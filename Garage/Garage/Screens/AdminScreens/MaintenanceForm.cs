@@ -169,7 +169,6 @@ namespace Garage.Screens.AdminScreens
             catch(Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
         }
 

@@ -37,7 +37,7 @@ namespace PimpMyRideServer.Server
             app.MapControllers();
 
             // function for backup every day at midnight
-            BackupHandler.ExecuteAtMidnight();
+            OthersHandler.ExecuteAtMidnight();
 
             app.Run();
         }

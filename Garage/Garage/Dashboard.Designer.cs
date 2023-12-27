@@ -56,8 +56,9 @@
             this.createNewTicketBtn = new System.Windows.Forms.Button();
             this.ticketsMenuBtn = new System.Windows.Forms.Button();
             this.helloLbl = new System.Windows.Forms.Label();
-            this.getAllPartsBtn = new System.Windows.Forms.Panel();
+            this.statisticsBtn = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.adminPanel.SuspendLayout();
             this.suppliersPanel.SuspendLayout();
@@ -92,7 +93,7 @@
             this.timerLbl.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.timerLbl.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.timerLbl.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.timerLbl.Location = new System.Drawing.Point(0, 855);
+            this.timerLbl.Location = new System.Drawing.Point(0, 897);
             this.timerLbl.Name = "timerLbl";
             this.timerLbl.Size = new System.Drawing.Size(177, 102);
             this.timerLbl.TabIndex = 11;
@@ -106,7 +107,7 @@
             this.logoutBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.logoutBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.logoutBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.logoutBtn.Location = new System.Drawing.Point(0, 820);
+            this.logoutBtn.Location = new System.Drawing.Point(0, 862);
             this.logoutBtn.Name = "logoutBtn";
             this.logoutBtn.Size = new System.Drawing.Size(177, 35);
             this.logoutBtn.TabIndex = 10;
@@ -118,23 +119,25 @@
             // adminPanel
             // 
             this.adminPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.adminPanel.Controls.Add(this.button1);
             this.adminPanel.Controls.Add(this.addNewManufactureBtn);
             this.adminPanel.Controls.Add(this.maintenanceBtn);
             this.adminPanel.Controls.Add(this.adminUsersBtn);
             this.adminPanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.adminPanel.Location = new System.Drawing.Point(0, 690);
             this.adminPanel.Name = "adminPanel";
-            this.adminPanel.Size = new System.Drawing.Size(177, 130);
+            this.adminPanel.Size = new System.Drawing.Size(177, 172);
             this.adminPanel.TabIndex = 9;
             // 
             // addNewManufactureBtn
             // 
             this.addNewManufactureBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.addNewManufactureBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.addNewManufactureBtn.FlatAppearance.BorderSize = 0;
             this.addNewManufactureBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addNewManufactureBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.addNewManufactureBtn.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.addNewManufactureBtn.Location = new System.Drawing.Point(0, 90);
+            this.addNewManufactureBtn.Location = new System.Drawing.Point(0, 84);
             this.addNewManufactureBtn.Name = "addNewManufactureBtn";
             this.addNewManufactureBtn.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
             this.addNewManufactureBtn.Size = new System.Drawing.Size(177, 41);
@@ -517,15 +520,16 @@
             this.helloLbl.Size = new System.Drawing.Size(177, 40);
             this.helloLbl.TabIndex = 0;
             this.helloLbl.Text = "Hello ";
+            this.helloLbl.Click += new System.EventHandler(this.helloLbl_Click);
             // 
-            // getAllPartsBtn
+            // statisticsBtn
             // 
-            this.getAllPartsBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-            this.getAllPartsBtn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.getAllPartsBtn.Location = new System.Drawing.Point(194, 0);
-            this.getAllPartsBtn.Name = "getAllPartsBtn";
-            this.getAllPartsBtn.Size = new System.Drawing.Size(1571, 747);
-            this.getAllPartsBtn.TabIndex = 1;
+            this.statisticsBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.statisticsBtn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.statisticsBtn.Location = new System.Drawing.Point(194, 0);
+            this.statisticsBtn.Name = "statisticsBtn";
+            this.statisticsBtn.Size = new System.Drawing.Size(1571, 747);
+            this.statisticsBtn.TabIndex = 1;
             // 
             // timer1
             // 
@@ -533,13 +537,31 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button1.Location = new System.Drawing.Point(0, 125);
+            this.button1.Name = "button1";
+            this.button1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.button1.Size = new System.Drawing.Size(177, 41);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Statistics";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1765, 747);
             this.ControlBox = false;
-            this.Controls.Add(this.getAllPartsBtn);
+            this.Controls.Add(this.statisticsBtn);
             this.Controls.Add(this.panel1);
             this.Name = "Dashboard";
             this.Text = "Pimp My Ride";
@@ -577,12 +599,13 @@
         private System.Windows.Forms.Panel adminPanel;
         private System.Windows.Forms.Button maintenanceBtn;
         private System.Windows.Forms.Button adminUsersBtn;
-        private System.Windows.Forms.Panel getAllPartsBtn;
+        private System.Windows.Forms.Panel statisticsBtn;
         private System.Windows.Forms.Button addNewManufactureBtn;
         private System.Windows.Forms.Button allPartsBtn;
         private System.Windows.Forms.Button allOrdersBtn;
         private System.Windows.Forms.Label helloLbl;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Label timerLbl;
+        private System.Windows.Forms.Button button1;
     }
 }

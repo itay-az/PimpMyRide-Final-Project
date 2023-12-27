@@ -167,6 +167,7 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.9\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -246,6 +247,7 @@
     <Compile Include="Responses\GetOrderDetailsResponse.cs" />
     <Compile Include="Responses\GetTicketByIdResponse.cs" />
     <Compile Include="Responses\OnFailure.cs" />
+    <Compile Include="Responses\StatisticsResponse.cs" />
     <Compile Include="Screens\AdminScreens\AddNewManufactureForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -280,6 +282,12 @@
     </Compile>
     <Compile Include="Screens\AdminScreens\MaintenanceForm.Designer.cs">
       <DependentUpon>MaintenanceForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\AdminScreens\StatisticsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Screens\AdminScreens\StatisticsForm.Designer.cs">
+      <DependentUpon>StatisticsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Screens\ClientsScreens\AllClientsForm.cs">
       <SubType>Form</SubType>
@@ -415,6 +423,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\AdminScreens\MaintenanceForm.resx">
       <DependentUpon>MaintenanceForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Screens\AdminScreens\StatisticsForm.resx">
+      <DependentUpon>StatisticsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Screens\ClientsScreens\AllClientsForm.resx">
       <DependentUpon>AllClientsForm.cs</DependentUpon>

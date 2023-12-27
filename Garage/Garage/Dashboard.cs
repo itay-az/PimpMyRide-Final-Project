@@ -112,8 +112,8 @@ namespace Garage
             form.TopLevel = false;
             form.FormBorderStyle = FormBorderStyle.None;
             form.Dock = DockStyle.Fill;
-            getAllPartsBtn.Controls.Add(form);
-            getAllPartsBtn.Tag = form;
+            statisticsBtn.Controls.Add(form);
+            statisticsBtn.Tag = form;
             form.BringToFront();
             form.Show();
         }
@@ -210,6 +210,19 @@ namespace Garage
         {
             MaintenanceForm maintenanceForm = new MaintenanceForm();
             openForm(maintenanceForm);
+        }
+
+        private void helloLbl_Click(object sender, EventArgs e)
+        {
+            Dashboard dashboard = new Dashboard();
+            openForm(dashboard);
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            StatisticsForm statisticsForm = new StatisticsForm();
+            openForm(statisticsForm);
         }
     }
 }
