@@ -84,12 +84,13 @@ namespace Garage
 
             LoginRequest loginRequest = new LoginRequest(username, password);
 
-            HttpResponseMessage response = await Program.client.PostAsJsonAsync(
-                "login/", loginRequest);
+            
             try
             {
+                HttpResponseMessage response = await Program.client.PostAsJsonAsync(
+                "login/", loginRequest);
 
-                if(response.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
                     var result = await response.Content.ReadAsStringAsync();
 
