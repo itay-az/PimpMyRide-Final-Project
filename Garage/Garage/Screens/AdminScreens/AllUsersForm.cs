@@ -64,12 +64,6 @@ namespace Garage.Screens.AdminScreens
         }
 
 
-        private void AllUsersForm_Load(object sender, EventArgs e)
-        {
-            this.userTableAdapter.Fill(this.garageDataSet.User);
-
-        }
-
         private void AllUsersGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             try

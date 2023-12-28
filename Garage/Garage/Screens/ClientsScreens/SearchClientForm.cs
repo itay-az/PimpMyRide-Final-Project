@@ -115,7 +115,7 @@ namespace Garage.Screens.ClientsScreens
                     var jsonResult = JsonConvert.DeserializeObject<Client>(responseResult);
                     changeVisibilityToTrue();
 
-                    searchClientIdTxt.Text = jsonResult.clientId;
+                    searchClientIdTxt.Text = jsonResult.id;
                     searchClientFullNameTxt.Text = jsonResult.name;
                     searchClientEmailTxt.Text = jsonResult.email;
                     searchClientAddressTxt.Text = jsonResult.address;

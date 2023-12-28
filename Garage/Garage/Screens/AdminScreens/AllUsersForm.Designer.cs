@@ -268,7 +268,6 @@
             this.Controls.Add(this.AllUsersGridView);
             this.Name = "AllUsersForm";
             this.Text = "AllUsersForm";
-            this.Load += new System.EventHandler(this.AllUsersForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.AllUsersGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.garageDataSet)).EndInit();

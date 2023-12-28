@@ -31,8 +31,15 @@ namespace PimpMyRideServer.Data
         // asigining the sql string connection
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            // itay
             optionsBuilder
                 .UseSqlServer(@"Data Source=DESKTOP-T1R5O2U;Initial Catalog=Garage;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+
+            // kobi
+            /*
+            optionsBuilder
+                   .UseSqlServer(@"Data Source=KOBI_BITON\SQLEXPRESS;Initial Catalog=Garage;Integrated Security=True;TrustServerCertificate=True;");
+        */
         }
 
         // this is where the relationship between the tables occur + creating tables with initialized content
