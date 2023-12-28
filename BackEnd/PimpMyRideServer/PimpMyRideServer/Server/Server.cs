@@ -14,7 +14,7 @@ namespace PimpMyRideServer.Server
         {
             // creatin a new instant of the database context
             context = new GarageContext();
-            
+
             var builder = WebApplication.CreateBuilder(args);
 
 

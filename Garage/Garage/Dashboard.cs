@@ -212,13 +212,6 @@ namespace Garage
             openForm(maintenanceForm);
         }
 
-        private void helloLbl_Click(object sender, EventArgs e)
-        {
-            Dashboard dashboard = new Dashboard();
-            openForm(dashboard);
-
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
             StatisticsForm statisticsForm = new StatisticsForm();

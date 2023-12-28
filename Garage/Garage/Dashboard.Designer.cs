@@ -520,7 +520,6 @@
             this.helloLbl.Size = new System.Drawing.Size(177, 40);
             this.helloLbl.TabIndex = 0;
             this.helloLbl.Text = "Hello ";
-            this.helloLbl.Click += new System.EventHandler(this.helloLbl_Click);
             // 
             // statisticsBtn
             // 
