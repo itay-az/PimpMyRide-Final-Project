@@ -15,12 +15,14 @@ using EF = Microsoft.EntityFrameworkCore;
 
 namespace PimpMyRideServer.Handlers
 {
+    // ticket handler that handles all the http requests regarding the tickets
+
     public class TicketsHandler : Handler, GetHandler
     {
-        
-
-        
-
+        // function that handles the post http request, routing from the controller,
+        // it recieves an entity as a parameter
+        // if everything checks out it creates the requested entity
+        // otherwise it returns a customized failure response
         public ActionResult HandleCreate(CreateNewTicketRequest request)
         {
             Ticket newTicket = new Ticket(request.carId,request.clientFullName,request.clientId,request.clientPhoneNumber,request.clientEmail,request.causeOfArrival);
@@ -35,8 +37,10 @@ namespace PimpMyRideServer.Handlers
             {
                 return ErrorHandler.onFailure("There is an open ticket with the same details", "Error",409);
             }
-
-
+            if(car.carKilometer < request.carKilometer)
+            {
+                return ErrorHandler.onFailure("The kilometer is lower than the last visit", "Error", 400);
+            }
             car.carKilometer = request.carKilometer;
             Server.Server.context.SaveChanges();
 
@@ -46,6 +50,10 @@ namespace PimpMyRideServer.Handlers
             return new StatusCodeResult(StatusCodes.Status200OK);
         }
 
+        // function that handles the post http request, routing from the controller,
+        // it recieves an entity as a parameter
+        // if everything checks out it creates the requested entity
+        // otherwise it returns a customized failure response
         public ActionResult HandleCreateOffer(CreateNewTicketRequest request)
         {
             Ticket newTicket = new Ticket(request.carId, request.clientFullName, request.clientId, request.clientPhoneNumber, request.clientEmail, request.causeOfArrival,TicketType.IS_OFFER);
@@ -70,10 +78,11 @@ namespace PimpMyRideServer.Handlers
             return new StatusCodeResult(StatusCodes.Status200OK);
         }
 
+        // function that handles the get http request, routing from the controller,
+        // if everything checks out it retrives the requested entity
+        // otherwise it returns a customized failure response
         public ActionResult HandleGet()
         {
-
-
             var ticket = Server.Server.context.Ticket.Include("parts").Include("labors").Where(t => t.state == TicketType.IS_OPEN);
 
             if (ticket == null)
@@ -84,10 +93,12 @@ namespace PimpMyRideServer.Handlers
             JsonResult jsonResults = new JsonResult(ticket);
             jsonResults.StatusCode = StatusCodes.Status200OK;
             return jsonResults;
-
-
         }
-   
+
+        // function that handles the delete http request, routing from the controller,
+        // it recieves an id as a parameter
+        // if everything checks out it deletes the requested entity which have the same id
+        // otherwise it returns a customized failure response
         public ActionResult HandleDelete(int ticketId)
         {
             var ticket = Server.Server.context.Ticket.SingleOrDefault(ticket => ticket.ticketId == ticketId);
@@ -102,6 +113,10 @@ namespace PimpMyRideServer.Handlers
             return new StatusCodeResult(StatusCodes.Status200OK);
         }
 
+        // function that handles the delete http request, routing from the controller,
+        // it recieves an id as a parameter
+        // if everything checks out it deletes the requested entity which have the same id
+        // otherwise it returns a customized failure response
         public ActionResult HandleCloseTicketById(int ticketId)
         {
             var ticket = Server.Server.context.Ticket.SingleOrDefault(ticket => ticket.ticketId == ticketId);
@@ -110,22 +125,21 @@ namespace PimpMyRideServer.Handlers
             {
                 return ErrorHandler.onFailure("Ticket doesnt exist", "Not found");
             }
-
             ticket.state = TicketType.IS_CLOSED;
-
-            
             Server.Server.context.SaveChanges();
+            
             return new StatusCodeResult(StatusCodes.Status200OK);
-
         }
 
+        // function that handles the get http request, routing from the controller,
+        // it recieves an id as a parameter
+        // if everything checks out it retrives the requested entity which have the same id
+        // otherwise it returns a customized failure response
         public ActionResult HandlGetById(int ticketId)
         {
             var ticket = Server.Server.context.Ticket.Include("parts").Include("labors").SingleOrDefault(ticket => ticket.ticketId == ticketId);
             var car = Server.Server.context.Car.SingleOrDefault(car => car.carId == ticket.carId);
             var client = Server.Server.context.Clients.SingleOrDefault(client => client.clientId == ticket.clientId);
-
-
 
             GetTicketByIdResponse response = new GetTicketByIdResponse
             {
@@ -163,6 +177,10 @@ namespace PimpMyRideServer.Handlers
 
         }
 
+        // function that handles the post http request, routing from the controller,
+        // it recieves an id as a parameter and an entity
+        // if everything checks out it retrives the requested entity which have the same id
+        // otherwise it returns a customized failure response
         public ActionResult HandleAddPartToTicket(int ticketId, TicketPart partFromBody)
         {
             bool isAvailable = false;
@@ -241,7 +259,10 @@ namespace PimpMyRideServer.Handlers
             return new StatusCodeResult(StatusCodes.Status500InternalServerError);
         }
 
-
+        // function that handles the put http request, routing from the controller,
+        // it recieves 2 ids as parameters
+        // if everything checks out it removes the requested part from the ticket which matches the id that was given
+        // otherwise it returns a customized failure response
         public ActionResult RemovePartFromTicket(int ticketId, string partId)
         {
 
@@ -291,6 +312,10 @@ namespace PimpMyRideServer.Handlers
 
         }
 
+        // function that handles the get http request, routing from the controller,
+        // it recieves an id as a parameter and a list of parts
+        // if everything checks out it updates the requested entity which have the same id
+        // otherwise it returns a customized failure response
         public ActionResult HandleUpdatePartsOnTicket(int ticketId, List<TicketPart> partFromBody) 
         {
             var ticket = Server.Server.context.Ticket.SingleOrDefault(t => t.ticketId == ticketId);
@@ -345,6 +370,10 @@ namespace PimpMyRideServer.Handlers
             return new StatusCodeResult(StatusCodes.Status200OK);
         }
 
+        // function that handles the post http request, routing from the controller,
+        // it recieves an entity as a parameter
+        // if everything checks out it creates the requested entity
+        // otherwise it returns a customized failure response
         public ActionResult HandleCreateLabor(Labor labor)
         {
             var labors = Server.Server.context.Labor;
@@ -360,6 +389,9 @@ namespace PimpMyRideServer.Handlers
             return new StatusCodeResult(StatusCodes.Status200OK);
         }
 
+        // function that handles the get http request, routing from the controller,
+        // if everything checks out it retrives the requested entity
+        // otherwise it returns a customized failure response
         public ActionResult HandleGetLabors()
         {
             var labors = Server.Server.context.Labor.ToList();
@@ -372,6 +404,10 @@ namespace PimpMyRideServer.Handlers
             return jsonResult;
         }
 
+        // function that handles the get http request, routing from the controller,
+        // it recieves an id as a parameter
+        // if everything checks out it retrives the requested entity which have the same id
+        // otherwise it returns a customized failure response
         public ActionResult HandleGetLaborById(int id)
         {
             var labor = Server.Server.context.Labor.SingleOrDefault(l => l.Id == id);
@@ -385,6 +421,10 @@ namespace PimpMyRideServer.Handlers
 
         }
 
+        // function that handles the put http request, routing from the controller,
+        // it recieves an id as a parameter and an entity
+        // if everything checks out it updates the requested entity which have the same id
+        // otherwise it returns a customized failure response
         public ActionResult HandleUpdateLaborById(int id, Labor laborFromBody)
         {
             var existingLabor = Server.Server.context.Labor.SingleOrDefault(l => l.Id == id);
@@ -406,6 +446,10 @@ namespace PimpMyRideServer.Handlers
             return jsonResult;
         }
 
+        // function that handles the delete http request, routing from the controller,
+        // it recieves an id as a parameter
+        // if everything checks out it deletes the requested entity which have the same id
+        // otherwise it returns a customized failure response
         public ActionResult HandleDeleteLaborById(int id)
         {
             var existingLabor = Server.Server.context.Labor.SingleOrDefault(l => l.Id == id);
@@ -422,6 +466,10 @@ namespace PimpMyRideServer.Handlers
 
         }
 
+        // function that handles the put http request, routing from the controller,
+        // it recieves an id as a parameter and an entity
+        // if everything checks out it updates the requested entity which have the same id
+        // otherwise it returns a customized failure response
         public ActionResult HandleAddLaborToTicket(int ticketId, TicketLabor LaborFromBody)
         {
             var existingLabor = Server.Server.context.Labor.SingleOrDefault(l => l.Id == LaborFromBody.Id);
@@ -473,6 +521,10 @@ namespace PimpMyRideServer.Handlers
             return jsonResults;
         }
 
+        // function that handles the delete http request, routing from the controller,
+        // it recieves 2 ids as a parameter
+        // if everything checks out it deletes the requested entity which have the same id
+        // otherwise it returns a customized failure response
         public ActionResult HandleRemoveLaborFromTicket(int ticketId, int laborId)
         {
             var ticket = Server.Server.context.Ticket
@@ -523,7 +575,11 @@ namespace PimpMyRideServer.Handlers
             jsonResults.StatusCode = StatusCodes.Status200OK;
             return jsonResults;
         }
-        
+
+        // function that handles the put http request, routing from the controller,
+        // it recieves an ids as a parameter and en entity
+        // if everything checks out it updates the requested entity which have the same id
+        // otherwise it returns a customized failure response
         public ActionResult HandleUpdateLaborOnTicket(int ticketId, List<TicketLabor> laborsFromBody)
         {
             var ticket = Server.Server.context.Ticket.SingleOrDefault(t => t.ticketId == ticketId);
@@ -558,8 +614,12 @@ namespace PimpMyRideServer.Handlers
             Server.Server.context.SaveChanges();
 
             return new StatusCodeResult(StatusCodes.Status200OK);
-        } 
+        }
 
+        // function that handles the get http request, routing from the controller,
+        // it recieves a string as a parameter
+        // it searches for an entity with some or all of the string recived
+        // otherwise it returns a customized failure response
         public ActionResult HandleSearchByParameter(string searchParameter)
         {
             if (searchParameter == String.Empty)
@@ -581,7 +641,10 @@ namespace PimpMyRideServer.Handlers
             return jsonResult;
         }
 
-
+        // function that handles the get http request, routing from the controller,
+        // it recieves an id as a parameter
+        // if everything checks out it retrives the requested entity which have the same id
+        // otherwise it returns a customized failure response
         public ActionResult SearchTicketByCarNumber(string carNumber)
         {
             if (carNumber == String.Empty)
@@ -603,6 +666,10 @@ namespace PimpMyRideServer.Handlers
             return jsonResult;
         }
 
+        // function that handles the get http request, routing from the controller,
+        // it recieves an id as a parameter
+        // if everything checks out it retrives the requested entity which have the same id
+        // otherwise it returns a customized failure response
         public ActionResult SearchOfferByCarNumber(string carNumber)
         {
             if (carNumber == String.Empty)
@@ -625,6 +692,10 @@ namespace PimpMyRideServer.Handlers
         }
 
 
+        // function that handles the put http request, routing from the controller,
+        // it recieves an id as a parameter
+        // if everything checks out it updates the requested entity which have the same id
+        // otherwise it returns a customized failure response
         public ActionResult UpdateOfferToTicket(int ticketId)
         {
             var ticket = Server.Server.context.Ticket

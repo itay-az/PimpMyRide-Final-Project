@@ -16,6 +16,7 @@ using OpenTicketsForm = Garage.Screens.TicketsScreens.OpenTicketsForm;
 
 namespace Garage
 {
+    // dashboard screen, used for navigation between the ui screens
     public partial class Dashboard : Form
     {
         public static Form mainForm = null;
@@ -200,11 +201,7 @@ namespace Garage
         {
             UpdateClock();
         }
-        private void UpdateClock()
-        {
-            timerLbl.Text = DateTime.Now.ToString("HH:mm:ss \n dd/MM/yyyy");
-            
-        }
+
 
         private void maintenanceBtn_Click(object sender, EventArgs e)
         {
@@ -216,6 +213,12 @@ namespace Garage
         {
             StatisticsForm statisticsForm = new StatisticsForm();
             openForm(statisticsForm);
+        }
+
+        private void UpdateClock()
+        {
+            timerLbl.Text = DateTime.Now.ToString("HH:mm:ss \n dd/MM/yyyy");
+
         }
     }
 }

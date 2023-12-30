@@ -20,6 +20,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Garage.Screens.AdminScreens
 {
+    // all users form, used to create, read, update and delete users via http requests
     public partial class AllUsersForm : Form
     {
         private System.Timers.Timer timer;
@@ -31,6 +32,8 @@ namespace Garage.Screens.AdminScreens
             InitializeComponent();
             GetAllUsers();
         }
+
+        // an http request method that for getting all the users
 
         public async void GetAllUsers()
         {
@@ -129,7 +132,7 @@ namespace Garage.Screens.AdminScreens
 
         }
 
-
+        // an http request method that for creating new user
         private async void createUserRequest(string username, string password, string email, string jobTitle)
         {
 
@@ -173,6 +176,7 @@ namespace Garage.Screens.AdminScreens
 
         }
 
+        // an http request method that for updating an existing user
         public async void UpdateUser(User user)
         {
             HttpResponseMessage response = await Program.client.PutAsJsonAsync("user/" + user.Id, user);
@@ -201,6 +205,7 @@ namespace Garage.Screens.AdminScreens
             }
         }
 
+        // an http request method that for deleting a specific user
         public async void DeleteUser(User user)
         {
             HttpResponseMessage response = await Program.client.DeleteAsync("user/" + user.Id);
@@ -223,6 +228,7 @@ namespace Garage.Screens.AdminScreens
             }
 
         }
+
         private void refreshData()
         {
             dashboard = new Dashboard();

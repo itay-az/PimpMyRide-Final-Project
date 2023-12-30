@@ -15,6 +15,7 @@ using System.Windows.Forms;
 
 namespace Garage.Screens.TicketsScreens
 {
+    // open offers screen, used for viewing all open offers
     public partial class OpenOffersForm : Form
     {
         private string ticketId;
@@ -34,6 +35,7 @@ namespace Garage.Screens.TicketsScreens
                 SearchOfferByCarNumber(searchCarNumberTxt.Text);
         }
 
+        // an http request method that searches offers by car number
         private async void SearchOfferByCarNumber(string carNumber)
         {
             HttpResponseMessage response = await Program.client.GetAsync("Tickets/searchOfferByCarNumber/" + carNumber);
@@ -59,8 +61,6 @@ namespace Garage.Screens.TicketsScreens
                     AllOffersDataGridView.Columns["problems"].HeaderText = "Problems";
                     AllOffersDataGridView.Columns["dateTime"].HeaderText = "Date";
                     AllOffersDataGridView.Columns["price"].HeaderText = "Price";
-
-
 
                 }
                 else

@@ -15,14 +15,25 @@ using System.Windows.Forms;
 
 namespace Garage.Screens.ClientsScreens
 {
+    // all clients form, used for viewing all clients
     public partial class AllClientsForm : Form
     {
         public AllClientsForm()
         {
             InitializeComponent();
-            GetAllClients();
+            try
+            {
+
+                GetAllClients();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+            }
         }
 
+        // an http request method that for getting all clients
         public async void GetAllClients()
         {
             try
@@ -55,19 +66,5 @@ namespace Garage.Screens.ClientsScreens
             }
         }
 
-        private void AllClientsForm_Load(object sender, EventArgs e)
-        {
-            try
-            {
-
-                this.clientsTableAdapter.Fill(this.garageDataSet1.Clients);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }
-
-        }
     }
 }

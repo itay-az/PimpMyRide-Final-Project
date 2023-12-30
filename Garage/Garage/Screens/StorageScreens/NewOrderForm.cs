@@ -18,6 +18,7 @@ using System.Windows.Forms;
 
 namespace Garage.Screens.StorageScreens
 {
+    // new order screen, used to create a registry for a new order of parts from suppliers
     public partial class NewOrderForm : Form
     {
         private BindingList<Parts> parts = new BindingList<Parts>();
@@ -30,15 +31,14 @@ namespace Garage.Screens.StorageScreens
             GetSuppliers();
         }
 
+        // an http request method for getting all suppliers
         private async void GetSuppliers()
         {
             try
             {
-
                 HttpResponseMessage response = await Program.client.GetAsync("StorageHandler/getAllSuppliers/");
                 if (response.IsSuccessStatusCode)
                 {
-
                     var responseResult = await response.Content.ReadAsStringAsync();
                     var jsonResult = JsonConvert.DeserializeObject<List<Supplier>>(responseResult);
 
@@ -137,6 +137,7 @@ namespace Garage.Screens.StorageScreens
                 createNewOrder();
         }
 
+        // an http request method for creating a new order
         private async void createNewOrder()
         {
 

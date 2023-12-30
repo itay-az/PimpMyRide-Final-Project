@@ -16,6 +16,7 @@ using System.Windows.Forms;
 
 namespace Garage.Screens.StorageScreens
 {
+    // order from supplier screen, used for viewing orders that were made
     public partial class OrderFromSupplierForm : Form
     {
         public int orderId;
@@ -36,6 +37,7 @@ namespace Garage.Screens.StorageScreens
             GetAllOrders();
         }
 
+        // an http request method for getting all orders
         private async void GetAllOrders()
         {
             try
@@ -80,7 +82,7 @@ namespace Garage.Screens.StorageScreens
         }
 
 
-
+        // an http request method for getting information on specific order
         private async void GetOrderDetails(int orderId)
         {
             try
@@ -105,7 +107,6 @@ namespace Garage.Screens.StorageScreens
 
             }
         }
-
 
 
         private void showDetailsBtn_Click(object sender, EventArgs e)

@@ -18,6 +18,7 @@ using System.Windows.Forms;
 
 namespace Garage.Screens.TicketsScreens
 {
+    // create new offer screen, used for creating a new offer to a client
     public partial class CreateNewOfferForm : Form
     {
         private string clientId;
@@ -43,11 +44,11 @@ namespace Garage.Screens.TicketsScreens
                 searchClientByCarId(carNumberTxt.Text);
         }
 
+        // an http request method that searches client with car number
         public async void searchClientByCarId(string id)
         {
             try
             {
-
                 HttpResponseMessage response = await Program.client.GetAsync("client/getCarByCarId/" + id);
 
                 if (response.IsSuccessStatusCode)
@@ -73,7 +74,6 @@ namespace Garage.Screens.TicketsScreens
                         SearchClientForm searchClientForm = new SearchClientForm();
                         LoginForm.dashboardForm.openForm(searchClientForm);
                     }
-
                 }
                 else
                 {
@@ -96,6 +96,7 @@ namespace Garage.Screens.TicketsScreens
             createNewOffer();
         }
 
+        // an http request method that creates a new offer
         public async void createNewOffer()
         {
             try

@@ -10,9 +10,13 @@ using Remotion.Linq.Clauses;
 
 namespace PimpMyRideServer.Handlers
 {
+    // storage handler that handles all the http requests regarding the clients
     public class StorageHandler :CreateHandler, GetByIdHandler, GetHandler
     {
-        
+        // function that handles the create http request, routing from the controller,
+        // it recieves a create request, checks for duplicates,
+        // if everything checks out it creates an entity according to the request and returns status 200,
+        // otherwise it returns a customized failure response
         public ActionResult HandleCreate(Request request)
         {
             CreateManufactureAndModelRequest createManufactureAndModelRequest = (CreateManufactureAndModelRequest)request;
@@ -42,21 +46,31 @@ namespace PimpMyRideServer.Handlers
                 return new StatusCodeResult(StatusCodes.Status200OK);
             }
         }
-        
+
+        // function that handles the create http request, routing from the controller,
+        // it recieves an entity, checks for duplicates,
+        // if everything checks out it creates an entity according to the request and returns status 200,
+        // otherwise it returns a customized failure response
         public ActionResult HandleCreatePart(Part part)
         {
-            Part partAdded = new Part();
-            partAdded.partId = part.partId;
-            partAdded.partName = part.partName;
-            partAdded.price = part.price;
-            partAdded.quantity = part.quantity;
 
+            Part partAdded = new Part
+            {
+                partId = part.partId,
+                partName = part.partName,
+                price = part.price,
+                quantity = part.quantity,
+            };
             Server.Server.context.Part.Add(partAdded);
             Server.Server.context.SaveChanges();
             return new StatusCodeResult(StatusCodes.Status200OK);
 
         }
-        
+
+        // function that handles the get http request, routing from the controller,
+        // it recieves an id and retrive the relevant entity
+        // if everything checks out retrives the requested entity which have the same id
+        // otherwise it returns a customized failure response
         public ActionResult HandlGetById(string id)
         {
             var manufacture = Server.Server.context.Manufacture.Find(id);
@@ -76,6 +90,9 @@ namespace PimpMyRideServer.Handlers
             return jsonResults;
         }
 
+        // function that handles the get http request, routing from the controller,
+        // if everything checks out it retrives all the relevant information and a status 200
+        // otherwise it returns a customized failure response
         public ActionResult HandleGet()
         {
             var models = Server.Server.context.Model;
@@ -89,7 +106,10 @@ namespace PimpMyRideServer.Handlers
             jsonResults.StatusCode = StatusCodes.Status200OK;
             return jsonResults;
         }
-        
+
+        // function that handles the get http request, routing from the controller,
+        // if everything checks out it retrives all the relevant information and a status 200
+        // otherwise it returns a customized failure response
         public ActionResult HandleGetManufacture()
         {
             var manufactures = Server.Server.context.Manufacture;
@@ -104,6 +124,10 @@ namespace PimpMyRideServer.Handlers
             return jsonResults;
         }
 
+        // function that handles the delete http request, routing from the controller,
+        // it recieves an manufacture name and modelname
+        // if everything checks out it deletes the specific car
+        // otherwise it returns a customized failure response
         public ActionResult HandleDelete(string manufactureName,string modelName)
         {
             var manufacture = Server.Server.context.Manufacture.SingleOrDefault(manu => manu.manufacturerName.Equals(manufactureName));
@@ -131,44 +155,45 @@ namespace PimpMyRideServer.Handlers
             return new StatusCodeResult(StatusCodes.Status200OK);
         }
 
-
+        // function that handles the get http request, routing from the controller,
+        // if everything checks out it retrives all the relevant information and a status 200
+        // otherwise it returns a customized failure response
         public ActionResult HandleGetParts()
         {
-            using (var context = new GarageContext())
+
+            var parts = Server.Server.context.Part.ToList();
+
+            if (parts == null || parts.Count() == 0)
             {
-                var parts = context.Part.ToList();
-                
-                if (parts == null || parts.Count() == 0)
-                {
-                    return ErrorHandler.onFailure("Parts not found", "Not found");
-                }
-                List<PartResponse> response = new List<PartResponse>();
-                foreach (Part p in parts)
-                {
-                    if(p.quantity == 0)
-                    {
-                        continue;
-                    }
-                    else
-                    {
-
-                        response.Add(new PartResponse
-                        {
-                            partId = p.partId,
-                            partName = p.partName,
-                            price = p.price,
-                            quantity = p.quantity
-                        });
-                    }
-                }
-
-                JsonResult jsonResult = new JsonResult(response);
-                jsonResult.StatusCode = StatusCodes.Status200OK;
-                return jsonResult;
+                return ErrorHandler.onFailure("Parts not found", "Not found");
             }
-
+            List<PartResponse> response = new List<PartResponse>();
+            foreach (Part p in parts)
+            {
+                if (p.quantity == 0)
+                {
+                    continue;
+                }
+                else
+                {
+                    response.Add(new PartResponse
+                    {
+                        partId = p.partId,
+                        partName = p.partName,
+                        price = p.price,
+                        quantity = p.quantity
+                    });
+                }
+            }
+            JsonResult jsonResult = new JsonResult(response);
+            jsonResult.StatusCode = StatusCodes.Status200OK;
+            return jsonResult;
         }
-        
+
+        // function that handles the get http request, routing from the controller,
+        // it recieves an id as a parameter
+        // if everything checks out it retrives the requested entity which have the same id
+        // otherwise it returns a customized failure response
         public ActionResult HandleGetPartById(string partId)
         {
             var part = Server.Server.context.Part.SingleOrDefault(p => p.partId == partId);
@@ -183,6 +208,10 @@ namespace PimpMyRideServer.Handlers
             return jsonResult;
         }
 
+        // function that handles the put http request, routing from the controller,
+        // it recieves an id as a parameter and an entity
+        // if everything checks out it updates the requested entity which have the same id and return it with a status code of 200
+        // otherwise it returns a customized failure response
         public ActionResult HandleUpdatePartById(string partId, Part partFromBody)
         {
             var part = Server.Server.context.Part.SingleOrDefault(p => p.partId == partId);
@@ -202,7 +231,11 @@ namespace PimpMyRideServer.Handlers
             jsonResult.StatusCode = StatusCodes.Status200OK;
             return jsonResult;
         }
-        
+
+        // function that handles the delete http request, routing from the controller,
+        // it recieves an id as a parameter
+        // if everything checks out it deletes the requested entity which have the same id
+        // otherwise it returns a customized failure response
         public ActionResult HandleDeletePartById(string partId)
         {
             var part = Server.Server.context.Part.SingleOrDefault(p => p.partId == partId);
@@ -217,9 +250,12 @@ namespace PimpMyRideServer.Handlers
             return new StatusCodeResult(StatusCodes.Status200OK);
 
 
-        } 
+        }
 
-
+        // function that handles the get http request, routing from the controller,
+        // it recieves a string as a parameter
+        // if everything checks out it searches the requested entity which have the some of or the whole string in it
+        // otherwise it returns a customized failure response
         public ActionResult HandleSearchByParameter(string searchParameter)
         {
             using(var context = new GarageContext())
@@ -248,6 +284,10 @@ namespace PimpMyRideServer.Handlers
 
         // suppliers
 
+        // function that handles the post http request, routing from the controller,
+        // it recieves an entity as a parameter
+        // if everything checks out it creates the requested entity 
+        // otherwise it returns a customized failure response
         public ActionResult HandleCreateSupplier(Suppliers supplier)
         {
             var supplierFromDb = Server.Server.context.Suppliers.SingleOrDefault(s => s.supplierId == supplier.supplierId);
@@ -263,6 +303,9 @@ namespace PimpMyRideServer.Handlers
 
         }
 
+        // function that handles the get http request, routing from the controller,
+        // if everything checks out it retrives the requested entity
+        // otherwise it returns a customized failure response
         public ActionResult HandleGetAllSuppliers()
         {
             var suppliers = Server.Server.context.Suppliers;
@@ -277,6 +320,10 @@ namespace PimpMyRideServer.Handlers
             return jsonResult;
         }
 
+        // function that handles the get http request, routing from the controller,
+        // it recieves an id as a parameter
+        // if everything checks out it retrives the requested entity which have the same id
+        // otherwise it returns a customized failure response
         public ActionResult HandleGetSupplierById(string supplierId)
         {
             var supplier = Server.Server.context.Suppliers.SingleOrDefault(s=> s.supplierId == supplierId);
@@ -291,6 +338,10 @@ namespace PimpMyRideServer.Handlers
             return jsonResult;
         }
 
+        // function that handles the put http request, routing from the controller,
+        // it recieves an id as a parameter and an entity
+        // if everything checks out it updates the requested entity which have the same id
+        // otherwise it returns a customized failure response
         public ActionResult HandleUpdateSupplierById(string supplierId, Suppliers supplierFromBody)
         {
             var supplier = Server.Server.context.Suppliers.SingleOrDefault(s => s.supplierId == supplierId);
@@ -315,6 +366,10 @@ namespace PimpMyRideServer.Handlers
             return jsonResult;
         }
 
+        // function that handles the delete http request, routing from the controller,
+        // it recieves an id as a parameter
+        // if everything checks out it deletes the requested entity which have the same id
+        // otherwise it returns a customized failure response
         public ActionResult HandleDeleteSupplierById(string supplierId)
         {
             var suppliers = Server.Server.context.Suppliers.SingleOrDefault(s => s.supplierId == supplierId);
@@ -331,13 +386,18 @@ namespace PimpMyRideServer.Handlers
             jsonResult.StatusCode = StatusCodes.Status200OK;
             return jsonResult;
         }
-        
+
         // Orders from suppliers
+
+        // function that handles the post http request, routing from the controller,
+        // it recieves an entity as a parameter
+        // if everything checks out it creates the requested entity which have the same id
+        // otherwise it returns a customized failure response
         public ActionResult HandleCreateOrder(CreateNewOrderRequest createNewOrderRequest ) 
         {
-            var s = Server.Server.context.Suppliers.FirstOrDefault(s => s.supplierName == createNewOrderRequest.supplierName);
+            var supplier = Server.Server.context.Suppliers.FirstOrDefault(s => s.supplierName == createNewOrderRequest.supplierName);
 
-            if(s == null)
+            if(supplier == null)
             {
                 return ErrorHandler.onFailure("Supplier not found", "Not found");
             }
@@ -351,13 +411,16 @@ namespace PimpMyRideServer.Handlers
 
             order.calculatePrice();
 
-            s.orders.Add(order);
+            supplier.orders.Add(order);
             Server.Server.context.Order.Add(order);
             Server.Server.context.SaveChanges();
 
             return new StatusCodeResult(StatusCodes.Status200OK);
         }
 
+        // function that handles the get http request, routing from the controller,
+        // if everything checks out it retrives the requested entity
+        // otherwise it returns a customized failure response
         public ActionResult HandleGetAllOrders()
         {
             var orders = Server.Server.context.Order.Include("parts");
@@ -371,6 +434,11 @@ namespace PimpMyRideServer.Handlers
             jsonResult.StatusCode = StatusCodes.Status200OK;
             return jsonResult;
         }
+
+        // function that handles the get http request, routing from the controller,
+        // it recieves an id as a parameter
+        // if everything checks out it retrives the requested entity which have the same id
+        // otherwise it returns a customized failure response
         public ActionResult HandleGetOrderById(int orderId)
         {
             var order = Server.Server.context.Order.SingleOrDefault(o => o.orderId == orderId);
@@ -385,6 +453,10 @@ namespace PimpMyRideServer.Handlers
             return jsonResult;
         }
 
+        // function that handles the delete http request, routing from the controller,
+        // it recieves an id as a parameter
+        // if everything checks out it deletes the requested entity which have the same id
+        // otherwise it returns a customized failure response
         public ActionResult HandleDeleteOrderById(int orderId)
         {
             var order = Server.Server.context.Order.SingleOrDefault(o => o.orderId == orderId);

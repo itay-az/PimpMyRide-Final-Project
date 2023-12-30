@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace PimpMyRideServer.Handlers.Interfaces
 {
+    // an interface for handling requests
     public interface Handler
     {
     }

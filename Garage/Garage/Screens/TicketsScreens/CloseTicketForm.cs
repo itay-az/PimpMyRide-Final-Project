@@ -17,6 +17,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Garage.Screens.TicketsScreens
 {
+    // close ticket screen, used for closing a ticket, meaning payment has been recived
     public partial class CloseTicketForm : Form
     {
         private string ticketId;
@@ -87,6 +88,7 @@ namespace Garage.Screens.TicketsScreens
             amountOfPaymentsComboBox.Visible = true;    
         }
 
+        // an http request method that closes the ticket
         private async void CloseTicketById(string ticketId)
         {
             try
@@ -98,7 +100,6 @@ namespace Garage.Screens.TicketsScreens
                     MessageBox.Show("Ticket closed!");
                     this.Close();
                 }
-
                 else
                 {
                     await ErrorHandling.HandleErrorResponse(response);
@@ -116,6 +117,7 @@ namespace Garage.Screens.TicketsScreens
             CloseTicketById(this.ticketId);
         }
 
+        // input validation method
         private void cardDigitsTxt_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (cardDigitsTxt.Text.Length >= 3)
@@ -123,6 +125,8 @@ namespace Garage.Screens.TicketsScreens
                 e.Handled = true;
             }
         }
+
+        // input validation method
 
         private void cardDateTxt_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -132,6 +136,7 @@ namespace Garage.Screens.TicketsScreens
             }
         }
 
+        // adding customized text to credit card date expiration
         private void cardDateTxt_TextChanged(object sender, EventArgs e)
         {
 
@@ -149,6 +154,7 @@ namespace Garage.Screens.TicketsScreens
 
         }
 
+        // input validation method
         private void cardDateTxt_Validating(object sender, CancelEventArgs e)
         {
             if (!IsValidDate(cardDateTxt.Text))
@@ -158,10 +164,13 @@ namespace Garage.Screens.TicketsScreens
             }
         }
 
+        // input validation method
         private bool IsValidDate(string date)
         {
             return DateTime.TryParseExact(date, "MM/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out _);
         }
+
+        // input validation method
 
         private bool IsValidCreditCard(string creditCardNumber)
         {
@@ -169,6 +178,8 @@ namespace Garage.Screens.TicketsScreens
 
             return strippedCreditCardNumber.Length == 16 && long.TryParse(strippedCreditCardNumber, out _);
         }
+
+        // input validation method
 
         private void cardNumberTxt_Validating(object sender, CancelEventArgs e)
         {
@@ -179,6 +190,7 @@ namespace Garage.Screens.TicketsScreens
             }
         }
 
+        // input validation method
         private void cardNumberTxt_TextChanged(object sender, EventArgs e)
         {
             if (cardNumberTxt.Text.Length == 4 || cardNumberTxt.Text.Length == 9 || cardNumberTxt.Text.Length == 14)
@@ -194,6 +206,7 @@ namespace Garage.Screens.TicketsScreens
             }
         }
 
+        // input validation method
         private void cardNumberTxt_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsDigit(e.KeyChar) && e.KeyChar != 8  && e.KeyChar != '-')

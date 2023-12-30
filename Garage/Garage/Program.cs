@@ -10,15 +10,17 @@ using static System.Windows.Forms.LinkLabel;
 
 namespace Garage
 {
+    // the main program that runs everything
     public static class Program
     {
         public static HttpClient client;
+        // enter the ip address for the server
         public const string url = "http://localhost:3000/";
 
         [STAThread]
         static void Main()
         {
-            // Create an HttpClient with a custom handler that ignores SSL certificate errors
+            // create an HttpClient with a custom handler that ignores SSL certificate errors
             client = CreateHttpClientWithIgnoreCertificateErrors();
 
             client.BaseAddress = new Uri(url);
@@ -33,13 +35,13 @@ namespace Garage
 
         static HttpClient CreateHttpClientWithIgnoreCertificateErrors()
         {
-            // Create a handler that ignores SSL certificate errors
+            // create a handler that ignores SSL certificate errors
             var handler = new HttpClientHandler
             {
                 ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => true
             };
 
-            // Create an HttpClient with the custom handler
+            // create an HttpClient with the custom handler
             return new HttpClient(handler);
         }
     }

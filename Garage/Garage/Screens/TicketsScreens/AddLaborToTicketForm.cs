@@ -21,6 +21,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace Garage.Screens.TicketsScreens
 {
+    // add labors to ticket screen, used for viewing labors and adding labors to ticket
     public partial class AddLaborToTicketForm : Form
     {
         private int ticketId;
@@ -38,18 +39,17 @@ namespace Garage.Screens.TicketsScreens
             GetAllLabors();
         }
 
+        // an http request method for getting all labors
         public async void GetAllLabors()
         {
             try
             {
-
                 HttpResponseMessage response = await Program.client.GetAsync("Tickets/getLabors");
                 if (response.IsSuccessStatusCode)
                 {
                     var responseResult = await response.Content.ReadAsStringAsync();
                     var jsonResult = JsonConvert.DeserializeObject<List<Labor>>(responseResult);
                     allLaborsDataGridView.DataSource = jsonResult;
-
 
                     allLaborsDataGridView.Columns["Id"].HeaderText = "Id";
                     allLaborsDataGridView.Columns["description"].HeaderText = "Description";
@@ -68,19 +68,16 @@ namespace Garage.Screens.TicketsScreens
             }
         }
 
-        private async void searchForPartByFreeText(string text)
+        // an http request method for searching a labor with a name of the labor
+        private async void searchLaborByText(string text)
         {
             try
             {
-
                 HttpResponseMessage response = await Program.client.GetAsync("Tickets/searchLabor/" + text);
                 if (response.IsSuccessStatusCode)
                 {
-
                     var responseResult = await response.Content.ReadAsStringAsync();
                     var jsonResult = JsonConvert.DeserializeObject<List<Labor>>(responseResult);
-
-
 
                     allLaborsDataGridView.DataSource = jsonResult;
 
@@ -105,7 +102,7 @@ namespace Garage.Screens.TicketsScreens
 
         private void searchPartBtn_Click(object sender, EventArgs e)
         {
-            searchForPartByFreeText(searchLaborTxt.Text);
+            searchLaborByText(searchLaborTxt.Text);
         }
 
         private void addPartToTicketBtn_Click(object sender, EventArgs e)
@@ -113,6 +110,7 @@ namespace Garage.Screens.TicketsScreens
             AddLaorToTicketAsync(labor);
         }
 
+        // an http request method for adding a labor to a ticket
         private async void AddLaorToTicketAsync(Labor labor)
         {
             try
@@ -141,7 +139,6 @@ namespace Garage.Screens.TicketsScreens
         {
             try
             {
-
                 labor.Id = int.Parse(allLaborsDataGridView.Rows[e.RowIndex].Cells[0].Value.ToString());
                 labor.description = allLaborsDataGridView.Rows[e.RowIndex].Cells[1].Value.ToString();
                 labor.price = decimal.Parse(allLaborsDataGridView.Rows[e.RowIndex].Cells[2].Value.ToString());
@@ -154,7 +151,6 @@ namespace Garage.Screens.TicketsScreens
 
             }
         }
-
 
     }
 }

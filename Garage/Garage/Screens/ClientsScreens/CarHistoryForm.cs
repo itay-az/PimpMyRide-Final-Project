@@ -4,17 +4,13 @@ using Garage.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows.Forms;
 
 namespace Garage.Screens.ClientsScreens
 {
+    // car history, used for viewing the car history
     public partial class CarHistoryForm : Form
     {
         private string ticketId;
@@ -29,6 +25,7 @@ namespace Garage.Screens.ClientsScreens
             GetCarHistoryByCarId(carId);
         }
 
+        // an http request method that for getting the car history
         private async void GetCarHistoryByCarId(string carId)
         {
             try
@@ -80,7 +77,7 @@ namespace Garage.Screens.ClientsScreens
 
                 if (carHistoryDataGridView.Rows.Count == 0)
                 {
-                    MessageBox.Show("No open tickets");
+                    MessageBox.Show("No history");
                 }
                 else
                 {

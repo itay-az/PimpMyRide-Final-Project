@@ -12,6 +12,7 @@ using Garage.Utils;
 
 namespace Garage
 {
+    // the login screen for the users
     public partial class LoginForm : Form
     {
         public static Dashboard dashboardForm;
@@ -21,50 +22,11 @@ namespace Garage
 
             Loginbtn.Region = Region.FromHrgn(CreateRoundRectRgn(0, 0, Loginbtn.Width, Loginbtn.Height, 15, 15));
 
-            UserNametxt.GotFocus += UserNametxt_GotFocus;
-            UserNametxt.LostFocus += UserNametxt_LostFocus;
-            Passwordtxt.GotFocus += Passwordtxt_GotFocus;
-            Passwordtxt.LostFocus += Passwordtxt_LostFocus;
-
-        }
-
-        private void UserNametxt_GotFocus(object sender, EventArgs e)
-        {
-            if (UserNametxt.Text == "Enter user name")
-            {
-                UserNametxt.Text = "";
-                UserNametxt.ForeColor = Color.Black;
-            }
-        }
-
-        private void UserNametxt_LostFocus(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(UserNametxt.Text))
-            {
-                UserNametxt.Text = "Enter user name";
-                UserNametxt.ForeColor = Color.Gray;
-            }
-        }
-
-        private void Passwordtxt_GotFocus(object sender, EventArgs e)
-        {
-            if (Passwordtxt.Text == "Enter Password")
-            {
-                Passwordtxt.Text = "";
-                Passwordtxt.ForeColor = Color.Black;
-            }
-        }
-
-        private void Passwordtxt_LostFocus(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(Passwordtxt.Text))
-            {
-                Passwordtxt.Text = "Enter Password";
-                Passwordtxt.ForeColor = Color.Gray;
-            }
         }
 
 
+
+        // formatting the login button round
         [System.Runtime.InteropServices.DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn(int nLeftRect, int nTopRect, int nRightRect, int nBottomRect, int nWidthEllipse, int nHeightEllipse);
 
@@ -74,6 +36,7 @@ namespace Garage
             
         }
 
+        // an http request method that for login
         public async void LoginRequest(string username, string password)
         {
             if(username == String.Empty || password == String.Empty)

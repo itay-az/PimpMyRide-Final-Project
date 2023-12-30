@@ -4,27 +4,15 @@ using Garage.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Data.Entity.Core.Common.CommandTrees.ExpressionBuilder;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Net.Http.Json;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
 using System.Windows.Forms;
-using System.Xml.Linq;
 using iText.Kernel.Pdf;
 using iText.Layout;
 using iText.Layout.Element;
-using System.Security.Cryptography.Xml;
 using iText.Layout.Properties;
-using iText.IO.Image;
 
 namespace Garage.Screens.TicketsScreens
 {
@@ -95,6 +83,7 @@ namespace Garage.Screens.TicketsScreens
             MessageBox.Show("Hello");
         }
 
+        // an http request method for getting ticket by its id
         private async void GetTicketById(string ticketId)
         {
             try
@@ -181,6 +170,7 @@ namespace Garage.Screens.TicketsScreens
             deletePartFromTicket();
         }
 
+        // an http request method that deletes a part from a ticket
         private async void deletePartFromTicket()
         {
             try
@@ -226,6 +216,7 @@ namespace Garage.Screens.TicketsScreens
             deleteTicket(ticketId);
         }
 
+        // an http request method that deletes the ticket
         private async void deleteTicket(string ticketId)
         {
             try
@@ -295,6 +286,7 @@ namespace Garage.Screens.TicketsScreens
             }
         }
 
+        // an http request method that updates the parts in the ticket
         private async void updatePartsOnTicket(List<TicketPart> parts)
         {
             try
@@ -352,6 +344,7 @@ namespace Garage.Screens.TicketsScreens
             updateLaborsOnTicket(labors);
         }
 
+        // an http request method that updates the labors in the ticket
         private async void updateLaborsOnTicket(List<Labor> labors)
         {
             try
@@ -382,8 +375,6 @@ namespace Garage.Screens.TicketsScreens
             closeTicketForm.ShowDialog();
 
         }
-
-
 
         private void partsDataGridView_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
         {
@@ -443,6 +434,7 @@ namespace Garage.Screens.TicketsScreens
             RemoveLaborFromTicket();
         }
 
+        // an http request method that removes labors from the ticket
         private async void RemoveLaborFromTicket()
         {
             try
@@ -488,6 +480,7 @@ namespace Garage.Screens.TicketsScreens
             changeStateToOpenTicket(ticketId);
         }
 
+        // an http request method that closes the ticket
         private async void changeStateToOpenTicket(string ticketId)
         {
             try
@@ -511,6 +504,7 @@ namespace Garage.Screens.TicketsScreens
             }
         }
 
+        // clickable button for creating a pdf document that represents the ticket
         private void exportToPdfBtn_Click(object sender, EventArgs e)
         {
             string projectDirectory = AppDomain.CurrentDomain.BaseDirectory;

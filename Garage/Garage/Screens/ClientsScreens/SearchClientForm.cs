@@ -20,6 +20,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
 namespace Garage.Screens.ClientsScreens
 {
+    // search client screen, used for searching a client with either car number or client id
     public partial class SearchClientForm : Form
     {
 
@@ -50,7 +51,7 @@ namespace Garage.Screens.ClientsScreens
             }
         }
 
-
+        // an http request method that for searching c client by id
         public async void searchClientById(string id)
         {
             HttpResponseMessage response = await Program.client.GetAsync("client/getClientByClientId/" + id);
@@ -103,6 +104,7 @@ namespace Garage.Screens.ClientsScreens
             searchVinNumberTxt.Text = client.cars[index].vinNumber.ToString();
         }
 
+        // an http request method that for searching a client by car number
         public async void searchClientByCarId(string id)
         {
             HttpResponseMessage response = await Program.client.GetAsync("client/getClientByCarId/" + id);
@@ -204,10 +206,9 @@ namespace Garage.Screens.ClientsScreens
             UpdateClient(client, car);
         }
 
-
+        // an http request method that for updating a client information
         private async void UpdateClient(Client client, Car car)
         {
-
             CreateClientRequest createClientRequest = new CreateClientRequest
             {
                 id = client.clientId,
@@ -258,6 +259,7 @@ namespace Garage.Screens.ClientsScreens
             addCarToClient();
         }
 
+        // an http request method that for adding another car to a specific client
         private async void addCarToClient()
         {
             AddCarToClientRequest addCarToClientRequest = new AddCarToClientRequest

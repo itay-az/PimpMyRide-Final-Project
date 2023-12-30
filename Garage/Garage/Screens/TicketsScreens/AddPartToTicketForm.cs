@@ -18,6 +18,7 @@ using System.Windows.Forms;
 
 namespace Garage.Screens.TicketsScreens
 {
+    // add part to ticket form, used for viewing and adding parts to ticket
     public partial class AddPartToTicketForm : Form
     {
         private int ticketId;
@@ -35,11 +36,11 @@ namespace Garage.Screens.TicketsScreens
             this.ticketId = ticketId;
         }
 
+        // an http request method for getting all parts
         public async void GetAllParts()
         {
             try
             {
-
                 HttpResponseMessage response = await Program.client.GetAsync("StorageHandler/getParts/");
                 if (response.IsSuccessStatusCode)
                 {
@@ -51,12 +52,10 @@ namespace Garage.Screens.TicketsScreens
                     allPartsDataGridView.Columns["partName"].HeaderText = "Part Name";
                     allPartsDataGridView.Columns["price"].HeaderText = "Price";
                     allPartsDataGridView.Columns["quantity"].HeaderText = "Quantity";
-
                 }
                 else
                 {
                     await ErrorHandling.HandleErrorResponse(response);
-
                 }
             }
             catch (Exception ex)
@@ -70,19 +69,16 @@ namespace Garage.Screens.TicketsScreens
             searchForPartByFreeText(searchPartTxt.Text);
         }
 
+        // an http request method that searches a part with free text
         private async void  searchForPartByFreeText(string text)
         {
             try
             {
-
                 HttpResponseMessage response = await Program.client.GetAsync("StorageHandler/searchPart/" + text);
                 if (response.IsSuccessStatusCode)
                 {
-
                     var responseResult = await response.Content.ReadAsStringAsync();
                     var jsonResult = JsonConvert.DeserializeObject<List<Parts>>(responseResult);
-
-
 
                     allPartsDataGridView.DataSource = jsonResult;
 
@@ -90,7 +86,6 @@ namespace Garage.Screens.TicketsScreens
                     allPartsDataGridView.Columns["partName"].HeaderText = "Part Name";
                     allPartsDataGridView.Columns["price"].HeaderText = "Price";
                     allPartsDataGridView.Columns["quantity"].HeaderText = "Quantity";
-
                 }
                 else
                 {
@@ -104,10 +99,9 @@ namespace Garage.Screens.TicketsScreens
             }
         }
 
-
+        // an http request method for adding a part to a ticket
         private async void AddPartToTicketAsync(AddPartToTicketRequest part)
         {
-
             if(part.partId == null)
             {
                 MessageBox.Show("Error");
@@ -170,6 +164,7 @@ namespace Garage.Screens.TicketsScreens
 
         }
 
+        // an input validation method
         private bool isValid(string partAmountTxt)
         {
             try

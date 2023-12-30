@@ -20,6 +20,7 @@ using Garage.Utils;
 
 namespace Garage.Screens.ClientsScreens
 {
+    // create new client screen, used for creating a new client
     public partial class CreateNewClient : Form
     {
         public Car car;
@@ -34,6 +35,7 @@ namespace Garage.Screens.ClientsScreens
             getManufactures();
         }
 
+        // an http request method that for getting all car manufactures
         private async void getManufactures()
         {
             HttpResponseMessage response = await Program.client.GetAsync("StorageHandler/getManufactures");
@@ -58,6 +60,7 @@ namespace Garage.Screens.ClientsScreens
             }
         }
 
+        // an http request method that for getting all models
         private async Task<List<GetModelsByManufactureRequest>> getModels()
         {
 
@@ -94,12 +97,14 @@ namespace Garage.Screens.ClientsScreens
             }
         }
 
+        // a validation method for checking if a string contains only numbers
         public bool isNumeric(string toCheck)
         {
             int isNumber = 0;
             bool result = int.TryParse(toCheck, out isNumber);
             return !result;
         }
+        // a validation method for checking if a character contains numbers
         public bool isNumeric(char toCheck)
         {
             int isNumber = 0;
@@ -107,6 +112,7 @@ namespace Garage.Screens.ClientsScreens
             return !result;
         }
 
+        // a validation method for checking if a string contains only numbers and non negative
         public bool isNegative(string toCheck)
         {
             if (isNumeric(toCheck))
@@ -121,6 +127,7 @@ namespace Garage.Screens.ClientsScreens
             return false;
         }
 
+        // a validation method for checking if a string contains numbers
         private bool isNumInString(string toCheck)
         {
             foreach (char ch in toCheck)
@@ -135,6 +142,7 @@ namespace Garage.Screens.ClientsScreens
 
 
 
+        // validation tests
         private bool fieldCheck()
         {
             bool checkFiled;
@@ -193,10 +201,9 @@ namespace Garage.Screens.ClientsScreens
             }
         }
 
-
+        // an http request method that for creating a new client
         private async void CreateClientRequest(Client client, Car car)
         {
-
             CreateClientRequest createClientRequest = new CreateClientRequest
             {
                 id = client.clientId,

@@ -16,6 +16,7 @@ using Garage.Utils;
 
 namespace Garage.Screens.AdminScreens
 {
+    // add manufacture screen, used to add new manufacture and model to the database
     public partial class AddNewManufactureForm : Form
     {
         public AddNewManufactureForm()
@@ -28,6 +29,7 @@ namespace Garage.Screens.AdminScreens
             CreateManufactureWithModel(addManufactureNameTxt.Text, addModelNameTxt.Text);
         }
 
+        // an http request method that for adding the manufacture and model
         private async void CreateManufactureWithModel(string manufactureName, string modelName)
         {
 
@@ -67,6 +69,8 @@ namespace Garage.Screens.AdminScreens
         {
             DeleteManufactureAndModel(addManufactureNameTxt.Text, addModelNameTxt.Text);
         }
+
+        // an http request method that for deleting the manufacture and model
 
         private async void DeleteManufactureAndModel(string manufactureName, string modelName)
         {

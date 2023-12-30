@@ -17,6 +17,7 @@ using System.Windows.Forms;
 
 namespace Garage.Screens.StorageScreens
 {
+    // all suppliers screen, used for viewing all active suppliers
     public partial class AllSuppliersForm : Form
     {
         public AllSuppliersForm()
@@ -25,11 +26,11 @@ namespace Garage.Screens.StorageScreens
             GetAllSuppliers();
         }
 
+        // an http request method that for getting al suppliers
         private async void GetAllSuppliers()
         {
             try
             {
-
                 HttpResponseMessage response = await Program.client.GetAsync("StorageHandler/getAllSuppliers/");
                 if (response.IsSuccessStatusCode)
                 {
@@ -42,7 +43,6 @@ namespace Garage.Screens.StorageScreens
                     allSuppliersDataGrid.Columns["supplierAddress"].HeaderText = "Supplier Address";
                     allSuppliersDataGrid.Columns["supplierPhone"].HeaderText = "Supplier Phone";
                     allSuppliersDataGrid.Columns["supplierEmail"].HeaderText = "Supplier Email";
-
                 }
                 else
                 {
@@ -61,6 +61,7 @@ namespace Garage.Screens.StorageScreens
             UpdateSupplierById();
         }
 
+        // an http request method that for updating a supplier
         private async void UpdateSupplierById()
         {
             GetAllSuppliersRequest getAllSuppliersRequest = new GetAllSuppliersRequest();
@@ -127,11 +128,11 @@ namespace Garage.Screens.StorageScreens
             DeleteSupplierById();
         }
 
+        // an http request method that for deleting a supplier
         private async void DeleteSupplierById()
         {
             try
             {
-
                 HttpResponseMessage response = await Program.client.DeleteAsync("StorageHandler/deleteSupplierById/" + supplierIdTxt.Text);
                 if (response.IsSuccessStatusCode)
                 {
@@ -150,7 +151,5 @@ namespace Garage.Screens.StorageScreens
 
             }
         }
-
-        
     }
 }

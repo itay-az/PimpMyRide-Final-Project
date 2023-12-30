@@ -18,6 +18,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.TaskbarClock;
 
 namespace Garage.Screens.AdminScreens
 {
+    // maintenance form, used to read, create, update and delete labors 
     public partial class MaintenanceForm : Form
     {
         public MaintenanceForm()
@@ -26,6 +27,7 @@ namespace Garage.Screens.AdminScreens
             GetAllLabors();
         }
 
+        // an http request method that for getting all the labors
         private async void GetAllLabors()
         {
             try
@@ -55,6 +57,7 @@ namespace Garage.Screens.AdminScreens
             }
         }
 
+        // an http request method that for creating a new labor
         private async void CreateNewLabor( string description, decimal price, decimal time)
         {
             Labor labor = new Labor(description, price, time);
@@ -87,6 +90,7 @@ namespace Garage.Screens.AdminScreens
             }
         }
 
+        // function for valdiation of information on the labors
         private bool ValidationTestsOnInput()
         {
             if (Decimal.Parse(laborPriceTxt.Text) <= 0 || Decimal.Parse(laborTimeTxt.Text) <= 0)
@@ -102,6 +106,7 @@ namespace Garage.Screens.AdminScreens
             return true;
         }
 
+        // an http request method that for updating an existing labor
         private async void UpdateLaborById(int Id, string description, decimal price, decimal time)
         {
             Labor labor = new Labor(Id, description, price, time);
@@ -137,6 +142,7 @@ namespace Garage.Screens.AdminScreens
             }
         }
 
+        // an http request method that for deleting an existing labor
         private async void DeleteLaborById(int Id)
         {
             try

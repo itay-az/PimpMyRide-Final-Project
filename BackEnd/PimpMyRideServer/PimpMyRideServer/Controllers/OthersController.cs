@@ -8,7 +8,7 @@ namespace PimpMyRideServer.Controllers
     [ApiController]
     public class OthersController : GarageController
     {
-        // asigning the handler to the backup handler within the constructor
+        // asigning the handler inside the constructor
         public OthersController()
         {
             this.handler = new OthersHandler();
@@ -20,6 +20,7 @@ namespace PimpMyRideServer.Controllers
         {
             return ((OthersHandler)handler).PerformBackUp();
         }
+        // creating a get request for monthly statistics
         [HttpGet("/statistics")]
         public ActionResult GetStatistics()
         {
@@ -27,6 +28,7 @@ namespace PimpMyRideServer.Controllers
         
         }
 
+        // creating a get request for yearly statistics
         [HttpGet("statistics/yearly")]
         public ActionResult GetStatisticsYearly()
         {

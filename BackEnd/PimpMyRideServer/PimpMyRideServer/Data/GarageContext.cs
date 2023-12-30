@@ -42,7 +42,7 @@ namespace PimpMyRideServer.Data
         */
         }
 
-        // this is where the relationship between the tables occur + creating tables with initialized content
+        // here we are configuring the entities that were defined previously with primary keys and relationships
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -52,7 +52,7 @@ namespace PimpMyRideServer.Data
             modelBuilder.Entity<Ticket>();
 
 
-
+            // an entity that has a one to many relationship 
             modelBuilder.Entity<Client>(model =>
             {
                 model.HasMany(e => e.cars)
@@ -61,6 +61,7 @@ namespace PimpMyRideServer.Data
 
             });
             
+            // configures the seeding of data for the Labor entity, this enables initial data for it
             modelBuilder.Entity<Labor>(model =>
             {
                 model.HasData(
@@ -76,7 +77,8 @@ namespace PimpMyRideServer.Data
                     new { Id = 10, description = "Axle Replacement", price = 300m, time = 1.0m, discount = 0.0m }
                     );
             });
-            
+
+            // configures the seeding of data for the Manufacture entity, this enables initial data for it
             modelBuilder.Entity<Manufacture>(model =>
             {
                 model.HasData(
@@ -158,6 +160,7 @@ namespace PimpMyRideServer.Data
             );
             });
 
+            // configures the seeding of data for the User entity, this enables initial data for it
             modelBuilder.Entity<User>(model =>
             {
                 model.HasData(
@@ -166,6 +169,7 @@ namespace PimpMyRideServer.Data
             }
             );
 
+            // configures the seeding of data for the Model entity, this enables initial data for it
             modelBuilder.Entity<Model>(model =>
             {
                 model.HasData(

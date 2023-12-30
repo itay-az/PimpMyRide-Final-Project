@@ -12,10 +12,10 @@ using System.Threading.Channels;
 
 namespace PimpMyRideServer.Handlers
 {
-    // backup handler that inherits from handler interface
+    // others handler that inherits from handler interface
     public class OthersHandler : Handler
     {
-        // the backup handler for the get request from the controller that performs immiediate backup file - returns status 200 (OK) 
+        // the backup handler for the get request from the controller that performs immiediate backup file - returns status 200 (OK)  and creates a backup file in the server directory
         public ActionResult PerformBackUp() 
         {
             using(GarageContext context = new GarageContext()) 
@@ -61,6 +61,10 @@ namespace PimpMyRideServer.Handlers
             Timer timer = new Timer(callback, null, timeUntilDesiredTime, TimeSpan.FromDays(1));
         }
 
+        // function that handles the get monthly statistics http request, routing from the controller,
+        // it checks if there are any statistics to retrive
+        // if everything checks out it creates a statistics response and retrive it with the status code 200,
+        // otherwise it returns a customized failure response
         public ActionResult GetStatistics()
         {
             DateTime today = DateTime.Today;
@@ -90,6 +94,11 @@ namespace PimpMyRideServer.Handlers
             return jsonResults;
         }
 
+
+        // function that handles the get yearly statistics http request, routing from the controller,
+        // it checks if there are any statistics to retrive
+        // if everything checks out it creates a statistics response and retrive it with the status code 200,
+        // otherwise it returns a customized failure response
         public ActionResult GetStatisticsYearly()
         {
             DateTime today = DateTime.Today;
@@ -161,6 +170,7 @@ namespace PimpMyRideServer.Handlers
 
         }
 
+        // a function that helps calculate the income range between two periods of time
         private double GetTotalPriceForDateRange(DateTime startDate, DateTime endDate)
         {
             var tickets = Server.Server.context.Ticket.Where(t => t.state == TicketType.IS_CLOSED);

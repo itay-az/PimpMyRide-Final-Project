@@ -536,9 +536,6 @@
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
     <None Include="Resources\PimpMyRide .jpeg" />
-    <None Include="Resources\PimpMyRide 2.jpeg" />
-    <None Include="Resources\WhatsApp Image 2023-09-22 at 15.26.23.jpeg" />
-    <None Include="Resources\pimpMyRideLogo.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

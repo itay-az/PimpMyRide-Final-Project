@@ -18,6 +18,7 @@ using System.Windows.Forms;
 
 namespace Garage.Screens.StorageScreens
 {
+    // create new supplier screen, used for creating a new supplier 
     public partial class CreateNewSupplierForm : Form
     {
         public CreateNewSupplierForm()
@@ -34,9 +35,9 @@ namespace Garage.Screens.StorageScreens
             CreateNewSupplierRequest(supplierIdTxt.Text, supplierFullNameTxt.Text, supplierAddressTxt.Text, supplierPhoneTxt.Text,supplierEmailTxt.Text);
         }
 
+        // an http request method that for creating a new supplier
         private async void CreateNewSupplierRequest(string supplierId, string supplierName, string supplierAddress, string supplierPhone, string supplierEmail)
         {
-
             CreateSupplierRequest createSupplierRequest = new CreateSupplierRequest();
 
             if (supplierAddress == String.Empty)
@@ -59,9 +60,7 @@ namespace Garage.Screens.StorageScreens
                 {
                     createSupplierRequest.supplierEmail = supplierEmail;
                 }
-
             }
-
             try
             {
                 HttpResponseMessage response = await Program.client.PostAsJsonAsync("StorageHandler/newSupplier/", createSupplierRequest);
@@ -87,10 +86,6 @@ namespace Garage.Screens.StorageScreens
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
-
-
         }
-
-
     }
 }

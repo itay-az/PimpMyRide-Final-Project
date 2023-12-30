@@ -18,12 +18,9 @@ using static iText.StyledXmlParser.Jsoup.Select.Evaluator;
 
 namespace Garage.Screens.AdminScreens
 {
+    // statistics form, used for viewing the income statistics both yearly and monthly
     public partial class StatisticsForm : Form
     {
-        private double todaysIncome;
-        private double thisWeeksIncome;
-        private double thisMonthIncome;
-        private double thisYearIncome;
 
         public StatisticsForm()
         {
@@ -31,6 +28,7 @@ namespace Garage.Screens.AdminScreens
 
         }
 
+        // an http request method that for getting the monthly statistics
         private async void GetIncome()
         {
             try
@@ -77,10 +75,9 @@ namespace Garage.Screens.AdminScreens
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
         }
 
+        // an http request method that for getting the yearly statistics
         private async void GetYearlyIncome()
         {
             try
@@ -102,13 +99,11 @@ namespace Garage.Screens.AdminScreens
 
                     yearlyIncomeChart.Series.Add(series);
 
-                    // Set custom labels for the X-axis
                     for (int i = 1; i <= 12; i++)
                     {
                         yearlyIncomeChart.Series["Income"].Points[i - 1].AxisLabel = CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(i);
                     }
 
-                    // Set the minimum and maximum values for the X-axis
                     yearlyIncomeChart.ChartAreas[0].AxisX.Minimum = 1;
                     yearlyIncomeChart.ChartAreas[0].AxisX.Maximum = 12;
                 }
@@ -123,25 +118,27 @@ namespace Garage.Screens.AdminScreens
             }
         }
 
-        private double GetIncomeForMonth(YearlyStatisticsResponse jsonResult, int month)
-{
-    switch (month)
-    {
-        case 1: return jsonResult.januaryIncome;
-        case 2: return jsonResult.februaryIncome;
-        case 3: return jsonResult.marchIncome;
-        case 4: return jsonResult.aprilIncome;
-        case 5: return jsonResult.mayIncome;
-        case 6: return jsonResult.juneIncome;
-        case 7: return jsonResult.julyIncome;
-        case 8: return jsonResult.augustIncome;
-        case 9: return jsonResult.septemberIncome;
-        case 10: return jsonResult.octoberIncome;
-        case 11: return jsonResult.novemberIncome;
-        case 12: return jsonResult.decemberIncome;
-        default: return 0; // Default to 0 if month is out of range
-    }
-}
+
+        // a method for getting statistics per month
+        private double GetIncomeForMonth(YearlyStatisticsResponse statistics, int month)
+        {
+            switch (month)
+            {
+                case 1: return statistics.januaryIncome;
+                case 2: return statistics.februaryIncome;
+                case 3: return statistics.marchIncome;
+                case 4: return statistics.aprilIncome;
+                case 5: return statistics.mayIncome;
+                case 6: return statistics.juneIncome;
+                case 7: return statistics.julyIncome;
+                case 8: return statistics.augustIncome;
+                case 9: return statistics.septemberIncome;
+                case 10: return statistics.octoberIncome;
+                case 11: return statistics.novemberIncome;
+                case 12: return statistics.decemberIncome;
+                default: return 0;
+            }
+        }
 
     }
 }

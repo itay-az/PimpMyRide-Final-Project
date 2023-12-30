@@ -111,7 +111,6 @@
             this.Controls.Add(this.AllClientsGridView);
             this.Name = "AllClientsForm";
             this.Text = "AllClientsForm";
-            this.Load += new System.EventHandler(this.AllClientsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.garageDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AllClientsGridView)).EndInit();

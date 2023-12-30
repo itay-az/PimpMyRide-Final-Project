@@ -21,7 +21,7 @@ namespace PimpMyRideServer.Controllers
         [HttpPost]
         public ActionResult Login([FromBody]LoginRequest request)
         {   
-            return ((LoginHandler)handler).HandleCreate((Request)request);
+            return ((LoginHandler)handler).HandleCreate(request);
         }
 
         

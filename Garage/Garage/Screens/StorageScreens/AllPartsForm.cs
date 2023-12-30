@@ -20,12 +20,14 @@ namespace Garage.Screens.StorageScreens
 {
     public partial class AllPartsForm : Form
     {
+        // all parts screen, used for creating,  reading, updating and deleting parts
         public AllPartsForm()
         {
             InitializeComponent();
             GetAllParts();
         }
 
+        // a functiong for validating inputs
         private bool ValidationTestsOnInput()
         {
             try
@@ -45,6 +47,7 @@ namespace Garage.Screens.StorageScreens
             }
         }
 
+        // an http request method that for getting all parts
         public async void GetAllParts()
         {
             try
@@ -109,6 +112,7 @@ namespace Garage.Screens.StorageScreens
             }
         }
 
+        // an http request method that for creating a new part
         private async void CreateNewPart()
         {
 
@@ -147,6 +151,7 @@ namespace Garage.Screens.StorageScreens
 
         }
 
+        // an http request method that for updating a part
         private async void UpdatePartById()
         {
             CreateNewPartRequest createNewPartRequest = new CreateNewPartRequest();
@@ -183,6 +188,7 @@ namespace Garage.Screens.StorageScreens
             DeletePartById();
         }
 
+        // an http request method that for deleting a part
         private async void DeletePartById()
         {
             try

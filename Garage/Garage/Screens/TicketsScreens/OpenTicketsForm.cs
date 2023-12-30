@@ -10,6 +10,7 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Garage.Screens.TicketsScreens
 {
+    // open tickets screen, used for viewing open tickets 
     public partial class OpenTicketsForm : Form
     {
         private string ticketId;
@@ -40,15 +41,14 @@ namespace Garage.Screens.TicketsScreens
             }
         }
 
+        // an http request method that gets all open tickets
         public async void GetAllTickets()
         {
             try
             {
-
                 HttpResponseMessage response = await Program.client.GetAsync("Tickets/");
                 if (response.IsSuccessStatusCode)
                 {
-
                     var responseResult = await response.Content.ReadAsStringAsync();
                     var jsonResult = JsonConvert.DeserializeObject<List<GetAllTicketsResponse>>(responseResult);
 
@@ -60,7 +60,6 @@ namespace Garage.Screens.TicketsScreens
                     AllTicketsDataGridView.Columns["problems"].HeaderText = "Problems";
                     AllTicketsDataGridView.Columns["dateTime"].HeaderText = "Date";
                     AllTicketsDataGridView.Columns["price"].HeaderText = "Price";
-
                     try
                     {
                         ticketId = AllTicketsDataGridView.Rows[0].Cells[0].Value.ToString();
@@ -99,11 +98,11 @@ namespace Garage.Screens.TicketsScreens
                 SearchTicketByCarNumber(searchCarNumberTxt.Text);
         }
 
+        // an http request method that searches for a ticket with the clients car number
         private async void SearchTicketByCarNumber(string carNumber)
         {
             try
             {
-
                 HttpResponseMessage response = await Program.client.GetAsync("Tickets/searchTicketByCarNumber/" + carNumber);
                 if (response.IsSuccessStatusCode)
                 {
@@ -116,15 +115,13 @@ namespace Garage.Screens.TicketsScreens
                         GetAllTickets();
                     }
                     else 
-                        AllTicketsDataGridView.DataSource = jsonResult;
-                
+                        AllTicketsDataGridView.DataSource = jsonResult;   
                 }
                 else
                 {
                     await ErrorHandling.HandleErrorResponse(response);
                 }
             }
-
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -132,12 +129,13 @@ namespace Garage.Screens.TicketsScreens
         }
 
 
-
+        // an input validation method
         private bool IsValidCarNumber(string carNumber)
         {
             return carNumber.Length <= 8 && IsDigitsOnly(carNumber);
         }
 
+        // an input validation method
         private bool IsDigitsOnly(string str)
         {
             foreach (char c in str)

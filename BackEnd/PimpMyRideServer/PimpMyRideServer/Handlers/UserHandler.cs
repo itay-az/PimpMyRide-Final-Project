@@ -9,6 +9,11 @@ namespace PimpMyRideServer.Handlers
 
     public class UserHandler : CreateHandler, GetByUserNameHandler, GetHandler, DeleteHandler, PutHandler
     {
+
+        // function that handles the post http request, routing from the controller,
+        // it recieves a request as a parameter
+        // if everything checks out it creates the requested entity
+        // otherwise it returns a customized failure response
         public ActionResult HandleCreate(Request request)
         {
             CreateUserRequset createUserRequest = (CreateUserRequset)request;
@@ -27,6 +32,10 @@ namespace PimpMyRideServer.Handlers
 
         }
 
+        // function that handles the delete http request, routing from the controller,
+        // it recieves an id as a parameter
+        // if everything checks out it deletes the requested entity which have the same id
+        // otherwise it returns a customized failure response
         public ActionResult HandleDelete(int id)
         {
             var user = Server.Server.context.User.SingleOrDefault(u => u.Id == id);
@@ -41,6 +50,9 @@ namespace PimpMyRideServer.Handlers
             return new StatusCodeResult(StatusCodes.Status200OK);
         }
 
+        // function that handles the get http request, routing from the controller,
+        // if everything checks out it retrives the requested entity
+        // otherwise it returns a customized failure response
         public ActionResult HandleGet()
         {
             var users = Server.Server.context.User;
@@ -58,6 +70,10 @@ namespace PimpMyRideServer.Handlers
 
         }
 
+        // function that handles the get http request, routing from the controller,
+        // it recieves an id as a parameter
+        // if everything checks out it retrives the requested entity which have the same id
+        // otherwise it returns a customized failure response
         public ActionResult HandleGetByUserName(string userName)
         {
             var user = Server.Server.context.User.SingleOrDefault(u => u.UserName == userName);
@@ -73,8 +89,17 @@ namespace PimpMyRideServer.Handlers
             return jsonResult;
         }
 
-        public ActionResult HandleUpdate(PutUserRequest request)
+        // function that handles the put http request, routing from the controller,
+        // it recieves a request as a parameter
+        // if everything checks out it updates the requested entity
+        // otherwise it returns a customized failure response
+        public ActionResult HandleUpdate(Request iRequest)
         {
+            PutUserRequest request = iRequest as PutUserRequest;
+            if (request == null)
+            {
+                return ErrorHandler.onFailure("Request not valid", "Bad Request",400);
+            }
             var user = Server.Server.context.User.SingleOrDefault(u => u.Id == request.Id);
             if (user == null)
             {
@@ -85,18 +110,12 @@ namespace PimpMyRideServer.Handlers
             user.Password = request.Password;
             user.Email = request.Email;
             user.JobTitle = request.JobTitle;
+
             Server.Server.context.SaveChanges();
-
-
-
             return new StatusCodeResult(StatusCodes.Status200OK);
 
         }
 
-        public ActionResult HandleUpdate(Request request)
-        {
-            throw new NotImplementedException();
-        }
     }
     
 }

@@ -20,6 +20,7 @@ using System.Windows.Forms;
 
 namespace Garage.Screens.TicketsScreens
 {
+    // create new ticket scree, used for creating a new ticket to clients
     public partial class CreateNewTicketForm : Form
     {
         private string clientId;
@@ -42,13 +43,12 @@ namespace Garage.Screens.TicketsScreens
             }
         }
 
+        // an http request method that searches a client with his car number
         public async void searchClientByCarId(string id)
         {
             try
             {
-
                 HttpResponseMessage response = await Program.client.GetAsync("client/getCarByCarId/" + id);
-
                 if (response.IsSuccessStatusCode)
                 {
                     var responseResult = await response.Content.ReadAsStringAsync();
@@ -87,17 +87,18 @@ namespace Garage.Screens.TicketsScreens
             }
         }
 
+        // an http request method that creates a new ticket
         public async void createNewTicket()
         {
             try
             {
-
-                CreateNewTicketRequest createNewTicketRequest = new CreateNewTicketRequest(carNumberTxt.Text,clientManufactureTxt.Text,clientModelTxt.Text,clientEngineTxt.Text,int.Parse(clientYearTxt.Text),int.Parse(clientKmTxt.Text),clientVinNumberTxt.Text,clientId,clientFullNameTxt.Text,clientPhoneNumberTxt.Text,clientEmailTxt.Text, cuaseOfArrivalTxt.Text);
+                CreateNewTicketRequest createNewTicketRequest = new CreateNewTicketRequest(carNumberTxt.Text,clientManufactureTxt.Text,clientModelTxt.Text,clientEngineTxt.Text
+                    ,int.Parse(clientYearTxt.Text),int.Parse(clientKmTxt.Text),clientVinNumberTxt.Text,clientId,clientFullNameTxt.Text,
+                    clientPhoneNumberTxt.Text,clientEmailTxt.Text, cuaseOfArrivalTxt.Text);
                 HttpResponseMessage response = await Program.client.PostAsJsonAsync("Tickets/", createNewTicketRequest);
                 if(response.IsSuccessStatusCode)
                 {
                     MessageBox.Show("Ticket Created!");
-
                 }
                 else
                 {
