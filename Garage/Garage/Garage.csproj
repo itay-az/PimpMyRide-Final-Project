@@ -188,16 +188,6 @@
     <Compile Include="Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="GarageDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GarageDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="GarageDataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>GarageDataSet1.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Models\AllOrder.cs" />
     <Compile Include="Models\Car.cs" />
     <Compile Include="Models\CauseOfArrival.cs" />
@@ -391,19 +381,7 @@
     <Compile Include="Screens\TicketsScreens\Ticket.Designer.cs">
       <DependentUpon>Ticket.cs</DependentUpon>
     </Compile>
-    <Compile Include="SearchCar.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="SearchCar.Designer.cs">
-      <DependentUpon>SearchCar.cs</DependentUpon>
-    </Compile>
     <Compile Include="Utils\ErrorHandling.cs" />
-    <Compile Include="Warehouse.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Warehouse.Designer.cs">
-      <DependentUpon>Warehouse.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
@@ -478,35 +456,10 @@
     <EmbeddedResource Include="Screens\TicketsScreens\Ticket.resx">
       <DependentUpon>Ticket.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SearchCar.resx">
-      <DependentUpon>SearchCar.cs</DependentUpon>
-    </EmbeddedResource>
     <EntityDeploy Include="Model1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Model1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="GarageDataSet.xsc">
-      <DependentUpon>GarageDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="GarageDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>GarageDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="GarageDataSet.xss">
-      <DependentUpon>GarageDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="GarageDataSet1.xsc">
-      <DependentUpon>GarageDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="GarageDataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>GarageDataSet1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="GarageDataSet1.xss">
-      <DependentUpon>GarageDataSet1.xsd</DependentUpon>
-    </None>
     <None Include="Model1.edmx.diagram">
       <DependentUpon>Model1.edmx</DependentUpon>
     </None>

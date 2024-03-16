@@ -46,7 +46,7 @@ namespace Garage.Screens.AdminScreens
                     var result = await response.Content.ReadAsStringAsync();
                     MessageBox.Show("Manufacture " + createManufactureWithModelRequest.manufacturerName + " model " + createManufactureWithModelRequest.modelName + " added successfully", "success");
 
-                    this.Close();
+                    this.Hide();
                 }
                 else if (response.StatusCode.Equals(HttpStatusCode.Conflict))
                 {
@@ -81,7 +81,7 @@ namespace Garage.Screens.AdminScreens
                 if (response.IsSuccessStatusCode)
                 {
                     MessageBox.Show("Deleted successfully", "success");
-                    this.Close();
+                    this.Hide();
                 }
                 else
                 {

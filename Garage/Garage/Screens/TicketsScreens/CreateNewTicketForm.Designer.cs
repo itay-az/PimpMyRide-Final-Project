@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateNewTicketForm));
             this.clientFullNameTxt = new System.Windows.Forms.TextBox();
             this.carNumberTxt = new System.Windows.Forms.TextBox();
             this.carNumberLbl = new System.Windows.Forms.Label();
@@ -331,6 +332,7 @@
             this.Controls.Add(this.vinNumberTxt);
             this.Controls.Add(this.carNumberTxt);
             this.Controls.Add(this.carNumberLbl);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MinimumSize = new System.Drawing.Size(16, 40);
             this.Name = "CreateNewTicketForm";
             this.Text = "CreateNewTicketForm";

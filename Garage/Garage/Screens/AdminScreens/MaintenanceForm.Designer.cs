@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MaintenanceForm));
             this.laborTimeTxt = new System.Windows.Forms.TextBox();
             this.laborTimeLbl = new System.Windows.Forms.Label();
             this.updateLaborBtn = new System.Windows.Forms.Button();
@@ -197,6 +198,7 @@
             this.Controls.Add(this.laborDescriptionTxt);
             this.Controls.Add(this.laborPriceLbl);
             this.Controls.Add(this.partNameLbl);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MaintenanceForm";
             this.Text = "MaintenanceForm";
             this.groupBox1.ResumeLayout(false);

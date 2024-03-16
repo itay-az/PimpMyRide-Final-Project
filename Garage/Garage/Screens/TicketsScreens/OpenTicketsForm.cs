@@ -85,6 +85,7 @@ namespace Garage.Screens.TicketsScreens
         {
             Ticket ticket = new Ticket(ticketId);
             ticket.FormClosed += (s, args) => this.Show();
+            this.Hide();
             ticket.ShowDialog();
         }
 

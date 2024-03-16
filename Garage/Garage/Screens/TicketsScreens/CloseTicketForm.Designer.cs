@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CloseTicketForm));
             this.paymentMethodComboBox = new System.Windows.Forms.ComboBox();
             this.closeTicketBtn = new System.Windows.Forms.Button();
             this.cardDateLbl = new System.Windows.Forms.Label();
@@ -206,6 +207,7 @@
             this.Controls.Add(this.cardNumberTxt);
             this.Controls.Add(this.closeTicketBtn);
             this.Controls.Add(this.paymentMethodComboBox);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CloseTicketForm";
             this.Text = "CloseTicketForm";
             this.ResumeLayout(false);

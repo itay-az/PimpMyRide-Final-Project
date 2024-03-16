@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AllPartsForm));
             this.allPartsDataGrid = new System.Windows.Forms.DataGridView();
             this.updatePartBtn = new System.Windows.Forms.Button();
             this.deletePartBtn = new System.Windows.Forms.Button();
@@ -231,6 +232,7 @@
             this.Controls.Add(this.partNameLbl);
             this.Controls.Add(this.partIdLbl);
             this.Controls.Add(this.allPartsDataGrid);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AllPartsForm";
             this.Text = "AllPartsForm";
             ((System.ComponentModel.ISupportInitialize)(this.allPartsDataGrid)).EndInit();

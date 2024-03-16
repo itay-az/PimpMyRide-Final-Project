@@ -98,7 +98,7 @@ namespace Garage.Screens.TicketsScreens
                 if (response.IsSuccessStatusCode)
                 {
                     MessageBox.Show("Ticket closed!");
-                    this.Close();
+                    this.Hide();
                 }
                 else
                 {

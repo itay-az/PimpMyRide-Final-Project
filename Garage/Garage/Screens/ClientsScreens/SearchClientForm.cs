@@ -235,7 +235,7 @@ namespace Garage.Screens.ClientsScreens
                 {
                     MessageBox.Show("Client " + client.name + " Updated successfully", "success");
 
-                    this.Close();
+                    this.Hide();
                 }
                 else if (response.StatusCode.Equals(HttpStatusCode.Conflict))
                 {
@@ -284,7 +284,7 @@ namespace Garage.Screens.ClientsScreens
                 {
                     MessageBox.Show($"Car {addCarToClientRequest.carManufacture} {addCarToClientRequest.carModel} has been added successfully to client {searchClientFullNameTxt.Text}", "success");
 
-                    this.Close();
+                    this.Hide();
                 }
                 else if (response.StatusCode.Equals(HttpStatusCode.Conflict))
                 {

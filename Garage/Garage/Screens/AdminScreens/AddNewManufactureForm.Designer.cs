@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddNewManufactureForm));
             this.addManufactureNameLbl = new System.Windows.Forms.Label();
             this.addModelNameLbl = new System.Windows.Forms.Label();
             this.addManufactureNameTxt = new System.Windows.Forms.TextBox();
@@ -110,6 +111,7 @@
             this.Controls.Add(this.addManufactureNameTxt);
             this.Controls.Add(this.addModelNameLbl);
             this.Controls.Add(this.addManufactureNameLbl);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddNewManufactureForm";
             this.Text = "AddNewManufacture";
             this.ResumeLayout(false);

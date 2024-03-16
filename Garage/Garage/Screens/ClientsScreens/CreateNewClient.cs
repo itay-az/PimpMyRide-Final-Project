@@ -231,7 +231,7 @@ namespace Garage.Screens.ClientsScreens
                     var result = await response.Content.ReadAsStringAsync();
                     MessageBox.Show("Client " + client.name + " Added successfully", "success");
 
-                    this.Close();
+                    this.Hide();
                 }
                 else if (response.StatusCode.Equals(HttpStatusCode.Conflict))
                 {

@@ -37,7 +37,7 @@ namespace PimpMyRideServer.Handlers
             {
                 return ErrorHandler.onFailure("There is an open ticket with the same details", "Error",409);
             }
-            if(car.carKilometer < request.carKilometer)
+            if(car.carKilometer >= request.carKilometer)
             {
                 return ErrorHandler.onFailure("The kilometer is lower than the last visit", "Error", 400);
             }

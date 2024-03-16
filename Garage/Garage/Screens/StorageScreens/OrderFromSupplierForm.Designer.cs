@@ -38,6 +38,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OrderFromSupplierForm));
             this.allOrdersDataGridView = new System.Windows.Forms.DataGridView();
             this.orderDetailsDataGridView = new System.Windows.Forms.DataGridView();
             this.showDetailsBtn = new System.Windows.Forms.Button();
@@ -157,6 +158,7 @@
             this.Controls.Add(this.showDetailsBtn);
             this.Controls.Add(this.orderDetailsDataGridView);
             this.Controls.Add(this.allOrdersDataGridView);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "OrderFromSupplierForm";
             this.Text = "OrderFromSupplierForm";
             ((System.ComponentModel.ISupportInitialize)(this.allOrdersDataGridView)).EndInit();

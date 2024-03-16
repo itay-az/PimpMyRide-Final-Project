@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NewOrderForm));
             this.chooseSupplierComboBox = new System.Windows.Forms.ComboBox();
             this.chooseSupplierLbl = new System.Windows.Forms.Label();
             this.newOrderLbl = new System.Windows.Forms.Label();
@@ -271,6 +272,7 @@
             this.Controls.Add(this.newOrderLbl);
             this.Controls.Add(this.chooseSupplierComboBox);
             this.Controls.Add(this.chooseSupplierLbl);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "NewOrderForm";
             this.Text = "NewOrderForm";
             ((System.ComponentModel.ISupportInitialize)(this.orderDetailsGridView)).EndInit();

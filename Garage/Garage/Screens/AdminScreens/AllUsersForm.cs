@@ -154,7 +154,7 @@ namespace Garage.Screens.AdminScreens
                     var result = await response.Content.ReadAsStringAsync();
                     MessageBox.Show("user " + username + " Added successfully", "success");
 
-                    this.Close();
+                    this.Hide();
                 }
                 else if (response.StatusCode.Equals(HttpStatusCode.Conflict))
                 {

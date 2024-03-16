@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateNewOfferForm));
             this.createOfferBtn = new System.Windows.Forms.Button();
             this.offerDetailsTxt = new System.Windows.Forms.TextBox();
             this.clientVinNumberTxt = new System.Windows.Forms.TextBox();
@@ -308,6 +309,7 @@
             this.Controls.Add(this.carNumberTxt);
             this.Controls.Add(this.carNumberLbl);
             this.Controls.Add(this.groupBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CreateNewOfferForm";
             this.Text = "CreateNewOfferForm";
             this.vinNumberTxt.ResumeLayout(false);

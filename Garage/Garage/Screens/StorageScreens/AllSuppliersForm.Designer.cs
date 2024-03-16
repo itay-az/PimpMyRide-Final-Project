@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AllSuppliersForm));
             this.supplierPhoneTxt = new System.Windows.Forms.TextBox();
             this.supplierPhonebl = new System.Windows.Forms.Label();
             this.updateSupplierBtn = new System.Windows.Forms.Button();
@@ -228,6 +229,7 @@
             this.Controls.Add(this.supplierAdressLbl);
             this.Controls.Add(this.supplierNameLbl);
             this.Controls.Add(this.supplierIdLbl);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AllSuppliersForm";
             this.Text = "AllSuppliersForm";
             ((System.ComponentModel.ISupportInitialize)(this.allSuppliersDataGrid)).EndInit();

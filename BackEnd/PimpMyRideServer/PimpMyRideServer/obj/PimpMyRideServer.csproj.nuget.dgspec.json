@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\college\\פרויקט גמר\\PimpMyRide-Final-Project\\BackEnd\\PimpMyRideServer\\PimpMyRideServer\\PimpMyRideServer.csproj": {}
+    "D:\\Projects\\Git version of PimpMyRide\\PimpMyRide-Final-Project\\BackEnd\\PimpMyRideServer\\PimpMyRideServer\\PimpMyRideServer.csproj": {}
   },
   "projects": {
-    "D:\\college\\פרויקט גמר\\PimpMyRide-Final-Project\\BackEnd\\PimpMyRideServer\\PimpMyRideServer\\PimpMyRideServer.csproj": {
+    "D:\\Projects\\Git version of PimpMyRide\\PimpMyRide-Final-Project\\BackEnd\\PimpMyRideServer\\PimpMyRideServer\\PimpMyRideServer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\college\\פרויקט גמר\\PimpMyRide-Final-Project\\BackEnd\\PimpMyRideServer\\PimpMyRideServer\\PimpMyRideServer.csproj",
+        "projectUniqueName": "D:\\Projects\\Git version of PimpMyRide\\PimpMyRide-Final-Project\\BackEnd\\PimpMyRideServer\\PimpMyRideServer\\PimpMyRideServer.csproj",
         "projectName": "PimpMyRideServer",
-        "projectPath": "D:\\college\\פרויקט גמר\\PimpMyRide-Final-Project\\BackEnd\\PimpMyRideServer\\PimpMyRideServer\\PimpMyRideServer.csproj",
+        "projectPath": "D:\\Projects\\Git version of PimpMyRide\\PimpMyRide-Final-Project\\BackEnd\\PimpMyRideServer\\PimpMyRideServer\\PimpMyRideServer.csproj",
         "packagesPath": "C:\\Users\\alona\\.nuget\\packages\\",
-        "outputPath": "D:\\college\\פרויקט גמר\\PimpMyRide-Final-Project\\BackEnd\\PimpMyRideServer\\PimpMyRideServer\\obj\\",
+        "outputPath": "D:\\Projects\\Git version of PimpMyRide\\PimpMyRide-Final-Project\\BackEnd\\PimpMyRideServer\\PimpMyRideServer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -40,9 +40,6 @@
           "warnAsError": [
             "NU1605"
           ]
-        },
-        "restoreAuditProperties": {
-          "enableAudit": "default"
         }
       },
       "frameworks": {
@@ -101,7 +98,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.101/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

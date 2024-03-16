@@ -34,28 +34,23 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.garageDataSet1 = new Garage.GarageDataSet1();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AllClientsForm));
             this.clientsBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.clientsTableAdapter = new Garage.GarageDataSet1TableAdapters.ClientsTableAdapter();
             this.AllClientsGridView = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.garageDataSet1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientsBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AllClientsGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // garageDataSet1
             // 
-            this.garageDataSet1.DataSetName = "GarageDataSet1";
-            this.garageDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+
             // 
             // clientsBindingSource
             // 
             this.clientsBindingSource.DataMember = "Clients";
-            this.clientsBindingSource.DataSource = this.garageDataSet1;
             // 
             // clientsTableAdapter
             // 
-            this.clientsTableAdapter.ClearBeforeFill = true;
             // 
             // AllClientsGridView
             // 
@@ -109,9 +104,9 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
             this.ClientSize = new System.Drawing.Size(1343, 509);
             this.Controls.Add(this.AllClientsGridView);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AllClientsForm";
             this.Text = "AllClientsForm";
-            ((System.ComponentModel.ISupportInitialize)(this.garageDataSet1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.clientsBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.AllClientsGridView)).EndInit();
             this.ResumeLayout(false);
@@ -119,9 +114,7 @@
         }
 
         #endregion
-        private GarageDataSet1 garageDataSet1;
         private System.Windows.Forms.BindingSource clientsBindingSource;
-        private GarageDataSet1TableAdapters.ClientsTableAdapter clientsTableAdapter;
         private System.Windows.Forms.DataGridView AllClientsGridView;
     }
 }

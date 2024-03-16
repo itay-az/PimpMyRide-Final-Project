@@ -44,7 +44,6 @@ namespace Garage
                 MessageBox.Show("All fields are required", "Error");
                 return;
             }
-
             LoginRequest loginRequest = new LoginRequest(username, password);
 
             
@@ -58,7 +57,9 @@ namespace Garage
                     var result = await response.Content.ReadAsStringAsync();
 
                     dashboardForm = new Dashboard(result, UserNametxt.Text);
+                    dashboardForm.FormClosed += (s, args) => this.Show();
                     dashboardForm.Show();
+                    this.Hide();
                 }
                 else
                 { 

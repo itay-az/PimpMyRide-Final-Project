@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AddLaborToTicketForm));
             this.addPartToTicketBtn = new System.Windows.Forms.Button();
             this.allLaborsDataGridView = new System.Windows.Forms.DataGridView();
             this.searchPartBtn = new System.Windows.Forms.Button();
@@ -140,6 +141,7 @@
             this.Controls.Add(this.searchPartBtn);
             this.Controls.Add(this.laborNameLbl);
             this.Controls.Add(this.searchLaborTxt);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddLaborToTicketForm";
             this.Text = "AddLaborToTicketForm";
             ((System.ComponentModel.ISupportInitialize)(this.allLaborsDataGridView)).EndInit();

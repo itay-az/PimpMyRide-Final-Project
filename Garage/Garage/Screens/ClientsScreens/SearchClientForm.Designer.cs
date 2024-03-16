@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchClientForm));
             this.searchVinNumberTxt = new System.Windows.Forms.TextBox();
             this.vinNumberLbl = new System.Windows.Forms.Label();
             this.searchCarYearTxt = new System.Windows.Forms.TextBox();
@@ -346,6 +347,7 @@
             this.Controls.Add(this.clientPhoneLbl);
             this.Controls.Add(this.clientNameLbl);
             this.Controls.Add(this.clientIdLbl);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SearchClientForm";
             this.Text = "SearchClientForm";
             this.ResumeLayout(false);

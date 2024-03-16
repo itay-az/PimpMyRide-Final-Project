@@ -162,7 +162,7 @@ namespace Garage.Screens.TicketsScreens
             AddPartToTicketForm addPartToTicketForm = new AddPartToTicketForm(int.Parse(ticketId));
             addPartToTicketForm.FormClosed += (s, args) => { GetTicketById(ticketId); this.Show(); };
             this.Hide();
-            addPartToTicketForm.ShowDialog();
+            addPartToTicketForm.Show();
         }
 
         private void deletePartBtn_Click(object sender, EventArgs e)
@@ -226,7 +226,7 @@ namespace Garage.Screens.TicketsScreens
 
                 if (response.IsSuccessStatusCode)
                 {
-                    this.Close();
+                    this.Hide();
                 }
                 else
                 {
@@ -317,7 +317,7 @@ namespace Garage.Screens.TicketsScreens
             AddLaborToTicketForm addLaborToTicketForm = new AddLaborToTicketForm(int.Parse(ticketId));
             addLaborToTicketForm.FormClosed += (s, args) => { GetTicketById(ticketId); this.Show(); };
             this.Hide();
-            addLaborToTicketForm.ShowDialog();
+            addLaborToTicketForm.Show();
         }
 
         private void updateLaborBtn_Click(object sender, EventArgs e)

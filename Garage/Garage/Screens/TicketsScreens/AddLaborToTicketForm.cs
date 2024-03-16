@@ -118,10 +118,7 @@ namespace Garage.Screens.TicketsScreens
                 HttpResponseMessage response = await Program.client.PutAsJsonAsync("Tickets/addLaborToTicket/" + ticketId, labor);
                 if (response.IsSuccessStatusCode)
                 {
-                    Ticket ticket = new Ticket(ticketId.ToString());
                     this.Close();
-                    ticket.ShowDialog();
-
                 }
                 else
                 {

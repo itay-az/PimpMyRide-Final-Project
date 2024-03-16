@@ -70,7 +70,7 @@ namespace Garage.Screens.StorageScreens
                     var result = await response.Content.ReadAsStringAsync();
                     MessageBox.Show("Supplier " + supplierName + " Added successfully", "success");
 
-                    this.Close();
+                    this.Hide();
                 }
                 else if (response.StatusCode.Equals(HttpStatusCode.Conflict))
                 {

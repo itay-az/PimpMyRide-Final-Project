@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(OpenTicketsForm));
             this.AllTicketsDataGridView = new System.Windows.Forms.DataGridView();
             this.selectTicketBtn = new System.Windows.Forms.Button();
             this.searchBtn = new System.Windows.Forms.Button();
@@ -142,6 +143,7 @@
             this.Controls.Add(this.searchCarNumberTxt);
             this.Controls.Add(this.selectTicketBtn);
             this.Controls.Add(this.AllTicketsDataGridView);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "OpenTicketsForm";
             this.Text = "OpenTicketsForm";
             ((System.ComponentModel.ISupportInitialize)(this.AllTicketsDataGridView)).EndInit();

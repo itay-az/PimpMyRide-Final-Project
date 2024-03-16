@@ -34,10 +34,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AllUsersForm));
             this.AllUsersGridView = new System.Windows.Forms.DataGridView();
             this.userBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.garageDataSet = new Garage.GarageDataSet();
-            this.userTableAdapter = new Garage.GarageDataSetTableAdapters.UserTableAdapter();
             this.emailTxt = new System.Windows.Forms.TextBox();
             this.passwordTxt = new System.Windows.Forms.TextBox();
             this.userNameTxt = new System.Windows.Forms.TextBox();
@@ -52,7 +51,6 @@
             this.jobTitleTxt = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.AllUsersGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.garageDataSet)).BeginInit();
             this.SuspendLayout();
             // 
             // AllUsersGridView
@@ -102,16 +100,13 @@
             // userBindingSource
             // 
             this.userBindingSource.DataMember = "User";
-            this.userBindingSource.DataSource = this.garageDataSet;
             // 
             // garageDataSet
             // 
-            this.garageDataSet.DataSetName = "GarageDataSet";
-            this.garageDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+
             // 
             // userTableAdapter
             // 
-            this.userTableAdapter.ClearBeforeFill = true;
             // 
             // emailTxt
             // 
@@ -266,11 +261,11 @@
             this.Controls.Add(this.passwordLbl);
             this.Controls.Add(this.userNameLbl);
             this.Controls.Add(this.AllUsersGridView);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AllUsersForm";
             this.Text = "AllUsersForm";
             ((System.ComponentModel.ISupportInitialize)(this.AllUsersGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.garageDataSet)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -279,9 +274,7 @@
         #endregion
 
         private System.Windows.Forms.DataGridView AllUsersGridView;
-        private GarageDataSet garageDataSet;
         private System.Windows.Forms.BindingSource userBindingSource;
-        private GarageDataSetTableAdapters.UserTableAdapter userTableAdapter;
         private System.Windows.Forms.TextBox emailTxt;
         private System.Windows.Forms.TextBox passwordTxt;
         private System.Windows.Forms.TextBox userNameTxt;

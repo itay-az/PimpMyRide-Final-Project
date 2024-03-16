@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CarHistoryForm));
             this.carHistoryDataGridView = new System.Windows.Forms.DataGridView();
             this.selectTicketBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.carHistoryDataGridView)).BeginInit();
@@ -102,6 +103,7 @@
             this.ClientSize = new System.Drawing.Size(1554, 734);
             this.Controls.Add(this.selectTicketBtn);
             this.Controls.Add(this.carHistoryDataGridView);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "CarHistoryForm";
             this.Text = "CarHistoryForm";
             ((System.ComponentModel.ISupportInitialize)(this.carHistoryDataGridView)).EndInit();

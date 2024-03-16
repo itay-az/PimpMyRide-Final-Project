@@ -29,10 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Dashboard));
             this.panel1 = new System.Windows.Forms.Panel();
             this.timerLbl = new System.Windows.Forms.Label();
             this.logoutBtn = new System.Windows.Forms.Button();
             this.adminPanel = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.addNewManufactureBtn = new System.Windows.Forms.Button();
             this.maintenanceBtn = new System.Windows.Forms.Button();
             this.adminUsersBtn = new System.Windows.Forms.Button();
@@ -58,7 +60,6 @@
             this.helloLbl = new System.Windows.Forms.Label();
             this.statisticsBtn = new System.Windows.Forms.Panel();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.adminPanel.SuspendLayout();
             this.suppliersPanel.SuspendLayout();
@@ -101,6 +102,7 @@
             // logoutBtn
             // 
             this.logoutBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
+            this.logoutBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.logoutBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.logoutBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
             this.logoutBtn.FlatAppearance.BorderSize = 0;
@@ -129,9 +131,29 @@
             this.adminPanel.Size = new System.Drawing.Size(177, 172);
             this.adminPanel.TabIndex = 9;
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.button1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.button1.FlatAppearance.BorderSize = 0;
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button1.Location = new System.Drawing.Point(0, 125);
+            this.button1.Name = "button1";
+            this.button1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
+            this.button1.Size = new System.Drawing.Size(177, 41);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "Statistics";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // addNewManufactureBtn
             // 
             this.addNewManufactureBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.addNewManufactureBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.addNewManufactureBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.addNewManufactureBtn.FlatAppearance.BorderSize = 0;
             this.addNewManufactureBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -150,6 +172,7 @@
             // maintenanceBtn
             // 
             this.maintenanceBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.maintenanceBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.maintenanceBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.maintenanceBtn.FlatAppearance.BorderSize = 0;
             this.maintenanceBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -168,6 +191,7 @@
             // adminUsersBtn
             // 
             this.adminUsersBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.adminUsersBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.adminUsersBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.adminUsersBtn.FlatAppearance.BorderSize = 0;
             this.adminUsersBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -186,6 +210,7 @@
             // adminMenuBtn
             // 
             this.adminMenuBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
+            this.adminMenuBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.adminMenuBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.adminMenuBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
             this.adminMenuBtn.FlatAppearance.BorderSize = 0;
@@ -218,6 +243,7 @@
             // allOrdersBtn
             // 
             this.allOrdersBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.allOrdersBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.allOrdersBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.allOrdersBtn.FlatAppearance.BorderSize = 0;
             this.allOrdersBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -236,6 +262,7 @@
             // allPartsBtn
             // 
             this.allPartsBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.allPartsBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.allPartsBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.allPartsBtn.FlatAppearance.BorderSize = 0;
             this.allPartsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -254,6 +281,7 @@
             // newOrderBtn
             // 
             this.newOrderBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.newOrderBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.newOrderBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.newOrderBtn.FlatAppearance.BorderSize = 0;
             this.newOrderBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -272,6 +300,7 @@
             // createNewSupplierBtn
             // 
             this.createNewSupplierBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.createNewSupplierBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.createNewSupplierBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.createNewSupplierBtn.FlatAppearance.BorderSize = 0;
             this.createNewSupplierBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -290,6 +319,7 @@
             // allSuppliersBtn
             // 
             this.allSuppliersBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.allSuppliersBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.allSuppliersBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.allSuppliersBtn.FlatAppearance.BorderSize = 0;
             this.allSuppliersBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -308,6 +338,7 @@
             // storageMenuBtn
             // 
             this.storageMenuBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
+            this.storageMenuBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.storageMenuBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.storageMenuBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
             this.storageMenuBtn.FlatAppearance.BorderSize = 0;
@@ -338,6 +369,7 @@
             // createNewClientBtn
             // 
             this.createNewClientBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.createNewClientBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.createNewClientBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.createNewClientBtn.FlatAppearance.BorderSize = 0;
             this.createNewClientBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -356,6 +388,7 @@
             // allClientsBtn
             // 
             this.allClientsBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.allClientsBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.allClientsBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.allClientsBtn.FlatAppearance.BorderSize = 0;
             this.allClientsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -374,6 +407,7 @@
             // searchClientBtn
             // 
             this.searchClientBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.searchClientBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.searchClientBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.searchClientBtn.FlatAppearance.BorderSize = 0;
             this.searchClientBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -392,6 +426,7 @@
             // clientMenuBtn
             // 
             this.clientMenuBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
+            this.clientMenuBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.clientMenuBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.clientMenuBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
             this.clientMenuBtn.FlatAppearance.BorderSize = 0;
@@ -423,6 +458,7 @@
             // getAllOffersBtn
             // 
             this.getAllOffersBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.getAllOffersBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.getAllOffersBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.getAllOffersBtn.FlatAppearance.BorderSize = 0;
             this.getAllOffersBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -441,6 +477,7 @@
             // createNewOfferBtn
             // 
             this.createNewOfferBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.createNewOfferBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.createNewOfferBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.createNewOfferBtn.FlatAppearance.BorderSize = 0;
             this.createNewOfferBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -459,6 +496,7 @@
             // openTicketsBtn
             // 
             this.openTicketsBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.openTicketsBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.openTicketsBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.openTicketsBtn.FlatAppearance.BorderSize = 0;
             this.openTicketsBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -477,6 +515,7 @@
             // createNewTicketBtn
             // 
             this.createNewTicketBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
+            this.createNewTicketBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.createNewTicketBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.createNewTicketBtn.FlatAppearance.BorderSize = 0;
             this.createNewTicketBtn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -495,6 +534,7 @@
             // ticketsMenuBtn
             // 
             this.ticketsMenuBtn.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
+            this.ticketsMenuBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.ticketsMenuBtn.Dock = System.Windows.Forms.DockStyle.Top;
             this.ticketsMenuBtn.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(11)))), ((int)(((byte)(7)))), ((int)(((byte)(17)))));
             this.ticketsMenuBtn.FlatAppearance.BorderSize = 0;
@@ -536,24 +576,6 @@
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
-            this.button1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.button1.FlatAppearance.BorderSize = 0;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button1.Location = new System.Drawing.Point(0, 125);
-            this.button1.Name = "button1";
-            this.button1.Padding = new System.Windows.Forms.Padding(10, 0, 0, 0);
-            this.button1.Size = new System.Drawing.Size(177, 41);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Statistics";
-            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // Dashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -562,6 +584,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.statisticsBtn);
             this.Controls.Add(this.panel1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Dashboard";
             this.Text = "Pimp My Ride";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
