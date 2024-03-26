@@ -77,6 +77,7 @@
             this.allOrdersDataGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
             this.allOrdersDataGridView.Location = new System.Drawing.Point(8, 12);
             this.allOrdersDataGridView.Name = "allOrdersDataGridView";
+            this.allOrdersDataGridView.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
@@ -123,6 +124,7 @@
             this.orderDetailsDataGridView.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
             this.orderDetailsDataGridView.Location = new System.Drawing.Point(886, 12);
             this.orderDetailsDataGridView.Name = "orderDetailsDataGridView";
+            this.orderDetailsDataGridView.ReadOnly = true;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
@@ -141,7 +143,7 @@
             // showDetailsBtn
             // 
             this.showDetailsBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.showDetailsBtn.Location = new System.Drawing.Point(663, 321);
+            this.showDetailsBtn.Location = new System.Drawing.Point(659, 142);
             this.showDetailsBtn.Name = "showDetailsBtn";
             this.showDetailsBtn.Size = new System.Drawing.Size(214, 45);
             this.showDetailsBtn.TabIndex = 2;

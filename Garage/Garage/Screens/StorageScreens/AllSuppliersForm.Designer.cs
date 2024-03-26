@@ -56,6 +56,7 @@
             this.supplierPhoneTxt.Name = "supplierPhoneTxt";
             this.supplierPhoneTxt.Size = new System.Drawing.Size(286, 29);
             this.supplierPhoneTxt.TabIndex = 4;
+            this.supplierPhoneTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.supplierPhoneTxt_KeyPress);
             // 
             // supplierPhonebl
             // 
@@ -103,6 +104,7 @@
             this.supplierAddressTxt.Name = "supplierAddressTxt";
             this.supplierAddressTxt.Size = new System.Drawing.Size(286, 29);
             this.supplierAddressTxt.TabIndex = 3;
+            this.supplierAddressTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.supplierAddressTxt_KeyPress);
             // 
             // supplierNameTxt
             // 
@@ -111,6 +113,7 @@
             this.supplierNameTxt.Name = "supplierNameTxt";
             this.supplierNameTxt.Size = new System.Drawing.Size(286, 29);
             this.supplierNameTxt.TabIndex = 2;
+            this.supplierNameTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.supplierNameTxt_KeyPress);
             // 
             // supplierIdTxt
             // 
@@ -119,6 +122,7 @@
             this.supplierIdTxt.Name = "supplierIdTxt";
             this.supplierIdTxt.Size = new System.Drawing.Size(286, 29);
             this.supplierIdTxt.TabIndex = 1;
+            this.supplierIdTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.supplierIdTxt_KeyPress);
             // 
             // supplierAdressLbl
             // 
@@ -160,6 +164,7 @@
             this.supplierEmailTxt.Name = "supplierEmailTxt";
             this.supplierEmailTxt.Size = new System.Drawing.Size(286, 29);
             this.supplierEmailTxt.TabIndex = 5;
+            this.supplierEmailTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.supplierEmailTxt_KeyPress);
             // 
             // supplierEmailLbl
             // 
@@ -203,6 +208,7 @@
             this.allSuppliersDataGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
             this.allSuppliersDataGrid.Location = new System.Drawing.Point(12, 12);
             this.allSuppliersDataGrid.Name = "allSuppliersDataGrid";
+            this.allSuppliersDataGrid.ReadOnly = true;
             this.allSuppliersDataGrid.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
             this.allSuppliersDataGrid.RowsDefaultCellStyle = dataGridViewCellStyle4;

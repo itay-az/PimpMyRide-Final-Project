@@ -64,6 +64,8 @@ namespace Garage.Screens.StorageScreens
         {
             Parts part = new Parts();
 
+
+
             if (partIdTxt.Text == String.Empty || partQuantityTxt.Text == String.Empty || partNameTxt.Text == String.Empty)
             {
                 MessageBox.Show("All Inputs are Required", "Error");
@@ -175,5 +177,36 @@ namespace Garage.Screens.StorageScreens
             }
         }
 
+        private void partPriceTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) || partPriceTxt.Text.Length >= 6 || (int)e.KeyChar <= 0)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void partNameTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (partNameTxt.Text.Length >= 15)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void partIdTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (partIdTxt.Text.Length >= 20)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void partQuantityTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsDigit(e.KeyChar) || partQuantityTxt.Text.Length >= 4 || (int)e.KeyChar <= 0)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

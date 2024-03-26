@@ -308,5 +308,85 @@ namespace Garage.Screens.ClientsScreens
             CarHistoryForm carHistoryForm = new CarHistoryForm(carNumberComboBox.Text);
             carHistoryForm.ShowDialog();
         }
+
+        private void searchClientIdTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (searchClientIdTxt.Text.Length >= 10)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void searchClientFullNameTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (searchClientFullNameTxt.Text.Length >= 15)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void searchClientPhoneTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (searchClientPhoneTxt.Text.Length >= 15)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void searchClientAddressTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (searchClientAddressTxt.Text.Length >= 50)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void carNumberComboBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (carNumberComboBox.Text.Length > 8 || !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void searchCarManuTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (searchCarManuTxt.Text.Length >= 20)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void searchCarModelTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (searchCarModelTxt.Text.Length >= 20)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void searchCarYearTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (searchCarYearTxt.Text.Length >= 5 || !char.IsDigit(e.KeyChar) || DateTime.Now.Year < int.Parse(searchCarYearTxt.Text) || 1950 < int.Parse(searchCarYearTxt.Text))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void searchCarEngineTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (searchCarEngineTxt.Text.Length >= 5 || !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void searchVinNumberTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (searchVinNumberTxt.Text.Length >= 30)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

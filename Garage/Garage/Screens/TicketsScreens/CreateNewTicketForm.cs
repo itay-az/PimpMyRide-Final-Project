@@ -117,11 +117,23 @@ namespace Garage.Screens.TicketsScreens
             if(cuaseOfArrivalTxt.Text != String.Empty)
             {
                 causesOfArrival.Add(new CauseOfArrival(0,cuaseOfArrivalTxt.Text));
+                createNewTicket();
+            }
+            else
+            {
+                MessageBox.Show($"An error occurred: Cause of arrival cannot be empty", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            createNewTicket();
         }
 
-        
+        private void carNumberTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+
+            if (carNumberTxt.Text.Length > 8 || !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+        }
     }
 }

@@ -239,8 +239,20 @@ namespace Garage.Screens.AdminScreens
 
         }
 
+        private void passwordTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (passwordTxt.Text.Length >= 15)
+            {
+                e.Handled = true;
+            }
+        }
 
-
-
+        private void userNameTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (userNameTxt.Text.Length >= 15)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }

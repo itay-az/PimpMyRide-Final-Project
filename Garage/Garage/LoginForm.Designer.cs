@@ -78,6 +78,7 @@
             this.UserNametxt.Name = "UserNametxt";
             this.UserNametxt.Size = new System.Drawing.Size(259, 26);
             this.UserNametxt.TabIndex = 1;
+            this.UserNametxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.UserNametxt_KeyPress);
             // 
             // Passwordtxt
             // 
@@ -87,6 +88,7 @@
             this.Passwordtxt.PasswordChar = '*';
             this.Passwordtxt.Size = new System.Drawing.Size(259, 26);
             this.Passwordtxt.TabIndex = 2;
+            this.Passwordtxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Passwordtxt_KeyPress);
             // 
             // label1
             // 

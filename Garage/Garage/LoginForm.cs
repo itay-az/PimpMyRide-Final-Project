@@ -39,7 +39,12 @@ namespace Garage
         // an http request method that for login
         public async void LoginRequest(string username, string password)
         {
-            if(username == String.Empty || password == String.Empty)
+            if(username == String.Empty || password == String.Empty )
+            {
+                MessageBox.Show("All fields are required", "Error");
+                return;
+            }
+            if(username.Length >= 15 || password.Length >= 15)
             {
                 MessageBox.Show("All fields are required", "Error");
                 return;
@@ -76,6 +81,22 @@ namespace Garage
         private void Loginbtn_Click_1(object sender, EventArgs e)
         {
             LoginRequest(UserNametxt.Text,Passwordtxt.Text);
+        }
+
+        private void UserNametxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (UserNametxt.Text.Length >= 15)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void Passwordtxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (Passwordtxt.Text.Length >= 15)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

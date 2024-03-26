@@ -64,6 +64,7 @@
             this.clientPhoneTxt.Name = "clientPhoneTxt";
             this.clientPhoneTxt.Size = new System.Drawing.Size(286, 29);
             this.clientPhoneTxt.TabIndex = 2;
+            this.clientPhoneTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.clientPhoneTxt_KeyPress);
             // 
             // clientFullNameTxt
             // 
@@ -72,6 +73,7 @@
             this.clientFullNameTxt.Name = "clientFullNameTxt";
             this.clientFullNameTxt.Size = new System.Drawing.Size(286, 29);
             this.clientFullNameTxt.TabIndex = 1;
+            this.clientFullNameTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.clientFullNameTxt_KeyPress);
             // 
             // clientIdTxt
             // 
@@ -80,6 +82,7 @@
             this.clientIdTxt.Name = "clientIdTxt";
             this.clientIdTxt.Size = new System.Drawing.Size(286, 29);
             this.clientIdTxt.TabIndex = 0;
+            this.clientIdTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.clientIdTxt_KeyPress);
             // 
             // clientEmailLbl
             // 
@@ -143,6 +146,7 @@
             this.clientEmailTxt.Name = "clientEmailTxt";
             this.clientEmailTxt.Size = new System.Drawing.Size(286, 29);
             this.clientEmailTxt.TabIndex = 3;
+            this.clientEmailTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.clientEmailTxt_KeyPress);
             // 
             // createNewClientBtn
             // 
@@ -162,6 +166,7 @@
             this.clientAddressTxt.Name = "clientAddressTxt";
             this.clientAddressTxt.Size = new System.Drawing.Size(286, 29);
             this.clientAddressTxt.TabIndex = 4;
+            this.clientAddressTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.clientAddressTxt_KeyPress);
             // 
             // carYearTxt
             // 
@@ -170,6 +175,7 @@
             this.carYearTxt.Name = "carYearTxt";
             this.carYearTxt.Size = new System.Drawing.Size(286, 29);
             this.carYearTxt.TabIndex = 8;
+            this.carYearTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.carYearTxt_KeyPress);
             // 
             // carEngineTxt
             // 
@@ -178,6 +184,7 @@
             this.carEngineTxt.Name = "carEngineTxt";
             this.carEngineTxt.Size = new System.Drawing.Size(286, 29);
             this.carEngineTxt.TabIndex = 9;
+            this.carEngineTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.carEngineTxt_KeyPress);
             // 
             // carEngineLbl
             // 
@@ -197,6 +204,7 @@
             this.carNumberTxt.Name = "carNumberTxt";
             this.carNumberTxt.Size = new System.Drawing.Size(286, 29);
             this.carNumberTxt.TabIndex = 5;
+            this.carNumberTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.carNumberTxt_KeyPress);
             // 
             // carYearLbl
             // 
@@ -249,6 +257,7 @@
             this.carKMTxt.Name = "carKMTxt";
             this.carKMTxt.Size = new System.Drawing.Size(286, 29);
             this.carKMTxt.TabIndex = 10;
+            this.carKMTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.carKMTxt_KeyPress);
             // 
             // kmLbl
             // 
@@ -268,6 +277,7 @@
             this.vinNumberTxt.Name = "vinNumberTxt";
             this.vinNumberTxt.Size = new System.Drawing.Size(286, 29);
             this.vinNumberTxt.TabIndex = 11;
+            this.vinNumberTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.vinNumberTxt_KeyPress);
             // 
             // vinNumberLbl
             // 
@@ -301,6 +311,7 @@
             this.manufactureComboBox.Size = new System.Drawing.Size(286, 32);
             this.manufactureComboBox.TabIndex = 6;
             this.manufactureComboBox.SelectedIndexChanged += new System.EventHandler(this.manufactureComboBox_SelectedIndexChanged);
+            this.manufactureComboBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.manufactureComboBox_KeyPress);
             // 
             // modelsComboBox
             // 
@@ -311,6 +322,7 @@
             this.modelsComboBox.Name = "modelsComboBox";
             this.modelsComboBox.Size = new System.Drawing.Size(286, 32);
             this.modelsComboBox.TabIndex = 7;
+            this.modelsComboBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.modelsComboBox_KeyPress);
             // 
             // CreateNewClient
             // 

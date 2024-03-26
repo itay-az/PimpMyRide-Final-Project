@@ -177,7 +177,7 @@ namespace Garage.Screens.ClientsScreens
                 return true;
             }
             int.TryParse(carYearTxt.Text, out int year);
-            if(year > DateTime.Now.Year)
+            if (year > DateTime.Now.Year)
             {
                 MessageBox.Show("Car Year cannot be a higher than current year", "Error");
                 return true;
@@ -266,6 +266,103 @@ namespace Garage.Screens.ClientsScreens
         {
             modelList = await getModels();
             initializeModels();
+        }
+
+        private void carYearTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (carYearTxt.Text.Length >= 5 || !char.IsDigit(e.KeyChar) || DateTime.Now.Year < int.Parse(carYearTxt.Text) || 1950 < int.Parse(carYearTxt.Text))
+            {
+                e.Handled = true;
+            }
+
+        }
+
+        private void clientIdTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (clientIdTxt.Text.Length >= 12 || !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void clientFullNameTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (clientFullNameTxt.Text.Length >= 15)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void clientPhoneTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (clientPhoneTxt.Text.Length >= 15 || !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void clientEmailTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (clientEmailTxt.Text.Length >= 50)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void clientAddressTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (clientAddressTxt.Text.Length >= 50)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void carNumberTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (carNumberTxt.Text.Length > 8 || !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void manufactureComboBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (manufactureComboBox.Text.Length >= 20)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void modelsComboBox_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (modelsComboBox.Text.Length >= 20)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void carEngineTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (carEngineTxt.Text.Length >= 5 || !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void carKMTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (carKMTxt.Text.Length >= 7 || !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void vinNumberTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (vinNumberTxt.Text.Length >= 30)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

@@ -32,7 +32,7 @@ namespace PimpMyRideServer.Handlers
                 var modelDb = Server.Server.context.Model.SingleOrDefault(m =>m.manufacturerName == manufacture.manufacturerName && m.model == model.model);
                 if(modelDb != null)
                 {
-                    return ErrorHandler.onFailure("Model not found", "Not found");
+                    return ErrorHandler.onFailure("Model already exist", "Conflict");
                 }
                 Server.Server.context.Model.Add(model);
                 Server.Server.context.SaveChanges();

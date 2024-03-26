@@ -80,6 +80,7 @@
             this.allPartsDataGrid.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(32)))), ((int)(((byte)(39)))));
             this.allPartsDataGrid.Location = new System.Drawing.Point(12, 12);
             this.allPartsDataGrid.Name = "allPartsDataGrid";
+            this.allPartsDataGrid.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
@@ -145,6 +146,7 @@
             this.partPriceTxt.Name = "partPriceTxt";
             this.partPriceTxt.Size = new System.Drawing.Size(286, 29);
             this.partPriceTxt.TabIndex = 3;
+            this.partPriceTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.partPriceTxt_KeyPress);
             // 
             // partNameTxt
             // 
@@ -153,6 +155,7 @@
             this.partNameTxt.Name = "partNameTxt";
             this.partNameTxt.Size = new System.Drawing.Size(286, 29);
             this.partNameTxt.TabIndex = 2;
+            this.partNameTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.partNameTxt_KeyPress);
             // 
             // partIdTxt
             // 
@@ -161,6 +164,7 @@
             this.partIdTxt.Name = "partIdTxt";
             this.partIdTxt.Size = new System.Drawing.Size(286, 29);
             this.partIdTxt.TabIndex = 1;
+            this.partIdTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.partIdTxt_KeyPress);
             // 
             // priceLbl
             // 
@@ -202,6 +206,7 @@
             this.quantityTxt.Name = "quantityTxt";
             this.quantityTxt.Size = new System.Drawing.Size(286, 29);
             this.quantityTxt.TabIndex = 4;
+            this.quantityTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.quantityTxt_KeyPress);
             // 
             // quantityLbl
             // 

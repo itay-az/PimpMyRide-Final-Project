@@ -92,6 +92,7 @@
             this.partQuantityTxt.Name = "partQuantityTxt";
             this.partQuantityTxt.Size = new System.Drawing.Size(193, 29);
             this.partQuantityTxt.TabIndex = 5;
+            this.partQuantityTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.partQuantityTxt_KeyPress);
             // 
             // partIdTxt
             // 
@@ -100,6 +101,7 @@
             this.partIdTxt.Name = "partIdTxt";
             this.partIdTxt.Size = new System.Drawing.Size(193, 29);
             this.partIdTxt.TabIndex = 3;
+            this.partIdTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.partIdTxt_KeyPress);
             // 
             // partNameTxt
             // 
@@ -108,6 +110,7 @@
             this.partNameTxt.Name = "partNameTxt";
             this.partNameTxt.Size = new System.Drawing.Size(193, 29);
             this.partNameTxt.TabIndex = 2;
+            this.partNameTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.partNameTxt_KeyPress);
             // 
             // quantityLbl
             // 
@@ -238,6 +241,7 @@
             this.partPriceTxt.Name = "partPriceTxt";
             this.partPriceTxt.Size = new System.Drawing.Size(193, 29);
             this.partPriceTxt.TabIndex = 4;
+            this.partPriceTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.partPriceTxt_KeyPress);
             // 
             // partPriceLbl
             // 

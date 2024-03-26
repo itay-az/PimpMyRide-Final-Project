@@ -73,6 +73,7 @@
             this.carNumberTxt.Name = "carNumberTxt";
             this.carNumberTxt.Size = new System.Drawing.Size(214, 29);
             this.carNumberTxt.TabIndex = 1;
+            this.carNumberTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.carNumberTxt_KeyPress);
             // 
             // carNumberLbl
             // 

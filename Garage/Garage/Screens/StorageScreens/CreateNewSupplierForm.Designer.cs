@@ -61,6 +61,7 @@
             this.supplierPhoneTxt.Name = "supplierPhoneTxt";
             this.supplierPhoneTxt.Size = new System.Drawing.Size(286, 29);
             this.supplierPhoneTxt.TabIndex = 4;
+            this.supplierPhoneTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.supplierPhoneTxt_KeyPress);
             // 
             // supplierAddressTxt
             // 
@@ -69,6 +70,7 @@
             this.supplierAddressTxt.Name = "supplierAddressTxt";
             this.supplierAddressTxt.Size = new System.Drawing.Size(286, 29);
             this.supplierAddressTxt.TabIndex = 3;
+            this.supplierAddressTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.supplierAddressTxt_KeyPress);
             // 
             // supplierFullNameTxt
             // 
@@ -77,6 +79,7 @@
             this.supplierFullNameTxt.Name = "supplierFullNameTxt";
             this.supplierFullNameTxt.Size = new System.Drawing.Size(286, 29);
             this.supplierFullNameTxt.TabIndex = 2;
+            this.supplierFullNameTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.supplierFullNameTxt_KeyPress);
             // 
             // supplierIdTxt
             // 
@@ -85,6 +88,7 @@
             this.supplierIdTxt.Name = "supplierIdTxt";
             this.supplierIdTxt.Size = new System.Drawing.Size(286, 29);
             this.supplierIdTxt.TabIndex = 1;
+            this.supplierIdTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.supplierIdTxt_KeyPress);
             // 
             // supplierPhoneLbl
             // 
@@ -148,6 +152,7 @@
             this.supplierEmailTxt.Name = "supplierEmailTxt";
             this.supplierEmailTxt.Size = new System.Drawing.Size(286, 29);
             this.supplierEmailTxt.TabIndex = 5;
+            this.supplierEmailTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.supplierEmailTxt_KeyPress);
             // 
             // supplierEmailLbl
             // 

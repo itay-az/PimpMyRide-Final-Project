@@ -83,6 +83,7 @@
             this.AllUsersGridView.EnableHeadersVisualStyles = false;
             this.AllUsersGridView.Location = new System.Drawing.Point(30, 22);
             this.AllUsersGridView.Name = "AllUsersGridView";
+            this.AllUsersGridView.ReadOnly = true;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
@@ -101,13 +102,6 @@
             // 
             this.userBindingSource.DataMember = "User";
             // 
-            // garageDataSet
-            // 
-
-            // 
-            // userTableAdapter
-            // 
-            // 
             // emailTxt
             // 
             this.emailTxt.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
@@ -123,6 +117,7 @@
             this.passwordTxt.Name = "passwordTxt";
             this.passwordTxt.Size = new System.Drawing.Size(286, 29);
             this.passwordTxt.TabIndex = 1;
+            this.passwordTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.passwordTxt_KeyPress);
             // 
             // userNameTxt
             // 
@@ -131,6 +126,7 @@
             this.userNameTxt.Name = "userNameTxt";
             this.userNameTxt.Size = new System.Drawing.Size(286, 29);
             this.userNameTxt.TabIndex = 0;
+            this.userNameTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.userNameTxt_KeyPress);
             // 
             // jobtitleLbl
             // 

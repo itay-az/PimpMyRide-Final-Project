@@ -64,6 +64,7 @@
             this.searchVinNumberTxt.Name = "searchVinNumberTxt";
             this.searchVinNumberTxt.Size = new System.Drawing.Size(286, 29);
             this.searchVinNumberTxt.TabIndex = 10;
+            this.searchVinNumberTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.searchVinNumberTxt_KeyPress);
             // 
             // vinNumberLbl
             // 
@@ -83,6 +84,7 @@
             this.searchCarYearTxt.Name = "searchCarYearTxt";
             this.searchCarYearTxt.Size = new System.Drawing.Size(286, 29);
             this.searchCarYearTxt.TabIndex = 8;
+            this.searchCarYearTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.searchCarYearTxt_KeyPress);
             // 
             // searchCarEngineTxt
             // 
@@ -91,6 +93,7 @@
             this.searchCarEngineTxt.Name = "searchCarEngineTxt";
             this.searchCarEngineTxt.Size = new System.Drawing.Size(286, 29);
             this.searchCarEngineTxt.TabIndex = 9;
+            this.searchCarEngineTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.searchCarEngineTxt_KeyPress);
             // 
             // carEngineLbl
             // 
@@ -110,6 +113,7 @@
             this.searchCarModelTxt.Name = "searchCarModelTxt";
             this.searchCarModelTxt.Size = new System.Drawing.Size(286, 29);
             this.searchCarModelTxt.TabIndex = 7;
+            this.searchCarModelTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.searchCarModelTxt_KeyPress);
             // 
             // searchCarManuTxt
             // 
@@ -118,6 +122,7 @@
             this.searchCarManuTxt.Name = "searchCarManuTxt";
             this.searchCarManuTxt.Size = new System.Drawing.Size(286, 29);
             this.searchCarManuTxt.TabIndex = 6;
+            this.searchCarManuTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.searchCarManuTxt_KeyPress);
             // 
             // carYearLbl
             // 
@@ -190,6 +195,7 @@
             this.searchClientAddressTxt.Name = "searchClientAddressTxt";
             this.searchClientAddressTxt.Size = new System.Drawing.Size(286, 29);
             this.searchClientAddressTxt.TabIndex = 4;
+            this.searchClientAddressTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.searchClientAddressTxt_KeyPress);
             // 
             // clientAddressLbl
             // 
@@ -209,6 +215,7 @@
             this.searchClientPhoneTxt.Name = "searchClientPhoneTxt";
             this.searchClientPhoneTxt.Size = new System.Drawing.Size(286, 29);
             this.searchClientPhoneTxt.TabIndex = 2;
+            this.searchClientPhoneTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.searchClientPhoneTxt_KeyPress);
             // 
             // searchClientFullNameTxt
             // 
@@ -217,6 +224,7 @@
             this.searchClientFullNameTxt.Name = "searchClientFullNameTxt";
             this.searchClientFullNameTxt.Size = new System.Drawing.Size(286, 29);
             this.searchClientFullNameTxt.TabIndex = 1;
+            this.searchClientFullNameTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.searchClientFullNameTxt_KeyPress);
             // 
             // searchClientIdTxt
             // 
@@ -225,6 +233,7 @@
             this.searchClientIdTxt.Name = "searchClientIdTxt";
             this.searchClientIdTxt.Size = new System.Drawing.Size(286, 29);
             this.searchClientIdTxt.TabIndex = 0;
+            this.searchClientIdTxt.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.searchClientIdTxt_KeyPress);
             // 
             // clientEmailLbl
             // 
@@ -314,6 +323,7 @@
             this.carNumberComboBox.Size = new System.Drawing.Size(286, 32);
             this.carNumberComboBox.TabIndex = 5;
             this.carNumberComboBox.SelectedIndexChanged += new System.EventHandler(this.carNumberComboBox_SelectedIndexChanged);
+            this.carNumberComboBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.carNumberComboBox_KeyPress);
             // 
             // SearchClientForm
             // 

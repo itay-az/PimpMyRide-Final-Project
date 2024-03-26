@@ -87,5 +87,45 @@ namespace Garage.Screens.StorageScreens
 
             }
         }
+
+        private void supplierIdTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (supplierIdTxt.Text.Length >= 10)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void supplierFullNameTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (supplierFullNameTxt.Text.Length >= 15)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void supplierAddressTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (supplierAddressTxt.Text.Length >= 20)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void supplierPhoneTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (supplierPhoneTxt.Text.Length >= 15)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void supplierEmailTxt_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (supplierEmailTxt.Text.Length >= 50)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
