@@ -33,13 +33,8 @@ namespace PimpMyRideServer.Data
         {
             // itay
             optionsBuilder
-                .UseSqlServer(@"Data Source=DESKTOP-T1R5O2U;Initial Catalog=Garage;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                .UseSqlServer(/* here you put the connection string for MS SQL SERVER */ );
 
-            // kobi
-            /*
-            optionsBuilder
-                   .UseSqlServer(@"Data Source=KOBI_BITON\SQLEXPRESS;Initial Catalog=Garage;Integrated Security=True;TrustServerCertificate=True;");
-        */
         }
 
         // here we are configuring the entities that were defined previously with primary keys and relationships
