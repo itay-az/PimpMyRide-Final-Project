@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("PimpMyRideServer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a3d90f895ce88cd4823ac96b2de1fd8a958ec634")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a6b8881f4b11461a19acc57ea5db95c0b2268356")]
 [assembly: System.Reflection.AssemblyProductAttribute("PimpMyRideServer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("PimpMyRideServer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
